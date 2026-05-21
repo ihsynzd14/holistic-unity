@@ -277,7 +277,9 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
         isRetry: Bool = false
     ) async throws -> R {
         let baseURL = SupabaseSecrets.url
-        let url = URL(string: "\(baseURL)/functions/v1/\(name)")!
+        guard let url = URL(string: "\(baseURL)/functions/v1/\(name)") else {
+            throw PaymentError.paymentFailed("Invalid edge function URL: \(name)")
+        }
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

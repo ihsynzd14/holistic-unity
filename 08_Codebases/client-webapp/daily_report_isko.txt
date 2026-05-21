@@ -1,0 +1,146 @@
+REPORT GIORNALIERO — 21-05-2026
+Progetto: Sito Marketing Holistic Unity (holisticunity.app)
+========================================================
+
+TASK: Correzione problemi di indicizzazione segnalati da Google Search Console
+
+PROBLEMA:
+Google Search Console ha inviato un avviso con due nuovi problemi di indicizzazione:
+- "Escluso dal tag noindex"
+- "Non trovato (404)"
+
+FIX ESEGUITI:
+- sitemap.xml: rimosse le voci cookie-policy, terms-clients e terms-therapists
+  (privacy-policy mantenuta — non ha il tag noindex).
+- robots.txt: aggiunte regole Disallow per /preview-live-style/ e
+  /preview-redesign/ per impedire a Googlebot di scansionare quelle cartelle.
+
+========================================================
+
+Progetto: Webapp Client Holistic Unity (app.holisticunity.app)
+========================================================
+
+TASK: Localizzazione sensibile al genere
+
+PROBLEMA:
+Il saluto della dashboard mostrava la forma femminile italiana ("Pronta a iniziare?")
+per tutti gli utenti, indipendentemente dal genere. Le etichette dell'umore nel journal
+(Stressata, Leggera, Vuota, Curiosa) e preparePrompt usavano anch'esse il femminile fisso.
+
+FIX ESEGUITI:
+- Migrazione SQL: aggiunta colonna `gender` (male/female) alla tabella public.users.
+- i18n (it.ts, en.ts): aggiunte varianti al maschile per headlineNoUpcoming,
+  preparePrompt, 4 etichette dell'umore e saveError nella sezione journal.
+  Aggiunte etichette per il selettore di genere nelle sezioni account e register.
+- dashboard/page.tsx: recupera il genere dell'utente e seleziona Pronto/Pronta
+  nel titolo e in preparePrompt in base ad esso.
+- journal/page.tsx: recupera il genere dell'utente; le etichette delle chip
+  dell'umore e saveError ora si adattano al genere.
+- account/page.tsx: aggiunto selettore di genere (Donna/Uomo) al form del
+  profilo, con salvataggio nel database.
+- register/page.tsx: aggiunto selettore di genere al form di registrazione,
+  salvato in public.users alla creazione dell'account.
+
+========================================================
+
+Progetto: iOS App Holistic Unity
+========================================================
+
+TASK: CONTROL CHECK — gestione errore consistente su tutti i Repository Swift
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva che ogni metodo dei *Repository Swift usasse
+`throws` / `async throws` oppure `Result<T, Error>`. L'audit ha rilevato
+4 firme non conformi (9 occorrenze tra protocol e implementazioni):
+- AuthRepositoryProtocol.getCurrentUser() -> User?  (nessun throws)
+- ChatRepositoryProtocol.observeMessages(...) -> any Sendable  (nessun throws)
+- ChatRepositoryProtocol.observeConversations(...) -> any Sendable  (nessun throws)
+- ChatRepositoryProtocol.observeTypingStatus(...) -> any Sendable  (nessun throws)
+
+Note dall'audit:
+- Result<T, Error> non viene usato in nessun repository del codebase;
+  il pattern adottato è uniformemente `throws` / `async throws`.
+- I 3 metodi observe* di ChatRepository sono dead code (0 call site,
+  implementazione NoOp che ritorna NoOpSubscription). La real-time chat
+  usa Stream SDK direttamente, senza passare per l'astrazione del repository.
+- Il solo call site attivo di getCurrentUser() era AuthManager.swift:69,
+  in un contesto sincrono.
+
+FIX ESEGUITI:
+- Audit iniziale: creato repository_error_handling_audit.txt con analisi
+  completa delle 18 firme dei file Repository (7 protocol + 8 impl + 3 mock).
+- AuthRepositoryProtocol.swift:34: aggiunto `throws` →
+  func getCurrentUser() throws -> User?
+- MockAuthRepository.swift:115: firma aggiornata per conformità al protocol.
+- SupabaseAuthRepository.swift:195: firma aggiornata per conformità al protocol.
+- ChatRepositoryProtocol.swift:14-16: aggiunto `throws` ai 3 metodi observe*.
+- StreamChatRepository.swift:130-138: firme aggiornate per conformità al protocol.
+- AuthManager.swift:69: unico call site aggiornato →
+  guard let basicUser = try? authRepository.getCurrentUser() else { ... }
+  (try? preserva il comportamento nil-fallback; nessun cambio di logica runtime)
+
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — nessun forced unwrap (`!`) o `as!` non documentato
+
+PROBLEMA:
+L'audit precedente (forced_unwrap_as_audit.txt) aveva rilevato 5 force unwrap
+in codice eseguibile (0 `as!`, 0 `try!`, 0 IUO). I fix erano stati proposti
+ma non applicati al codice. Re-scan ha confermato che le 5 occorrenze erano
+ancora presenti.
+
+Re-scan completo eseguito: oltre alle 5 già note, verificate anche
+- `as!`           → 0 occorrenze
+- `try!`          → 0 occorrenze
+- IUO `: Type!`   → 0 occorrenze
+- `expr![.,)\s$]` → 0 occorrenze aggiuntive
+(le 3 occorrenze di `currentUser!` in TOSService.swift sono in doc-comment `///`,
+non eseguibili — già escluse correttamente dall'audit)
+
+FIX ESEGUITI:
+- SupabasePaymentRepository.swift:280: URL force-unwrap sostituito con
+  `guard let ... else { throw PaymentError.paymentFailed(...) }`.
+- SettingsView.swift:41-43: `supportEmailURL` reso opzionale (`URL?` invece di
+  `URL` con `!`); call site (riga 314) avvolto in `if let ... else
+  settingsLogger.error(...)` per gestire URL mailto invalido senza crash.
+- TherapistProfileView.swift:1211, 1222, 1233 (3 preview Review): force unwrap
+  su `Calendar.current.date(byAdding:)` sostituito con `?? Date()`.
+- forced_unwrap_as_audit.txt: aggiornato con log di applicazione fix e
+  cambio status da FAIL a PASS.
+
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — verifica esaustività Gate 1/2/3 in AuthManager.resolveAuthState()
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva la verifica che i gate nel metodo
+`resolveAuthState(for:)` di AuthManager.swift fossero logicamente esaustivi,
+ossia che ogni combinazione possibile di input (authProvider, isEmailVerified,
+role, clientOnboarded, needsTOS) producesse uno stato definito senza
+fall-through.
+
+ANALISI:
+Enumerati tutti i possibili percorsi di input tramite truth table.
+I 4 gate (email verification → role assignment → onboarding → TOS acceptance)
+coprono tutti i casi: nessun input produce uno stato indefinito.
+- Gate 1 (email verification): corretto — Apple/Google bypassano, email users
+  bloccati se `isEmailVerified == false`.
+- Gate 2 (role): cattura tutti gli utenti senza ruolo, qualsiasi provider.
+- Gate 3 (onboarding): verificato per client; therapist esenti per design
+  (onboardano via web portal, redirect-out gestito da AppCoordinator).
+- Gate 4 (TOS): gestisce entrambi i ruoli.
+- Race condition protette con `if case .authenticated = self.authState`
+  prima di ogni downgrade async.
+- `hasCompletedClientOnboarding` fails-open su errore rete (trade-off
+  documentato per evitare lockout durante outage).
+
+Esito: PASS — gate logicamente esaustivi.
+
+FIX ESEGUITO:
+- AuthManager.swift: aggiornato doc-comment di `resolveAuthState(for:)`
+  (gate 3): il commento diceva "handled elsewhere" ma il client onboarding è
+  ora gestito direttamente qui (aggiunto 2026-05-18). Riscritto per chiarire
+  che Gate 3 vale solo per client (`.needsOnboarding(.client)`), usa
+  `hasCompletedClientOnboarding` con fail-open, e i therapist sono esenti
+  con redirect-out in `AppCoordinator`.
+

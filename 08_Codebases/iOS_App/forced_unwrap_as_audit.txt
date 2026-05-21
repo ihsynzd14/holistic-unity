@@ -1,0 +1,149 @@
+Forced Unwrap / as! Audit
+Date:          2026-05-21
+Re-scan:       2026-05-21 (post-fix verification)
+Scope:         08_Codebases/iOS_App/**/*.swift (source + tests)
+
+Goal checked:
+- Nessun forced unwrap (`!`) o `as!` non documentato.
+
+How the scan was done:
+- Searched all Swift files recursively.
+- Ignored comments and string literals for executable-code checks.
+- Checked `as!`, `try!`, postfix forced unwrap (`expr!`), and IUO declarations.
+
+Summary (initial scan):
+- `as!`  occurrences in executable code: 0
+- `try!` occurrences in executable code: 0
+- IUO declarations (`: Type!`):           0
+- Forced unwrap (`!`) in executable code: 5
+- Initial status: FAIL (5 non-documentati found)
+
+Summary (after fix):
+- All 5 forced unwraps removed/replaced with safe alternatives.
+- Final status: PASS — zero forced unwraps eseguibili nel codebase.
+
+Notes:
+- 3 `currentUser!` hits exist in TOSService.swift but only inside doc
+  comments (`///`), not executable code — excluded from violation count.
+
+Findings and suggested code fixes
+
+1) 08_Codebases/iOS_App/Holistic Unity/Data/Repositories/SupabasePaymentRepository.swift:280
+Current:
+    let url = URL(string: "\(baseURL)/functions/v1/\(name)")!
+
+Issue:
+- Force unwrap on URL construction can crash if URL becomes invalid.
+- No inline documentation justifying forced unwrap.
+
+Suggested fix (safe guard + throw):
+    guard let url = URL(string: "\(baseURL)/functions/v1/\(name)") else {
+        throw PaymentError.paymentFailed("Invalid edge function URL: \(name)")
+    }
+
+
+2) 08_Codebases/iOS_App/Holistic Unity/Features/Settings/SettingsView.swift:43
+Current:
+    private let supportEmailURL: URL = URL(
+        string: "mailto:\(AppConstants.Support.email)?subject=Holistic%20Unity%20-%20supporto"
+    )!
+
+Issue:
+- Force unwrap on URL creation at file load time can crash the screen/app.
+- No inline documentation justifying forced unwrap.
+
+Suggested fix (optional URL + guarded usage):
+    private var supportEmailURL: URL? {
+        URL(string: "mailto:\(AppConstants.Support.email)?subject=Holistic%20Unity%20-%20supporto")
+    }
+
+    // where used:
+    if let supportEmailURL {
+        openURL(supportEmailURL)
+    } else {
+        settingsLogger.error("Invalid support email URL")
+    }
+
+
+3) 08_Codebases/iOS_App/Holistic Unity/Features/TherapistProfile/TherapistProfileView.swift:1211
+Current:
+    createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date())!
+
+Issue:
+- Force unwrap in DEBUG preview data, still non-documentato.
+
+Suggested fix:
+    createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()
+
+
+4) 08_Codebases/iOS_App/Holistic Unity/Features/TherapistProfile/TherapistProfileView.swift:1222
+Current:
+    createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date())!
+
+Issue:
+- Same as above.
+
+Suggested fix:
+    createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date()) ?? Date()
+
+
+5) 08_Codebases/iOS_App/Holistic Unity/Features/TherapistProfile/TherapistProfileView.swift:1233
+Current:
+    createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date())!
+
+Issue:
+- Same as above.
+
+Suggested fix:
+    createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date()) ?? Date()
+
+
+Optional cleanup for findings 3-5 (single helper for preview readability):
+    private static func daysAgo(_ days: Int) -> Date {
+        Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
+    }
+
+    // usage
+    createdAt: daysAgo(5)
+    createdAt: daysAgo(12)
+    createdAt: daysAgo(20)
+
+Result:
+- There are no `as!` casts.
+- All 5 executable forced unwraps have been fixed (see "Fix applied" markers).
+
+================================================================================
+FIX APPLICATION LOG (2026-05-21)
+================================================================================
+
+[FIX APPLIED] Finding 1 — SupabasePaymentRepository.swift:280
+  Before: let url = URL(string: "\(baseURL)/functions/v1/\(name)")!
+  After:  guard let url = URL(string: "\(baseURL)/functions/v1/\(name)") else {
+              throw PaymentError.paymentFailed("Invalid edge function URL: \(name)")
+          }
+
+[FIX APPLIED] Finding 2 — SettingsView.swift:41-43 + 314
+  Decl before:  private let supportEmailURL: URL = URL(string: ...)!
+  Decl after:   private let supportEmailURL: URL? = URL(string: ...)
+  Usage before: openURL(supportEmailURL)
+  Usage after:  if let supportEmailURL {
+                    openURL(supportEmailURL)
+                } else {
+                    settingsLogger.error("Invalid support email URL")
+                }
+
+[FIX APPLIED] Finding 3 — TherapistProfileView.swift:1211
+  Before: createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date())!
+  After:  createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()
+
+[FIX APPLIED] Finding 4 — TherapistProfileView.swift:1222
+  Before: createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date())!
+  After:  createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date()) ?? Date()
+
+[FIX APPLIED] Finding 5 — TherapistProfileView.swift:1233
+  Before: createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date())!
+  After:  createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date()) ?? Date()
+
+Post-fix verification grep:
+  Pattern: \)!|\]!|[a-zA-Z_]\w*!\.   on **/*.swift
+  Result: only 3 hits in TOSService.swift doc comments (non-executable). PASS.

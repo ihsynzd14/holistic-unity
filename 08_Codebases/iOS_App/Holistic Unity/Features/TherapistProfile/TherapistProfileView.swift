@@ -1208,7 +1208,7 @@ struct TherapistProfileView: View {
                 therapistReply: "Thank you Anna! It was a pleasure working with you. Looking forward to our next session.",
                 therapistReplyDate: Calendar.current.date(byAdding: .day, value: -3, to: Date()),
                 isFlagged: false,
-                createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date())!
+                createdAt: Calendar.current.date(byAdding: .day, value: -5, to: Date()) ?? Date()
             ),
             Review(
                 id: "r2",
@@ -1219,7 +1219,7 @@ struct TherapistProfileView: View {
                 rating: 5,
                 text: "I was skeptical at first, but after my sound healing session I felt a deep sense of peace I haven't experienced in years. The therapist was professional, caring, and very knowledgeable.",
                 isFlagged: false,
-                createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date())!
+                createdAt: Calendar.current.date(byAdding: .day, value: -12, to: Date()) ?? Date()
             ),
             Review(
                 id: "r3",
@@ -1230,7 +1230,7 @@ struct TherapistProfileView: View {
                 rating: 4,
                 text: "Great session overall. Very calming environment and skilled practitioner. Would have loved a slightly longer session but the results were noticeable.",
                 isFlagged: false,
-                createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date())!
+                createdAt: Calendar.current.date(byAdding: .day, value: -20, to: Date()) ?? Date()
             )
         ]
     }

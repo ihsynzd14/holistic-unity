@@ -1,0 +1,200 @@
+================================================================================
+REPOSITORY ERROR HANDLING CONSISTENCY AUDIT
+================================================================================
+Data audit:  2026-05-21
+Verifica:    2026-05-21 (second pass — risultati confermati)
+Scope:       Tutti i file Swift `*Repository*.swift` in iOS_App
+Criterio:    Ogni metodo del Repository deve usare `throws` / `async throws`
+             oppure `Result<T, Error>` per la gestione errori consistente.
+
+Metodologia:
+  1. `Glob **/*Repository*.swift` → 18 file (7 protocol + 8 impl + 3 mock test).
+  2. `Glob **/*DataSource*.swift` → 0 file (nessun DataSource alternativo).
+  3. `Grep "class .+Repository"` → 11 implementazioni conformi a *RepositoryProtocol.
+  4. `Grep "Result<"` su Data/Repositories e Domain/Repositories → 0 occorrenze
+     (nel codebase NESSUN repository usa `Result<T, Error>` come tipo di ritorno).
+  5. `Grep "^\\s+func \\w+"` su tutti i file Repository → enumerazione completa
+     delle firme di metodo (89 firme totali esaminate riga-per-riga).
+
+================================================================================
+FILE ANALIZZATI (18 totali)
+================================================================================
+
+Domain/Protocols (7):
+  - Holistic Unity/Domain/Repositories/AuthRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/TherapistRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/BookingRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/PaymentRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/ReviewRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/ChatRepositoryProtocol.swift
+  - Holistic Unity/Domain/Repositories/SessionCreditRepositoryProtocol.swift
+
+Data/Implementations (8):
+  - Holistic Unity/Data/Repositories/MockAuthRepository.swift
+  - Holistic Unity/Data/Repositories/SupabaseAuthRepository.swift
+  - Holistic Unity/Data/Repositories/SupabaseTherapistRepository.swift
+  - Holistic Unity/Data/Repositories/SupabasePaymentRepository.swift
+  - Holistic Unity/Data/Repositories/SupabaseBookingRepository.swift
+  - Holistic Unity/Data/Repositories/SupabaseReviewRepository.swift
+  - Holistic Unity/Data/Repositories/SupabaseSessionCreditRepository.swift
+  - Holistic Unity/Data/Repositories/StreamChatRepository.swift
+
+Test Mocks (3):
+  - Holistic UnityTests/Mocks/MockSessionCreditRepository.swift
+  - Holistic UnityTests/Mocks/MockBookingRepository.swift
+  - Holistic UnityTests/Mocks/MockPaymentRepository.swift
+
+================================================================================
+RISULTATO GLOBALE: INCONGRUENZE TROVATE
+================================================================================
+
+Pattern dominante adottato nel codebase: `async throws` (con tipo errore non
+tipizzato — gli errori specifici sono dichiarati come enum LocalizedError
+locali al repository: AuthError, BookingError, PaymentError, ReviewError,
+SessionCreditError, StreamChatError).
+
+Result<T, Error> NON viene mai usato a livello di firma — la convenzione
+del progetto è uniformemente `throws`/`async throws`.
+
+Le incongruenze riportate sotto riguardano metodi che NON throwano e
+NON ritornano Result, quindi non aderiscono al CONTROL CHECK.
+
+================================================================================
+[VIOLAZIONE #1] AuthRepositoryProtocol.getCurrentUser()
+================================================================================
+File:   Holistic Unity/Domain/Repositories/AuthRepositoryProtocol.swift:34
+Firma:  func getCurrentUser() -> User?
+
+Problema:
+  Metodo sincrono che ritorna Optional senza throwing e senza Result.
+  Confonde tre stati ("no user", "errore di lettura cache", "sessione
+  scaduta") in un singolo `nil`, perdendo informazione sull'errore.
+
+Implementazioni che ereditano la stessa firma non-throwing:
+  - Holistic Unity/Data/Repositories/MockAuthRepository.swift:115
+  - Holistic Unity/Data/Repositories/SupabaseAuthRepository.swift:195
+
+Nota: il metodo `fetchCurrentUserProfile() async throws -> User?` esiste
+giA come variante async/throws nella stessa protocol — la coesistenza dei
+due rinforza l'inconsistenza.
+
+================================================================================
+[VIOLAZIONE #2] ChatRepositoryProtocol.observeMessages(...)
+================================================================================
+File:   Holistic Unity/Domain/Repositories/ChatRepositoryProtocol.swift:14
+Firma:  func observeMessages(conversationId: String,
+                              onMessage: @escaping @Sendable (ChatMessage) -> Void)
+        -> any Sendable
+
+Problema:
+  Ritorna un handle di subscription senza throwing e senza Result.
+  Errori di sottoscrizione (cid invalido, channel non trovato, WebSocket
+  non connesso) non sono propagabili al chiamante.
+
+Implementazione che eredita la stessa firma:
+  - Holistic Unity/Data/Repositories/StreamChatRepository.swift:130
+    (ritorna NoOpSubscription — non c'A modo di segnalare errori)
+
+================================================================================
+[VIOLAZIONE #3] ChatRepositoryProtocol.observeConversations(...)
+================================================================================
+File:   Holistic Unity/Domain/Repositories/ChatRepositoryProtocol.swift:15
+Firma:  func observeConversations(userId: String,
+                                   onChange: @escaping @Sendable ([Conversation]) -> Void)
+        -> any Sendable
+
+Problema:
+  Identico a Violazione #2 — observer pattern senza canale di errore.
+
+Implementazione:
+  - Holistic Unity/Data/Repositories/StreamChatRepository.swift:134
+
+================================================================================
+[VIOLAZIONE #4] ChatRepositoryProtocol.observeTypingStatus(...)
+================================================================================
+File:   Holistic Unity/Domain/Repositories/ChatRepositoryProtocol.swift:16
+Firma:  func observeTypingStatus(conversationId: String,
+                                  onChange: @escaping @Sendable (String?) -> Void)
+        -> any Sendable
+
+Problema:
+  Identico a Violazione #2/#3 — observer pattern senza canale di errore.
+
+Implementazione:
+  - Holistic Unity/Data/Repositories/StreamChatRepository.swift:138
+
+================================================================================
+[OSSERVAZIONE — non violazione stretta, ma incongruenza minore]
+================================================================================
+File:   Holistic Unity/Domain/Repositories/AuthRepositoryProtocol.swift:32
+Firma:  func signOut() throws
+
+Note:
+  Unico metodo del protocollo `throws` ma NON `async`. Tecnicamente
+  rispetta il CONTROL CHECK (A throwing), ma rompe l'uniformitA `async
+  throws` del resto del protocollo.
+  L'implementazione `SupabaseAuthRepository.signOut()` (riga 153) usa
+  un Task fire-and-forget e ingoia eventuali errori dell'await interno
+  ("Logged by AuthManager; local state already cleared") — quindi il
+  `throws` della firma di fatto non viene mai sollevato dall'implemen-
+  tazione reale.
+
+================================================================================
+[OSSERVAZIONE — mock test]
+================================================================================
+File:   Holistic UnityTests/Mocks/MockPaymentRepository.swift:35, 53
+Metodi: confirmPayment(paymentIntentId:), addPaymentMethod(clientId:token:)
+
+Note:
+  Le firme rispettano il CONTROL CHECK (`async throws`), ma il corpo
+  contiene `fatalError("Not needed in tests")`. La firma dichiara di
+  poter lanciare un errore, ma in pratica crasha il processo invece di
+  throware. Non A una violazione di firma, ma del contratto di errore.
+
+================================================================================
+RIEPILOGO
+================================================================================
+
+Conteggio firme:
+  - 73 metodi nei 7 file Protocol del Domain.
+  - 87 metodi nei file di implementazione (Data + Test Mocks).
+    (Include override delle stesse firme nei vari conformer.)
+
+Violazioni STRETTE del CONTROL CHECK (firma non-throwing e non-Result):
+  4 firme uniche, in 2 protocolli (AuthRepositoryProtocol, ChatRepositoryProtocol),
+  ereditate in 5 file di implementazione (MockAuthRepository, SupabaseAuthRepository,
+  StreamChatRepository) per un totale di 5 occorrenze:
+    1. AuthRepositoryProtocol:34         getCurrentUser() -> User?
+    2. ChatRepositoryProtocol:14         observeMessages(...) -> any Sendable
+    3. ChatRepositoryProtocol:15         observeConversations(...) -> any Sendable
+    4. ChatRepositoryProtocol:16         observeTypingStatus(...) -> any Sendable
+    5. MockAuthRepository:115            getCurrentUser() -> User?
+    6. SupabaseAuthRepository:195        getCurrentUser() -> User?
+    7. StreamChatRepository:130          observeMessages(...) -> any Sendable
+    8. StreamChatRepository:134          observeConversations(...) -> any Sendable
+    9. StreamChatRepository:138          observeTypingStatus(...) -> any Sendable
+
+Repository per repository (Protocol + tutte le implementazioni):
+  - Auth          → NON CONFORME (1 metodo non-throwing)
+  - Chat          → NON CONFORME (3 metodi non-throwing)
+  - Therapist     → CONFORME ✓
+  - Booking       → CONFORME ✓
+  - Payment       → CONFORME ✓ (firma) [vedi osservazione fatalError nel mock]
+  - Review        → CONFORME ✓
+  - SessionCredit → CONFORME ✓
+
+Result<T, Error>:
+  ZERO occorrenze in qualsiasi file di Repository (verificato via grep).
+  Il codebase adotta uniformemente `throws` / `async throws`.
+
+Repository pienamente conformi al CONTROL CHECK:
+  - TherapistRepositoryProtocol + SupabaseTherapistRepository
+  - BookingRepositoryProtocol  + SupabaseBookingRepository + MockBookingRepository
+  - PaymentRepositoryProtocol  + SupabasePaymentRepository + MockPaymentRepository (*)
+  - ReviewRepositoryProtocol   + SupabaseReviewRepository
+  - SessionCreditRepositoryProtocol + SupabaseSessionCreditRepository
+                                    + MockSessionCreditRepository
+  (*) MockPaymentRepository ha le firme conformi ma usa fatalError in 2 metodi
+      (vedi osservazione sopra).
+
+NESSUNA modifica al codice A stata effettuata, come richiesto dal CONTROL CHECK.

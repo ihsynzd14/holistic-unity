@@ -38,9 +38,9 @@ private let settingsLogger = Logger(subsystem: AppConstants.appBundleId, categor
 //  intention card; magenta brand accent stays scoped to onboarding.
 // ═══════════════════════════════════════════════════════════════════
 
-private let supportEmailURL: URL = URL(
+private let supportEmailURL: URL? = URL(
     string: "mailto:\(AppConstants.Support.email)?subject=Holistic%20Unity%20—%20supporto"
-)!
+)
 
 struct SettingsView: View {
     @Environment(AuthManager.self) private var authManager
@@ -311,7 +311,11 @@ struct SettingsView: View {
         menuGroup(title: "Supporto") {
             Button {
                 HUHaptic.impact(.light)
-                openURL(supportEmailURL)
+                if let supportEmailURL {
+                    openURL(supportEmailURL)
+                } else {
+                    settingsLogger.error("Invalid support email URL")
+                }
             } label: {
                 menuRowContent(
                     icon: "envelope.fill",

@@ -31,7 +31,7 @@ protocol AuthRepositoryProtocol: Sendable {
     func sendPasswordReset(email: String) async throws
     func signOut() throws
     func deleteAccount() async throws
-    func getCurrentUser() -> User?
+    func getCurrentUser() throws -> User?
     func fetchCurrentUserProfile() async throws -> User?
     func setUserRole(_ role: UserRole, for userId: String) async throws
 }

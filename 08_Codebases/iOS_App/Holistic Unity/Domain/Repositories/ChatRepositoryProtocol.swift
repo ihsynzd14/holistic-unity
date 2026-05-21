@@ -11,9 +11,9 @@ protocol ChatRepositoryProtocol: Sendable {
     func uploadVoiceNote(data: Data, conversationId: String) async throws -> URL
     func uploadImage(data: Data, conversationId: String) async throws -> URL
     
-    func observeMessages(conversationId: String, onMessage: @escaping @Sendable (ChatMessage) -> Void) -> any Sendable
-    func observeConversations(userId: String, onChange: @escaping @Sendable ([Conversation]) -> Void) -> any Sendable
-    func observeTypingStatus(conversationId: String, onChange: @escaping @Sendable (String?) -> Void) -> any Sendable
+    func observeMessages(conversationId: String, onMessage: @escaping @Sendable (ChatMessage) -> Void) throws -> any Sendable
+    func observeConversations(userId: String, onChange: @escaping @Sendable ([Conversation]) -> Void) throws -> any Sendable
+    func observeTypingStatus(conversationId: String, onChange: @escaping @Sendable (String?) -> Void) throws -> any Sendable
     
     func setTyping(conversationId: String, userId: String, isTyping: Bool) async throws
 }

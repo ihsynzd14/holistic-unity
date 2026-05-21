@@ -192,7 +192,7 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
     
     // MARK: - Current User
     
-    func getCurrentUser() -> User? {
+    func getCurrentUser() throws -> User? {
         if cachedUser != nil { return cachedUser }
         
         // Try to restore from current session

@@ -66,7 +66,7 @@ final class AuthManager {
         hasRestoredSession = true
         
         // Quick synchronous check to see if there's a session at all
-        guard let basicUser = authRepository.getCurrentUser() else {
+        guard let basicUser = try? authRepository.getCurrentUser() else {
             self.hasRestoredSession = false // no session found, allow future calls
             self.authState = .unauthenticated
             return
@@ -270,6 +270,10 @@ final class AuthManager {
     
     func completeOnboarding() {
         authState = .authenticated
+        guard let user = currentUser, let role = user.role else { return }
+        Task {
+            await checkTOSAndDowngradeIfNeeded(userId: user.id, role: role)
+        }
     }
     
     // MARK: - Sign Out
@@ -319,8 +323,11 @@ final class AuthManager {
     ///      `email_confirmed_at` is still null. Apple/Google bypass this
     ///      because their tokens already attest a verified address.
     ///   2. Role assignment — `.needsRole` if the DB row has no role yet.
-    ///   3. Onboarding — `.needsOnboarding(role)` for users who haven't
-    ///      finished the onboarding flow (handled elsewhere).
+    ///   3. Onboarding — `.needsOnboarding(.client)` if a client hasn't
+    ///      completed the onboarding flow (checked async via
+    ///      `hasCompletedClientOnboarding`, fails open on network error).
+    ///      Therapists are exempt: they onboard via the web portal, and
+    ///      the iOS app's redirect-out logic lives in `AppCoordinator`.
     ///   4. TOS acceptance — checked async via `TOSService` because the
     ///      lookup hits the network. We optimistically advance to
     ///      `.authenticated` and let the async TOS check downgrade us

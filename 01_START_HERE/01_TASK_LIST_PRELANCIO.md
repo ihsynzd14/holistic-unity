@@ -40,10 +40,10 @@ Tempo totale stimato: **75-100 ore** distribuite su 3 settimane (~5h/giorno). Ri
 ## Cosa controllare
 
 **iOS app** (`08_Codebases/iOS_App/`):
-- [ ] Tutti i `Repository` Swift hanno gestione errore consistente (`Result<T, Error>` o throwing)
-- [ ] Nessun forced unwrap (`!`) o `as!` non documentato
+- [x] Tutti i `Repository` Swift hanno gestione errore consistente (`Result<T, Error>` o throwing)
+- [x] Nessun forced unwrap (`!`) o `as!` non documentato
 - [ ] `@MainActor` correttamente applicato a tutto ciò che tocca UI
-- [ ] `AuthManager.swift` — verifica che i Gate 1/2/3 nel `resolveAuthState()` siano logicamente esaustivi
+- [x] `AuthManager.swift` — verifica che i Gate 1/2/3 nel `resolveAuthState()` siano logicamente esaustivi
 - [ ] `PaymentRepository` / `BookingRepository` — verifica che gli errori Stripe siano mappati a messaggi user-friendly italiani
 - [ ] `LiveKitService` — verifica reconnection logic (rete che cade durante la sessione)
 - [ ] `StreamChatService` — verifica memory leak (controller non rilasciati)

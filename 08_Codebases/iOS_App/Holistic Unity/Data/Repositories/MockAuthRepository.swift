@@ -112,7 +112,7 @@ final class MockAuthRepository: AuthRepositoryProtocol {
         storedUser = nil
     }
     
-    func getCurrentUser() -> User? {
+    func getCurrentUser() throws -> User? {
         storedUser
     }
     
