@@ -144,3 +144,154 @@ FIX ESEGUITO:
   `hasCompletedClientOnboarding` con fail-open, e i therapist sono esenti
   con redirect-out in `AppCoordinator`.
 
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — URLCache policy 16MB RAM / 200MB disk in Holistic_UnityApp.swift
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva conferma che la URLCache policy custom (16 MB RAM /
+200 MB disk, disk path `holistic-unity-images`) impostata in Holistic_UnityApp
+init non fosse stata regredita.
+
+ANALISI:
+- Holistic_UnityApp.swift:47-51: policy intatta e ben commentata (refined
+  2026-05-18 dopo perf audit).
+- Grep su `URLCache` nell'intero codebase iOS: 5 occorrenze totali, tutte
+  compatibili con la policy:
+  - 1 assegnamento canonico (Holistic_UnityApp.swift:47)
+  - 3 commenti documentali (SupabaseConfig, AuthManager × 2)
+  - 1 chiamata a `URLCache.shared.removeAllCachedResponses()` in
+    AuthManager.signOut (l.302) — svuota CONTENUTI ma NON riassegna l'oggetto,
+    quindi la policy 16/200 MB è preservata anche dopo logout/re-login.
+- Separazione cache architetturalmente pulita:
+  - URLCache.shared → solo immagini via AsyncImage (16/200 MB)
+  - Sessione Supabase REST → urlCache = nil (no caching errori 403/stale)
+  - Sessione Stripe edge functions → URLSession(.ephemeral) (no caching
+    payment data)
+
+Esito: PASS — nessuna regressione.
+
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — memory leak in StreamChatService (controller non rilasciati)
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva verifica che tutti i controller Stream Chat
+allocati direttamente o indirettamente da StreamChatService fossero
+correttamente rilasciati (no leak).
+
+ANALISI:
+- `currentUserController` (instance property) → cleared in disconnectUser()
+  e sovrascritto in observeUnreadCount(). ✅
+- `unreadCountObserver` Task → cancelled in disconnectUser() e prima di
+  ogni nuova osservazione. ✅
+- Inner Combine sink in observeUnreadCount: `[weak controller]` previene
+  retain cycle; `onTermination` cancella il sink quando l'AsyncStream
+  termina (Task cancellation triggera la sequenza). ✅
+- Controller locali in `getOrCreateChannel`, `muteUser`, `unmuteUser`,
+  `StreamChatRepository` (7 sedi), `PushNotificationService` (2 sedi):
+  tutti local var auto-rilasciati. ✅
+- Controller esportati via `synchronizedController(for:)` (TherapistProfileView
+  e ClientTabView): retained in `@State`, distrutti col view lifecycle SwiftUI.
+
+OSSERVAZIONI (non bug):
+- TherapistProfileView.swift:174 e ClientTabView.swift:218: le `.sheet`
+  che mostrano la chat non hanno `onDismiss` che nilla il controller alla
+  chiusura. Memoria limitata a 1 controller per istanza di view (non leak
+  reale, solo retention più lunga del necessario).
+
+Esito: PASS — nessun memory leak. Suggeriti due `onDismiss` cosmetici NON
+applicati (richiederebbe modifica UI fuori scope del check).
+
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — VideoCallService reconnection logic (rete che cade)
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva verifica che la logica di riconnessione di
+LiveKit gestisse correttamente la caduta della rete durante una sessione
+video attiva.
+
+ANALISI:
+- Caduta breve (LiveKit SDK internal retry): delegate forwarding a
+  callState=.reconnecting, poi .connected. ✅
+- Caduta lunga: transizione a .failed via transitionToFailed con
+  cancellazione di timer/heartbeat/qualityMonitor. ✅
+- UserDefaults SR-01 persistence per app-crash recovery. ✅
+- Race guard pre-reconnect `guard callState == .reconnecting else { return }`. ✅
+- Token refresh automatico su 401/JWT errors. ✅
+- AVAudioSession reset on disconnect. ✅
+
+BUG REALE rilevato:
+`reconnectAttempts` veniva resettato a 0 dentro `connect()` (l.139), e
+poiché `reconnectWithBackoff()` chiama `disconnect()` + `connect()`,
+il counter veniva azzerato ad ogni tentativo dell'utente. Conseguenze:
+- Exponential backoff non funzionava (sempre 2s, mai 4s/8s)
+- Cap "max 3 attempts" mai raggiunto (utente poteva cliccare infinite volte)
+- UI button label "Try Again (N left)" mostrava flapping 3→2→3→2
+- `actualConnectedSeconds` aveva lo stesso bug: sessioni 25min che si
+  riconnettevano al min 24 venivano falsamente flaggate come failed
+  (BL-02) perché il counter veniva resettato.
+
+INTERVENTI ESEGUITI:
+- VideoCallService.swift: aggiunto parametro `isReconnect: Bool = false`
+  a `connect(...)`. Spostati i reset di `elapsedSeconds`,
+  `actualConnectedSeconds` e `reconnectAttempts` dentro `if !isReconnect`.
+  `ghostConnectionDetected` e `hasSeenRemoteParticipant` restano fuori
+  (devono resettarsi anche su reconnect per evitare falsi positivi di
+  "partecipante uscito").
+- `reconnectWithBackoff()` ora chiama `connect(..., isReconnect: true)`.
+- Doc-comment aggiunto al parametro che spiega il motivo del fix.
+- Backward compat preservata: l'unico external caller (VideoCallView.swift:146)
+  usa il default `isReconnect: false`, comportamento per nuove sessioni
+  invariato.
+
+Esito: PARTIAL PASS → PASS dopo fix.
+
+--------------------------------------------------------
+
+TASK: CONTROL CHECK — errori Stripe / Booking mappati a messaggi italiani user-friendly
+
+PROBLEMA:
+Il CONTROL CHECK richiedeva che gli errori di pagamento (Stripe) e di
+prenotazione fossero mostrati all'utente con messaggi user-friendly in
+italiano. L'audit ha rilevato 4 problemi sovrapposti:
+1. `PaymentError` e `BookingError` usavano string literal inglesi senza
+   `String(localized:)`, invisibili al String Catalog.
+2. Gli errori Stripe server-side venivano passati through letterali
+   dall'edge function ("Your card was declined.", "Insufficient funds",
+   ecc.) — nessun mapping a italiano.
+3. Le 4 entry "Booking failed: %@", "Could not prepare payment: %@",
+   "Payment failed: %@", "Payment cancelled..." erano in Localizable.xcstrings
+   ma SENZA traduzione italiana — solo l'inglese veniva mostrato.
+4. ManageBookingView.swift aveva 6 stringhe di errore hardcoded inglesi
+   non passate per `String(localized:)`.
+
+INTERVENTI ESEGUITI:
+- Nuovo file `StripeErrorMapper.swift` in Data/Repositories/: mappa
+  Stripe error codes (`card_declined`, `insufficient_funds`, `expired_card`,
+  `incorrect_cvc`, `incorrect_number`, `authentication_required`,
+  `processing_error`, `try_again_later`, `generic_decline`) a 9 messaggi
+  italiani localizzati. Doppia strategia: match esplicito sul `code`/
+  `decline_code` JSON, fallback su substring matching del testo
+  `error`/`details`. Generic fallback italiano se nessun match.
+- SupabasePaymentRepository.swift: 6 call site di `PaymentError.paymentFailed(...)`
+  ora usano o `String(localized:)` o `StripeErrorMapper.*`. Rimossi tutti
+  i string literal inglesi. Riordinato il blocco di gestione errore HTTP
+  per mettere il check 401 + refresh prima del mapping (evita lavoro
+  sprecato in caso di retry success).
+- SupabasePaymentRepository.swift / PaymentError: 3 case localizzate via
+  `String(localized:)`. Rimosso il prefisso "Payment failed: " da
+  `.paymentFailed` (reason ora è già una frase completa, evita
+  double-prefix nelle UI wrapper).
+- SupabaseBookingRepository.swift / BookingError: 3 case localizzate via
+  `String(localized:)`.
+- ManageBookingView.swift: 6 stringhe hardcoded → tutte avvolte in
+  `String(localized:)` con commenti contestuali.
+- Localizable.xcstrings: aggiunte traduzioni italiane alle 4 entry
+  esistenti senza `localizations`. Aggiunte 23 NUOVE entry complete
+  (chiave inglese + traduzione IT + commento di contesto) per tutti i
+  nuovi `String(localized:)` introdotti. Totale catalog: 735 → 758
+  entries. JSON validato programmaticamente.
+
+Esito: FAIL → PASS dopo fix.

@@ -515,7 +515,10 @@ struct ManageBookingView: View {
             successMessage = "Reschedule request sent! Your therapist will review and approve the new time."
             showSuccessAlert = true
         } catch {
-            errorMessage = "Failed to request reschedule: \(error.localizedDescription)"
+            errorMessage = String(
+                localized: "Failed to request reschedule: \(error.localizedDescription)",
+                comment: "ManageBookingView - reschedule request submission failed"
+            )
         }
         isProcessing = false
     }
@@ -541,10 +544,16 @@ struct ManageBookingView: View {
                         _ = try await DIContainer.shared.sessionCreditRepository.restoreCredit(creditId: credit.id)
                         creditRestored = true
                     } catch {
-                        errorMessage = "Could not restore your session credit: \(error.localizedDescription)"
+                        errorMessage = String(
+                            localized: "Could not restore your session credit: \(error.localizedDescription)",
+                            comment: "ManageBookingView - cancel flow: failed to restore session credit on cancelled credit-booking"
+                        )
                     }
                 } else {
-                    errorMessage = "Could not find the session credit for this booking."
+                    errorMessage = String(
+                        localized: "Could not find the session credit for this booking.",
+                        comment: "ManageBookingView - cancel flow: credit lookup returned no row for this packBookingId"
+                    )
                 }
             } else if refundPercentage > 0 {
                 // Paid booking — attempt Stripe refund BEFORE cancelling the booking so the
@@ -556,10 +565,16 @@ struct ManageBookingView: View {
                         )
                         refundSucceeded = true
                     } else {
-                        errorMessage = "No completed payment was found for this booking, so no refund was requested."
+                        errorMessage = String(
+                            localized: "No completed payment was found for this booking, so no refund was requested.",
+                            comment: "ManageBookingView - cancel flow: no completed Stripe transaction exists for this paid booking"
+                        )
                     }
                 } catch {
-                    errorMessage = "Refund request failed: \(error.localizedDescription)"
+                    errorMessage = String(
+                        localized: "Refund request failed: \(error.localizedDescription)",
+                        comment: "ManageBookingView - cancel flow: Stripe refund edge function call failed"
+                    )
                 }
             }
 
@@ -640,7 +655,10 @@ struct ManageBookingView: View {
             }
             showSuccessAlert = true
         } catch {
-            errorMessage = "Failed to cancel: \(error.localizedDescription)"
+            errorMessage = String(
+                localized: "Failed to cancel: \(error.localizedDescription)",
+                comment: "ManageBookingView - cancel flow: bookingRepository.cancelBooking threw"
+            )
         }
         isProcessing = false
     }

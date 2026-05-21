@@ -5,7 +5,9 @@
       "Bash(sudo gem:*)",
       "Bash(python3)",
       "Bash(vercel env:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(python -c \"import json; data = json.load\\(open\\(r'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/iOS_App/Holistic Unity/Localizable.xcstrings', encoding='utf-8'\\)\\); print\\(f'JSON valid. {len\\(data[\\\\\"strings\\\\\"]\\)} total entries'\\); needles = ['Payment failed. Please check your details or try a different payment method.', 'Your bank declined the payment. Please contact your bank or try a different payment method.', 'Insufficient funds on the card. Please check your balance and try again.', 'The card has expired. Please update your payment details and try again.', 'Failed to cancel: %@', 'Booking failed: %@']; [print\\(f'  ✓ {n[:50]}... it={data[\\\\\"strings\\\\\"][n].get\\(\\\\\"localizations\\\\\",{}\\).get\\(\\\\\"it\\\\\",{}\\).get\\(\\\\\"stringUnit\\\\\",{}\\).get\\(\\\\\"value\\\\\",\\\\\"<missing>\\\\\"\\)[:50]}'\\) for n in needles]\")",
+      "Bash(python -c ' *)"
     ]
   }
 }

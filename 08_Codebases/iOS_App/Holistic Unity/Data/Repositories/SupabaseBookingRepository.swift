@@ -28,15 +28,24 @@ enum BookingError: LocalizedError {
     case noProposedDate
     case maxReschedulesReached
     case proposedSlotNoLongerAvailable
-    
+
     var errorDescription: String? {
         switch self {
         case .noProposedDate:
-            return "No proposed reschedule date found."
+            return String(
+                localized: "No proposed reschedule date found.",
+                comment: "BookingError.noProposedDate - approveReschedule found no proposedScheduledAt on the booking row"
+            )
         case .maxReschedulesReached:
-            return "Maximum number of reschedules reached for this booking."
+            return String(
+                localized: "You have reached the maximum number of reschedules for this booking.",
+                comment: "BookingError.maxReschedulesReached - rescheduleCount exceeded the policy cap"
+            )
         case .proposedSlotNoLongerAvailable:
-            return "The proposed time slot is no longer available. Please select a new time."
+            return String(
+                localized: "The proposed time slot is no longer available. Please select a new time.",
+                comment: "BookingError.proposedSlotNoLongerAvailable - the slot was booked by someone else between request and approval"
+            )
         }
     }
 }

@@ -130,15 +130,32 @@ final class VideoCallService {
 
     /// Connects to a LiveKit room for the given booking.
     /// Safe to call multiple times — rejects if already connecting/connected.
-    func connect(roomName: String, participantName: String, bookingId: String = "") async {
+    ///
+    /// - Parameter isReconnect: When `true`, preserves `reconnectAttempts`
+    ///   and `actualConnectedSeconds` across the connect call. Set by
+    ///   `reconnectWithBackoff` so that:
+    ///   • the exponential backoff actually progresses (2s → 4s → 8s)
+    ///     instead of being stuck at 2s on every retry, and
+    ///   • the `maxReconnectAttempts` cap (3) genuinely gates the retry
+    ///     loop instead of being reset on every attempt, and
+    ///   • the BL-02 `isLikelyFailedSession` classifier doesn't falsely
+    ///     flag long sessions that happened to reconnect near the end
+    ///     (their total connected time is preserved).
+    func connect(roomName: String, participantName: String, bookingId: String = "", isReconnect: Bool = false) async {
         guard !callState.isActive else { return }
 
         callState = .connecting
-        elapsedSeconds = 0
-        actualConnectedSeconds = 0
-        reconnectAttempts = 0
         ghostConnectionDetected = false
         hasSeenRemoteParticipant = false
+
+        if !isReconnect {
+            // Fresh session — reset session-scoped counters. The reconnect
+            // path skips this so `reconnectWithBackoff` can rate-limit
+            // itself and so BL-02 accounting stays accurate across drops.
+            elapsedSeconds = 0
+            actualConnectedSeconds = 0
+            reconnectAttempts = 0
+        }
 
         // SR-01: Persist session state before connecting
         UserDefaultsManager.shared.saveActiveSession(
@@ -221,7 +238,7 @@ final class VideoCallService {
         guard callState == .reconnecting else { return }
         
         await disconnect(clearSession: false)
-        await connect(roomName: roomName, participantName: participantName, bookingId: bookingId)
+        await connect(roomName: roomName, participantName: participantName, bookingId: bookingId, isReconnect: true)
     }
 
     private static let logger = Logger(subsystem: AppConstants.appBundleId, category: "VideoCallService")

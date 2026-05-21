@@ -1091,7 +1091,15 @@
       }
     },
     "Booking failed: %@" : {
-      "comment" : "Booking creation generic error"
+      "comment" : "Booking creation generic error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prenotazione non riuscita: %@"
+          }
+        }
+      }
     },
     "Booking not found. Please try again." : {
       "comment" : "Finalize step missing pending booking id"
@@ -1674,7 +1682,15 @@
       "comment" : "Booking error when slot fetch fails"
     },
     "Could not prepare payment: %@" : {
-      "comment" : "Stripe PaymentSheet preparation error"
+      "comment" : "Stripe PaymentSheet preparation error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile preparare il pagamento: %@"
+          }
+        }
+      }
     },
     "Couldn't load messages" : {
       "comment" : "A message displayed when a user can't load their messages from Stream.",
@@ -3979,10 +3995,26 @@
       }
     },
     "Payment cancelled. The slot has been released — you can pick a new time." : {
-      "comment" : "PaymentSheet user-cancelled, booking row released"
+      "comment" : "PaymentSheet user-cancelled, booking row released",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagamento annullato. Lo slot è stato rilasciato — puoi scegliere un nuovo orario."
+          }
+        }
+      }
     },
     "Payment failed: %@" : {
-      "comment" : "PaymentSheet failed result"
+      "comment" : "PaymentSheet failed result",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagamento non riuscito: %@"
+          }
+        }
+      }
     },
     "Payment History" : {
       "comment" : "The title of the view.",
@@ -6487,6 +6519,259 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il terapista esaminerà e approverà il nuovo orario."
+          }
+        }
+      }
+    },
+    "Could not find the session credit for this booking." : {
+      "comment" : "ManageBookingView - cancel flow: credit lookup returned no row for this packBookingId",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile trovare il credito della sessione per questa prenotazione."
+          }
+        }
+      }
+    },
+    "Could not restore your session credit: %@" : {
+      "comment" : "ManageBookingView - cancel flow: failed to restore session credit on cancelled credit-booking",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile ripristinare il credito della sessione: %@"
+          }
+        }
+      }
+    },
+    "Failed to cancel: %@" : {
+      "comment" : "ManageBookingView - cancel flow: bookingRepository.cancelBooking threw",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile annullare: %@"
+          }
+        }
+      }
+    },
+    "Failed to request reschedule: %@" : {
+      "comment" : "ManageBookingView - reschedule request submission failed",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile inviare la richiesta di riprogrammazione: %@"
+          }
+        }
+      }
+    },
+    "Insufficient funds on the card. Please check your balance and try again." : {
+      "comment" : "Stripe insufficient_funds error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondi insufficienti sulla carta. Verifica il saldo e riprova."
+          }
+        }
+      }
+    },
+    "Invalid payment amount." : {
+      "comment" : "PaymentError - createPaymentIntent client-side validation: amount must be > 0 and finite",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importo del pagamento non valido."
+          }
+        }
+      }
+    },
+    "No completed payment was found for this booking, so no refund was requested." : {
+      "comment" : "ManageBookingView - cancel flow: no completed Stripe transaction exists for this paid booking",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è stato trovato alcun pagamento completato per questa prenotazione, quindi non è stato richiesto alcun rimborso."
+          }
+        }
+      }
+    },
+    "No proposed reschedule date found." : {
+      "comment" : "BookingError.noProposedDate - approveReschedule found no proposedScheduledAt on the booking row",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessuna data di riprogrammazione proposta trovata."
+          }
+        }
+      }
+    },
+    "Payment confirmation is still processing. Please try again in a moment." : {
+      "comment" : "PaymentError.transactionNotFound - polling for the webhook-created transaction row timed out",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La conferma del pagamento è in elaborazione. Riprova tra qualche istante."
+          }
+        }
+      }
+    },
+    "Payment failed. Please check your details or try a different payment method." : {
+      "comment" : "Generic fallback for unmapped Stripe / payment edge-function errors",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagamento non riuscito. Controlla i dati o prova con un altro metodo di pagamento."
+          }
+        }
+      }
+    },
+    "Refund request failed: %@" : {
+      "comment" : "ManageBookingView - cancel flow: Stripe refund edge function call failed",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiesta di rimborso non riuscita: %@"
+          }
+        }
+      }
+    },
+    "Some required payment details are missing." : {
+      "comment" : "PaymentError - createPaymentIntent client-side validation: bookingId/therapistId/currency missing",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mancano alcuni dati di pagamento richiesti."
+          }
+        }
+      }
+    },
+    "Temporary issue with the payment service. Please try again in a few minutes." : {
+      "comment" : "Stripe try_again_later / temporary issue",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problema temporaneo con il servizio di pagamento. Riprova tra qualche minuto."
+          }
+        }
+      }
+    },
+    "The card has expired. Please update your payment details and try again." : {
+      "comment" : "Stripe expired_card error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La carta è scaduta. Aggiorna i dati di pagamento e riprova."
+          }
+        }
+      }
+    },
+    "The card number is incorrect. Please check and try again." : {
+      "comment" : "Stripe incorrect_number / invalid_number error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il numero della carta non è corretto. Controlla e riprova."
+          }
+        }
+      }
+    },
+    "The proposed time slot is no longer available. Please select a new time." : {
+      "comment" : "BookingError.proposedSlotNoLongerAvailable - the slot was booked by someone else between request and approval",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'orario proposto non è più disponibile. Scegli un nuovo orario."
+          }
+        }
+      }
+    },
+    "The security code (CVC) is incorrect. Please check the 3 digits on the back of the card." : {
+      "comment" : "Stripe incorrect_cvc error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il codice di sicurezza (CVC) non è corretto. Controlla le 3 cifre sul retro della carta."
+          }
+        }
+      }
+    },
+    "The therapist's payment account is not set up yet. Please contact support." : {
+      "comment" : "PaymentError.connectAccountNotSetUp - therapist's Stripe Connect account is missing",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'account di pagamento del terapeuta non è ancora configurato. Contatta il supporto."
+          }
+        }
+      }
+    },
+    "There was an error processing the payment. Please try again in a few minutes." : {
+      "comment" : "Stripe processing_error error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errore durante l'elaborazione del pagamento. Riprova tra qualche minuto."
+          }
+        }
+      }
+    },
+    "You have reached the maximum number of reschedules for this booking." : {
+      "comment" : "BookingError.maxReschedulesReached - rescheduleCount exceeded the policy cap",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai raggiunto il numero massimo di riprogrammazioni per questa prenotazione."
+          }
+        }
+      }
+    },
+    "Your bank declined the payment. Please contact your bank or try a different payment method." : {
+      "comment" : "Stripe card_declined / generic_decline error",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il pagamento è stato rifiutato dalla tua banca. Contatta il tuo istituto o prova con un altro metodo."
+          }
+        }
+      }
+    },
+    "Your bank requires 3D Secure authentication. Please follow your bank's instructions to complete the payment." : {
+      "comment" : "Stripe authentication_required error (3DS)",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tua banca richiede l'autenticazione 3D Secure. Segui le istruzioni della banca per completare il pagamento."
+          }
+        }
+      }
+    },
+    "Your session has expired. Please sign out and sign back in to continue." : {
+      "comment" : "PaymentError - edge function returned 401 and session refresh also failed",
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessione scaduta. Esci e accedi di nuovo per continuare."
           }
         }
       }

@@ -22,10 +22,16 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
     func createPaymentIntent(bookingId: String, therapistId: String, amount: Double, currency: String) async throws -> PaymentIntentResult {
         // C4: Validate inputs before calling edge function
         guard amount > 0, amount.isFinite, !amount.isNaN else {
-            throw PaymentError.paymentFailed("Invalid payment amount")
+            throw PaymentError.paymentFailed(String(
+                localized: "Invalid payment amount.",
+                comment: "PaymentError - createPaymentIntent client-side validation: amount must be > 0 and finite"
+            ))
         }
         guard !bookingId.isEmpty, !therapistId.isEmpty, !currency.isEmpty else {
-            throw PaymentError.paymentFailed("Missing required payment parameters")
+            throw PaymentError.paymentFailed(String(
+                localized: "Some required payment details are missing.",
+                comment: "PaymentError - createPaymentIntent client-side validation: bookingId/therapistId/currency missing"
+            ))
         }
 
         struct Request: Encodable {
@@ -278,7 +284,11 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
     ) async throws -> R {
         let baseURL = SupabaseSecrets.url
         guard let url = URL(string: "\(baseURL)/functions/v1/\(name)") else {
-            throw PaymentError.paymentFailed("Invalid edge function URL: \(name)")
+            // Defensive: should never fire in practice (URL components are
+            // controlled internally). Logged for support; user sees the
+            // generic Italian fallback.
+            logger.error("Invalid edge function URL constructed for: \(name)")
+            throw PaymentError.paymentFailed(StripeErrorMapper.genericFallback)
         }
 
         var request = URLRequest(url: url)
@@ -305,7 +315,7 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
         let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw PaymentError.paymentFailed("Invalid server response")
+            throw PaymentError.paymentFailed(StripeErrorMapper.genericFallback)
         }
 
         // Log the response for debugging
@@ -315,17 +325,10 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
         }
 
         guard 200..<300 ~= httpResponse.statusCode else {
-            // Parse error from response body
-            let errorMsg: String
-            if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                let msg = json["error"] as? String
-                let details = json["details"] as? String
-                errorMsg = [msg, details].compactMap { $0 }.joined(separator: " — ")
-            } else {
-                errorMsg = String(data: data, encoding: .utf8) ?? "Unknown error"
-            }
-
-            // On first 401, try refreshing session and retry once
+            // On first 401, try refreshing session and retry once. We
+            // check this BEFORE mapping the error body so we don't waste
+            // a friendly message that will never be shown if the retry
+            // succeeds.
             if httpResponse.statusCode == 401 && !isRetry {
                 logger.warning("Edge function '\(name)' returned 401, refreshing session...")
                 do {
@@ -333,11 +336,18 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
                     return try await rawInvokeEdgeFunction(name, body: body, accessToken: refreshed.accessToken, isRetry: true)
                 } catch {
                     logger.error("Session refresh failed: \(error.localizedDescription)")
-                    throw PaymentError.paymentFailed("Authentication expired. Please sign out and sign back in.")
+                    throw PaymentError.paymentFailed(String(
+                        localized: "Your session has expired. Please sign out and sign back in to continue.",
+                        comment: "PaymentError - edge function returned 401 and session refresh also failed"
+                    ))
                 }
             }
 
-            throw PaymentError.paymentFailed(errorMsg.isEmpty ? "Edge function '\(name)' failed with status \(httpResponse.statusCode)" : errorMsg)
+            // Map the response body (Stripe error code or message) to a
+            // user-friendly Italian message. The raw English text is
+            // preserved in the logger.error above for support / Sentry.
+            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+            throw PaymentError.paymentFailed(StripeErrorMapper.friendlyMessage(from: json))
         }
 
         let decoder = JSONDecoder()
@@ -351,15 +361,25 @@ enum PaymentError: LocalizedError {
     case transactionNotFound
     case connectAccountNotSetUp
     case paymentFailed(String)
-    
+
     var errorDescription: String? {
         switch self {
         case .transactionNotFound:
-            return "Payment confirmation is still processing. Please check back in a moment."
+            return String(
+                localized: "Payment confirmation is still processing. Please try again in a moment.",
+                comment: "PaymentError.transactionNotFound - polling for the webhook-created transaction row timed out"
+            )
         case .connectAccountNotSetUp:
-            return "Payment account is not set up yet."
+            return String(
+                localized: "The therapist's payment account is not set up yet. Please contact support.",
+                comment: "PaymentError.connectAccountNotSetUp - therapist's Stripe Connect account is missing"
+            )
         case .paymentFailed(let reason):
-            return "Payment failed: \(reason)"
+            // `reason` is already a localized, user-friendly message
+            // produced by StripeErrorMapper or by a `String(localized:)`
+            // literal at the throw site. We return it verbatim so the UI
+            // wrapper ("Pagamento non riuscito: %@") doesn't double-prefix.
+            return reason
         }
     }
 }

@@ -44,11 +44,11 @@ Tempo totale stimato: **75-100 ore** distribuite su 3 settimane (~5h/giorno). Ri
 - [x] Nessun forced unwrap (`!`) o `as!` non documentato
 - [ ] `@MainActor` correttamente applicato a tutto ciò che tocca UI
 - [x] `AuthManager.swift` — verifica che i Gate 1/2/3 nel `resolveAuthState()` siano logicamente esaustivi
-- [ ] `PaymentRepository` / `BookingRepository` — verifica che gli errori Stripe siano mappati a messaggi user-friendly italiani
-- [ ] `LiveKitService` — verifica reconnection logic (rete che cade durante la sessione)
-- [ ] `StreamChatService` — verifica memory leak (controller non rilasciati)
+- [x] `PaymentRepository` / `BookingRepository` — verifica che gli errori Stripe siano mappati a messaggi user-friendly italiani
+- [x] `LiveKitService` — verifica reconnection logic (rete che cade durante la sessione)
+- [x] `StreamChatService` — verifica memory leak (controller non rilasciati)
 - [ ] Tutti gli `await` non hanno `try?` che maschera errori critici (paymentIntent, booking confirm, signOut)
-- [ ] `URLCache` policy — già impostata a 16MB ram / 200MB disk in `Holistic_UnityApp.swift`, conferma che non sia stata regredita
+- [x] `URLCache` policy — già impostata a 16MB ram / 200MB disk in `Holistic_UnityApp.swift`, conferma che non sia stata regredita
 
 **Webapp Next.js × 3** (`client-webapp`, `therapist-webapp`, `admin-dashboard`):
 - [ ] `'use client'` solo dove davvero serve (ogni componente client trasferisce JS al browser)
