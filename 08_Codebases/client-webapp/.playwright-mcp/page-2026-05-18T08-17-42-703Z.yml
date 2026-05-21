@@ -1,0 +1,54 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Trova il tuo benessere
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Esplora pratiche" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Esplora pratiche
+        - link "Trova operatore" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Trova operatore
+        - link "Prenotazioni" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Prenotazioni
+        - link "Messaggi" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messaggi
+        - link "Sessioni Video" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Sessioni Video
+        - link "Notifiche" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifiche
+        - link "Diario" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/journal
+          - img [ref=e40]
+          - text: Diario
+        - link "Account" [ref=e42] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e43]
+          - text: Account
+      - generic [ref=e48]:
+        - generic [ref=e49]: Marcello
+        - generic [ref=e50]: marcellodipierro@outlook.com
+        - button "Esci" [ref=e51]:
+          - img [ref=e52]
+          - text: Esci
+    - main [ref=e55]:
+      - img [ref=e57]
+  - alert [ref=e60]

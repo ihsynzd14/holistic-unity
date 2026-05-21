@@ -1,0 +1,19 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - button "IT" [ref=e4]
+      - button "EN" [pressed] [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img "Holistic Unity" [ref=e9]
+        - heading "Create your account" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Start your wellbeing journey on Holistic Unity
+      - generic [ref=e66]:
+        - img [ref=e68]
+        - heading "Check your email" [level=2] [ref=e70]
+        - paragraph [ref=e71]: Open the link we sent to codex.web.guide.20260518@example.com to confirm your address. Once confirmed you can sign in and book your first session.
+        - button "Go to sign in" [ref=e72]
+      - paragraph [ref=e55]: Storm X Digital S.R.L.
+  - button "Open Next.js Dev Tools" [ref=e61] [cursor=pointer]:
+    - img [ref=e62]
+  - alert [ref=e65]

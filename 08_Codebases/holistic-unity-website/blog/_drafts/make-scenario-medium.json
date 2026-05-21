@@ -1,0 +1,76 @@
+{
+  "name": "Holistic Unity — Blog RSS to Medium",
+  "flow": [
+    {
+      "id": 1,
+      "module": "rss:TriggerNewArticle",
+      "version": 4,
+      "parameters": {
+        "url": "https://holisticunity.app/blog/feed.xml",
+        "maxResults": 5,
+        "gzip": true
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "maxResults", "type": "uinteger", "label": "Maximum number of returned items", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "medium:createPost",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "title": "{{1.title}}",
+        "contentFormat": "markdown",
+        "content": "{{1.description}}\n\n---\n\n**Read the full guide on [Holistic Unity]({{1.link}}).**\n\n*At Holistic Unity we publish honest guides to holistic therapies — ThetaHealing®, Reiki, Astrology, Human Design, Numerology, Ayurveda, Naturopathy, Family Constellation, and Systemic Constellation. No fluff. Just clarity.*\n\nVisit [holisticunity.app](https://holisticunity.app) to find verified practitioners.",
+        "canonicalUrl": "{{1.link}}",
+        "publishStatus": "public",
+        "license": "",
+        "notifyFollowers": false,
+        "tags": [
+          "holistic wellness",
+          "energy healing",
+          "wellness"
+        ]
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "title", "type": "text", "label": "Title", "required": true },
+          { "name": "contentFormat", "type": "select", "label": "Content Format" },
+          { "name": "content", "type": "text", "label": "Content", "required": true },
+          { "name": "tags", "type": "array", "label": "Tags" },
+          { "name": "canonicalUrl", "type": "url", "label": "Canonical URL" },
+          { "name": "publishStatus", "type": "select", "label": "Publish status" },
+          { "name": "license", "type": "select", "label": "License" },
+          { "name": "notifyFollowers", "type": "boolean", "label": "Notify followers" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "eu1.make.com"
+  }
+}

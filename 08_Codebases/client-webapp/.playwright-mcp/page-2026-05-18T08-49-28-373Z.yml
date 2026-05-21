@@ -1,0 +1,27 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 9 di 10
+    - main [ref=e12]:
+      - generic [ref=e538]:
+        - heading "C'è qualcosa che vuoi farci sapere?" [level=1] [ref=e539]
+        - paragraph [ref=e540]: Se senti di poter scrivere qualcosa, lo leggeremo. Altrimenti puoi anche solo passare oltre.
+        - generic [ref=e542]:
+          - textbox "Es. Ho gi\\u00e0 fatto delle sessioni in passato, oppure preferisco un orario serale, oppure..." [ref=e543]
+          - paragraph [ref=e544]: 0/500 · Opzionale
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [active] [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [ref=e545]:
+          - text: Avanti
+          - img [ref=e546]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

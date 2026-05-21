@@ -1,0 +1,60 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 2 di 10
+    - main [ref=e12]:
+      - generic [ref=e68]:
+        - heading "Cosa vorresti esplorare?" [level=1] [ref=e69]
+        - paragraph [ref=e70]: Scegli tutte le aree che senti vive in questo momento. Non devi essere preciso/a.
+        - generic [ref=e71]:
+          - button "Il corpo Energia, vitalità, ritmi naturali" [active] [ref=e72]:
+            - generic [ref=e73]:
+              - img [ref=e121]
+              - generic [ref=e75]:
+                - paragraph [ref=e76]: Il corpo
+                - paragraph [ref=e77]: Energia, vitalità, ritmi naturali
+          - button "La mente Pensieri ricorrenti, chiarezza, lucidità" [ref=e78]:
+            - generic [ref=e81]:
+              - paragraph [ref=e82]: La mente
+              - paragraph [ref=e83]: Pensieri ricorrenti, chiarezza, lucidità
+          - button "L'energia Sensazione di blocco o di flusso" [ref=e84]:
+            - generic [ref=e87]:
+              - paragraph [ref=e88]: L'energia
+              - paragraph [ref=e89]: Sensazione di blocco o di flusso
+          - button "Le relazioni Famiglia, partner, amicizie" [ref=e90]:
+            - generic [ref=e93]:
+              - paragraph [ref=e94]: Le relazioni
+              - paragraph [ref=e95]: Famiglia, partner, amicizie
+          - button "La direzione di vita Vocazione, scelte, prossimi passi" [ref=e96]:
+            - generic [ref=e99]:
+              - paragraph [ref=e100]: La direzione di vita
+              - paragraph [ref=e101]: Vocazione, scelte, prossimi passi
+          - button "Il rituale quotidiano Sonno, alimentazione, cura di sé" [ref=e102]:
+            - generic [ref=e105]:
+              - paragraph [ref=e106]: Il rituale quotidiano
+              - paragraph [ref=e107]: Sonno, alimentazione, cura di sé
+          - button "Le radici familiari Storia, eredità, dinamiche tramandate" [ref=e108]:
+            - generic [ref=e111]:
+              - paragraph [ref=e112]: Le radici familiari
+              - paragraph [ref=e113]: Storia, eredità, dinamiche tramandate
+          - button "L'ascolto interiore Intuito, segnali, presenza" [ref=e114]:
+            - generic [ref=e117]:
+              - paragraph [ref=e118]: L'ascolto interiore
+              - paragraph [ref=e119]: Intuito, segnali, presenza
+        - paragraph [ref=e120]: Puoi selezionare più di una risposta
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

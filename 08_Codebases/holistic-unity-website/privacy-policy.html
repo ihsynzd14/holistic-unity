@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Holistic Unity</title>
+  <meta name="description" content="Privacy Policy for Holistic Unity. Learn how we collect, process, and protect your personal data." />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==================== RESET & BASE ==================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --berry: #7B2252;
+      --berry-dark: #5C1A3E;
+      --berry-light: #9A3A65;
+      --gold: #C9A96E;
+      --gold-light: #D4BC8E;
+      --cream: #FDF6F0;
+      --soft-pink: #F0DFE5;
+      --charcoal: #2D2D2D;
+      --charcoal-light: #4A4A4A;
+      --white: #FFFFFF;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==================== UTILITY ==================== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ==================== NAVIGATION ==================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+      background: rgba(253, 246, 240, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 30px rgba(139, 34, 82, 0.08);
+      padding: 10px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      transition: color 0.3s;
+    }
+
+    .nav-logo:hover { color: var(--berry); }
+
+    .nav-logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--berry); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      border: 1px solid rgba(139, 34, 82, 0.2);
+      border-radius: 8px;
+      padding: 4px;
+      background: rgba(139, 34, 82, 0.04);
+    }
+
+    .lang-toggle button {
+      padding: 6px 12px;
+      border: none;
+      background: transparent;
+      color: var(--charcoal-light);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--berry);
+      color: var(--white);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    /* ==================== HEADER ==================== */
+    .policy-header {
+      padding-top: 140px;
+      padding-bottom: 60px;
+      background: linear-gradient(135deg, var(--cream) 0%, rgba(245, 235, 225, 0.5) 100%);
+      border-bottom: 1px solid rgba(139, 34, 82, 0.1);
+    }
+
+    .policy-header h1 {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--berry);
+      margin-bottom: 16px;
+    }
+
+    .policy-meta {
+      font-size: 0.95rem;
+      color: var(--charcoal-light);
+      line-height: 1.8;
+    }
+
+    .policy-meta strong { color: var(--charcoal); }
+
+    /* ==================== CONTENT ==================== */
+    .policy-content {
+      padding: 60px 0;
+    }
+
+    .policy-section {
+      margin-bottom: 50px;
+      display: none;
+    }
+
+    .policy-section.active { display: block; }
+
+    .policy-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--berry);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .policy-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin-top: 30px;
+      margin-bottom: 16px;
+    }
+
+    .policy-section p {
+      line-height: 1.8;
+      margin-bottom: 16px;
+      color: var(--charcoal);
+    }
+
+    .policy-section ul {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .policy-section li {
+      line-height: 1.8;
+      margin-bottom: 10px;
+      color: var(--charcoal);
+    }
+
+    .policy-section strong { color: var(--berry); }
+
+    .highlight-box {
+      background: rgba(139, 34, 82, 0.04);
+      border-left: 4px solid var(--berry);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    /* ==================== SIDEBAR & TOC ==================== */
+    .toc-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .toc-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .toc-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--berry);
+      margin-bottom: 20px;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li {
+      margin-bottom: 12px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--charcoal);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .toc-list a:hover {
+      background: rgba(139, 34, 82, 0.08);
+      color: var(--berry);
+    }
+
+    .toc-list a.active {
+      background: var(--berry);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .toc-content { flex: 1; }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.7);
+      padding: 80px 0 40px;
+      margin-top: 80px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand img {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .toc-container { grid-template-columns: 1fr; }
+      .toc-sidebar { position: relative; top: 0; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .policy-header h1 { font-size: 2.2rem; }
+      .policy-section h2 { font-size: 1.6rem; }
+      .nav-links { gap: 20px; font-size: 0.9rem; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(253, 246, 240, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(139, 34, 82, 0.08);
+      }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .policy-header { padding-top: 100px; padding-bottom: 40px; }
+      .policy-header h1 { font-size: 1.8rem; }
+      .policy-section h2 { font-size: 1.3rem; }
+      .policy-section h3 { font-size: 1.1rem; }
+      .policy-content { padding: 40px 0; }
+      .nav-logo { font-size: 0.9rem; }
+    }
+  </style>
+  <!-- Meta Pixel: gated behind marketing consent in shared.js -->
+
+  <!-- Google Analytics 4 -->
+  <script async src="/analytics.js"></script>
+
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Holistic Unity" />
+        <span>Holistic Unity</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <div class="lang-toggle">
+            <button id="langEn" class="active" onclick="setLang('en')">EN</button>
+            <button id="langIt" onclick="setLang('it')">IT</button>
+            <button id="langPt" onclick="setLang('pt')">PT</button>
+          </div>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HEADER ==================== -->
+  <section class="policy-header">
+    <div class="container">
+      <h1 data-en="Privacy Policy" data-it="Informativa sulla Privacy" data-pt="Política de Privacidade">Privacy Policy</h1>
+      <div class="policy-meta">
+        <p data-en="<strong>Effective Date:</strong> May 7, 2026" data-it="<strong>Data di Entrata in Vigore:</strong> 7 Maggio 2026" data-pt="<strong>Data de Entrada em Vigor:</strong> 7 de Maio de 2026"><strong>Effective Date:</strong> May 7, 2026</p>
+        <p data-en="<strong>Last Updated:</strong> May 7, 2026" data-it="<strong>Ultimo Aggiornamento:</strong> 7 Maggio 2026" data-pt="<strong>Última Atualização:</strong> 7 de Maio de 2026"><strong>Last Updated:</strong> May 7, 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTENT ==================== -->
+  <section class="policy-content">
+    <div class="container">
+      <div class="toc-container">
+
+        <!-- ==================== SIDEBAR ==================== -->
+        <aside class="toc-sidebar">
+          <div class="toc-title" data-en="Contents" data-it="Indice" data-pt="Índice">Contents</div>
+          <ul class="toc-list">
+            <li><a href="#intro" class="toc-link active" data-en="1. Introduction" data-it="1. Introduzione" data-pt="1. Introdução">1. Introduction</a></li>
+            <li><a href="#data-controller" class="toc-link" data-en="2. Data Controller" data-it="2. Titolare del Trattamento" data-pt="2. Controlador de Dados">2. Data Controller</a></li>
+            <li><a href="#data-collection" class="toc-link" data-en="3. Data We Collect" data-it="3. Dati Che Raccogliamo" data-pt="3. Dados que Coletamos">3. Data We Collect</a></li>
+            <li><a href="#purposes" class="toc-link" data-en="4. Purposes of Processing" data-it="4. Finalità del Trattamento" data-pt="4. Finalidades do Tratamento">4. Purposes</a></li>
+            <li><a href="#legal-basis" class="toc-link" data-en="5. Legal Basis" data-it="5. Base Legale" data-pt="5. Base Legal">5. Legal Basis</a></li>
+            <li><a href="#retention" class="toc-link" data-en="6. Data Retention" data-it="6. Conservazione dei Dati" data-pt="6. Retenção de Dados">6. Retention</a></li>
+            <li><a href="#third-parties" class="toc-link" data-en="7. Third-Party Services" data-it="7. Servizi Terzi" data-pt="7. Serviços de Terceiros">7. Third Parties</a></li>
+            <li><a href="#cookies" class="toc-link" data-en="8. Cookies" data-it="8. Cookie" data-pt="8. Cookies">8. Cookies</a></li>
+            <li><a href="#transfers" class="toc-link" data-en="9. International Transfers" data-it="9. Trasferimenti Internazionali" data-pt="9. Transferências Internacionais">9. Transfers</a></li>
+            <li><a href="#rights" class="toc-link" data-en="10. Your Rights" data-it="10. Tuoi Diritti" data-pt="10. Seus Direitos">10. Your Rights</a></li>
+            <li><a href="#security" class="toc-link" data-en="11. Security" data-it="11. Sicurezza" data-pt="11. Segurança">11. Security</a></li>
+            <li><a href="#contact" class="toc-link" data-en="12. Contact Us" data-it="12. Contattaci" data-pt="12. Entre em Contato">12. Contact</a></li>
+          </ul>
+        </aside>
+
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <div class="toc-content">
+
+          <!-- ==================== 1. INTRODUCTION ==================== -->
+          <div id="intro" class="policy-section active">
+            <h2 data-en="1. Introduction" data-it="1. Introduzione" data-pt="1. Introdução">1. Introduction</h2>
+            <p data-en="Holistic Unity ('we', 'us', 'our', or 'Platform') is committed to protecting your privacy. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website and mobile application (collectively, the 'Service'), including all related features, functionalities, and services we offer." data-it="Holistic Unity ('noi', 'nostri' o 'Piattaforma') è impegnata a proteggere la tua privacy. Questa Informativa sulla Privacy spiega come raccogliamo, utilizziamo, trattiamo e proteggiamo le tue informazioni quando utilizzi il nostro sito web e l'applicazione mobile (collettivamente, il 'Servizio'), incluse tutte le relative funzioni e servizi che offriamo." data-pt="Holistic Unity ('nós', 'nossos' ou 'Plataforma') está comprometida em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, processamos e protegemos suas informações quando você usa nosso site e aplicativo móvel (coletivamente, o 'Serviço'), incluindo todos os recursos relacionados, funcionalidades e serviços que oferecemos.">Holistic Unity ('we', 'us', 'our', or 'Platform') is committed to protecting your privacy. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website and mobile application (collectively, the 'Service'), including all related features, functionalities, and services we offer.</p>
+            <p data-en="Our Service connects clients with verified holistic therapists for online video consultation sessions. We operate in compliance with the General Data Protection Regulation (GDPR), Italian Data Protection Code (DLGS 196/2003), and other applicable data protection laws." data-it="Il nostro Servizio collega i clienti con operatori olistici verificati per sessioni di consultazione video online. Operiamo in conformità al Regolamento Generale sulla Protezione dei Dati (GDPR), al Codice della Privacy Italiano (DLGS 196/2003) e ad altre leggi applicabili sulla protezione dei dati." data-pt="Nosso Serviço conecta clientes com terapeutas holísticos verificados para sessões de consulta por vídeo online. Operamos em conformidade com o Regulamento Geral de Proteção de Dados (RGPD), Código de Proteção de Dados Italiano (DLGS 196/2003) e outras leis aplicáveis de proteção de dados.">Our Service connects clients with verified holistic therapists for online video consultation sessions. We operate in compliance with the General Data Protection Regulation (GDPR), Italian Data Protection Code (DLGS 196/2003), and other applicable data protection laws.</p>
+            <p data-en="Please read this policy carefully. By accessing or using Holistic Unity, you acknowledge that you have read, understood, and agree to be bound by all provisions of this Privacy Policy." data-it="Si prega di leggere attentamente questa politica. Accedendo o utilizzando Holistic Unity, riconosci di aver letto, compreso e di accettare di essere vincolato da tutte le disposizioni di questa Informativa sulla Privacy." data-pt="Por favor, leia esta política com atenção. Ao acessar ou usar o Holistic Unity, você reconhece que leu, entendeu e concorda em ser vinculado por todas as disposições desta Política de Privacidade.">Please read this policy carefully. By accessing or using Holistic Unity, you acknowledge that you have read, understood, and agree to be bound by all provisions of this Privacy Policy.</p>
+          </div>
+
+          <!-- ==================== 2. DATA CONTROLLER ==================== -->
+          <div id="data-controller" class="policy-section">
+            <h2 data-en="2. Data Controller" data-it="2. Titolare del Trattamento" data-pt="2. Controlador de Dados">2. Data Controller</h2>
+            <p data-en="The data controller (the entity responsible for determining how and why your personal data is processed) is:" data-it="Il titolare del trattamento (l'entità responsabile di determinare come e perché i tuoi dati personali vengono elaborati) è:" data-pt="O controlador de dados (a entidade responsável por determinar como e por que seus dados pessoais são processados) é:">The data controller (the entity responsible for determining how and why your personal data is processed) is:</p>
+            <div class="highlight-box">
+              <p>
+                <strong>STORM X DIGITAL S.R.L.</strong><br/>
+                VAT/P.Iva: 08789080721<br/>
+                PEC: stormxdigital@pec.it<br/>
+                Via Strada del Carro 24<br/>
+                76011 Bisceglie (BA)<br/>
+                Italy
+              </p>
+            </div>
+            <h3 data-en="Data Protection Officer (DPO)" data-it="Responsabile della Protezione dei Dati (DPO)" data-pt="Encarregado de Proteção de Dados (DPO)">Data Protection Officer (DPO)</h3>
+            <p data-en="We have appointed a Data Protection Officer in accordance with GDPR Article 37. For all privacy-related inquiries and data subject requests, please contact:" data-it="Abbiamo nominato un Responsabile della Protezione dei Dati in conformità all'Articolo 37 del GDPR. Per tutte le richieste relative alla privacy e i diritti dell'interessato, si prega di contattare:" data-pt="Nomeamos um Encarregado de Proteção de Dados em conformidade com o Artigo 37 do RGPD. Para todas as consultas relacionadas à privacidade e solicitações de direitos do titular dos dados, por favor contate:">We have appointed a Data Protection Officer in accordance with GDPR Article 37. For all privacy-related inquiries and data subject requests, please contact:</p>
+            <p>
+              <strong>Email:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a><br/>
+              <strong data-en="Support:" data-it="Supporto:" data-pt="Suporte:">Support:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a><br/>
+              <strong data-en="Website:" data-it="Sito Web:" data-pt="Site:">Website:</strong> <a href="https://holisticunity.app" target="_blank">holisticunity.app</a>
+            </p>
+          </div>
+
+          <!-- ==================== 3. DATA COLLECTION ==================== -->
+          <div id="data-collection" class="policy-section">
+            <h2 data-en="3. Data We Collect" data-it="3. Dati Che Raccogliamo" data-pt="3. Dados que Coletamos">3. Data We Collect</h2>
+            <p data-en="We collect and process various categories of personal data to provide our Service. The data you provide is collected in different ways:" data-it="Raccogliamo ed elaboriamo varie categorie di dati personali per fornire il nostro Servizio. I dati che fornisci vengono raccolti in diversi modi:" data-pt="Coletamos e processamos várias categorias de dados pessoais para fornecer nosso Serviço. Os dados que você fornece são coletados de diferentes maneiras:">We collect and process various categories of personal data to provide our Service. The data you provide is collected in different ways:</p>
+
+            <h3 data-en="3.1 Information You Provide Directly" data-it="3.1 Informazioni che Fornisci Direttamente" data-pt="3.1 Informações que Você Fornece Diretamente">3.1 Information You Provide Directly</h3>
+            <ul>
+              <li data-en="<strong>Account Registration:</strong> Full name, email address, phone number, password, date of birth, gender, address, and profile photograph." data-it="<strong>Registrazione dell'Account:</strong> Nome completo, indirizzo email, numero di telefono, password, data di nascita, genere, indirizzo e foto del profilo." data-pt="<strong>Registro de Conta:</strong> Nome completo, endereço de email, número de telefone, senha, data de nascimento, gênero, endereço e foto do perfil."><strong>Account Registration:</strong> Full name, email address, phone number, password, date of birth, gender, address, and profile photograph.</li>
+              <li data-en="<strong>Payment Information:</strong> Credit/debit card details, billing address, and transaction history (processed securely via Stripe; we do not store full card numbers)." data-it="<strong>Informazioni di Pagamento:</strong> Dettagli della carta di credito/debito, indirizzo di fatturazione e cronologia delle transazioni (elaborati in modo sicuro tramite Stripe; non memorizziamo i numeri completi delle carte)." data-pt="<strong>Informações de Pagamento:</strong> Detalhes do cartão de crédito/débito, endereço de cobrança e histórico de transações (processado com segurança via Stripe; não armazenamos números completos de cartão)."><strong>Payment Information:</strong> Credit/debit card details, billing address, and transaction history (processed securely via Stripe; we do not store full card numbers).</li>
+              <li data-en="<strong>Billing and Fiscal Information:</strong> When you book a paid session, the Stripe Checkout step collects your legal name, full billing postal address, and — where Stripe supports it for your country — a tax identification number (e.g. Codice Fiscale or P.IVA in Italy, NIF/NIE in Spain, VAT number in the EU/UK, EIN/SSN/ITIN in the United States). We store these fields on your profile so the therapist can issue you the fiscal document (invoice, receipt, ricevuta, fattura, factura) required by their local tax law. See Section 7.1 for how this data is shared with the therapist." data-it="<strong>Informazioni di Fatturazione e Fiscali:</strong> Quando prenoti una sessione a pagamento, la fase di Stripe Checkout raccoglie il tuo nome legale, l'indirizzo postale di fatturazione completo e — laddove Stripe lo supporti per il tuo paese — un identificativo fiscale (ad es. Codice Fiscale o P.IVA in Italia, NIF/NIE in Spagna, numero di partita IVA in UE/UK, EIN/SSN/ITIN negli Stati Uniti). Memorizziamo questi campi sul tuo profilo così che l'operatore possa emettere il documento fiscale (fattura, ricevuta, factura) richiesto dalla normativa fiscale del proprio paese. Vedi Sezione 7.1 per come questi dati vengono condivisi con l'operatore." data-pt="<strong>Informações de Faturação e Fiscais:</strong> Quando você reserva uma sessão paga, a etapa de Checkout da Stripe coleta seu nome legal, endereço postal completo de cobrança e — onde a Stripe suporta para seu país — um número de identificação fiscal (por exemplo, Codice Fiscale ou P.IVA na Itália, NIF/NIE na Espanha, número de IVA na UE/Reino Unido, EIN/SSN/ITIN nos Estados Unidos). Armazenamos esses campos em seu perfil para que o terapeuta possa emitir o documento fiscal (fatura, recibo, factura) exigido pela legislação fiscal de seu país. Veja a Seção 7.1 para como esses dados são compartilhados com o terapeuta."><strong>Billing and Fiscal Information:</strong> When you book a paid session, the Stripe Checkout step collects your legal name, full billing postal address, and — where Stripe supports it for your country — a tax identification number (e.g. Codice Fiscale or P.IVA in Italy, NIF/NIE in Spain, VAT number in the EU/UK, EIN/SSN/ITIN in the United States). We store these fields on your profile so the therapist can issue you the fiscal document (invoice, receipt, ricevuta, fattura, factura) required by their local tax law. See Section 7.1 for how this data is shared with the therapist.</li>
+              <li data-en="<strong>Consultation Details:</strong> Therapy type requested, health/wellness concerns shared in session descriptions, consultation notes, and session recordings (with your explicit consent)." data-it="<strong>Dettagli della Consultazione:</strong> Tipo di terapia richiesto, problemi di salute/benessere condivisi nelle descrizioni delle sessioni, note di consultazione e registrazioni delle sessioni (con il tuo consenso esplicito)." data-pt="<strong>Detalhes da Consulta:</strong> Tipo de terapia solicitado, preocupações com saúde/bem-estar compartilhadas em descrições de sessão, notas de consulta e gravações de sessão (com seu consentimento explícito)."><strong>Consultation Details:</strong> Therapy type requested, health/wellness concerns shared in session descriptions, consultation notes, and session recordings (with your explicit consent).</li>
+              <li data-en="<strong>Communications:</strong> Messages sent through our messaging system, support requests, feedback, and reviews." data-it="<strong>Comunicazioni:</strong> Messaggi inviati attraverso il nostro sistema di messaggistica, richieste di supporto, feedback e recensioni." data-pt="<strong>Comunicações:</strong> Mensagens enviadas através de nosso sistema de mensagens, solicitações de suporte, feedback e avaliações."><strong>Communications:</strong> Messages sent through our messaging system, support requests, feedback, and reviews.</li>
+              <li data-en="<strong>Survey and Preference Data:</strong> Information collected through optional surveys, polls, and preference questionnaires to improve our Service." data-it="<strong>Dati di Sondaggio e Preferenza:</strong> Informazioni raccolte attraverso sondaggi opzionali, indagini e questionari di preferenza per migliorare il nostro Servizio." data-pt="<strong>Dados de Pesquisa e Preferência:</strong> Informações coletadas através de pesquisas opcionais, enquetes e questionários de preferência para melhorar nosso Serviço."><strong>Survey and Preference Data:</strong> Information collected through optional surveys, polls, and preference questionnaires to improve our Service.</li>
+            </ul>
+
+            <h3 data-en="3.2 Information Collected Automatically" data-it="3.2 Informazioni Raccolte Automaticamente" data-pt="3.2 Informações Coletadas Automaticamente">3.2 Information Collected Automatically</h3>
+            <ul>
+              <li data-en="<strong>Device Information:</strong> Device type, operating system, browser type, unique device identifiers, mobile network information, and IP address." data-it="<strong>Informazioni sul Dispositivo:</strong> Tipo di dispositivo, sistema operativo, tipo di browser, identificatori di dispositivi univoci, informazioni sulla rete mobile e indirizzo IP." data-pt="<strong>Informações do Dispositivo:</strong> Tipo de dispositivo, sistema operacional, tipo de navegador, identificadores de dispositivo únicos, informações de rede móvel e endereço IP."><strong>Device Information:</strong> Device type, operating system, browser type, unique device identifiers, mobile network information, and IP address.</li>
+              <li data-en="<strong>Usage Data:</strong> Pages viewed, features accessed, time spent, links clicked, session duration, and clickstream data. This helps us understand how you interact with our Service and improve user experience." data-it="<strong>Dati di Utilizzo:</strong> Pagine visualizzate, funzioni accessibili, tempo trascorso, link cliccati, durata della sessione e dati di percorso di clic. Questo ci aiuta a capire come interagisci con il nostro Servizio e a migliorare l'esperienza dell'utente." data-pt="<strong>Dados de Uso:</strong> Páginas visualizadas, recursos acessados, tempo gasto, links clicados, duração da sessão e dados de fluxo de cliques. Isso nos ajuda a entender como você interage com nosso Serviço e melhorar a experiência do usuário."><strong>Usage Data:</strong> Pages viewed, features accessed, time spent, links clicked, session duration, and clickstream data. This helps us understand how you interact with our Service and improve user experience.</li>
+              <li data-en="<strong>Geolocation Data:</strong> Approximate location based on IP address (not GPS-based unless explicitly enabled by you for location-based features)." data-it="<strong>Dati di Geolocalizzazione:</strong> Posizione approssimativa basata sull'indirizzo IP (non basata su GPS se non esplicitamente abilitata da te per funzioni basate sulla posizione)." data-pt="<strong>Dados de Geolocalização:</strong> Localização aproximada com base no endereço IP (não baseado em GPS a menos que explicitamente habilitado por você para recursos baseados em localização)."><strong>Geolocation Data:</strong> Approximate location based on IP address (not GPS-based unless explicitly enabled by you for location-based features).</li>
+              <li data-en="<strong>Cookies and Tracking Technologies:</strong> Persistent and session-based cookies, web beacons, and similar tracking technologies (see Section 8 for details)." data-it="<strong>Cookie e Tecnologie di Tracciamento:</strong> Cookie persistenti e basati su sessione, web beacon e tecnologie di tracciamento simili (vedere Sezione 8 per i dettagli)." data-pt="<strong>Cookies e Tecnologias de Rastreamento:</strong> Cookies persistentes e baseados em sessão, web beacons e tecnologias de rastreamento similares (veja a Seção 8 para detalhes)."><strong>Cookies and Tracking Technologies:</strong> Persistent and session-based cookies, web beacons, and similar tracking technologies (see Section 8 for details).</li>
+            </ul>
+
+            <h3 data-en="3.3 Information from Third Parties" data-it="3.3 Informazioni da Terzi" data-pt="3.3 Informações de Terceiros">3.3 Information from Third Parties</h3>
+            <ul>
+              <li data-en="<strong>Identity Verification:</strong> We may receive identity verification data from third-party verification providers to ensure platform safety and regulatory compliance." data-it="<strong>Verifica dell'Identità:</strong> Possiamo ricevere dati di verifica dell'identità da fornitori di verifica di terze parti per garantire la sicurezza della piattaforma e la conformità normativa." data-pt="<strong>Verificação de Identidade:</strong> Podemos receber dados de verificação de identidade de provedores de verificação de terceiros para garantir a segurança e conformidade regulatória da plataforma."><strong>Identity Verification:</strong> We may receive identity verification data from third-party verification providers to ensure platform safety and regulatory compliance.</li>
+              <li data-en="<strong>Referral Data:</strong> Information about users who refer you to our Service, if applicable." data-it="<strong>Dati di Referral:</strong> Informazioni su utenti che ti consigliano il nostro Servizio, se applicabile." data-pt="<strong>Dados de Referência:</strong> Informações sobre usuários que o indicam para nosso Serviço, se aplicável."><strong>Referral Data:</strong> Information about users who refer you to our Service, if applicable.</li>
+              <li data-en="<strong>Third-Party Integrations:</strong> Data shared through authorized third-party integrations, if you choose to link your Holistic Unity account with other services." data-it="<strong>Integrazioni di Terze Parti:</strong> Dati condivisi tramite integrazioni autorizzate di terze parti, se scegli di collegare il tuo account Holistic Unity con altri servizi." data-pt="<strong>Integrações de Terceiros:</strong> Dados compartilhados através de integrações autorizadas de terceiros, se você optar por vincular sua conta Holistic Unity a outros serviços."><strong>Third-Party Integrations:</strong> Data shared through authorized third-party integrations, if you choose to link your Holistic Unity account with other services.</li>
+            </ul>
+          </div>
+
+          <!-- ==================== 4. PURPOSES OF PROCESSING ==================== -->
+          <div id="purposes" class="policy-section">
+            <h2 data-en="4. Purposes of Processing" data-it="4. Finalità del Trattamento" data-pt="4. Finalidades do Tratamento">4. Purposes of Processing</h2>
+            <p data-en="We process your personal data for the following purposes:" data-it="Elaboriamo i tuoi dati personali per i seguenti scopi:" data-pt="Processamos seus dados pessoais para os seguintes fins:">We process your personal data for the following purposes:</p>
+
+            <h3 data-en="4.1 Service Delivery" data-it="4.1 Fornitura del Servizio" data-pt="4.1 Fornecimento de Serviço">4.1 Service Delivery</h3>
+            <ul>
+              <li data-en="Creating and maintaining your account" data-it="Creazione e manutenzione del tuo account" data-pt="Criar e manter sua conta">Creating and maintaining your account</li>
+              <li data-en="Matching you with suitable holistic therapists based on your preferences and therapy type" data-it="Abbinarti a operatori olistici appropriati in base alle tue preferenze e al tipo di disciplina" data-pt="Combinação com terapeutas holísticos apropriados com base em suas preferências e tipo de terapia">Matching you with suitable holistic therapists</li>
+              <li data-en="Facilitating and hosting online video consultation sessions" data-it="Facilitazione e hosting delle sessioni di consultazione video online" data-pt="Facilitar e hospedar sessões de consulta por vídeo online">Facilitating and hosting online video consultation sessions</li>
+              <li data-en="Processing payments and managing invoices/receipts" data-it="Elaborazione dei pagamenti e gestione delle fatture/ricevute" data-pt="Processar pagamentos e gerenciar faturas/recibos">Processing payments and managing invoices</li>
+              <li data-en="Sending appointment reminders and session follow-ups" data-it="Invio di promemoria di appuntamento e follow-up di sessione" data-pt="Enviar lembretes de compromisso e seguimentos de sessão">Sending appointment reminders and session follow-ups</li>
+            </ul>
+
+            <h3 data-en="4.2 Personalization and Improvement" data-it="4.2 Personalizzazione e Miglioramento" data-pt="4.2 Personalização e Melhoria">4.2 Personalization and Improvement</h3>
+            <ul>
+              <li data-en="Personalizing your experience based on preferences and behavior" data-it="Personalizzazione della tua esperienza in base alle preferenze e al comportamento" data-pt="Personalizar sua experiência com base em preferências e comportamento">Personalizing your experience based on preferences and behavior</li>
+              <li data-en="Analytics to understand Service usage patterns and optimize features" data-it="Analisi per comprendere i modelli di utilizzo del Servizio e ottimizzare le funzionalità" data-pt="Análise para entender os padrões de uso do Serviço e otimizar recursos">Analytics to understand Service usage patterns and optimize features</li>
+              <li data-en="A/B testing to improve user interface and user experience" data-it="Test A/B per migliorare l'interfaccia utente e l'esperienza utente" data-pt="Testes A/B para melhorar a interface do usuário e a experiência do usuário">A/B testing to improve user interface and experience</li>
+            </ul>
+
+            <h3 data-en="4.3 Marketing and Communications" data-it="4.3 Marketing e Comunicazioni" data-pt="4.3 Marketing e Comunicações">4.3 Marketing and Communications</h3>
+            <ul>
+              <li data-en="Sending promotional emails, newsletters, and service updates (you may opt-out anytime)" data-it="Invio di email promozionali, newsletter e aggiornamenti di servizio (puoi rinunciare in qualsiasi momento)" data-pt="Enviar emails promocionais, newsletters e atualizações de serviço (você pode cancelar a inscrição a qualquer momento)">Sending promotional emails, newsletters, and service updates</li>
+              <li data-en="Targeted advertising and product recommendations based on browsing history and preferences" data-it="Pubblicità mirata e consigli di prodotti basati sulla cronologia di navigazione e sulle preferenze" data-pt="Publicidade direcionada e recomendações de produtos com base no histórico de navegação e preferências">Targeted advertising and product recommendations</li>
+              <li data-en="Conducting market research and surveys to understand your needs" data-it="Conduzione di ricerche di mercato e sondaggi per comprendere le tue esigenze" data-pt="Conduzir pesquisas de mercado e pesquisas para entender suas necessidades">Conducting market research and surveys</li>
+            </ul>
+
+            <h3 data-en="4.4 Legal and Regulatory Compliance" data-it="4.4 Conformità Legale e Normativa" data-pt="4.4 Conformidade Legal e Regulatória">4.4 Legal and Regulatory Compliance</h3>
+            <ul>
+              <li data-en="Complying with legal obligations and court orders" data-it="Conformità agli obblighi legali e ai decreti della corte" data-pt="Cumprir obrigações legais e decisões judiciais">Complying with legal obligations and court orders</li>
+              <li data-en="Fraud detection, prevention, and security investigations" data-it="Rilevamento, prevenzione e indagini sulla sicurezza delle frodi" data-pt="Detecção, prevenção e investigações de fraude e segurança">Fraud detection, prevention, and security investigations</li>
+              <li data-en="Identity verification and AML/KYC compliance" data-it="Verifica dell'identità e conformità AML/KYC" data-pt="Verificação de identidade e conformidade AML/KYC">Identity verification and AML/KYC compliance</li>
+              <li data-en="Ensuring compliance with Terms of Service and other policies" data-it="Garantire la conformità ai Termini di Servizio e ad altre politiche" data-pt="Garantir conformidade com Termos de Serviço e outras políticas">Ensuring compliance with Terms of Service</li>
+            </ul>
+
+            <h3 data-en="4.5 Safety and Security" data-it="4.5 Sicurezza" data-pt="4.5 Segurança">4.5 Safety and Security</h3>
+            <ul>
+              <li data-en="Monitoring for suspicious or unauthorized activities" data-it="Monitoraggio di attività sospette o non autorizzate" data-pt="Monitoramento de atividades suspeitas ou não autorizadas">Monitoring for suspicious or unauthorized activities</li>
+              <li data-en="Protecting against fraud, abuse, and other harmful conduct" data-it="Protezione da frodi, abusi e altri comportamenti nocivi" data-pt="Proteger contra fraude, abuso e outras condutas prejudiciais">Protecting against fraud, abuse, and other harmful conduct</li>
+              <li data-en="System security and network reliability" data-it="Sicurezza del sistema e affidabilità della rete" data-pt="Segurança do sistema e confiabilidade da rede">System security and network reliability</li>
+            </ul>
+
+            <h3 data-en="4.6 Anonymous Aggregate Research and Industry Insights (opt-in)" data-it="4.6 Ricerca Aggregata Anonima e Insights di Settore (opt-in)" data-pt="4.6 Pesquisa Agregada Anônima e Insights da Indústria (opt-in)">4.6 Anonymous Aggregate Research and Industry Insights (opt-in)</h3>
+            <p data-en="With your <strong>explicit and revocable opt-in consent</strong>, we may process the answers you provide during onboarding (intent, focus areas, preferred approaches, timing, life season, current practices, optional cosmic marker, free-text notes) in <strong>aggregated and anonymised form</strong> to produce industry research, market reports, and trend insights about the holistic wellness sector. Such aggregated outputs may be shared with research partners, wellness brands, content media, or commercial entities. <strong>No personal or identifiable information is ever included in these outputs</strong>: data is grouped into cohorts of sufficient size that no individual can be re-identified, free-text notes are excluded entirely, and direct identifiers (name, email, account ID, payment data) are stripped before any aggregation. The legal basis is Article 6(1)(a) GDPR (consent), the consent is opt-in (default OFF, you must positively check the dedicated toggle), and you can withdraw it at any time from your account settings without affecting any other use of your data. Withdrawal stops future inclusion in aggregated outputs but does not retroactively remove your prior contribution from already-published reports (which by their aggregated nature do not contain you individually)." data-it="Con il tuo <strong>consenso esplicito, revocabile e opt-in</strong>, possiamo trattare le risposte che fornisci durante l'onboarding (intento, aree di esplorazione, approcci preferiti, tempi, fase di vita, pratiche attuali, riferimento cosmico opzionale, note libere) in forma <strong>aggregata e anonimizzata</strong> per produrre ricerche di settore, report di mercato e insights di tendenza relativi al settore del benessere olistico. Tali output aggregati possono essere condivisi con partner di ricerca, brand wellness, media di contenuto o entità commerciali. <strong>Nessuna informazione personale o identificabile viene mai inclusa in questi output</strong>: i dati sono raggruppati in coorti di dimensione sufficiente da impedire la re-identificazione di alcun individuo, le note libere sono escluse integralmente, e gli identificatori diretti (nome, email, ID account, dati di pagamento) vengono rimossi prima di qualsiasi aggregazione. La base giuridica è l'Articolo 6(1)(a) GDPR (consenso), il consenso è opt-in (default DISATTIVATO, devi attivare positivamente il toggle dedicato) e puoi revocarlo in qualsiasi momento dalle impostazioni del tuo account senza compromettere alcun altro uso dei tuoi dati. La revoca interrompe l'inclusione futura negli output aggregati ma non rimuove retroattivamente il tuo contributo già pubblicato (che per la sua natura aggregata non ti contiene comunque individualmente)." data-pt="Com o seu <strong>consentimento explícito, revogável e opt-in</strong>, podemos processar as respostas que você fornece durante o onboarding (intenção, áreas de exploração, abordagens preferidas, tempos, fase de vida, práticas atuais, marcador cósmico opcional, notas livres) em forma <strong>agregada e anonimizada</strong> para produzir pesquisas de mercado, relatórios e insights de tendência sobre o setor de bem-estar holístico. Tais saídas agregadas podem ser compartilhadas com parceiros de pesquisa, marcas de wellness, mídia de conteúdo ou entidades comerciais. <strong>Nenhuma informação pessoal ou identificável é jamais incluída nessas saídas</strong>: os dados são agrupados em coortes de tamanho suficiente para impedir a reidentificação de qualquer indivíduo, as notas livres são excluídas integralmente, e os identificadores diretos (nome, email, ID da conta, dados de pagamento) são removidos antes de qualquer agregação. A base jurídica é o Artigo 6(1)(a) do RGPD (consentimento), o consentimento é opt-in (padrão DESATIVADO, você deve marcar positivamente o toggle dedicado) e você pode revogá-lo a qualquer momento nas configurações da sua conta sem afetar qualquer outro uso dos seus dados. A revogação interrompe a inclusão futura nas saídas agregadas mas não remove retroativamente sua contribuição já publicada (que por sua natureza agregada não o contém individualmente).">With your <strong>explicit and revocable opt-in consent</strong>, we may process the answers you provide during onboarding (intent, focus areas, preferred approaches, timing, life season, current practices, optional cosmic marker, free-text notes) in <strong>aggregated and anonymised form</strong> to produce industry research, market reports, and trend insights about the holistic wellness sector. Such aggregated outputs may be shared with research partners, wellness brands, content media, or commercial entities. <strong>No personal or identifiable information is ever included in these outputs</strong>: data is grouped into cohorts of sufficient size that no individual can be re-identified, free-text notes are excluded entirely, and direct identifiers (name, email, account ID, payment data) are stripped before any aggregation. The legal basis is Article 6(1)(a) GDPR (consent), the consent is opt-in (default OFF, you must positively check the dedicated toggle), and you can withdraw it at any time from your account settings without affecting any other use of your data. Withdrawal stops future inclusion in aggregated outputs but does not retroactively remove your prior contribution from already-published reports (which by their aggregated nature do not contain you individually).</p>
+          </div>
+
+          <!-- ==================== 5. LEGAL BASIS ==================== -->
+          <div id="legal-basis" class="policy-section">
+            <h2 data-en="5. Legal Basis for Processing" data-it="5. Base Legale per il Trattamento" data-pt="5. Base Legal para o Tratamento">5. Legal Basis for Processing</h2>
+            <p data-en="Under GDPR Article 6, we process your personal data based on one or more of the following legal bases:" data-it="In conformità all'Articolo 6 del GDPR, trattiamo i tuoi dati personali sulla base di una o più delle seguenti basi legali:" data-pt="De acordo com o Artigo 6 do RGPD, processamos seus dados pessoais com base em uma ou mais das seguintes bases legais:">Under GDPR Article 6, we process your personal data based on one or more of the following legal bases:</p>
+
+            <h3 data-en="5.1 Consent (Article 6(1)(a))" data-it="5.1 Consenso (Articolo 6(1)(a))" data-pt="5.1 Consentimento (Artigo 6(1)(a))">5.1 Consent (Article 6(1)(a))</h3>
+            <p data-en="For marketing communications, targeted advertising, cookies (non-essential), and optional features, we rely on your explicit consent. You can withdraw consent anytime through your account settings or by contacting us." data-it="Per le comunicazioni di marketing, la pubblicità mirata, i cookie (non essenziali) e le funzionalità opzionali, ci affidiamo al tuo consenso esplicito. Puoi ritirare il consenso in qualsiasi momento attraverso le impostazioni del tuo account o contattandoci." data-pt="Para comunicações de marketing, publicidade direcionada, cookies (não essenciais) e recursos opcionais, contamos com seu consentimento explícito. Você pode revogar o consentimento a qualquer momento através das configurações da sua conta ou entrando em contato conosco.">For marketing communications, targeted advertising, cookies (non-essential), and optional features, we rely on your explicit consent. You can withdraw consent anytime through your account settings or by contacting us.</p>
+
+            <h3 data-en="5.2 Contractual Necessity (Article 6(1)(b))" data-it="5.2 Necessità Contrattuale (Articolo 6(1)(b))" data-pt="5.2 Necessidade Contratual (Artigo 6(1)(b))">5.2 Contractual Necessity (Article 6(1)(b))</h3>
+            <p data-en="We process personal data necessary to enter into and perform the contract with you, including account creation, session facilitation, payment processing, and service delivery." data-it="Elaboriamo dati personali necessari per stipulare e eseguire il contratto con te, inclusa la creazione dell'account, la facilitazione della sessione, l'elaborazione dei pagamenti e la fornitura del servizio." data-pt="Processamos dados pessoais necessários para celebrar e executar o contrato com você, incluindo criação de conta, facilitação de sessão, processamento de pagamento e fornecimento de serviço.">We process personal data necessary to enter into and perform the contract with you, including account creation, session facilitation, payment processing, and service delivery.</p>
+
+            <h3 data-en="5.3 Legal Obligation (Article 6(1)(c))" data-it="5.3 Obbligo Legale (Articolo 6(1)(c))" data-pt="5.3 Obrigação Legal (Artigo 6(1)(c))">5.3 Legal Obligation (Article 6(1)(c))</h3>
+            <p data-en="We may process data to comply with legal obligations, including tax laws, anti-money laundering regulations, and law enforcement requests." data-it="Possiamo elaborare dati per conformarsi agli obblighi legali, incluse le leggi fiscali, i regolamenti antiriciclaggio e le richieste delle forze dell'ordine." data-pt="Podemos processar dados para cumprir obrigações legais, incluindo leis fiscais, regulamentos anti-lavagem de dinheiro e solicitações de aplicação da lei.">We may process data to comply with legal obligations, including tax laws, anti-money laundering regulations, and law enforcement requests.</p>
+
+            <h3 data-en="5.4 Legitimate Interests (Article 6(1)(f))" data-it="5.4 Interessi Legittimi (Articolo 6(1)(f))" data-pt="5.4 Interesses Legítimos (Artigo 6(1)(f))">5.4 Legitimate Interests (Article 6(1)(f))</h3>
+            <p data-en="We may rely on legitimate interests for:" data-it="Possiamo fare affidamento su interessi legittimi per:" data-pt="Podemos contar com interesses legítimos para:">We may rely on legitimate interests for:</p>
+            <ul>
+              <li data-en="Fraud detection and platform security" data-it="Rilevamento delle frodi e sicurezza della piattaforma" data-pt="Detecção de fraude e segurança da plataforma">Fraud detection and platform security</li>
+              <li data-en="Service improvement and analytics" data-it="Miglioramento del servizio e analisi" data-pt="Melhoria de serviço e análise">Service improvement and analytics</li>
+              <li data-en="Targeted advertising and product recommendations" data-it="Pubblicità mirata e consigli sui prodotti" data-pt="Publicidade direcionada e recomendações de produtos">Targeted advertising and product recommendations</li>
+              <li data-en="Network and system administration" data-it="Amministrazione della rete e del sistema" data-pt="Administração de rede e sistema">Network and system administration</li>
+              <li data-en="Marketing and business development" data-it="Marketing e sviluppo aziendale" data-pt="Marketing e desenvolvimento comercial">Marketing and business development</li>
+            </ul>
+            <p data-en="When relying on legitimate interests, we balance our interests against your rights and freedoms. We conduct Data Protection Impact Assessments (DPIAs) where processing poses risks to your privacy." data-it="Quando ci affidiamo a interessi legittimi, bilanciamo i nostri interessi con i tuoi diritti e libertà. Conduciamo Valutazioni di Impatto sulla Protezione dei Dati (DPIA) quando il trattamento pone rischi per la tua privacy." data-pt="Quando contamos com interesses legítimos, equilibramos nossos interesses com seus direitos e liberdades. Realizamos Avaliações de Impacto na Proteção de Dados (DPIAs) quando o processamento representa riscos para sua privacidade.">When relying on legitimate interests, we balance our interests against your rights and freedoms.</p>
+
+            <h3 data-en="5.5 Special Categories of Data (GDPR Article 9)" data-it="5.5 Categorie Speciali di Dati (Articolo 9 del GDPR)" data-pt="5.5 Categorias Especiais de Dados (Artigo 9 do RGPD)">5.5 Special Categories of Data (GDPR Article 9)</h3>
+            <p data-en="Your health and wellness information (shared during session descriptions and consultations) may constitute special categories of data under GDPR Article 9. We process such data only:" data-it="Le tue informazioni sulla salute e il benessere (condivise durante le descrizioni delle sessioni e le consultazioni) possono costituire categorie speciali di dati secondo l'Articolo 9 del GDPR. Elaboriamo tali dati solo:" data-pt="Suas informações de saúde e bem-estar (compartilhadas durante descrições de sessão e consultas) podem constituir categorias especiais de dados sob o Artigo 9 do RGPD. Processamos tais dados apenas:">Your health and wellness information (shared during session descriptions and consultations) may constitute special categories of data under GDPR Article 9. We process such data only:</p>
+            <ul>
+              <li data-en="With your explicit written consent" data-it="Con il tuo consenso esplicito scritto" data-pt="Com seu consentimento escrito explícito">With your explicit written consent</li>
+              <li data-en="To fulfill our contractual obligations to you (providing therapy matching and sessions)" data-it="Per adempiere i nostri obblighi contrattuali verso di te (fornitura di abbinamento di disciplina e sessioni)" data-pt="Para cumprir nossas obrigações contratuais para com você (fornecimento de correspondência de terapia e sessões)">To fulfill our contractual obligations to you</li>
+              <li data-en="As permitted by law for employment, social security, and health or social care purposes" data-it="Come consentito dalla legge per scopi di occupazione, sicurezza sociale e assistenza sanitaria o sociale" data-pt="Conforme permitido pela lei para fins de ocupação, segurança social e saúde ou assistência social">As permitted by law for occupational health purposes</li>
+            </ul>
+          </div>
+
+          <!-- ==================== 6. DATA RETENTION ==================== -->
+          <div id="retention" class="policy-section">
+            <h2 data-en="6. Data Retention" data-it="6. Conservazione dei Dati" data-pt="6. Retenção de Dados">6. Data Retention</h2>
+            <p data-en="We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, or as required by law. Retention periods vary depending on the data category:" data-it="Conserviamo i tuoi dati personali solo per il tempo necessario a scopo delle finalità delineate in questa Informativa sulla Privacy, o come richiesto dalla legge. I periodi di conservazione variano a seconda della categoria di dati:" data-pt="Retemos seus dados pessoais apenas pelo tempo necessário para cumprir os fins descritos nesta Política de Privacidade, ou conforme exigido por lei. Os períodos de retenção variam dependendo da categoria de dados:">We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, or as required by law. Retention periods vary depending on the data category:</p>
+
+            <h3 data-en="6.1 Account and Profile Data" data-it="6.1 Dati dell'Account e del Profilo" data-pt="6.1 Dados de Conta e Perfil">6.1 Account and Profile Data</h3>
+            <p data-en="Retained for the duration of your account plus 3 years after account deletion (to comply with tax and fraud prevention obligations)." data-it="Conservati per la durata del tuo account più 3 anni dopo l'eliminazione dell'account (per conformarsi agli obblighi fiscali e di prevenzione delle frodi)." data-pt="Retido pela duração de sua conta mais 3 anos após a exclusão da conta (para cumprir com obrigações fiscais e de prevenção de fraude).">Retained for the duration of your account plus 3 years after account deletion (to comply with tax and fraud prevention obligations).</p>
+
+            <h3 data-en="6.2 Consultation and Health Data" data-it="6.2 Dati di Consultazione e Salute" data-pt="6.2 Dados de Consulta e Saúde">6.2 Consultation and Health Data</h3>
+            <p data-en="Session recordings and detailed consultation notes are retained for 7 years (standard therapeutic record retention), unless you request deletion earlier. Summary billing records are retained for 10 years (tax obligations)." data-it="Le registrazioni delle sessioni e le note dettagliate delle consultazioni vengono conservate per 7 anni (conservazione standard dei registri delle sessioni), a meno che non richieda l'eliminazione prima. I record di fatturazione di riepilogo sono conservati per 10 anni (obblighi fiscali)." data-pt="As gravações de sessão e notas de consulta detalhadas são retidas por 7 anos (retenção padrão de registros terapêuticos), a menos que você solicite exclusão anterior. Os registros de faturamento resumido são retidos por 10 anos (obrigações fiscais).">Session recordings and detailed consultation notes are retained for 7 years (standard therapeutic record retention), unless you request deletion earlier. Summary billing records are retained for 10 years (tax obligations).</p>
+
+            <h3 data-en="6.3 Payment Information" data-it="6.3 Informazioni di Pagamento" data-pt="6.3 Informações de Pagamento">6.3 Payment Information</h3>
+            <p data-en="Transaction records are retained for 10 years for tax and regulatory compliance. Full card details are not stored by us (handled directly by Stripe and deleted after authorization)." data-it="I record delle transazioni vengono conservati per 10 anni per conformità fiscale e normativa. I dettagli completi della carta non vengono archiviati da noi (gestiti direttamente da Stripe ed eliminati dopo l'autorizzazione)." data-pt="Os registros de transação são retidos por 10 anos para conformidade fiscal e regulatória. Detalhes completos do cartão não são armazenados por nós (manipulados diretamente pela Stripe).">Transaction records are retained for 10 years for tax and regulatory compliance. Full card details are not stored by us (handled directly by Stripe).</p>
+
+            <h3 data-en="6.4 Marketing and Browsing Data" data-it="6.4 Dati di Marketing e Navigazione" data-pt="6.4 Dados de Marketing e Navegação">6.4 Marketing and Browsing Data</h3>
+            <p data-en="Usage logs and analytics data are retained for 12 months. Marketing email lists are maintained until you unsubscribe, after which they are retained for legal archiving for 1 additional year." data-it="I log di utilizzo e i dati di analisi vengono conservati per 12 mesi. Gli elenchi di email di marketing vengono mantenuti finché non ti iscrivi, dopodiché vengono conservati per l'archiviazione legale per 1 anno aggiuntivo." data-pt="Os logs de uso e dados de análise são retidos por 12 meses. As listas de email de marketing são mantidas até você cancelar a inscrição, após o qual são retidas para arquivo legal por 1 ano adicional.">Usage logs and analytics data are retained for 12 months. Marketing email lists are maintained until you unsubscribe, after which they are retained for legal archiving for 1 additional year.</p>
+
+            <h3 data-en="6.5 Cookies and Tracking Data" data-it="6.5 Cookie e Dati di Tracciamento" data-pt="6.5 Cookies e Dados de Rastreamento">6.5 Cookies and Tracking Data</h3>
+            <p data-en="Session cookies are deleted automatically when you log out or close your browser. Persistent cookies are retained according to their expiration date (typically 1-2 years), unless you clear cookies manually." data-it="I cookie di sessione vengono eliminati automaticamente quando si esce o si chiude il browser. I cookie persistenti vengono conservati secondo la loro data di scadenza (in genere 1-2 anni), a meno che non si cancellino manualmente i cookie." data-pt="Os cookies de sessão são excluídos automaticamente quando você sair ou fechar o navegador. Os cookies persistentes são retidos de acordo com sua data de expiração (normalmente 1-2 anos), a menos que você limpe os cookies manualmente.">Session cookies are deleted automatically when you log out or close your browser. Persistent cookies are retained according to their expiration date (typically 1-2 years), unless you clear cookies manually.</p>
+
+            <h3 data-en="6.6 Legal Proceedings" data-it="6.6 Procedimenti Legali" data-pt="6.6 Procedimentos Legais">6.6 Legal Proceedings</h3>
+            <p data-en="Data relevant to ongoing or potential legal disputes will be retained until the matter is fully resolved plus applicable statute of limitations periods." data-it="I dati rilevanti per controversie legali in corso o potenziali saranno conservati fino a quando la questione non sarà completamente risolta più i periodi di prescrizione applicabili." data-pt="Dados relevantes para disputas legais em andamento ou potenciais serão retidos até que o assunto seja totalmente resolvido mais períodos de prescrição aplicáveis.">Data relevant to ongoing or potential legal disputes will be retained until the matter is fully resolved plus applicable statute of limitations periods.</p>
+          </div>
+
+          <!-- ==================== 7. THIRD-PARTY SERVICES ==================== -->
+          <div id="third-parties" class="policy-section">
+            <h2 data-en="7. Third-Party Services and Data Sharing" data-it="7. Servizi Terzi e Condivisione dei Dati" data-pt="7. Serviços de Terceiros e Compartilhamento de Dados">7. Third-Party Services and Data Sharing</h2>
+            <p data-en="We share your personal data with trusted third-party service providers only when necessary to deliver our Service or meet legal obligations. Third parties act as Data Processors and are bound by confidentiality and security agreements." data-it="Condividiamo i tuoi dati personali con fornitori di servizi terzi affidabili solo quando necessario per fornire il nostro Servizio o rispettare obblighi legali. I terzi agiscono come Responsabili del Trattamento e sono vincolati da accordi di riservatezza e sicurezza." data-pt="Compartilhamos seus dados pessoais com fornecedores de serviços terceirizados confiáveis apenas quando necessário para fornecer nosso Serviço ou cumprir obrigações legais. Terceiros atuam como Processadores de Dados e estão vinculados por acordos de confidencialidade e segurança.">We share your personal data with trusted third-party service providers only when necessary to deliver our Service or meet legal obligations. Third parties act as Data Processors and are bound by confidentiality and security agreements.</p>
+
+            <h3 data-en="7.1 Payment Processing (Stripe)" data-it="7.1 Elaborazione dei Pagamenti (Stripe)" data-pt="7.1 Processamento de Pagamento (Stripe)">7.1 Payment Processing (Stripe)</h3>
+            <p data-en="We use Stripe (stripe.com) to process payments securely. We share your name, email, billing address, and transaction amounts with Stripe. Stripe does not share your full card number with us. We do not store or process raw card data; Stripe manages all payment security and PCI-DSS compliance." data-it="Utilizziamo Stripe (stripe.com) per elaborare i pagamenti in modo sicuro. Condividiamo il tuo nome, email, indirizzo di fatturazione e importi delle transazioni con Stripe. Stripe non condivide il numero completo della tua carta con noi. Non archiviamo o elaboriamo dati grezzi della carta; Stripe gestisce tutta la sicurezza dei pagamenti e la conformità PCI-DSS." data-pt="Usamos Stripe (stripe.com) para processar pagamentos com segurança. Compartilhamos seu nome, email, endereço de cobrança e valores de transação com Stripe. O Stripe não compartilha o número completo do seu cartão conosco. Não armazenamos ou processamos dados brutos do cartão.">We use Stripe (stripe.com) to process payments securely. We share your name, email, billing address, and transaction amounts with Stripe. Stripe does not share your full card number with us. We do not store or process raw card data.</p>
+            <p data-en="<strong>Disclosure of fiscal data to the therapist who delivered the session.</strong> After a paid booking is successfully charged, the therapist who provided the service can access — strictly for the purpose of issuing the fiscal document required by their local tax law — the following fields you entered at the Stripe Checkout step: <em>legal name, billing postal address, phone number, and (where applicable) tax identification number</em>. The therapist does not see your payment-card details, which remain exclusively with Stripe. The lawful bases for this sharing are GDPR Article 6(1)(b) (processing necessary for the performance of the contract you concluded for that session) and Article 6(1)(c) (compliance with the therapist's own legal tax obligation). Every access to these fields by a therapist is recorded in an internal audit log and is subject to a per-therapist rate limit. The therapist is contractually bound (Therapist Terms of Service) to use this information solely for invoicing and bookkeeping, becomes the data controller for any fiscal document they issue, and must retain it under their own tax-law retention period (typically ten years in Italy)." data-it="<strong>Divulgazione dei dati fiscali all'operatore che ha erogato la sessione.</strong> Dopo che una prenotazione a pagamento è stata addebitata con successo, l'operatore che ha erogato il servizio può accedere — esclusivamente al fine di emettere il documento fiscale richiesto dalla normativa fiscale del proprio paese — ai seguenti campi che hai inserito nella fase di Stripe Checkout: <em>nome legale, indirizzo postale di fatturazione, numero di telefono e (ove applicabile) identificativo fiscale</em>. L'operatore non visualizza i dettagli della tua carta di pagamento, che restano esclusivamente presso Stripe. Le basi giuridiche per questa condivisione sono l'Articolo 6(1)(b) GDPR (trattamento necessario all'esecuzione del contratto che hai concluso per quella sessione) e l'Articolo 6(1)(c) (adempimento dell'obbligo fiscale legale dell'operatore stesso). Ogni accesso a questi campi da parte di un operatore viene registrato in un log di audit interno ed è soggetto a un limite di frequenza per operatore. L'operatore è contrattualmente vincolato (Termini per gli Operatori) a utilizzare queste informazioni esclusivamente per la fatturazione e la contabilità, diventa il titolare del trattamento per qualsiasi documento fiscale emette e deve conservarli secondo il proprio periodo di conservazione previsto dalla normativa fiscale (tipicamente dieci anni in Italia)." data-pt="<strong>Divulgação de dados fiscais ao terapeuta que entregou a sessão.</strong> Após uma reserva paga ser cobrada com sucesso, o terapeuta que prestou o serviço pode acessar — estritamente com a finalidade de emitir o documento fiscal exigido pela legislação fiscal do seu país — os seguintes campos que você inseriu na etapa de Stripe Checkout: <em>nome legal, endereço postal de cobrança, número de telefone e (quando aplicável) número de identificação fiscal</em>. O terapeuta não vê os detalhes do seu cartão de pagamento, que permanecem exclusivamente com a Stripe. As bases legais para esse compartilhamento são o Artigo 6(1)(b) do RGPD (tratamento necessário à execução do contrato que você celebrou para essa sessão) e o Artigo 6(1)(c) (cumprimento da obrigação fiscal legal do próprio terapeuta). Cada acesso a esses campos por um terapeuta é registrado em um log de auditoria interno e está sujeito a um limite de taxa por terapeuta. O terapeuta é contratualmente obrigado (Termos para Terapeutas) a usar essas informações exclusivamente para faturação e contabilidade, torna-se o controlador dos dados de qualquer documento fiscal que emita e deve conservá-los pelo seu próprio período de retenção previsto pela legislação fiscal (tipicamente dez anos em Itália)."><strong>Disclosure of fiscal data to the therapist who delivered the session.</strong> After a paid booking is successfully charged, the therapist who provided the service can access — strictly for the purpose of issuing the fiscal document required by their local tax law — the following fields you entered at the Stripe Checkout step: <em>legal name, billing postal address, phone number, and (where applicable) tax identification number</em>. The therapist does not see your payment-card details, which remain exclusively with Stripe. The lawful bases for this sharing are GDPR Article 6(1)(b) (processing necessary for the performance of the contract you concluded for that session) and Article 6(1)(c) (compliance with the therapist's own legal tax obligation). Every access to these fields by a therapist is recorded in an internal audit log and is subject to a per-therapist rate limit. The therapist is contractually bound (Therapist Terms of Service) to use this information solely for invoicing and bookkeeping, becomes the data controller for any fiscal document they issue, and must retain it under their own tax-law retention period (typically ten years in Italy).</p>
+
+            <h3 data-en="7.2 Backend Infrastructure (Supabase)" data-it="7.2 Infrastruttura Backend (Supabase)" data-pt="7.2 Infraestrutura Backend (Supabase)">7.2 Backend Infrastructure (Supabase)</h3>
+            <p data-en="Supabase (supabase.com) hosts our backend infrastructure and database. Your account data, consultation records, and session logs are stored within Supabase's secure cloud infrastructure (hosted in Europe). Supabase is a Data Processor under our DPA." data-it="Supabase (supabase.com) ospita la nostra infrastruttura backend e il database. I tuoi dati dell'account, i record di consultazione e i log delle sessioni vengono archiviati nell'infrastruttura cloud sicura di Supabase (ospitata in Europa). Supabase è un Responsabile del Trattamento secondo il nostro DPA." data-pt="Supabase (supabase.com) hospeda nossa infraestrutura backend e banco de dados. Seus dados de conta, registros de consulta e logs de sessão são armazenados na infraestrutura de nuvem segura da Supabase (hospedada na Europa).">Supabase (supabase.com) hosts our backend infrastructure and database. Your account data, consultation records, and session logs are stored within Supabase's secure cloud infrastructure (hosted in Europe).</p>
+
+            <h3 data-en="7.3 Video Conferencing (LiveKit)" data-it="7.3 Videoconferenza (LiveKit)" data-pt="7.3 Videoconferência (LiveKit)">7.3 Video Conferencing (LiveKit)</h3>
+            <p data-en="We use LiveKit Cloud (livekit.io) to deliver live audio and video consultation sessions. LiveKit acts as a Data Processor under our Data Processing Agreement. During a session, LiveKit processes:" data-it="Utilizziamo LiveKit Cloud (livekit.io) per erogare le sessioni di consulenza audio e video dal vivo. LiveKit agisce come Responsabile del Trattamento ai sensi del nostro Accordo sul Trattamento dei Dati. Durante una sessione, LiveKit tratta:" data-pt="Usamos LiveKit Cloud (livekit.io) para entregar sessões de consulta ao vivo de áudio e vídeo. LiveKit atua como Processador de Dados sob nosso Acordo de Processamento de Dados. Durante uma sessão, LiveKit processa:">We use LiveKit Cloud (livekit.io) to deliver live audio and video consultation sessions. LiveKit acts as a Data Processor under our Data Processing Agreement. During a session, LiveKit processes:</p>
+            <ul>
+              <li data-en="Audio and video streams (transmitted end-to-end between participants; LiveKit does not store the content of the streams)" data-it="Flussi audio e video (trasmessi end-to-end tra i partecipanti; LiveKit non memorizza il contenuto dei flussi)" data-pt="Fluxos de áudio e vídeo (transmitidos de ponta a ponta entre os participantes; LiveKit não armazena o conteúdo dos fluxos)">Audio and video streams (transmitted end-to-end between participants; LiveKit does not store the content of the streams)</li>
+              <li data-en="Session metadata (start time, duration, room identifier, participant identifiers)" data-it="Metadati della sessione (orario di inizio, durata, identificativo della stanza, identificativi dei partecipanti)" data-pt="Metadados da sessão (hora de início, duração, identificador da sala, identificadores de participantes)">Session metadata (start time, duration, room identifier, participant identifiers)</li>
+              <li data-en="Your IP address and basic device/network information required to establish the WebRTC connection" data-it="Il tuo indirizzo IP e le informazioni di base sul dispositivo/rete necessarie per stabilire la connessione WebRTC" data-pt="Seu endereço IP e informações básicas do dispositivo/rede necessárias para estabelecer a conexão WebRTC">Your IP address and basic device/network information required to establish the WebRTC connection</li>
+            </ul>
+            <p data-en="Our current configuration does not record sessions. Session metadata logs are retained by LiveKit for approximately 24 hours for operational purposes and then deleted. LiveKit infrastructure may be located outside the European Union; where transfers occur we rely on Standard Contractual Clauses." data-it="La nostra configurazione attuale non registra le sessioni. I log dei metadati delle sessioni vengono conservati da LiveKit per circa 24 ore per scopi operativi e quindi eliminati. L'infrastruttura LiveKit può trovarsi al di fuori dell'Unione Europea; laddove si verifichino trasferimenti, ci affidiamo alle Clausole Contrattuali Standard." data-pt="Nossa configuração atual não grava sessões. Os logs de metadados de sessão são retidos pelo LiveKit por aproximadamente 24 horas para fins operacionais e então excluídos. A infraestrutura LiveKit pode estar localizada fora da União Europeia; onde ocorrem transferências, confiamos em Cláusulas Contratuais Padrão.">Our current configuration does not record sessions. Session metadata logs are retained by LiveKit for approximately 24 hours for operational purposes and then deleted. Where cross-border transfers occur, we rely on Standard Contractual Clauses.</p>
+
+            <h3 data-en="7.4 Transactional and Marketing Email (Brevo)" data-it="7.4 Email Transazionali e di Marketing (Brevo)" data-pt="7.4 Email Transacional e de Marketing (Brevo)">7.4 Transactional and Marketing Email (Brevo)</h3>
+            <p data-en="We use Brevo (brevo.com, formerly Sendinblue) to send appointment reminders, account notifications, and — only if you opt in — marketing communications. Brevo is headquartered in the European Union (France) and acts as a Data Processor under our Data Processing Agreement. The personal data shared with Brevo is your email address, display name, and your marketing-consent state. Marketing email may be disabled at any time from the in-app Settings or via the unsubscribe link in every marketing message." data-it="Utilizziamo Brevo (brevo.com, precedentemente Sendinblue) per inviare promemoria di appuntamenti, notifiche dell'account e — solo se hai acconsentito — comunicazioni di marketing. Brevo ha sede nell'Unione Europea (Francia) e agisce come Responsabile del Trattamento ai sensi del nostro Accordo sul Trattamento dei Dati. I dati personali condivisi con Brevo sono il tuo indirizzo email, il nome visualizzato e il tuo stato di consenso al marketing. Le email di marketing possono essere disattivate in qualsiasi momento dalle Impostazioni dell'app o tramite il link di cancellazione presente in ogni messaggio di marketing." data-pt="Usamos Brevo (brevo.com, anteriormente Sendinblue) para enviar lembretes de compromisso, notificações de conta e — somente se você optar — comunicações de marketing. Brevo tem sede na União Europeia (França) e atua como Processador de Dados sob nosso Acordo de Processamento de Dados. Os dados pessoais compartilhados com Brevo são seu endereço de email, nome exibido e seu estado de consentimento de marketing. O email de marketing pode ser desativado a qualquer momento nas Configurações do aplicativo ou através do link de cancelamento em cada mensagem de marketing.">We use Brevo (brevo.com, formerly Sendinblue, headquartered in the European Union) to send appointment reminders, account notifications, and — only if you opt in — marketing communications. The personal data shared with Brevo is your email address, display name, and marketing-consent state. Marketing email may be disabled at any time from in-app Settings or via the unsubscribe link in every marketing message.</p>
+
+            <h3 data-en="7.5 Identity Verification and Fraud Prevention" data-it="7.5 Verifica dell'Identità e Prevenzione delle Frodi" data-pt="7.5 Verificação de Identidade e Prevenção de Fraude">7.5 Identity Verification and Fraud Prevention</h3>
+            <p data-en="For regulatory compliance and fraud prevention, we may share limited identity data (name, email, ID document hashes) with specialized third-party verification services. These services comply with privacy laws and do not use your data for other purposes." data-it="Per conformità normativa e prevenzione delle frodi, possiamo condividere dati di identità limitati (nome, email, hash dei documenti di identità) con servizi di verifica specializzati di terze parti. Questi servizi sono conformi alle leggi sulla privacy e non utilizzano i tuoi dati per altri scopi." data-pt="Para conformidade regulatória e prevenção de fraude, podemos compartilhar dados de identidade limitados com serviços de verificação especializados de terceiros.">For regulatory compliance and fraud prevention, we may share limited identity data with specialized third-party verification services.</p>
+
+            <h3 data-en="7.6 Website Analytics (Google Analytics)" data-it="7.6 Analitica del Sito Web (Google Analytics)" data-pt="7.6 Análise do Site (Google Analytics)">7.6 Website Analytics (Google Analytics)</h3>
+            <p data-en="Our public marketing website (holisticunity.app) uses Google Analytics 4 (measurement ID G-0WEMYZ5DZ0) to collect aggregated usage data such as page views, session duration, and traffic sources. Google Analytics sets cookies that identify your browser session and may be processed in the United States under the EU-US Data Privacy Framework. You can opt out at any time via the cookie consent banner, browser extensions such as the Google Analytics Opt-Out Browser Add-on, or by rejecting non-essential cookies. Google Analytics is NOT used inside the iOS app or inside the authenticated therapist portal." data-it="Il nostro sito Web di marketing pubblico (holisticunity.app) utilizza Google Analytics 4 (ID di misurazione G-0WEMYZ5DZ0) per raccogliere dati di utilizzo aggregati come visualizzazioni di pagina, durata della sessione e fonti di traffico. Google Analytics imposta cookie che identificano la tua sessione del browser e possono essere trattati negli Stati Uniti ai sensi del Data Privacy Framework UE-USA. Puoi rinunciare in qualsiasi momento tramite il banner di consenso dei cookie, estensioni del browser come il componente aggiuntivo per la disattivazione di Google Analytics o rifiutando i cookie non essenziali. Google Analytics NON viene utilizzato all'interno dell'app iOS né all'interno del portale operatore autenticato." data-pt="Nosso site público de marketing (holisticunity.app) usa Google Analytics 4 (ID de medição G-0WEMYZ5DZ0) para coletar dados de uso agregados, como visualizações de página, duração da sessão e fontes de tráfego. O Google Analytics define cookies que identificam sua sessão do navegador e podem ser processados nos Estados Unidos sob o EU-US Data Privacy Framework. Você pode cancelar a qualquer momento por meio do banner de consentimento de cookies, extensões do navegador, como o Google Analytics Opt-Out Browser Add-on, ou rejeitando cookies não essenciais. O Google Analytics NÃO é usado dentro do aplicativo iOS nem dentro do portal de terapeuta autenticado.">Our public marketing website (holisticunity.app) uses Google Analytics 4 (measurement ID G-0WEMYZ5DZ0) to collect aggregated usage data. Data may be processed in the United States under the EU-US Data Privacy Framework. You can opt out via the cookie consent banner, browser extensions, or by rejecting non-essential cookies. Google Analytics is NOT used inside the iOS app or the authenticated therapist portal.</p>
+
+            <h3 data-en="7.7 In-App Messaging (Stream Chat)" data-it="7.7 Messaggistica nell'App (Stream Chat)" data-pt="7.7 Mensagens no Aplicativo (Stream Chat)">7.7 In-App Messaging (Stream Chat)</h3>
+            <p data-en="In-app messaging between clients and therapists is powered by Stream Chat, a service provided by Stream.io Inc. (getstream.io), headquartered in the United States. Stream Chat acts as a Data Processor under our Data Processing Agreement and relies on Standard Contractual Clauses for EU-US transfers. The personal data shared with Stream includes your user identifier, display name, avatar URL (if set), message content, attachments, typing and read-state events, and channel membership metadata. Messages are retained until you or your counterparty deletes them, or until your account is deleted (upon account deletion, your Stream identity is marked deleted and message bodies you authored are replaced with a '[Deleted]' placeholder in the other party's history)." data-it="La messaggistica in-app tra clienti e operatori è fornita da Stream Chat, un servizio offerto da Stream.io Inc. (getstream.io), con sede negli Stati Uniti. Stream Chat agisce come Responsabile del Trattamento ai sensi del nostro Accordo sul Trattamento dei Dati e si basa su Clausole Contrattuali Standard per i trasferimenti UE-USA. I dati personali condivisi con Stream includono il tuo identificatore utente, nome visualizzato, URL dell'avatar (se impostato), contenuto dei messaggi, allegati, eventi di digitazione e di lettura, e metadati di appartenenza ai canali. I messaggi vengono conservati finché tu o la tua controparte li eliminate, o fino all'eliminazione del tuo account (al momento dell'eliminazione dell'account, la tua identità Stream viene contrassegnata come eliminata e i corpi dei messaggi da te scritti vengono sostituiti con un segnaposto '[Eliminato]' nella cronologia dell'altra parte)." data-pt="As mensagens no aplicativo entre clientes e terapeutas são fornecidas pelo Stream Chat, um serviço fornecido pela Stream.io Inc. (getstream.io), com sede nos Estados Unidos. O Stream Chat atua como Processador de Dados sob nosso Acordo de Processamento de Dados e baseia-se em Cláusulas Contratuais Padrão para transferências UE-EUA. Os dados pessoais compartilhados com a Stream incluem seu identificador de usuário, nome exibido, URL do avatar (se definido), conteúdo da mensagem, anexos, eventos de digitação e leitura e metadados de participação em canais. As mensagens são retidas até que você ou sua contraparte as excluam, ou até que sua conta seja excluída (na exclusão da conta, sua identidade Stream é marcada como excluída e os corpos das mensagens que você escreveu são substituídos por um marcador '[Excluído]' no histórico da outra parte).">In-app messaging is powered by Stream Chat (Stream.io Inc., getstream.io, headquartered in the United States). Stream is a Data Processor under our DPA and relies on Standard Contractual Clauses for EU-US transfers. We share your user identifier, display name, avatar URL, message content, attachments, typing and read-state events, and channel membership metadata. Messages are retained until deleted by either party or until your account is deleted.</p>
+
+            <h3 data-en="7.8 Error Monitoring (Sentry)" data-it="7.8 Monitoraggio Errori (Sentry)" data-pt="7.8 Monitoramento de Erros (Sentry)">7.8 Error Monitoring (Sentry)</h3>
+            <p data-en="We use Sentry (sentry.io) to collect crash reports and application error telemetry so we can diagnose and fix defects. Sentry is provided by Functional Software, Inc., headquartered in the United States, and relies on Standard Contractual Clauses for EU-US transfers. The data sent to Sentry is intentionally minimised: it includes an opaque user identifier (never your email, phone number, name, or any content you typed), stack traces, the device model, operating system version, and a breadcrumb trail of recent actions. Screenshots and session replays are explicitly disabled in our configuration. Retention at Sentry is 90 days." data-it="Utilizziamo Sentry (sentry.io) per raccogliere rapporti sui crash e telemetria degli errori dell'applicazione, in modo da poter diagnosticare e correggere i difetti. Sentry è fornito da Functional Software, Inc., con sede negli Stati Uniti, e si basa su Clausole Contrattuali Standard per i trasferimenti UE-USA. I dati inviati a Sentry sono volutamente ridotti al minimo: includono un identificatore utente opaco (mai la tua email, numero di telefono, nome o qualsiasi contenuto digitato), tracce dello stack, il modello del dispositivo, la versione del sistema operativo e una traccia delle azioni recenti. Screenshot e replay delle sessioni sono esplicitamente disabilitati nella nostra configurazione. La conservazione presso Sentry è di 90 giorni." data-pt="Usamos Sentry (sentry.io) para coletar relatórios de falhas e telemetria de erros do aplicativo para que possamos diagnosticar e corrigir defeitos. Sentry é fornecido pela Functional Software, Inc., com sede nos Estados Unidos, e baseia-se em Cláusulas Contratuais Padrão para transferências UE-EUA. Os dados enviados ao Sentry são intencionalmente minimizados: incluem um identificador de usuário opaco (nunca seu email, número de telefone, nome ou qualquer conteúdo digitado), stack traces, modelo do dispositivo, versão do sistema operacional e uma trilha de ações recentes. Capturas de tela e replays de sessão estão explicitamente desativados em nossa configuração. A retenção no Sentry é de 90 dias.">We use Sentry (sentry.io) to collect crash reports and application error telemetry. Data sent to Sentry is intentionally minimised: opaque user identifier (never email, phone, name, or user-typed content), stack traces, device model, OS version, and recent-actions breadcrumbs. Screenshots and session replays are disabled. Retention is 90 days.</p>
+
+            <h3 data-en="7.9 Authentication Providers (Sign in with Apple, Google, Microsoft)" data-it="7.9 Provider di Autenticazione (Accedi con Apple, Google, Microsoft)" data-pt="7.9 Provedores de Autenticação (Entrar com Apple, Google, Microsoft)">7.9 Authentication Providers (Sign in with Apple, Google, Microsoft)</h3>
+            <p data-en="If you choose to sign in using Apple, Google, or (for therapists only, to connect the Outlook calendar) Microsoft, we receive a minimal set of identity attributes from that provider: typically your name and email address. We do not receive your password. Each provider's own privacy policy applies to the data you have provided to them. You may disconnect these providers at any time by deleting your account or, for Google/Microsoft calendar integrations, by removing the authorisation from the provider's account-security settings." data-it="Se scegli di accedere utilizzando Apple, Google o (solo per gli operatori, per collegare il calendario Outlook) Microsoft, riceviamo un set minimo di attributi di identità da quel provider: tipicamente il tuo nome e indirizzo email. Non riceviamo la tua password. L'informativa sulla privacy di ciascun provider si applica ai dati che hai fornito loro. Puoi disconnettere questi provider in qualsiasi momento eliminando il tuo account o, per le integrazioni del calendario Google/Microsoft, rimuovendo l'autorizzazione dalle impostazioni di sicurezza dell'account del provider." data-pt="Se você escolher entrar usando Apple, Google ou (apenas para terapeutas, para conectar o calendário Outlook) Microsoft, recebemos um conjunto mínimo de atributos de identidade desse provedor: normalmente seu nome e endereço de email. Nós não recebemos sua senha. A política de privacidade de cada provedor se aplica aos dados que você forneceu a eles. Você pode desconectar esses provedores a qualquer momento excluindo sua conta ou, para integrações do calendário Google/Microsoft, removendo a autorização nas configurações de segurança da conta do provedor.">If you choose to sign in with Apple, Google, or (therapists only, Outlook calendar) Microsoft, we receive a minimal set of identity attributes from that provider (typically name and email). We do not receive your password. Each provider's privacy policy applies to the data held by them.</p>
+
+            <h3 data-en="7.10 Application Hosting (Vercel)" data-it="7.10 Hosting dell'Applicazione (Vercel)" data-pt="7.10 Hospedagem de Aplicativos (Vercel)">7.10 Application Hosting (Vercel)</h3>
+            <p data-en="Our public marketing website, the therapist portal, and the admin dashboard are hosted on Vercel (vercel.com). Vercel processes basic request metadata including your IP address, user agent, and the pages you visit, for operational purposes such as serving content, rate limiting, and security. Vercel acts as a Data Processor under our Data Processing Agreement and relies on Standard Contractual Clauses for EU-US transfers where applicable." data-it="Il nostro sito Web di marketing pubblico, il portale dell'operatore e la dashboard amministrativa sono ospitati su Vercel (vercel.com). Vercel tratta i metadati di base della richiesta inclusi il tuo indirizzo IP, l'agente utente e le pagine che visiti, per scopi operativi come il servire i contenuti, la limitazione della velocità e la sicurezza. Vercel agisce come Responsabile del Trattamento ai sensi del nostro Accordo sul Trattamento dei Dati e si basa su Clausole Contrattuali Standard per i trasferimenti UE-USA ove applicabile." data-pt="Nosso site público de marketing, o portal do terapeuta e o painel administrativo são hospedados no Vercel (vercel.com). O Vercel processa metadados básicos de solicitação, incluindo seu endereço IP, agente do usuário e as páginas que você visita, para fins operacionais, como servir conteúdo, limitação de taxa e segurança. O Vercel atua como Processador de Dados sob nosso Acordo de Processamento de Dados e baseia-se em Cláusulas Contratuais Padrão para transferências UE-EUA, quando aplicável.">The marketing website, therapist portal, and admin dashboard are hosted on Vercel (vercel.com). Vercel processes basic request metadata (IP, user agent, pages visited) for operational purposes and acts as a Data Processor under our DPA.</p>
+
+            <h3 data-en="7.11 Push Notifications (Apple Push Notification Service)" data-it="7.11 Notifiche Push (Apple Push Notification Service)" data-pt="7.11 Notificações Push (Apple Push Notification Service)">7.11 Push Notifications (Apple Push Notification Service)</h3>
+            <p data-en="When you enable push notifications on your device, Apple issues your device an opaque device token which we store in order to deliver notifications (e.g., booking reminders, new messages). Notifications are delivered via the Apple Push Notification service (APNs). The content we include in notifications is limited to what you would otherwise see inside the app. You can disable notifications at any time from iOS Settings, which immediately stops further delivery." data-it="Quando abiliti le notifiche push sul tuo dispositivo, Apple emette per il tuo dispositivo un token opaco che memorizziamo al fine di consegnare le notifiche (ad es. promemoria di prenotazione, nuovi messaggi). Le notifiche vengono consegnate tramite il servizio di notifiche push di Apple (APNs). I contenuti inclusi nelle notifiche sono limitati a ciò che vedresti comunque all'interno dell'app. Puoi disattivare le notifiche in qualsiasi momento dalle Impostazioni di iOS, il che interrompe immediatamente ulteriori consegne." data-pt="Quando você ativa notificações push em seu dispositivo, a Apple emite ao seu dispositivo um token opaco que armazenamos para entregar notificações (por exemplo, lembretes de reserva, novas mensagens). As notificações são entregues através do serviço Apple Push Notification (APNs). O conteúdo que incluímos nas notificações é limitado ao que você veria dentro do aplicativo. Você pode desativar as notificações a qualquer momento em Configurações do iOS, o que interrompe imediatamente entregas adicionais.">When you enable push notifications, Apple issues an opaque device token which we store in order to deliver notifications via the Apple Push Notification service (APNs). Notification content is limited to what you would otherwise see inside the app. You can disable notifications at any time from iOS Settings.</p>
+
+            <h3 data-en="7.12 No Unauthorized Sharing" data-it="7.12 Nessuna Condivisione non Autorizzata" data-pt="7.12 Nenhum Compartilhamento não Autorizado">7.12 No Unauthorized Sharing</h3>
+            <p data-en="We do NOT sell, rent, or share your personal data to third parties for marketing purposes without explicit consent. We do not use your data for profiling or automated decision-making in ways that significantly affect you." data-it="NON vendiamo, affittiamo o condividiamo i tuoi dati personali a terzi a scopo di marketing senza consenso esplicito. Non utilizziamo i tuoi dati per il profiling o per il processo decisionale automatizzato in modi che ti influenzano in modo significativo." data-pt="NÃO vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros para fins de marketing sem consentimento explícito.">We do NOT sell, rent, or share your personal data to third parties for marketing purposes without explicit consent.</p>
+
+            <h3 data-en="7.13 Business Transfers" data-it="7.13 Trasferimenti Aziendali" data-pt="7.13 Transferências Comerciais">7.13 Business Transfers</h3>
+            <p data-en="In the event of a merger, acquisition, bankruptcy, or sale of assets, your personal data may be transferred as part of that transaction. We will provide notice and/or obtain your consent where required by applicable law." data-it="Nel caso di una fusione, acquisizione, fallimento o vendita di beni, i tuoi dati personali possono essere trasferiti come parte di tale transazione. Forniremo notifica e/o otterremo il tuo consenso come richiesto dalla legge applicabile." data-pt="No caso de fusão, aquisição, falência ou venda de ativos, seus dados pessoais podem ser transferidos como parte dessa transação.">In the event of a merger, acquisition, bankruptcy, or sale of assets, your personal data may be transferred as part of that transaction.</p>
+          </div>
+
+          <!-- ==================== 8. COOKIES ==================== -->
+          <div id="cookies" class="policy-section">
+            <h2 data-en="8. Cookies and Tracking Technologies" data-it="8. Cookie e Tecnologie di Tracciamento" data-pt="8. Cookies e Tecnologias de Rastreamento">8. Cookies and Tracking Technologies</h2>
+            <p data-en="We use cookies and similar tracking technologies (web beacons, pixels, local storage) to enhance your experience, analyze how you use our Service, and deliver personalized content and advertising." data-it="Utilizziamo cookie e tecnologie di tracciamento simili (web beacon, pixel, archiviazione locale) per migliorare la tua esperienza, analizzare come utilizzi il nostro Servizio e consegnare contenuti e pubblicità personalizzati." data-pt="Usamos cookies e tecnologias de rastreamento similares (web beacons, pixels, armazenamento local) para aprimorar sua experiência, analisar como você usa nosso Serviço e entregar conteúdo e publicidade personalizados.">We use cookies and similar tracking technologies to enhance your experience, analyze how you use our Service, and deliver personalized content and advertising.</p>
+
+            <h3 data-en="8.1 Types of Cookies" data-it="8.1 Tipi di Cookie" data-pt="8.1 Tipos de Cookies">8.1 Types of Cookies</h3>
+            <ul>
+              <li data-en="<strong>Essential Cookies:</strong> Necessary for core functionality (authentication, security, session management). Set automatically without consent." data-it="<strong>Cookie Essenziali:</strong> Necessari per la funzionalità di base (autenticazione, sicurezza, gestione della sessione). Impostati automaticamente senza consenso." data-pt="<strong>Cookies Essenciais:</strong> Necessários para funcionalidade básica (autenticação, segurança, gerenciamento de sessão). Definidos automaticamente sem consentimento."><strong>Essential Cookies:</strong> Necessary for core functionality (authentication, security, session management). Set automatically without consent.</li>
+              <li data-en="<strong>Performance Cookies:</strong> Track usage patterns and page performance. Require consent but are important for improving our Service." data-it="<strong>Cookie di Prestazione:</strong> Traccia i modelli di utilizzo e le prestazioni della pagina. Richiedono il consenso ma sono importanti per migliorare il nostro Servizio." data-pt="<strong>Cookies de Desempenho:</strong> Rastreiam padrões de uso e desempenho da página. Requerem consentimento mas são importantes para melhorar nosso Serviço."><strong>Performance Cookies:</strong> Track usage patterns and page performance. Require consent but are important for improving our Service.</li>
+              <li data-en="<strong>Functional Cookies:</strong> Remember your preferences (language, theme, settings). Enhance personalization. Require consent." data-it="<strong>Cookie Funzionali:</strong> Ricordano le tue preferenze (lingua, tema, impostazioni). Migliorano la personalizzazione. Richiedono il consenso." data-pt="<strong>Cookies Funcionais:</strong> Lembram suas preferências (idioma, tema, configurações). Aprimoram a personalização. Requerem consentimento."><strong>Functional Cookies:</strong> Remember your preferences (language, theme, settings). Enhance personalization. Require consent.</li>
+              <li data-en="<strong>Marketing/Advertising Cookies:</strong> Enable targeted advertising and remarketing. Require explicit consent. Allow us to show you relevant ads across the web." data-it="<strong>Cookie di Marketing/Pubblicità:</strong> Abilitano la pubblicità mirata e il remarketing. Richiedono il consenso esplicito. Ci permettono di mostrarti annunci rilevanti su Internet." data-pt="<strong>Cookies de Marketing/Publicidade:</strong> Permitem publicidade direcionada e remarketing. Requerem consentimento explícito. Nos permitem mostrar anúncios relevantes na web."><strong>Marketing/Advertising Cookies:</strong> Enable targeted advertising and remarketing. Require explicit consent.</li>
+            </ul>
+
+            <h3 data-en="8.2 Consent and Opt-Out" data-it="8.2 Consenso e Rinuncia" data-pt="8.2 Consentimento e Cancelamento de Inscrição">8.2 Consent and Opt-Out</h3>
+            <p data-en="When you first visit our website, you will be presented with a cookie consent banner. You can:" data-it="Quando visiti il ​​nostro sito Web per la prima volta, ti verrà presentato un banner di consenso dei cookie. Puoi:" data-pt="Quando você visita nosso site pela primeira vez, você será apresentado com um banner de consentimento de cookies. Você pode:">When you first visit our website, you will be presented with a cookie consent banner. You can:</p>
+            <ul>
+              <li data-en="Accept all cookies" data-it="Accettare tutti i cookie" data-pt="Aceitar todos os cookies">Accept all cookies</li>
+              <li data-en="Accept only essential cookies" data-it="Accettare solo i cookie essenziali" data-pt="Aceitar apenas cookies essenciais">Accept only essential cookies</li>
+              <li data-en="Customize which categories you consent to" data-it="Personalizzare quali categorie consenti" data-pt="Personalize quais categorias você consente">Customize which categories you consent to</li>
+              <li data-en="Withdraw or modify your cookie consent at any time in your account settings" data-it="Ritirare o modificare il tuo consenso ai cookie in qualsiasi momento nelle impostazioni del tuo account" data-pt="Revogue ou modifique seu consentimento de cookies a qualquer momento nas configurações da conta">Withdraw or modify your consent in account settings</li>
+            </ul>
+            <p data-en="You can also opt-out of marketing cookies by visiting the Network Advertising Initiative (optout.networkadvertising.org) or the Digital Advertising Alliance (optout.aboutads.info)." data-it="Puoi anche rinunciare ai cookie di marketing visitando l'Iniziativa di Pubblicità in Rete (optout.networkadvertising.org) o l'Alleanza per la Pubblicità Digitale (optout.aboutads.info)." data-pt="Você também pode cancelar a inscrição em cookies de marketing visitando a Network Advertising Initiative (optout.networkadvertising.org) ou a Digital Advertising Alliance (optout.aboutads.info).">You can also opt-out of marketing cookies by visiting the Network Advertising Initiative or the Digital Advertising Alliance.</p>
+
+            <h3 data-en="8.3 Cookie Duration" data-it="8.3 Durata dei Cookie" data-pt="8.3 Duração do Cookie">8.3 Cookie Duration</h3>
+            <ul>
+              <li data-en="<strong>Session Cookies:</strong> Deleted when you close your browser" data-it="<strong>Cookie di Sessione:</strong> Eliminati quando chiudi il browser" data-pt="<strong>Cookies de Sessão:</strong> Excluídos quando você fecha o navegador"><strong>Session Cookies:</strong> Deleted when you close your browser</li>
+              <li data-en="<strong>Persistent Cookies:</strong> Remain on your device for 1-2 years, depending on cookie type" data-it="<strong>Cookie Persistenti:</strong> Rimangono sul tuo dispositivo per 1-2 anni, a seconda del tipo di cookie" data-pt="<strong>Cookies Persistentes:</strong> Permanecem em seu dispositivo por 1-2 anos, dependendo do tipo de cookie"><strong>Persistent Cookies:</strong> Remain on your device for 1-2 years, depending on cookie type</li>
+            </ul>
+
+            <h3 data-en="8.4 Third-Party Cookies" data-it="8.4 Cookie di Terze Parti" data-pt="8.4 Cookies de Terceiros">8.4 Third-Party Cookies</h3>
+            <p data-en="Third-party cookies may be placed on your device by our advertising partners (Google, Meta/Facebook, etc.) for remarketing and audience segmentation. These partners have their own privacy policies, and we encourage you to review them." data-it="I cookie di terze parti possono essere posizionati sul tuo dispositivo dai nostri partner pubblicitari (Google, Meta/Facebook, ecc.) per il remarketing e la segmentazione del pubblico. Questi partner hanno le loro politiche sulla privacy e ti incoraggiamo a rivederle." data-pt="Cookies de terceiros podem ser colocados em seu dispositivo por nossos parceiros de publicidade (Google, Meta/Facebook, etc.) para remarketing e segmentação de público.">Third-party cookies may be placed on your device by our advertising partners (Google, Meta/Facebook, etc.) for remarketing and audience segmentation.</p>
+          </div>
+
+          <!-- ==================== 9. INTERNATIONAL TRANSFERS ==================== -->
+          <div id="transfers" class="policy-section">
+            <h2 data-en="9. International Data Transfers" data-it="9. Trasferimenti Internazionali di Dati" data-pt="9. Transferências Internacionais de Dados">9. International Data Transfers</h2>
+            <p data-en="Our primary data storage is within the European Union (via Supabase Europe). Brevo is also EU-based (France). Some third-party sub-processors are headquartered in the United States and may store or process data there, including: Stripe, Stream Chat, Sentry, Vercel, Google Analytics (marketing site only), and the LiveKit infrastructure regions. Apple Push Notification Service is delivered globally. For each of these we rely on the legal mechanisms described in Section 9.1." data-it="L'archiviazione primaria dei dati avviene nell'Unione Europea (tramite Supabase Europe). Anche Brevo ha sede nell'UE (Francia). Alcuni sub-responsabili del trattamento di terze parti hanno sede negli Stati Uniti e possono memorizzare o trattare i dati lì, tra cui: Stripe, Stream Chat, Sentry, Vercel, Google Analytics (solo sito di marketing) e le regioni dell'infrastruttura LiveKit. Il servizio di notifiche push di Apple viene erogato a livello globale. Per ciascuno di questi ci affidiamo ai meccanismi legali descritti nella Sezione 9.1." data-pt="Nosso armazenamento principal de dados é dentro da União Europeia (via Supabase Europe). Brevo também tem sede na UE (França). Alguns sub-processadores de terceiros têm sede nos Estados Unidos e podem armazenar ou processar dados lá, incluindo: Stripe, Stream Chat, Sentry, Vercel, Google Analytics (somente site de marketing) e as regiões de infraestrutura do LiveKit. O Apple Push Notification Service é entregue globalmente. Para cada um deles, contamos com os mecanismos legais descritos na Seção 9.1.">Our primary data storage is within the European Union (via Supabase Europe). Brevo is also EU-based. Some sub-processors are headquartered in the United States and may store or process data there: Stripe, Stream Chat, Sentry, Vercel, Google Analytics (marketing site only), and LiveKit infrastructure regions. Apple Push Notification Service is delivered globally. For each we rely on the legal mechanisms in Section 9.1.</p>
+
+            <h3 data-en="9.1 Legal Mechanisms" data-it="9.1 Meccanismi Legali" data-pt="9.1 Mecanismos Legais">9.1 Legal Mechanisms</h3>
+            <p data-en="When transferring data outside the EEA, we use appropriate legal safeguards:" data-it="Quando trasferisci dati fuori dallo SEE, utilizziamo adeguate salvaguardie legali:" data-pt="Ao transferir dados fora da EEA, usamos salvaguardas legais apropriadas:">When transferring data outside the EEA, we use appropriate legal safeguards:</p>
+            <ul>
+              <li data-en="<strong>Standard Contractual Clauses (SCCs):</strong> For transfers to non-adequacy third countries, we implement EU-approved Standard Contractual Clauses." data-it="<strong>Clausole Contrattuali Tipo (SCC):</strong> Per i trasferimenti a paesi terzi senza adeguatezza, implementiamo Clausole Contrattuali Tipo approvate dall'UE." data-pt="<strong>Cláusulas Contratuais Padrão (SCCs):</strong> Para transferências para países terceiros sem adequação, implementamos Cláusulas Contratuais Padrão aprovadas pela UE."><strong>Standard Contractual Clauses (SCCs):</strong> For transfers to non-adequacy third countries, we implement EU-approved Standard Contractual Clauses.</li>
+              <li data-en="<strong>Supplementary Measures:</strong> For US-based processors, we implement supplementary technical and organizational measures to protect your data against US government surveillance." data-it="<strong>Misure Supplementari:</strong> Per i processori con sede negli Stati Uniti, implementiamo misure tecniche e organizzative supplementari per proteggere i tuoi dati dalla sorveglianza del governo americano." data-pt="<strong>Medidas Suplementares:</strong> Para processadores com sede nos EUA, implementamos medidas técnicas e organizacionais suplementares para proteger seus dados."><strong>Supplementary Measures:</strong> We implement supplementary technical and organizational measures to protect your data.</li>
+              <li data-en="<strong>Adequacy Decisions:</strong> Where available (e.g., UK post-Brexit), we rely on EU Commission Adequacy Decisions." data-it="<strong>Decisioni di Adeguatezza:</strong> Laddove disponibile (ad es. Regno Unito post-Brexit), ci affidiamo alle Decisioni di Adeguatezza della Commissione UE." data-pt="<strong>Decisões de Adequação:</strong> Quando disponível, confiamos nas Decisões de Adequação da Comissão da UE."><strong>Adequacy Decisions:</strong> Where available, we rely on EU Commission Adequacy Decisions.</li>
+            </ul>
+
+            <h3 data-en="9.2 Your Rights Regarding Transfers" data-it="9.2 Tuoi Diritti Riguardanti i Trasferimenti" data-pt="9.2 Seus Direitos Referentes às Transferências">9.2 Your Rights Regarding Transfers</h3>
+            <p data-en="You have the right to request information about the mechanisms we use for international transfers. Contact our DPO for details about our transfer agreements and supplementary safeguards." data-it="Hai il diritto di richiedere informazioni sui meccanismi che utilizziamo per i trasferimenti internazionali. Contatta il nostro DPO per i dettagli sui nostri accordi di trasferimento e le salvaguardie supplementari." data-pt="Você tem o direito de solicitar informações sobre os mecanismos que usamos para transferências internacionais. Contate nosso DPO para detalhes sobre nossos acordos de transferência e salvaguardas suplementares.">You have the right to request information about the mechanisms we use for international transfers. Contact our DPO for details about our transfer agreements and supplementary safeguards.</p>
+          </div>
+
+          <!-- ==================== 10. YOUR RIGHTS ==================== -->
+          <div id="rights" class="policy-section">
+            <h2 data-en="10. Your Data Rights Under GDPR" data-it="10. Tuoi Diritti dei Dati secondo il GDPR" data-pt="10. Seus Direitos de Dados sob o RGPD">10. Your Data Rights Under GDPR</h2>
+            <p data-en="Under GDPR and Italian data protection law, you have the following rights regarding your personal data:" data-it="Secondo il GDPR e la legge italiana sulla protezione dei dati, hai i seguenti diritti riguardanti i tuoi dati personali:" data-pt="De acordo com o RGPD e a lei italiana de proteção de dados, você tem os seguintes direitos sobre seus dados pessoais:">Under GDPR and Italian data protection law, you have the following rights regarding your personal data:</p>
+
+            <h3 data-en="10.1 Right to Access (Article 15)" data-it="10.1 Diritto di Accesso (Articolo 15)" data-pt="10.1 Direito de Acesso (Artigo 15)">10.1 Right to Access (Article 15)</h3>
+            <p data-en="You have the right to request a copy of all personal data we hold about you in a structured, commonly used, machine-readable format. We will provide this within 30 days of your request." data-it="Hai il diritto di richiedere una copia di tutti i dati personali che abbiamo su di te in un formato strutturato, comunemente utilizzato e leggibile da un computer. Lo forniremo entro 30 giorni dalla tua richiesta." data-pt="Você tem o direito de solicitar uma cópia de todos os dados pessoais que temos sobre você em um formato estruturado, comumente usado e legível por máquina. Forneceremos isso dentro de 30 dias de sua solicitação.">You have the right to request a copy of all personal data we hold about you in a structured, commonly used, machine-readable format. We will provide this within 30 days of your request.</p>
+
+            <h3 data-en="10.2 Right to Rectification (Article 16)" data-it="10.2 Diritto di Rettifica (Articolo 16)" data-pt="10.2 Direito de Retificação (Artigo 16)">10.2 Right to Rectification (Article 16)</h3>
+            <p data-en="You can request correction or update of inaccurate or incomplete personal data. You can also update most information directly in your account settings." data-it="Puoi richiedere la correzione o l'aggiornamento dei dati personali inesatti o incompleti. Puoi anche aggiornare la maggior parte delle informazioni direttamente nelle impostazioni del tuo account." data-pt="Você pode solicitar correção ou atualização de dados pessoais inexatos ou incompletos. Você também pode atualizar a maioria das informações diretamente nas configurações da sua conta.">You can request correction or update of inaccurate or incomplete personal data. You can also update most information directly in your account settings.</p>
+
+            <h3 data-en="10.3 Right to Erasure ('Right to be Forgotten') (Article 17)" data-it="10.3 Diritto all'Oblio ('Diritto all'Eliminazione') (Articolo 17)" data-pt="10.3 Direito ao Esquecimento ('Direito à Eliminação') (Artigo 17)">10.3 Right to Erasure ('Right to be Forgotten') (Article 17)</h3>
+            <p data-en="You may request deletion of your personal data under certain circumstances, such as:" data-it="Puoi richiedere l'eliminazione dei tuoi dati personali in determinate circostanze, come:" data-pt="Você pode solicitar a exclusão de seus dados pessoais em determinadas circunstâncias, como:">You may request deletion of your personal data under certain circumstances, such as:</p>
+            <ul>
+              <li data-en="Data is no longer necessary for the purposes it was collected" data-it="I dati non sono più necessari per gli scopi per i quali sono stati raccolti" data-pt="Os dados não são mais necessários para os fins para os quais foram coletados">Data is no longer necessary for the purposes it was collected</li>
+              <li data-en="You withdraw consent for processing based on consent" data-it="Ritiri il consenso per il trattamento basato sul consenso" data-pt="Você revoga o consentimento para processamento baseado em consentimento">You withdraw consent for processing based on consent</li>
+              <li data-en="You object to processing for legitimate interests" data-it="Ti opponi al trattamento per interessi legittimi" data-pt="Você se opõe ao processamento por interesses legítimos">You object to processing for legitimate interests</li>
+            </ul>
+            <p data-en="Note: We may retain certain data for legal, tax, or fraud prevention purposes as described in Section 6 (Data Retention)." data-it="Nota: Possiamo conservare determinati dati per scopi legali, fiscali o di prevenzione delle frodi come descritto nella Sezione 6 (Conservazione dei Dati)." data-pt="Nota: Podemos reter certos dados para fins legais, fiscais ou de prevenção de fraude, conforme descrito na Seção 6 (Retenção de Dados).">Note: We may retain certain data for legal, tax, or fraud prevention purposes as described in Section 6 (Data Retention).</p>
+
+            <h3 data-en="10.4 Right to Data Portability (Article 20)" data-it="10.4 Diritto alla Portabilità dei Dati (Articolo 20)" data-pt="10.4 Direito à Portabilidade de Dados (Artigo 20)">10.4 Right to Data Portability (Article 20)</h3>
+            <p data-en="You have the right to obtain a copy of your personal data in a structured, commonly used, machine-readable format (e.g., CSV, JSON) and to transmit it to another data controller without hindrance. We will provide this in an interoperable format within 30 days." data-it="Hai il diritto di ottenere una copia dei tuoi dati personali in un formato strutturato, comunemente utilizzato e leggibile da un computer (ad es. CSV, JSON) e trasmetterlo a un altro titolare del trattamento senza ostacoli. Lo forniremo in un formato interoperabile entro 30 giorni." data-pt="Você tem o direito de obter uma cópia de seus dados pessoais em um formato estruturado, comumente usado e legível por máquina (por exemplo, CSV, JSON) e transmiti-lo a outro controlador de dados sem impedimento.">You have the right to obtain a copy of your personal data in a structured, commonly used, machine-readable format (e.g., CSV, JSON) and to transmit it to another data controller without hindrance.</p>
+
+            <h3 data-en="10.5 Right to Restrict Processing (Article 18)" data-it="10.5 Diritto di Limitare il Trattamento (Articolo 18)" data-pt="10.5 Direito de Restringir o Processamento (Artigo 18)">10.5 Right to Restrict Processing (Article 18)</h3>
+            <p data-en="You may request that we limit how we process your data (e.g., suspend processing while you contest its accuracy). During a restriction period, we will store your data but not actively process it, except with your consent or as required by law." data-it="Puoi richiedere che limitiamo il modo in cui elaboriamo i tuoi dati (ad es. sospendere l'elaborazione mentre contesti la sua accuratezza). Durante un periodo di restrizione, memorizzeremo i tuoi dati ma non li elaboreremo attivamente, se non con il tuo consenso o come richiesto dalla legge." data-pt="Você pode solicitar que limitemos como processamos seus dados (por exemplo, suspender o processamento enquanto você contesta sua precisão).">You may request that we limit how we process your data (e.g., suspend processing while you contest its accuracy).</p>
+
+            <h3 data-en="10.6 Right to Object (Article 21)" data-it="10.6 Diritto di Opposizione (Articolo 21)" data-pt="10.6 Direito de Objeção (Artigo 21)">10.6 Right to Object (Article 21)</h3>
+            <p data-en="You have the right to object to processing of your data for:" data-it="Hai il diritto di opporti al trattamento dei tuoi dati per:" data-pt="Você tem o direito de se opor ao processamento de seus dados para:">You have the right to object to processing of your data for:</p>
+            <ul>
+              <li data-en="Marketing and promotional purposes (including targeted advertising)" data-it="Scopi di marketing e promozionali (inclusa la pubblicità mirata)" data-pt="Fins de marketing e promoção (incluindo publicidade direcionada)">Marketing and promotional purposes (including targeted advertising)</li>
+              <li data-en="Profiling for direct marketing" data-it="Profiling per il marketing diretto" data-pt="Perfil para marketing direto">Profiling for direct marketing</li>
+              <li data-en="Processing based on legitimate interests (where it outweighs your rights)" data-it="Trattamento basato su interessi legittimi (dove prevalga sui tuoi diritti)" data-pt="Processamento baseado em interesses legítimos (quando supera seus direitos)">Processing based on legitimate interests (where it outweighs your rights)</li>
+            </ul>
+            <p data-en="We will cease processing immediately unless we can demonstrate compelling legitimate grounds for continuing." data-it="Interromperemo immediatamente l'elaborazione a meno che non possiamo dimostrare motivi legittimi cogenti per continuare." data-pt="Cessaremos o processamento imediatamente, a menos que possamos demonstrar motivos legítimos convincentes para continuar.">We will cease processing immediately unless we can demonstrate compelling legitimate grounds for continuing.</p>
+
+            <h3 data-en="10.7 Right to Lodge a Complaint" data-it="10.7 Diritto di Presentare un Reclamo" data-pt="10.7 Direito de Apresentar uma Reclamação">10.7 Right to Lodge a Complaint</h3>
+            <p data-en="If you believe we have violated your data protection rights, you have the right to lodge a complaint with the relevant data protection authority in your country. In Italy, this is:" data-it="Se ritieni che abbiamo violato i tuoi diritti di protezione dei dati, hai il diritto di presentare un reclamo all'autorità per la protezione dei dati competente nel tuo paese. In Italia, questo è:">If you believe we have violated your data protection rights, you have the right to lodge a complaint with the relevant data protection authority in your country. In Italy, this is:</p>
+            <p>
+              <strong>Garante per la Protezione dei Dati Personali</strong><br/>
+              Piazza di Monte Citorio, 121<br/>
+              00186 Roma (RM), Italy<br/>
+              Phone: +39 06 696 77 777<br/>
+              Email: <a href="mailto:garante@gpdp.it">garante@gpdp.it</a><br/>
+              Website: <a href="https://www.gpdp.it" target="_blank">www.gpdp.it</a>
+            </p>
+
+            <h3 data-en="10.8 Exercising Your Rights" data-it="10.8 Esercizio dei Tuoi Diritti" data-pt="10.8 Exercício de Seus Direitos">10.8 Exercising Your Rights</h3>
+            <p data-en="To exercise any of these rights, contact us at:" data-it="Per esercitare uno qualsiasi di questi diritti, contattaci a:" data-pt="Para exercer qualquer um desses direitos, contate-nos em:">To exercise any of these rights, contact us at:</p>
+            <ul>
+              <li data-en="<strong>Email:</strong> support@holisticunity.app" data-it="<strong>Email:</strong> support@holisticunity.app" data-pt="<strong>Email:</strong> support@holisticunity.app"><strong>Email:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></li>
+              <li data-en="<strong>Support:</strong> support@holisticunity.app" data-it="<strong>Supporto:</strong> support@holisticunity.app" data-pt="<strong>Suporte:</strong> support@holisticunity.app"><strong>Support:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></li>
+              <li data-en="<strong>Account Settings:</strong> You can exercise some rights directly in your account (update profile, download data, manage subscriptions)." data-it="<strong>Impostazioni dell'Account:</strong> Puoi esercitare alcuni diritti direttamente nel tuo account (aggiorna profilo, scarica dati, gestisci abbonamenti)." data-pt="<strong>Configurações da Conta:</strong> Você pode exercer alguns direitos diretamente em sua conta (atualizar perfil, baixar dados, gerenciar assinaturas)."><strong>Account Settings:</strong> You can exercise some rights directly in your account.</li>
+            </ul>
+            <p data-en="We will respond to all rights requests within 30 days (or up to 60 days for complex requests) as required by GDPR." data-it="Risponderemo a tutte le richieste di diritti entro 30 giorni (o fino a 60 giorni per le richieste complesse) come richiesto dal GDPR." data-pt="Responderemos a todas as solicitações de direitos dentro de 30 dias (ou até 60 dias para solicitações complexas), conforme exigido pelo RGPD.">We will respond to all rights requests within 30 days (or up to 60 days for complex requests) as required by GDPR.</p>
+          </div>
+
+          <!-- ==================== 11. SECURITY ==================== -->
+          <div id="security" class="policy-section">
+            <h2 data-en="11. Security and Data Protection" data-it="11. Sicurezza e Protezione dei Dati" data-pt="11. Segurança e Proteção de Dados">11. Security and Data Protection</h2>
+            <p data-en="We implement comprehensive technical and organizational security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction." data-it="Implementiamo misure di sicurezza tecniche e organizzative complete per proteggere i tuoi dati personali da accesso, alterazione, divulgazione o distruzione non autorizzati." data-pt="Implementamos medidas de segurança técnicas e organizacionais abrangentes para proteger seus dados pessoais contra acesso, alteração, divulgação ou destruição não autorizada.">We implement comprehensive technical and organizational security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+
+            <h3 data-en="11.1 Technical Security Measures" data-it="11.1 Misure di Sicurezza Tecnica" data-pt="11.1 Medidas de Segurança Técnica">11.1 Technical Security Measures</h3>
+            <ul>
+              <li data-en="<strong>Encryption:</strong> All data in transit is encrypted using TLS 1.2+ (HTTPS). Sensitive data at rest is encrypted using AES-256." data-it="<strong>Crittografia:</strong> Tutti i dati in transito sono crittografati utilizzando TLS 1.2+ (HTTPS). I dati sensibili a riposo sono crittografati utilizzando AES-256." data-pt="<strong>Criptografia:</strong> Todos os dados em trânsito são criptografados usando TLS 1.2+ (HTTPS). Dados sensíveis em repouso são criptografados usando AES-256."><strong>Encryption:</strong> All data in transit is encrypted using TLS 1.2+ (HTTPS). Sensitive data at rest is encrypted using AES-256.</li>
+              <li data-en="<strong>Authentication:</strong> Multi-factor authentication (MFA) available for accounts. Passwords are hashed using industry-standard algorithms (bcrypt)." data-it="<strong>Autenticazione:</strong> Autenticazione a più fattori (MFA) disponibile per gli account. Le password vengono sottoposte a hash utilizzando algoritmi standard del settore (bcrypt)." data-pt="<strong>Autenticação:</strong> Autenticação multifator (MFA) disponível para contas. Senhas são hash usando algoritmos padrão da indústria."><strong>Authentication:</strong> Multi-factor authentication (MFA) available for accounts. Passwords are hashed using industry-standard algorithms.</li>
+              <li data-en="<strong>Access Control:</strong> Principle of least privilege. Employee access is limited to necessary data and logged." data-it="<strong>Controllo dell'Accesso:</strong> Principio del minimo privilegio. L'accesso dei dipendenti è limitato ai dati necessari e registrato." data-pt="<strong>Controle de Acesso:</strong> Princípio do menor privilégio. O acesso dos funcionários é limitado aos dados necessários e registrado."><strong>Access Control:</strong> Principle of least privilege. Employee access is limited to necessary data and logged.</li>
+              <li data-en="<strong>Intrusion Detection:</strong> Firewalls, DDoS protection, and continuous network monitoring." data-it="<strong>Rilevamento delle Intrusioni:</strong> Firewall, protezione DDoS e monitoraggio continuo della rete." data-pt="<strong>Detecção de Intrusão:</strong> Firewalls, proteção DDoS e monitoramento contínuo de rede."><strong>Intrusion Detection:</strong> Firewalls, DDoS protection, and continuous network monitoring.</li>
+              <li data-en="<strong>Vulnerability Management:</strong> Regular security audits, penetration testing, and patch management." data-it="<strong>Gestione delle Vulnerabilità:</strong> Audit di sicurezza regolari, test di penetrazione e gestione delle patch." data-pt="<strong>Gerenciamento de Vulnerabilidades:</strong> Auditorias de segurança regulares, teste de penetração e gerenciamento de patches."><strong>Vulnerability Management:</strong> Regular security audits, penetration testing, and patch management.</li>
+            </ul>
+
+            <h3 data-en="11.2 Organizational Security Measures" data-it="11.2 Misure di Sicurezza Organizzativa" data-pt="11.2 Medidas de Segurança Organizacional">11.2 Organizational Security Measures</h3>
+            <ul>
+              <li data-en="<strong>Data Protection Training:</strong> All employees receive regular training on data protection, privacy, and security best practices." data-it="<strong>Formazione sulla Protezione dei Dati:</strong> Tutti i dipendenti ricevono una formazione regolare sulla protezione dei dati, la privacy e le migliori pratiche di sicurezza." data-pt="<strong>Treinamento de Proteção de Dados:</strong> Todos os funcionários recebem treinamento regular sobre proteção de dados, privacidade e melhores práticas de segurança."><strong>Data Protection Training:</strong> All employees receive regular training on data protection and privacy.</li>
+              <li data-en="<strong>Confidentiality Agreements:</strong> All employees and contractors sign strict confidentiality and non-disclosure agreements." data-it="<strong>Accordi di Riservatezza:</strong> Tutti i dipendenti e gli appaltatori firmano rigidi accordi di riservatezza e non divulgazione." data-pt="<strong>Acordos de Confidencialidade:</strong> Todos os funcionários e contratados assinam rigorosos acordos de confidencialidade e não divulgação."><strong>Confidentiality Agreements:</strong> All employees and contractors sign strict confidentiality agreements.</li>
+              <li data-en="<strong>Incident Response Plan:</strong> We have documented procedures for responding to data breaches, including notification of affected individuals as required by law." data-it="<strong>Piano di Risposta agli Incidenti:</strong> Abbiamo procedure documentate per rispondere alle violazioni dei dati, inclusa la notifica delle persone interessate come richiesto dalla legge." data-pt="<strong>Plano de Resposta a Incidentes:</strong> Temos procedimentos documentados para responder a violações de dados, incluindo notificação de indivíduos afetados conforme exigido por lei."><strong>Incident Response Plan:</strong> We have documented procedures for responding to data breaches.</li>
+              <li data-en="<strong>Data Processing Agreements:</strong> All third-party processors have signed Data Processing Agreements (DPAs) outlining data protection obligations." data-it="<strong>Accordi di Trattamento dei Dati:</strong> Tutti i processori di terze parti hanno firmato Accordi di Trattamento dei Dati (DPA) che delineano gli obblighi di protezione dei dati." data-pt="<strong>Acordos de Processamento de Dados:</strong> Todos os processadores terceirizados assinaram Acordos de Processamento de Dados (DPAs) descrevendo obrigações de proteção de dados."><strong>Data Processing Agreements:</strong> All third-party processors have signed Data Processing Agreements.</li>
+            </ul>
+
+            <h3 data-en="11.3 Notification of Data Breaches" data-it="11.3 Notifica di Violazioni dei Dati" data-pt="11.3 Notificação de Violações de Dados">11.3 Notification of Data Breaches</h3>
+            <p data-en="In the event of a personal data breach that poses a risk to your rights and freedoms, we will:" data-it="Nel caso di una violazione dei dati personali che pone un rischio per i tuoi diritti e libertà, noi:" data-pt="No caso de violação de dados pessoais que representem risco para seus direitos e liberdades, nós:">In the event of a personal data breach that poses a risk to your rights and freedoms, we will:</p>
+            <ul>
+              <li data-en="Notify you without undue delay (within 72 hours when feasible)" data-it="Ti notifichiamo senza indebiti ritardi (entro 72 ore quando fattibile)" data-pt="Notificá-lo sem atraso indevido (dentro de 72 horas quando viável)">Notify you without undue delay (within 72 hours when feasible)</li>
+              <li data-en="Provide details about the breach, affected data, and measures being taken" data-it="Fornire dettagli sulla violazione, i dati interessati e le misure intraprese" data-pt="Fornecer detalhes sobre a violação, dados afetados e medidas sendo tomadas">Provide details about the breach, affected data, and measures being taken</li>
+              <li data-en="Notify the data protection authority as required by law" data-it="Notificare l'autorità per la protezione dei dati come richiesto dalla legge" data-pt="Notificar a autoridade de proteção de dados conforme exigido por lei">Notify the data protection authority as required by law</li>
+            </ul>
+
+            <h3 data-en="11.4 Limitations of Security" data-it="11.4 Limitazioni della Sicurezza" data-pt="11.4 Limitações da Segurança">11.4 Limitations of Security</h3>
+            <p data-en="While we implement strong security measures, no method of transmission over the internet or electronic storage is completely secure. We cannot guarantee absolute security, and you use our Service at your own risk. We are not liable for unauthorized access to your data unless caused by our negligence or breach of this policy." data-it="Sebbene implementiamo misure di sicurezza forti, nessun metodo di trasmissione su Internet o archiviazione elettronica è completamente sicuro. Non possiamo garantire una sicurezza assoluta, e utilizzi il nostro Servizio a tuo rischio. Non siamo responsabili dell'accesso non autorizzato ai tuoi dati a meno che non sia causato dalla nostra negligenza o violazione di questa politica." data-pt="Embora implementemos medidas de segurança fortes, nenhum método de transmissão pela Internet ou armazenamento eletrônico é completamente seguro. Não podemos garantir segurança absoluta, e você usa nosso Serviço por sua conta e risco.">While we implement strong security measures, no method of transmission over the internet or electronic storage is completely secure.</p>
+          </div>
+
+          <!-- ==================== 12. CONTACT ==================== -->
+          <div id="contact" class="policy-section">
+            <h2 data-en="12. Contact Us" data-it="12. Contattaci" data-pt="12. Entre em Contato">12. Contact Us</h2>
+            <p data-en="If you have any questions, concerns, or requests regarding this Privacy Policy or our data protection practices, please contact us:" data-it="Se hai domande, dubbi o richieste riguardanti questa Informativa sulla Privacy o le nostre pratiche di protezione dei dati, contattaci:" data-pt="Se você tiver dúvidas, preocupações ou solicitações sobre esta Política de Privacidade ou nossas práticas de proteção de dados, entre em contato conosco:">If you have any questions, concerns, or requests regarding this Privacy Policy or our data protection practices, please contact us:</p>
+
+            <h3 data-en="Primary Contact" data-it="Contatto Principale" data-pt="Contato Principal">Primary Contact</h3>
+            <p>
+              <strong>STORM X DIGITAL S.R.L.</strong><br/>
+              <strong data-en="Data Protection Officer:" data-it="Responsabile della Protezione dei Dati:" data-pt="Encarregado de Proteção de Dados:">Data Protection Officer:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a><br/>
+              <strong data-en="Customer Support:" data-it="Supporto Clienti:" data-pt="Suporte ao Cliente:">Customer Support:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a><br/>
+              <strong data-en="Website:" data-it="Sito Web:" data-pt="Site:">Website:</strong> <a href="https://holisticunity.app" target="_blank">holisticunity.app</a>
+            </p>
+
+            <h3 data-en="Mailing Address" data-it="Indirizzo Postale" data-pt="Endereço de Correspondência">Mailing Address</h3>
+            <p>
+              STORM X DIGITAL S.R.L.<br/>
+              Via Strada del Carro 24<br/>
+              76011 Bisceglie (BA)<br/>
+              Italy<br/>
+              <strong data-en="VAT/P.Iva:" data-it="VAT/P.Iva:" data-pt="CNPJ/PVA:">VAT/P.Iva:</strong> 08789080721<br/>
+              <strong>PEC:</strong> stormxdigital@pec.it
+            </p>
+
+            <h3 data-en="Data Protection Authority" data-it="Autorità per la Protezione dei Dati" data-pt="Autoridade de Proteção de Dados">Data Protection Authority</h3>
+            <p data-en="For complaints or inquiries to the Italian data protection authority:" data-it="Per reclami o richieste all'autorità italiana per la protezione dei dati:" data-pt="Para reclamações ou consultas à autoridade italiana de proteção de dados:">For complaints or inquiries to the Italian data protection authority:</p>
+            <p>
+              <strong>Garante per la Protezione dei Dati Personali</strong><br/>
+              Piazza di Monte Citorio, 121<br/>
+              00186 Roma (RM), Italy<br/>
+              Phone: +39 06 696 77 777<br/>
+              Email: <a href="mailto:garante@gpdp.it">garante@gpdp.it</a><br/>
+              Website: <a href="https://www.gpdp.it" target="_blank">www.gpdp.it</a>
+            </p>
+
+            <h3 data-en="Response Time" data-it="Tempo di Risposta" data-pt="Tempo de Resposta">Response Time</h3>
+            <p data-en="We will respond to all inquiries and data rights requests within 30 days (or up to 60 days for complex requests). If we require additional information from you, we will request it during this period." data-it="Risponderemo a tutte le richieste e le richieste di diritti dei dati entro 30 giorni (o fino a 60 giorni per le richieste complesse). Se abbiamo bisogno di informazioni aggiuntive da te, le richiederemo durante questo periodo." data-pt="Responderemos a todas as consultas e solicitações de direitos de dados dentro de 30 dias (ou até 60 dias para solicitações complexas).">We will respond to all inquiries and data rights requests within 30 days (or up to 60 days for complex requests).</p>
+          </div>
+
+        </div><!-- END .toc-content -->
+      </div><!-- END .toc-container -->
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Holistic Unity" />
+          <p data-en="Connecting souls with wellness. The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time." data-it="Connettere le anime con il benessere. Il marketplace del benessere olistico che unisce operatori verificati e cercatori, una sessione alla volta." data-pt="Conectando almas com bem-estar. O marketplace de bem-estar holístico que reúne terapeutas verificados e buscadores, uma sessão por vez.">Connecting souls with wellness. The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time.</p>
+          <p style="margin-top:16px;font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.6;">
+            <strong style="color:rgba(255,255,255,0.6);">STORM X DIGITAL S.R.L.</strong><br/>
+            VAT/P.Iva: 08789080721<br/>
+            PEC: stormxdigital@pec.it<br/>
+            Via Strada del Carro 24<br/>
+            76011 Bisceglie (BA), Italy
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Platform" data-it="Piattaforma" data-pt="Plataforma">Platform</h4>
+          <a href="index.html#how-it-works" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</a>
+          <a href="index.html#therapies" data-en="Therapies" data-it="Discipline" data-pt="Terapias">Therapies</a>
+          <a href="about.html#therapists" data-en="For Therapists" data-it="Per gli Operatori" data-pt="Para Terapeutas">For Therapists</a>
+          <a href="about.html#contact" data-en="Contact" data-it="Contatti" data-pt="Contato">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Support" data-it="Supporto" data-pt="Suporte">Support</h4>
+          <a href="mailto:support@holisticunity.app">support@holisticunity.app</a>
+          <a href="mailto:support@holisticunity.app">support@holisticunity.app</a>
+          <a href="https://holisticunity.app" target="_blank">holisticunity.app</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Legal" data-it="Legale" data-pt="Legal">Legal</h4>
+          <a href="privacy-policy.html" data-en="Privacy Policy" data-it="Privacy Policy" data-pt="Política de Privacidade">Privacy Policy</a>
+          <a href="cookie-policy.html" data-en="Cookie Policy" data-it="Cookie Policy" data-pt="Política de Cookie">Cookie Policy</a>
+          <a href="terms-clients.html" data-en="Terms &amp; Conditions (Clients)" data-it="Termini e Condizioni (Clienti)" data-pt="Termos &amp; Condições (Clientes)">Terms (Clients)</a>
+          <a href="terms-therapists.html" data-en="Terms &amp; Conditions (Therapists)" data-it="Termini e Condizioni (Operatori)" data-pt="Termos &amp; Condições (Terapeutas)">Terms (Therapists)</a>
+          <a href="#" onclick="event.preventDefault();huOpenCookieSettings();return false;" data-en="Cookie Settings" data-it="Impostazioni Cookie" data-pt="Configurações de Cookies">Cookie Settings</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Storm X Digital S.R.L. <span data-en="All rights reserved." data-it="Tutti i diritti riservati." data-pt="Todos os direitos reservados.">All rights reserved.</span></span>
+        <a href="https://stormxdigital.com" target="_blank" rel="noopener">StormX Digital</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('langEn').classList.toggle('active', lang === 'en');
+      document.getElementById('langIt').classList.toggle('active', lang === 'it');
+      document.getElementById('langPt').classList.toggle('active', lang === 'pt');
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = text;
+          } else if (el.tagName === 'OPTION') {
+            el.textContent = text;
+          } else {
+            el.innerHTML = text;
+          }
+        }
+      });
+        try { localStorage.setItem('hu_lang', lang); } catch(e){}
+  }
+  (function initLang(){
+    var saved=null; try{ saved=localStorage.getItem('hu_lang'); }catch(e){}
+    var b=(navigator.language||'en').slice(0,2).toLowerCase();
+    var lang=saved||(['en','it','pt'].indexOf(b)>=0?b:'en');
+    setLang(lang);
+  })();
+
+    /* ==================== TABLE OF CONTENTS NAVIGATION ==================== */
+    function setupTOC() {
+      const toc = document.querySelectorAll('.toc-link');
+      const sections = document.querySelectorAll('.policy-section');
+
+      toc.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = link.getAttribute('href').substring(1);
+
+          // Hide all sections
+          sections.forEach(section => section.classList.remove('active'));
+
+          // Show target section
+          document.getElementById(target).classList.add('active');
+
+          // Update active TOC link
+          toc.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+
+          // Scroll to top
+          window.scrollTo(0, 0);
+        });
+      });
+    }
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      setupTOC();
+      setLang('en');
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

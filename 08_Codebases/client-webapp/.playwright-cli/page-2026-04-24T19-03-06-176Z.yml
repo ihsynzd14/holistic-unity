@@ -1,0 +1,60 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - img [ref=e54]
+  - dialog "Informativa cookie" [ref=e57]:
+    - generic [ref=e59]:
+      - paragraph [ref=e60]:
+        - text: Usiamo cookie tecnici essenziali per il funzionamento dell'app (autenticazione, lingua, sicurezza). Con il tuo consenso possiamo utilizzare anche cookie di marketing per misurare l'efficacia delle nostre campagne pubblicitarie (Meta Pixel).
+        - link "Maggiori info" [ref=e61] [cursor=pointer]:
+          - /url: https://holisticunity.app/cookie-policy.html
+        - text: .
+      - generic [ref=e62]:
+        - button "Solo essenziali" [ref=e63]
+        - button "Accetta tutti" [ref=e64]
+  - alert [ref=e65]

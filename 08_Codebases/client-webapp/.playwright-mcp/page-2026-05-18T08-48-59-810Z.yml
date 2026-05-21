@@ -1,0 +1,48 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 7 di 10
+    - main [ref=e12]:
+      - generic [ref=e312]:
+        - heading "Cosa fa già parte della tua routine?" [level=1] [ref=e313]
+        - paragraph [ref=e314]: Tutto quello che pratichi, anche solo a tratti. Ci aiuta a calibrare.
+        - generic [ref=e315]:
+          - button "Yoga" [active] [ref=e316]:
+            - generic [ref=e317]:
+              - img [ref=e363]
+              - paragraph [ref=e320]: Yoga
+          - button "Meditazione" [ref=e321]:
+            - paragraph [ref=e325]: Meditazione
+          - button "Journaling / scrittura" [ref=e326]:
+            - paragraph [ref=e330]: Journaling / scrittura
+          - button "Respirazione consapevole" [ref=e331]:
+            - paragraph [ref=e335]: Respirazione consapevole
+          - button "Alimentazione consapevole" [ref=e336]:
+            - paragraph [ref=e340]: Alimentazione consapevole
+          - button "Movimento (danza, camminata, sport)" [ref=e341]:
+            - paragraph [ref=e345]: Movimento (danza, camminata, sport)
+          - button "Tempo in natura" [ref=e346]:
+            - paragraph [ref=e350]: Tempo in natura
+          - button "Pause dal digitale" [ref=e351]:
+            - paragraph [ref=e355]: Pause dal digitale
+          - button "Nessuna ancora Va benissimo, è il punto di partenza" [ref=e356]:
+            - generic [ref=e359]:
+              - paragraph [ref=e360]: Nessuna ancora
+              - paragraph [ref=e361]: Va benissimo, è il punto di partenza
+        - paragraph [ref=e362]: Puoi selezionare più di una risposta
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

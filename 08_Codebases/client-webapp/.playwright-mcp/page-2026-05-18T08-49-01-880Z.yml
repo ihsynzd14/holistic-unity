@@ -1,0 +1,51 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 8 di 10
+    - main [ref=e12]:
+      - generic [ref=e368]:
+        - heading "Hai un riferimento simbolico che ti rappresenta?" [level=1] [ref=e369]
+        - paragraph [ref=e370]: Solo se ti riconosci. Puoi anche saltare — è opzionale.
+        - generic [ref=e371]:
+          - button "Ariete" [ref=e372]:
+            - paragraph [ref=e376]: Ariete
+          - button "Toro" [ref=e377]:
+            - paragraph [ref=e381]: Toro
+          - button "Gemelli" [ref=e382]:
+            - paragraph [ref=e386]: Gemelli
+          - button "Cancro" [ref=e387]:
+            - paragraph [ref=e391]: Cancro
+          - button "Leone" [ref=e392]:
+            - paragraph [ref=e396]: Leone
+          - button "Vergine" [ref=e397]:
+            - paragraph [ref=e401]: Vergine
+          - button "Bilancia" [ref=e402]:
+            - paragraph [ref=e406]: Bilancia
+          - button "Scorpione" [ref=e407]:
+            - paragraph [ref=e411]: Scorpione
+          - button "Sagittario" [ref=e412]:
+            - paragraph [ref=e416]: Sagittario
+          - button "Capricorno" [ref=e417]:
+            - paragraph [ref=e421]: Capricorno
+          - button "Acquario" [ref=e422]:
+            - paragraph [ref=e426]: Acquario
+          - button "Pesci" [ref=e427]:
+            - paragraph [ref=e431]: Pesci
+          - button "Non lo so / preferisco non dire" [ref=e432]:
+            - paragraph [ref=e436]: Non lo so / preferisco non dire
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [active] [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

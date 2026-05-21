@@ -1,0 +1,156 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [active] [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - generic [ref=e610]:
+        - generic [ref=e611]:
+          - heading "Explore practices" [level=1] [ref=e612]
+          - paragraph [ref=e613]: Learn what each discipline is about and find the right therapist.
+        - generic [ref=e614]:
+          - heading "Coming soon" [level=2] [ref=e615]
+          - paragraph [ref=e616]: We're carefully selecting professionals for these practices.
+          - generic [ref=e617]:
+            - link "ThetaHealing® In arrivo ThetaHealing® Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta. Discover" [ref=e618] [cursor=pointer]:
+              - /url: /dashboard/pratiche/theta-healing
+              - generic [ref=e619]:
+                - img "ThetaHealing®" [ref=e620]
+                - generic [ref=e622]: In arrivo
+              - generic [ref=e623]:
+                - paragraph [ref=e624]: ThetaHealing®
+                - paragraph [ref=e625]: Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta.
+                - paragraph [ref=e626]:
+                  - text: Discover
+                  - img [ref=e627]
+            - link "Costellazioni Familiari In arrivo Costellazioni Familiari Riconosci e sciogli le dinamiche invisibili che ereditiamo dalla nostra famiglia di origine. Discover" [ref=e629] [cursor=pointer]:
+              - /url: /dashboard/pratiche/costellazioni-familiari
+              - generic [ref=e630]:
+                - img "Costellazioni Familiari" [ref=e631]
+                - generic [ref=e633]: In arrivo
+              - generic [ref=e634]:
+                - paragraph [ref=e635]: Costellazioni Familiari
+                - paragraph [ref=e636]: Riconosci e sciogli le dinamiche invisibili che ereditiamo dalla nostra famiglia di origine.
+                - paragraph [ref=e637]:
+                  - text: Discover
+                  - img [ref=e638]
+            - link "Costellazioni Sistemiche In arrivo Costellazioni Sistemiche Lo stesso metodo delle Costellazioni Familiari applicato ad aziende, gruppi, scelte di vita complesse. Discover" [ref=e640] [cursor=pointer]:
+              - /url: /dashboard/pratiche/costellazioni-sistemiche
+              - generic [ref=e641]:
+                - img "Costellazioni Sistemiche" [ref=e642]
+                - generic [ref=e644]: In arrivo
+              - generic [ref=e645]:
+                - paragraph [ref=e646]: Costellazioni Sistemiche
+                - paragraph [ref=e647]: Lo stesso metodo delle Costellazioni Familiari applicato ad aziende, gruppi, scelte di vita complesse.
+                - paragraph [ref=e648]:
+                  - text: Discover
+                  - img [ref=e649]
+            - link "Reiki In arrivo Reiki Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale. Discover" [ref=e651] [cursor=pointer]:
+              - /url: /dashboard/pratiche/reiki
+              - generic [ref=e652]:
+                - img "Reiki" [ref=e653]
+                - generic [ref=e655]: In arrivo
+              - generic [ref=e656]:
+                - paragraph [ref=e657]: Reiki
+                - paragraph [ref=e658]: Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale.
+                - paragraph [ref=e659]:
+                  - text: Discover
+                  - img [ref=e660]
+            - 'link "Naturopatia In arrivo Naturopatia Il potere riequilibrante della natura: alimentazione, fitoterapia, stile di vita personalizzati. Discover" [ref=e662] [cursor=pointer]':
+              - /url: /dashboard/pratiche/naturopatia
+              - generic [ref=e663]:
+                - img "Naturopatia" [ref=e664]
+                - generic [ref=e666]: In arrivo
+              - generic [ref=e667]:
+                - paragraph [ref=e668]: Naturopatia
+                - paragraph [ref=e669]: "Il potere riequilibrante della natura: alimentazione, fitoterapia, stile di vita personalizzati."
+                - paragraph [ref=e670]:
+                  - text: Discover
+                  - img [ref=e671]
+            - link "Astrologia In arrivo Astrologia Decodifica il tuo tema natale per comprendere talenti, vocazione e fasi della vita. Discover" [ref=e673] [cursor=pointer]:
+              - /url: /dashboard/pratiche/astrologia
+              - generic [ref=e674]:
+                - img "Astrologia" [ref=e675]
+                - generic [ref=e677]: In arrivo
+              - generic [ref=e678]:
+                - paragraph [ref=e679]: Astrologia
+                - paragraph [ref=e680]: Decodifica il tuo tema natale per comprendere talenti, vocazione e fasi della vita.
+                - paragraph [ref=e681]:
+                  - text: Discover
+                  - img [ref=e682]
+            - 'link "Human Design In arrivo Human Design Scopri il tuo schema energetico unico: come prendi decisioni, come ti relazioni, come funzioni meglio. Discover" [ref=e684] [cursor=pointer]':
+              - /url: /dashboard/pratiche/human-design
+              - generic [ref=e685]:
+                - img "Human Design" [ref=e686]
+                - generic [ref=e688]: In arrivo
+              - generic [ref=e689]:
+                - paragraph [ref=e690]: Human Design
+                - paragraph [ref=e691]: "Scopri il tuo schema energetico unico: come prendi decisioni, come ti relazioni, come funzioni meglio."
+                - paragraph [ref=e692]:
+                  - text: Discover
+                  - img [ref=e693]
+            - link "Numerologia In arrivo Numerologia I numeri della tua vita — data di nascita, nome — raccontano talenti, sfide, cicli ricorrenti. Discover" [ref=e695] [cursor=pointer]:
+              - /url: /dashboard/pratiche/numerologia
+              - generic [ref=e696]:
+                - img "Numerologia" [ref=e697]
+                - generic [ref=e699]: In arrivo
+              - generic [ref=e700]:
+                - paragraph [ref=e701]: Numerologia
+                - paragraph [ref=e702]: I numeri della tua vita — data di nascita, nome — raccontano talenti, sfide, cicli ricorrenti.
+                - paragraph [ref=e703]:
+                  - text: Discover
+                  - img [ref=e704]
+            - 'link "Ayurveda In arrivo Ayurveda L''antica medicina indiana incontra il benessere moderno: dosha, alimentazione, ritmi naturali. Discover" [ref=e706] [cursor=pointer]':
+              - /url: /dashboard/pratiche/ayurveda
+              - generic [ref=e707]:
+                - img "Ayurveda" [ref=e708]
+                - generic [ref=e710]: In arrivo
+              - generic [ref=e711]:
+                - paragraph [ref=e712]: Ayurveda
+                - paragraph [ref=e713]: "L'antica medicina indiana incontra il benessere moderno: dosha, alimentazione, ritmi naturali."
+                - paragraph [ref=e714]:
+                  - text: Discover
+                  - img [ref=e715]
+  - alert [ref=e65]

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(FAL_KEY=22da84c7-2f7d-4485-af15-533baff387df:4bf27d8023f839b672685de14139429e python3 images/blog/_generate_human_design_vs_astrology.py)",
+      "Bash(vercel --prod --yes)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/blog/human-design-vs-astrology.html\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/images/blog/human-design-vs-astrology-hero.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/images/blog/human-design-vs-astrology-chart.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/images/blog/human-design-vs-astrology-choice.jpg\")",
+      "Bash(FAL_KEY=22da84c7-2f7d-4485-af15-533baff387df:4bf27d8023f839b672685de14139429e python3 _gen_numerologia.py)",
+      "Bash(curl -o /dev/null -s -w \"%{http_code}\" https://holisticunity.app/blog/numerologia-data-di-nascita.html)",
+      "Bash(curl -o /dev/null -s -w \"%{http_code}\" https://holisticunity.app/images/blog/numerologia-data-di-nascita-hero.jpg)",
+      "Bash(curl -o /dev/null -s -w \"%{http_code}\" https://holisticunity.app/images/blog/numerologia-data-di-nascita-calcolo.jpg)",
+      "Bash(curl -o /dev/null -s -w \"%{http_code}\" https://holisticunity.app/images/blog/numerologia-data-di-nascita-numeri.jpg)",
+      "Bash(curl -s https://holisticunity.app/blog/)",
+      "Bash(curl -s -I https://holisticunity.app/blog/numerologia-data-di-nascita.html)",
+      "Bash(FAL_KEY=22da84c7-2f7d-4485-af15-533baff387df:4bf27d8023f839b672685de14139429e python3 _generate_significato_numeri.py)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/blog/significato-numeri.html\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/images/blog/significato-numeri-hero.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://holisticunity.app/images/blog/significato-numeri-sequenza.jpg\")"
+    ]
+  }
+}

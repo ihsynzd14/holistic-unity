@@ -1,0 +1,25 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - img "Holistic Unity" [ref=e6]
+      - heading "Holistic Unity" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Sign in to your account
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: Email
+          - textbox "your@email.com" [ref=e13]: bad@example.com
+        - generic [ref=e14]:
+          - generic [ref=e15]: Password
+          - textbox "Your password" [ref=e16]: wrongpassword
+        - paragraph [ref=e32]: Invalid login credentials
+        - button "Sign in" [ref=e17]
+      - paragraph [ref=e18]:
+        - link "Password dimenticata?" [ref=e19] [cursor=pointer]:
+          - /url: /forgot-password
+      - paragraph [ref=e20]:
+        - text: Don't have an account?
+        - link "Register" [ref=e21] [cursor=pointer]:
+          - /url: /register
+    - paragraph [ref=e22]: Storm X Digital S.R.L.
+  - alert [ref=e31]

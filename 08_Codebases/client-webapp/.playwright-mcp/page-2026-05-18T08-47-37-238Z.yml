@@ -1,0 +1,37 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 1 di 10
+    - main [ref=e12]:
+      - generic [ref=e16]:
+        - heading "Cosa ti porta qui, oggi?" [level=1] [ref=e17]
+        - paragraph [ref=e18]: Non c'è una risposta giusta. Quella che senti più vera per te.
+        - generic [ref=e19]:
+          - button "Ho bisogno di fermarmi" [active] [ref=e20]:
+            - generic [ref=e21]:
+              - img [ref=e63]
+              - paragraph [ref=e24]: Ho bisogno di fermarmi
+          - button "Voglio capire qualcosa di me" [ref=e25]:
+            - paragraph [ref=e29]: Voglio capire qualcosa di me
+          - button "Sto attraversando un cambiamento" [ref=e30]:
+            - paragraph [ref=e34]: Sto attraversando un cambiamento
+          - button "Sono curioso/a di esplorare" [ref=e35]:
+            - paragraph [ref=e39]: Sono curioso/a di esplorare
+          - button "Cerco supporto per qualcuno" [ref=e40]:
+            - paragraph [ref=e44]: Cerco supporto per qualcuno
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [disabled] [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

@@ -1,0 +1,71 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - button "IT" [ref=e4]
+      - button "EN" [pressed] [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img "Holistic Unity" [ref=e9]
+        - heading "Create your account" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Start your wellbeing journey on Holistic Unity
+      - generic [ref=e13]:
+        - generic [ref=e15]:
+          - text: Company website (do not fill)
+          - textbox [ref=e16]
+        - generic [ref=e17]:
+          - generic [ref=e18]: Full name
+          - textbox "E.g. Marco Bianchi" [ref=e19]
+        - generic [ref=e20]:
+          - generic [ref=e21]: Email
+          - textbox "you@email.com" [ref=e22]
+        - generic [ref=e23]:
+          - generic [ref=e24]: Phone
+          - textbox "+1 555 123 4567" [ref=e25]
+        - generic [ref=e26]:
+          - generic [ref=e27]: Password
+          - textbox [ref=e28]
+          - paragraph [ref=e29]: At least 8 characters, with letters and numbers.
+        - generic [ref=e30]:
+          - generic [ref=e31]: Confirm password
+          - textbox [ref=e32]
+        - generic [ref=e33]:
+          - generic [ref=e34]: "⚠ These checkboxes are in Italian: the contract is governed by Italian law (Storm X Digital S.R.L., Bisceglie BA). Below each box you'll find a non-binding translation for your reference — the Italian wording is the legally binding one."
+          - generic [ref=e35]:
+            - 'checkbox "Ho letto e accetto i Termini e Condizioni per i Clienti e l’Informativa Privacy (GDPR). Translation (non-binding): I have read and accept the Terms and Conditions for Clients and the Privacy Notice (GDPR)." [ref=e36]'
+            - generic [ref=e37]:
+              - text: Ho letto e accetto i
+              - link "Termini e Condizioni per i Clienti" [ref=e38] [cursor=pointer]:
+                - /url: https://holisticunity.app/terms-clients.html
+              - text: e l’
+              - link "Informativa Privacy (GDPR)" [ref=e39] [cursor=pointer]:
+                - /url: https://holisticunity.app/privacy-policy.html
+              - text: .
+              - generic [ref=e40]: "Translation (non-binding): I have read and accept the Terms and Conditions for Clients and the Privacy Notice (GDPR)."
+          - generic [ref=e41]:
+            - 'checkbox "Approvazione specifica ai sensi degli artt. 1341 e 1342 c.c. delle clausole onerose: Sez. 4.2 pagamento anticipato, Sez. 5 politica cancellazione, Sez. 6.5/6.6 limitazione di responsabilità, Sez. 9.2 foro competente, Sez. 11 risoluzione del contratto. Vedi Sezione 18 dei Termini. Translation (non-binding): I specifically approve the onerous clauses (Italian Civil Code arts. 1341–1342): Sec. 4.2 advance payment, Sec. 5 cancellation policy, Sec. 6.5/6.6 limitation of liability, Sec. 9.2 jurisdiction, Sec. 11 contract termination." [ref=e42]'
+            - generic [ref=e43]:
+              - strong [ref=e44]: Approvazione specifica
+              - text: "ai sensi degli artt. 1341 e 1342 c.c. delle clausole onerose:"
+              - strong [ref=e45]: Sez. 4.2
+              - text: pagamento anticipato,
+              - strong [ref=e46]: Sez. 5
+              - text: politica cancellazione,
+              - strong [ref=e47]: Sez. 6.5/6.6
+              - text: limitazione di responsabilità,
+              - strong [ref=e48]: Sez. 9.2
+              - text: foro competente,
+              - strong [ref=e49]: Sez. 11
+              - text: risoluzione del contratto. Vedi
+              - link "Sezione 18 dei Termini" [ref=e50] [cursor=pointer]:
+                - /url: https://holisticunity.app/terms-clients.html#section-18
+              - text: .
+              - generic [ref=e51]: "Translation (non-binding): I specifically approve the onerous clauses (Italian Civil Code arts. 1341–1342): Sec. 4.2 advance payment, Sec. 5 cancellation policy, Sec. 6.5/6.6 limitation of liability, Sec. 9.2 jurisdiction, Sec. 11 contract termination."
+        - button "Create account" [ref=e52]
+        - paragraph [ref=e53]:
+          - text: Already have an account?
+          - link "Sign in" [ref=e54] [cursor=pointer]:
+            - /url: /login
+      - paragraph [ref=e55]: Storm X Digital S.R.L.
+  - button "Open Next.js Dev Tools" [ref=e61] [cursor=pointer]:
+    - img [ref=e62]
+  - alert [ref=e65]

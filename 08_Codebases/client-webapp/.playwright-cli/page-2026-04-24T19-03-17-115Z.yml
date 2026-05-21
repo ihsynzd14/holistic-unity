@@ -1,0 +1,108 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e66]:
+          - heading "Hi, Marcello" [level=1] [ref=e67]
+          - paragraph [ref=e68]: Ready to start? Find the right therapist for you.
+        - link "Find a therapist Browse profiles, read reviews and book in a few clicks" [ref=e69] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - generic [ref=e70]:
+            - img [ref=e72]
+            - generic [ref=e75]:
+              - paragraph [ref=e76]: Find a therapist
+              - paragraph [ref=e77]: Browse profiles, read reviews and book in a few clicks
+            - img [ref=e78]
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - heading "Explore practices" [level=2] [ref=e82]
+            - link "See all" [ref=e83] [cursor=pointer]:
+              - /url: /dashboard/pratiche
+          - generic [ref=e84]:
+            - link "ThetaHealing® ThetaHealing® Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta. Discover" [ref=e85] [cursor=pointer]:
+              - /url: /dashboard/pratiche/theta-healing
+              - img "ThetaHealing®" [ref=e87]
+              - generic [ref=e88]:
+                - paragraph [ref=e89]: ThetaHealing®
+                - paragraph [ref=e90]: Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta.
+                - paragraph [ref=e91]:
+                  - text: Discover
+                  - img [ref=e92]
+            - link "Costellazioni Familiari Costellazioni Familiari Riconosci e sciogli le dinamiche invisibili che ereditiamo dalla nostra famiglia di origine. Discover" [ref=e94] [cursor=pointer]:
+              - /url: /dashboard/pratiche/costellazioni-familiari
+              - img "Costellazioni Familiari" [ref=e96]
+              - generic [ref=e97]:
+                - paragraph [ref=e98]: Costellazioni Familiari
+                - paragraph [ref=e99]: Riconosci e sciogli le dinamiche invisibili che ereditiamo dalla nostra famiglia di origine.
+                - paragraph [ref=e100]:
+                  - text: Discover
+                  - img [ref=e101]
+            - link "Costellazioni Sistemiche Costellazioni Sistemiche Lo stesso metodo delle Costellazioni Familiari applicato ad aziende, gruppi, scelte di vita complesse. Discover" [ref=e103] [cursor=pointer]:
+              - /url: /dashboard/pratiche/costellazioni-sistemiche
+              - img "Costellazioni Sistemiche" [ref=e105]
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: Costellazioni Sistemiche
+                - paragraph [ref=e108]: Lo stesso metodo delle Costellazioni Familiari applicato ad aziende, gruppi, scelte di vita complesse.
+                - paragraph [ref=e109]:
+                  - text: Discover
+                  - img [ref=e110]
+            - link "Reiki Reiki Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale. Discover" [ref=e112] [cursor=pointer]:
+              - /url: /dashboard/pratiche/reiki
+              - img "Reiki" [ref=e114]
+              - generic [ref=e115]:
+                - paragraph [ref=e116]: Reiki
+                - paragraph [ref=e117]: Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale.
+                - paragraph [ref=e118]:
+                  - text: Discover
+                  - img [ref=e119]
+        - generic [ref=e121]:
+          - heading "Upcoming sessions" [level=2] [ref=e123]
+          - generic [ref=e124]:
+            - img [ref=e125]
+            - paragraph [ref=e127]: You have no upcoming sessions.
+  - alert [ref=e65]

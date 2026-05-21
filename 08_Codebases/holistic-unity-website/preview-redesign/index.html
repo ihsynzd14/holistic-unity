@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holistic Unity — Marketplace onesto di terapeuti olistici</title>
+  <meta name="description" content="Marketplace di terapeuti olistici verificati. Onesti, concreti, misurati. Prima sessione conoscitiva gratuita.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,600;100,700;100,800;100,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght,SOFT@1,72,400,100;1,72,500,100&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN TOKENS — Warm · Bold · Visual
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* PAPER */
+      --cream: #F3EDE0;          /* background caldo più saturo */
+      --cream-soft: #EFE7D5;     /* sezioni alternate */
+      --cream-pure: #FFFCF4;     /* card pure */
+      --ink: #1E1519;            /* scuro caldo */
+      --ink-mid: #4A3A44;
+      --ink-soft: #786573;
+      --ink-faint: #A89BA3;
+
+      /* ACCENT */
+      --magenta: #9B0064;
+      --magenta-dark: #6B0047;
+      --magenta-wash: rgba(155, 0, 100, 0.06);
+      --swipe: #FCE4EF;
+      --swipe-strong: #F5B5D3;
+
+      /* DARK */
+      --dark: #1E1519;
+      --dark-soft: #2A1F26;
+      --dark-ink: #F3EDE0;
+      --dark-muted: #8A7F88;
+
+      /* WARM AMBER — hero dark option */
+      --amber-deep: #2A1A15;
+      --amber-warm: #3D2418;
+
+      /* SEMANTIC */
+      --ok: #2E7D5B;
+      --rule: rgba(30, 21, 25, 0.12);
+
+      --r: 0px;
+      --r-sm: 4px;
+      --r-md: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Instrument Sans', -apple-system, sans-serif;
+      font-size: 15.5px; line-height: 1.55;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+    .container-narrow { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       TYPOGRAPHY
+    ═══════════════════════════════════════════════════════════ */
+    h1, h2, h3, h4 {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--ink);
+    }
+    h1 {
+      font-size: clamp(42px, 5.4vw, 84px);
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
+    h2 {
+      font-size: clamp(34px, 4vw, 58px);
+      letter-spacing: -0.028em;
+      line-height: 1.02;
+    }
+    h3 {
+      font-size: 20px;
+      letter-spacing: -0.015em;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    h4 { font-size: 16px; font-variation-settings: 'wdth' 100, 'wght' 700; }
+
+    .italic-accent {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 72, 'wght' 500, 'SOFT' 100;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--magenta);
+      letter-spacing: -0.01em;
+    }
+
+    .swipe {
+      background: linear-gradient(180deg, transparent 58%, var(--swipe-strong) 58%, var(--swipe-strong) 94%, transparent 94%);
+      padding: 0 5px;
+      box-decoration-break: clone;
+    }
+
+    .mono-up {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BUTTONS — squadrati con sfumatura 4px radius
+    ═══════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: -0.005em;
+      border: 1.5px solid var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: var(--r-sm);
+      transition: all .18s cubic-bezier(0.3, 0.7, 0.2, 1);
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: var(--magenta);
+      border-color: var(--magenta);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--ink);
+    }
+    .btn-primary { background: var(--magenta); border-color: var(--magenta); }
+    .btn-primary:hover { background: var(--magenta-dark); border-color: var(--ink); }
+    .btn-ghost { background: transparent; color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--cream); }
+    .btn-white { background: var(--cream-pure); border-color: var(--cream-pure); color: var(--ink); }
+    .btn-lg { padding: 16px 24px; font-size: 14.5px; }
+    .btn-sm { padding: 9px 14px; font-size: 12px; }
+    .btn-disabled {
+      background: transparent;
+      color: var(--ink-soft);
+      border-color: var(--rule);
+      cursor: not-allowed;
+    }
+    .btn-disabled:hover {
+      background: transparent;
+      border-color: var(--rule);
+      color: var(--ink-soft);
+      transform: none;
+      box-shadow: none;
+    }
+    .btn svg { transition: transform .2s; }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn-disabled:hover svg { transform: none; }
+    .product-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PREVIEW NOTICE
+    ═══════════════════════════════════════════════════════════ */
+    .preview-notice {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 8px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .preview-notice strong { color: var(--swipe-strong); font-weight: 500; }
+
+    /* ═══════════════════════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════════════════════ */
+    nav.nav {
+      background: var(--cream);
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0;
+    }
+    .logo {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo-mark { width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; overflow: hidden; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--ink);
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--magenta); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .lang-switch {
+      display: flex; gap: 0;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+    }
+    .lang-switch button {
+      padding: 6px 10px;
+      border-right: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .lang-switch button:last-child { border-right: 0; }
+    .lang-switch button.active { background: var(--ink); color: var(--cream); }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO — big photo + compact text
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      padding: 32px 0 48px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero-copy .trust-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: var(--swipe);
+      color: var(--magenta-dark);
+      border-radius: var(--r-sm);
+      font-family: 'Archivo', sans-serif;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .hero-copy .trust-pill strong { color: var(--magenta); }
+    .hero-copy h1 {
+      margin-bottom: 20px;
+    }
+    .hero-copy h1 .italic-accent { font-size: 0.95em; }
+    .hero-copy .sub {
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--ink-mid);
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+    .hero-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .hero-mini-stats {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+    .hero-mini-stats .cell .v {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero-mini-stats .cell .v em { color: var(--magenta); font-style: normal; }
+    .hero-mini-stats .cell .l {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* Hero photo with overlay card */
+    .hero-photo-wrap {
+      position: relative;
+    }
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 5/4;
+      overflow: hidden;
+      background: var(--cream-soft);
+      border-radius: var(--r-sm);
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay-card {
+      position: absolute;
+      left: -20px; bottom: 32px;
+      background: var(--cream-pure);
+      padding: 16px 18px;
+      box-shadow: 8px 8px 0 var(--ink);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--r-sm);
+      max-width: 280px;
+    }
+    .hero-overlay-card .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--ok);
+      color: white;
+      padding: 3px 8px;
+      border-radius: var(--r-sm);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero-overlay-card .pill::before {
+      content: ''; width: 6px; height: 6px; background: white; border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+    .hero-overlay-card h4 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .hero-overlay-card p {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .hero-overlay-card .rating {
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 11px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .hero-overlay-card .rating strong { color: var(--magenta); }
+
+    /* Floating video-call overlay on hero — simulates a Teams/Zoom thumbnail */
+    .hero-callcard {
+      position: absolute;
+      right: 18px; bottom: 18px;
+      background: rgba(30, 21, 25, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 10px 12px 10px 10px;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--cream);
+      box-shadow: 0 18px 40px -12px rgba(30,21,25,0.45);
+      min-width: 210px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-callcard-photo {
+      width: 56px; height: 56px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.12);
+    }
+    .hero-callcard-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-callcard-pill {
+      position: absolute;
+      top: 3px; left: 3px;
+      background: var(--ok);
+      color: white;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 1px 4px 1px 9px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .hero-callcard-pill::before {
+      content: '';
+      position: absolute;
+      left: 3px; top: 50%;
+      transform: translateY(-50%);
+      width: 4px; height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+    .hero-callcard-body {
+      display: flex; flex-direction: column;
+      gap: 2px;
+      line-height: 1.2;
+    }
+    .hero-callcard-name {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-size: 13px;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+    .hero-callcard-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--swipe-strong);
+      letter-spacing: 0.04em;
+    }
+    .hero-callcard-controls {
+      display: flex; gap: 5px;
+      margin-left: auto;
+      padding-left: 6px;
+    }
+    .hcc-btn {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white;
+      background: rgba(255,255,255,0.14);
+    }
+    .hcc-btn.end { background: #D84A4A; }
+
+    .hero-price-tag {
+      position: absolute;
+      right: -14px; top: 28px;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 14px 18px 12px;
+      border-radius: var(--r-sm);
+      text-align: center;
+      box-shadow: 6px 6px 0 rgba(155,0,100,0.22);
+    }
+    .hero-price-tag .amt-pre {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--swipe-strong);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .hero-price-tag .amt {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+    .hero-price-tag .lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      color: var(--dark-muted);
+      margin-top: 5px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       STATS STRIP — big numbers
+    ═══════════════════════════════════════════════════════════ */
+    .stats-strip {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 48px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-cell {
+      padding: 0 32px;
+      border-left: 1px solid var(--dark-muted);
+    }
+    .stat-cell:first-child { padding-left: 0; border-left: 0; }
+    .stat-cell .big {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: clamp(42px, 5vw, 72px);
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .stat-cell .big em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--swipe-strong);
+    }
+    .stat-cell .lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dark-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════════════════════════════ */
+    section { padding: 80px 0; }
+    .section-head {
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+    .section-head .eyebrow {
+      display: inline-block;
+      background: var(--magenta-wash);
+      color: var(--magenta);
+      padding: 5px 10px;
+      border-radius: var(--r-sm);
+      font-family: 'Archivo', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-head h2 { margin: 0; }
+    .section-head .lead {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MANIFESTO — 2 big cards with illustration tokens
+    ═══════════════════════════════════════════════════════════ */
+    .manifesto {
+      background: var(--cream-soft);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .manifesto h2 { max-width: 900px; }
+    .manifesto-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .mcard {
+      background: var(--cream-pure);
+      border: 1.5px solid var(--ink);
+      padding: 44px 40px;
+      border-radius: var(--r-sm);
+      display: flex; flex-direction: column;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+      min-height: 460px;
+    }
+    .mcard::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 6px; height: 64px;
+      background: var(--magenta);
+    }
+    .mcard.negative::before { background: var(--swipe-strong); }
+    .mcard.negative {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .mcard.negative h3, .mcard.negative li { color: var(--cream); }
+    .mcard .glyph {
+      width: 64px; height: 64px;
+      border-radius: var(--r-sm);
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--magenta-wash);
+      color: var(--magenta);
+      flex-shrink: 0;
+    }
+    .mcard.negative .glyph {
+      background: rgba(245, 181, 211, 0.12);
+      color: var(--swipe-strong);
+    }
+    .mcard .glyph svg { width: 32px; height: 32px; }
+
+    .mcard-illo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: var(--r-sm);
+      background: var(--cream);
+      margin-bottom: 4px;
+      border: 1px solid var(--rule);
+    }
+    .mcard-illo img { width: 100%; height: 100%; object-fit: cover; }
+    .mcard.negative .mcard-illo {
+      background: var(--dark-soft);
+      border-color: rgba(245, 181, 211, 0.2);
+    }
+    .mcard .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+    .mcard.negative .tag { color: var(--dark-muted); }
+    .mcard h3 {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-size: 34px;
+      line-height: 1.05;
+      letter-spacing: -0.028em;
+      max-width: 16ch;
+    }
+    .mcard li {
+      font-size: 16px;
+    }
+    .mcard ul {
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .mcard li {
+      font-size: 15px;
+      line-height: 1.45;
+      padding-left: 24px;
+      position: relative;
+    }
+    .mcard li::before {
+      position: absolute;
+      left: 0; top: 0;
+      font-weight: 700;
+      color: var(--magenta);
+    }
+    .mcard.positive li::before { content: '✓'; }
+    .mcard.negative li::before { content: '✕'; color: var(--swipe-strong); }
+    .mcard.negative li { opacity: 0.85; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THERAPIES — 3x3 grid of illustrated cards
+    ═══════════════════════════════════════════════════════════ */
+    .therapies {
+      background: var(--cream);
+    }
+    .therapy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .tcard {
+      background: var(--cream-pure);
+      border: 1.5px solid var(--rule);
+      border-radius: var(--r-sm);
+      padding: 24px;
+      display: flex; flex-direction: column;
+      gap: 14px;
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .tcard:hover {
+      border-color: var(--ink);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 0 var(--ink);
+    }
+    .tcard .t-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 12px;
+    }
+    .tcard .t-glyph {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--cream);
+      border-radius: var(--r-sm);
+      margin-bottom: 6px;
+      border: 1px solid var(--rule);
+    }
+    .tcard .t-glyph img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .tcard .t-glyph svg { width: 24px; height: 24px; }
+    .tcard-head-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .tcard .t-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+    .tcard h3 {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .tcard p {
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      line-height: 1.45;
+      flex-grow: 1;
+    }
+    .tcard .foot {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+    }
+    .tcard .foot-cta {
+      color: var(--ink);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .tcard .arr { color: var(--magenta); font-weight: 600; font-size: 14px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HOW IT WORKS — 3 BIG PHOTO cards
+    ═══════════════════════════════════════════════════════════ */
+    .how {
+      background: var(--cream-soft);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .hstep {
+      background: var(--cream-pure);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .hstep-photo {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--cream-soft);
+    }
+
+    .hstep-photo.mobile {
+      background: linear-gradient(160deg, #F3EDE0 0%, #E6DCC7 100%);
+      padding: 20px 16px 0;
+      aspect-ratio: 4/3.3;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .hstep-photo.mobile .phone-frame {
+      max-width: 180px;
+      transform: translateY(18px);
+    }
+
+    .hstep-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hstep-body {
+      padding: 24px;
+      display: flex; flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+    }
+    .hstep-meta {
+      display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .hstep-num {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: 40px;
+      color: var(--magenta);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .hstep-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      padding: 3px 7px;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-sm);
+    }
+    .hstep-body h3 { font-size: 21px; }
+    .hstep-body p { font-size: 14px; color: var(--ink-mid); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THERAPISTS GALLERY
+    ═══════════════════════════════════════════════════════════ */
+    .therapists {
+      background: var(--dark);
+      color: var(--dark-ink);
+    }
+    .therapists .section-head .eyebrow {
+      background: rgba(245, 181, 211, 0.12);
+      color: var(--swipe-strong);
+    }
+    .therapists h2 { color: var(--cream); }
+    .therapists .lead { color: var(--dark-muted); }
+    .therapist-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .tpcard {
+      background: var(--dark-soft);
+      border: 1px solid var(--dark-muted);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      transition: all .2s;
+    }
+    .tpcard:hover {
+      border-color: var(--magenta);
+      transform: translateY(-3px);
+    }
+    .tpcard-photo {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+    }
+    .tpcard-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(8%);
+      transition: filter .3s;
+    }
+    .tpcard:hover .tpcard-photo img { filter: none; }
+    .tpcard-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: var(--cream-pure);
+      color: var(--ink);
+      padding: 4px 8px;
+      border-radius: var(--r-sm);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tpcard-badge.live {
+      background: var(--ok); color: white;
+    }
+    .tpcard-badge.live::before {
+      content: ''; display: inline-block;
+      width: 5px; height: 5px; background: white; border-radius: 50%;
+      margin-right: 4px; vertical-align: middle;
+      animation: pulse 1.4s infinite;
+    }
+    .tpcard-info {
+      padding: 14px 16px 18px;
+    }
+    .tpcard-name {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 3px;
+    }
+    .tpcard-disc {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--dark-muted);
+      margin-bottom: 10px;
+    }
+    .tpcard-tags {
+      display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .tpcard-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      padding: 3px 7px;
+      border: 1px solid var(--dark-muted);
+      color: var(--dark-ink);
+      border-radius: var(--r-sm);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PHONE FRAME — reusable iPhone mockup wrapper
+    ═══════════════════════════════════════════════════════════ */
+    .phone-frame {
+      position: relative;
+      background: #1E1519;
+      border-radius: 42px;
+      padding: 10px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 0 0 2px rgba(30,21,25,0.9),
+        0 30px 60px -18px rgba(30,21,25,0.35),
+        0 10px 22px -10px rgba(30,21,25,0.25);
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 26px;
+      background: #0B0508;
+      border-radius: 20px;
+      z-index: 3;
+      box-shadow: 0 0 0 0.5px rgba(255,255,255,0.06);
+    }
+    .phone-frame-screen {
+      position: relative;
+      background: var(--cream);
+      border-radius: 32px;
+      overflow: hidden;
+      aspect-ratio: 9/19.5;
+    }
+    .phone-frame-screen img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .phone-frame-screen img.logo-center {
+      object-fit: contain;
+      background: var(--cream);
+    }
+    .phone-frame.sm { max-width: 260px; }
+    .phone-frame.lg { max-width: 340px; }
+
+    /* Coming-soon stamp overlay */
+    .coming-soon-stamp {
+      position: absolute;
+      top: 16px; right: -14px;
+      background: var(--magenta);
+      color: white;
+      padding: 6px 12px;
+      border-radius: var(--r-sm);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--ink);
+      z-index: 4;
+      transform: rotate(4deg);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PRODUCT SHOWCASE — app mockup
+    ═══════════════════════════════════════════════════════════ */
+    .product {
+      background: var(--cream);
+      padding: 80px 0;
+    }
+    .product-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .product-copy h2 { margin-bottom: 20px; }
+    .product-copy p {
+      font-size: 16.5px;
+      color: var(--ink-mid);
+      line-height: 1.55;
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+    .product-features {
+      display: flex; flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .pf {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-sm);
+      background: var(--cream-pure);
+    }
+    .pf-icon {
+      width: 32px; height: 32px;
+      background: var(--magenta-wash);
+      color: var(--magenta);
+      border-radius: var(--r-sm);
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pf-icon svg { width: 18px; height: 18px; }
+    .pf-body strong {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-size: 14.5px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .pf-body span {
+      font-size: 13px;
+      color: var(--ink-mid);
+    }
+    .product-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #F3EDE0 0%, #E6DCC7 100%);
+      border-radius: var(--r-sm);
+      border: 1.5px solid var(--rule);
+      position: relative;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PRICING — 3 cards semplici
+    ═══════════════════════════════════════════════════════════ */
+    .pricing {
+      background: var(--cream-soft);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .price-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .pcard {
+      background: var(--cream-pure);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--r-sm);
+      padding: 28px;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .pcard.featured {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .pcard.featured::before {
+      content: 'CONSIGLIATO';
+      position: absolute;
+      top: -10px; left: 24px;
+      background: var(--magenta);
+      color: white;
+      font-family: 'Archivo', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: var(--r-sm);
+    }
+    .pcard .lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+    .pcard.featured .lbl { color: var(--dark-muted); }
+    .pcard h3 {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-size: 36px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .pcard.featured h3 { color: var(--cream); }
+    .pcard .duration {
+      font-size: 13px;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .pcard.featured .duration { color: var(--dark-muted); }
+    .pcard ul {
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+      margin-bottom: 24px;
+    }
+    .pcard li {
+      font-size: 13.5px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .pcard li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--magenta);
+      font-weight: 700;
+    }
+    .pcard.featured li::before { color: var(--swipe-strong); }
+
+    /* ═══════════════════════════════════════════════════════════
+       TESTIMONIALS — 3 compact cards
+    ═══════════════════════════════════════════════════════════ */
+    .quotes {
+      background: var(--cream);
+    }
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .qcard {
+      background: var(--cream-pure);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-sm);
+      padding: 24px;
+      display: flex; flex-direction: column;
+    }
+    .qcard .stars {
+      display: flex; gap: 2px;
+      margin-bottom: 14px;
+    }
+    .qcard .stars svg { width: 14px; height: 14px; color: #E5A83D; }
+    .qcard blockquote {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 0 18px;
+      flex-grow: 1;
+      font-weight: 500;
+    }
+    .qcard .a {
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 12.5px;
+    }
+    .qcard .a strong {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .qcard .a span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FAQ — compact
+    ═══════════════════════════════════════════════════════════ */
+    .faq {
+      background: var(--cream-soft);
+      border-top: 1px solid var(--rule);
+    }
+    .faq-list {
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+    .faq-item {
+      background: var(--cream-pure);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-sm);
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: 1fr 32px;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .faq-item:hover { border-color: var(--ink); }
+    .faq-q {
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 700;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .faq-a {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-mid);
+      max-width: 720px;
+    }
+    .faq-toggle {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--magenta);
+      text-align: right;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FINAL CTA
+    ═══════════════════════════════════════════════════════════ */
+    .final-cta {
+      background: var(--dark);
+      color: var(--cream);
+    }
+    .final-cta-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .final-cta h2 {
+      color: var(--cream);
+      font-size: clamp(38px, 5vw, 72px);
+      margin-bottom: 20px;
+    }
+    .final-cta .sub {
+      color: var(--dark-muted);
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 460px;
+    }
+    .final-cta-photo {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: var(--r-sm);
+    }
+    .final-cta-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .final-cta-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--ink);
+      color: var(--dark-ink);
+      padding: 56px 0 24px;
+      border-top: 1px solid var(--dark-muted);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Archivo', sans-serif;
+      font-variation-settings: 'wdth' 100, 'wght' 800;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .footer-logo .logo-mark { width: 32px; height: 32px; border-radius: 6px; overflow: hidden; }
+    .footer-bio p {
+      font-size: 13.5px;
+      color: var(--dark-muted);
+      line-height: 1.55;
+      max-width: 340px;
+    }
+    .footer-grid h4 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dark-muted);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .footer-grid ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-grid a { font-size: 13.5px; color: var(--dark-ink); }
+    .footer-grid a:hover { color: var(--swipe-strong); }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--dark-muted);
+      display: flex; justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--dark-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MOTION
+    ═══════════════════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0.001;
+      transform: translateY(14px);
+      transition: opacity .6s ease-out, transform .6s cubic-bezier(0.2,0.7,0.1,1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-1 { transition-delay: .08s; }
+    .reveal-2 { transition-delay: .16s; }
+    .reveal-3 { transition-delay: .24s; }
+    @keyframes force-reveal { to { opacity: 1; transform: none; } }
+    .reveal { animation: force-reveal .6s ease forwards; animation-delay: 1.2s; }
+    .reveal.in { animation: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-overlay-card { left: 12px; right: 12px; max-width: none; bottom: 16px; }
+      .section-head { grid-template-columns: 1fr; gap: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px 0; }
+      .stat-cell { padding: 0 16px; }
+      .stat-cell:nth-child(3) { border-left: 0; padding-left: 0; }
+      .manifesto-cards { grid-template-columns: 1fr; }
+      .therapy-grid { grid-template-columns: 1fr 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+      .therapist-grid { grid-template-columns: 1fr 1fr; }
+      .product-inner { grid-template-columns: 1fr; gap: 32px; }
+      .price-cards { grid-template-columns: 1fr; }
+      .quote-grid { grid-template-columns: 1fr; }
+      .final-cta-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 56px 0; }
+    }
+    @media (max-width: 560px) {
+      .therapy-grid { grid-template-columns: 1fr; }
+      .therapist-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="preview-notice">
+    <strong>PREVIEW V3</strong> — Visual · Bold · Compatto — Palette esistente
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark"><img src="images/logo.png" alt="Holistic Unity"></span>
+        Holistic Unity
+      </a>
+      <div class="nav-links">
+        <a href="#manifesto">Manifesto</a>
+        <a href="#therapies">Terapie</a>
+        <a href="#how">Come funziona</a>
+        <a href="#therapists">Terapeuti</a>
+        <a href="#pricing">Prezzi</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <button>EN</button>
+          <button class="active">IT</button>
+          <button>PT</button>
+        </div>
+        <a href="#cta" class="btn btn-sm btn-primary">Sessione conoscitiva gratuita</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <span class="trust-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            4.9/5 · <strong>84 recensioni verificate</strong>
+          </span>
+          <h1>
+            Terapie olistiche<br>
+            <span class="swipe">verificate.</span> Prezzi <span class="italic-accent">chiari</span>.
+          </h1>
+          <p class="sub">
+            Prenota una sessione con terapeuti certificati ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia o Costellazioni. Prima sessione conoscitiva gratuita.
+          </p>
+          <div class="hero-actions">
+            <a href="#cta" class="btn btn-primary btn-lg">
+              Prenota sessione conoscitiva gratuita
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#therapies" class="btn btn-ghost btn-lg">Vedi le 9 terapie</a>
+          </div>
+          <div class="hero-mini-stats">
+            <div class="cell"><div class="v">47</div><div class="l">Terapeuti attivi oggi</div></div>
+            <div class="cell"><div class="v">9</div><div class="l">Discipline verificate</div></div>
+            <div class="cell"><div class="v"><em>1ª</em> sessione</div><div class="l">Conoscitiva gratuita</div></div>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap reveal reveal-1">
+          <div class="hero-photo">
+            <img src="images/hero-v4-session.jpg" alt="Cliente in sessione olistica con il laptop dal divano di casa">
+          </div>
+          <div class="hero-price-tag">
+            <div class="amt-pre">DA</div>
+            <div class="amt">€60</div>
+            <div class="lbl">A SESSIONE</div>
+          </div>
+          <div class="hero-callcard" aria-label="Terapista in linea">
+            <div class="hero-callcard-photo">
+              <img src="images/therapist-callcard.jpg" alt="Sara Conti, terapista ThetaHealing e Reiki Master">
+              <span class="hero-callcard-pill">IN LINEA</span>
+            </div>
+            <div class="hero-callcard-body">
+              <div class="hero-callcard-name">Sara Conti</div>
+              <div class="hero-callcard-meta">ThetaHealing® · 4.9★</div>
+            </div>
+            <div class="hero-callcard-controls">
+              <span class="hcc-btn mic"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg></span>
+              <span class="hcc-btn end"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15.46l-5.27-.61-2.52 2.52a11.88 11.88 0 0 1-5.58-5.58l2.53-2.53L9.55 4H4.03C3.45 14.2 11.8 22.55 22 21.97v-5.51z"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP DARK -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="big">47<em>+</em></div>
+          <div class="lbl">Terapeuti verificati</div>
+        </div>
+        <div class="stat-cell">
+          <div class="big">9</div>
+          <div class="lbl">Discipline olistiche</div>
+        </div>
+        <div class="stat-cell">
+          <div class="big">84<em>★</em></div>
+          <div class="lbl">Recensioni · media 4.9</div>
+        </div>
+        <div class="stat-cell">
+          <div class="big">100<em>%</em></div>
+          <div class="lbl">Prima sessione gratuita</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO — 2 big cards -->
+  <section id="manifesto" class="manifesto">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Il nostro manifesto</span>
+          <h2>Crediamo nelle terapie olistiche.<br>Non nel <span class="italic-accent">marketing</span> che le circonda.</h2>
+        </div>
+        <p class="lead">
+          Una piattaforma onesta con chi le pratica e con chi le riceve. Niente hype, nessuna promessa impossibile, credenziali sempre verificate.
+        </p>
+      </div>
+      <div class="manifesto-cards">
+        <article class="mcard negative reveal">
+          <span class="tag">Cosa NON siamo</span>
+          <h3>Non vendiamo iper-promesse né scorciatoie.</h3>
+          <ul>
+            <li>Un'app che promette risultati in 7 giorni</li>
+            <li>Frasi svuotate tipo "sblocca il tuo potenziale"</li>
+            <li>Algoritmi al posto di un terapeuta reale</li>
+            <li>Profili senza credenziali verificabili</li>
+            <li>Prezzi nascosti fino al checkout</li>
+          </ul>
+        </article>
+        <article class="mcard positive reveal reveal-1">
+          <span class="tag">Cosa siamo</span>
+          <h3>Un marketplace che rispetta terapeuti e clienti.</h3>
+          <ul>
+            <li>Terapeuti con <strong>credenziali verificate</strong> dai rispettivi organismi</li>
+            <li>Ogni disciplina spiegata con <strong>onestà</strong>: cosa fa, cosa non fa</li>
+            <li>Prezzi sempre visibili, zero sorprese al checkout</li>
+            <li>Un terapeuta reale per ogni sessione — mai un bot</li>
+            <li>Prima sessione <strong>sempre gratis</strong>, senza impegno</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- THERAPIES 3x3 GRID -->
+  <section id="therapies" class="therapies">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Le 9 discipline</span>
+          <h2>Ogni disciplina, <span class="italic-accent">spiegata come si deve</span>.</h2>
+        </div>
+        <p class="lead">
+          Per ciascuna diciamo cosa fa, cosa <em>non</em> fa, e a chi potrebbe servire. Niente hype.
+        </p>
+      </div>
+      <div class="therapy-grid">
+
+        <a href="#" class="tcard reveal">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-theta.jpg" alt="ThetaHealing®" loading="lazy"></div>
+            <span class="t-num">01 / 09</span>
+          </div>
+          <h3>ThetaHealing®</h3>
+          <p>Onde cerebrali theta per lavorare su convinzioni subconscie radicate. Non sostituisce la terapia psicologica.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-1">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-reiki.jpg" alt="Reiki" loading="lazy"></div>
+            <span class="t-num">02 / 09</span>
+          </div>
+          <h3>Reiki</h3>
+          <p>Canalizzazione energetica. Studi clinici su ansia/stress. Complementare alle cure mediche, mai alternativa.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-2">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-astro.jpg" alt="Astrologia" loading="lazy"></div>
+            <span class="t-num">03 / 09</span>
+          </div>
+          <h3>Astrologia</h3>
+          <p>Lettura del tema natale per auto-comprensione. Strumento interpretativo, non predittivo. Zero profezia.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-hd.jpg" alt="Human Design" loading="lazy"></div>
+            <span class="t-num">04 / 09</span>
+          </div>
+          <h3>Human Design</h3>
+          <p>Mappa energetica da I Ching + astrologia + chakra. Framework interpretativo, non scienza. Per scelte di vita.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-1">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-num.jpg" alt="Numerologia" loading="lazy"></div>
+            <span class="t-num">05 / 09</span>
+          </div>
+          <h3>Numerologia</h3>
+          <p>Simbolismo dei numeri legati a nome e data. Riflessione personale. Non prevede il futuro. Serio, non magico.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-2">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-ayur.jpg" alt="Ayurveda" loading="lazy"></div>
+            <span class="t-num">06 / 09</span>
+          </div>
+          <h3>Ayurveda</h3>
+          <p>Medicina tradizionale indiana. Dosha, nutrizione, stile di vita. Evidenze miste. Complementare alla medicina.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-natu.jpg" alt="Naturopatia" loading="lazy"></div>
+            <span class="t-num">07 / 09</span>
+          </div>
+          <h3>Naturopatia</h3>
+          <p>Prevenzione con nutrizione, fitoterapia, stile di vita. Regolamentata come pratica bionaturale. Sempre con medico.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-1">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-cf.jpg" alt="Costellazioni Familiari" loading="lazy"></div>
+            <span class="t-num">08 / 09</span>
+          </div>
+          <h3>Costellazioni Familiari</h3>
+          <p>Dinamiche ereditate dal sistema famigliare. Metodo Hellinger. Per pattern ricorrenti nelle relazioni.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+        <a href="#" class="tcard reveal reveal-2">
+          <div class="t-head">
+            <div class="t-glyph"><img src="images/hu-cs.jpg" alt="Costellazioni Sistemiche" loading="lazy"></div>
+            <span class="t-num">09 / 09</span>
+          </div>
+          <h3>Costellazioni Sistemiche</h3>
+          <p>Estensione a contesti professionali e organizzativi. Per team, decisioni complesse, pattern aziendali.</p>
+          <div class="foot"><span class="foot-cta">Scopri la disciplina</span><span class="arr">→</span></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS — 3 big photos -->
+  <section id="how" class="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Come funziona</span>
+          <h2>Tre passaggi. <span class="italic-accent">Niente telefonate</span>.</h2>
+        </div>
+        <p class="lead">
+          Niente questionari da 30 minuti o email di conferma in 24 ore. Trovi, prenoti, fai la sessione dall'app.
+        </p>
+      </div>
+      <div class="how-grid">
+
+        <div class="hstep reveal">
+          <div class="hstep-photo mobile">
+            <div class="phone-frame">
+              <div class="phone-frame-screen">
+                <img src="images/app-browse-v2.png" alt="Schermata app — scegli tra 9 discipline">
+              </div>
+            </div>
+          </div>
+          <div class="hstep-body">
+            <div class="hstep-meta">
+              <span class="hstep-num">01</span>
+              <span class="hstep-tag">Scegli</span>
+            </div>
+            <h3>Scegli la terapia</h3>
+            <p>9 discipline, 3 lingue, profili con credenziali verificate. Filtro per lingua, prezzo e disponibilità oggi.</p>
+          </div>
+        </div>
+
+        <div class="hstep reveal reveal-1">
+          <div class="hstep-photo mobile">
+            <div class="phone-frame">
+              <div class="phone-frame-screen">
+                <img src="images/app-bookings-v2.png" alt="Schermata app — sessione confermata con Join Session">
+              </div>
+            </div>
+          </div>
+          <div class="hstep-body">
+            <div class="hstep-meta">
+              <span class="hstep-num">02</span>
+              <span class="hstep-tag">Prenota</span>
+            </div>
+            <h3>Prenota e ricevi conferma</h3>
+            <p>Pagamento sicuro Stripe. Conferma immediata con link video integrato. Cancelli fino a 24h prima, zero fee.</p>
+          </div>
+        </div>
+
+        <div class="hstep reveal reveal-2">
+          <div class="hstep-photo">
+            <img src="images/hands-tea.jpg" alt="Cliente con tazza di tè davanti al laptop in video call">
+          </div>
+          <div class="hstep-body">
+            <div class="hstep-meta">
+              <span class="hstep-num">03</span>
+              <span class="hstep-tag">Sessione</span>
+            </div>
+            <h3>Fai la sessione da casa</h3>
+            <p>Video call integrata nell'app, nessun Zoom da configurare. Dopo, ricevi note sintetiche e passi successivi.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THERAPISTS -->
+  <section id="therapists" class="therapists">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Chi troverai</span>
+          <h2 style="color: var(--cream);">Persone vere, con <span class="italic-accent" style="color: var(--swipe-strong);">credenziali</span> vere.</h2>
+        </div>
+        <p class="lead" style="color: var(--dark-muted);">
+          Ogni profilo pubblica credenziali, organismi di formazione, anni di pratica. Nessun alias esotico. Nessuna foto stock.
+        </p>
+      </div>
+
+      <div class="therapist-grid">
+        <article class="tpcard reveal">
+          <div class="tpcard-photo">
+            <img src="images/therapist-hero-v1.jpg" alt="Sara Conti">
+            <span class="tpcard-badge live">IN LINEA</span>
+          </div>
+          <div class="tpcard-info">
+            <div class="tpcard-name">Sara Conti</div>
+            <div class="tpcard-disc">ThetaHealing® · Reiki</div>
+            <div class="tpcard-tags">
+              <span class="tpcard-tag">Ansia</span>
+              <span class="tpcard-tag">Blocchi emotivi</span>
+              <span class="tpcard-tag">IT · EN</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tpcard reveal reveal-1">
+          <div class="tpcard-photo">
+            <img src="images/therapist-marco.jpg" alt="Marco Ricci">
+            <span class="tpcard-badge">DA €70</span>
+          </div>
+          <div class="tpcard-info">
+            <div class="tpcard-name">Marco Ricci</div>
+            <div class="tpcard-disc">Human Design · Astrologia</div>
+            <div class="tpcard-tags">
+              <span class="tpcard-tag">Carriera</span>
+              <span class="tpcard-tag">Relazioni</span>
+              <span class="tpcard-tag">IT · EN · ES</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tpcard reveal reveal-2">
+          <div class="tpcard-photo">
+            <img src="images/therapist-chiara.jpg" alt="Chiara Mensah">
+            <span class="tpcard-badge live">IN LINEA</span>
+          </div>
+          <div class="tpcard-info">
+            <div class="tpcard-name">Chiara Mensah</div>
+            <div class="tpcard-disc">Costellazioni · Ayurveda</div>
+            <div class="tpcard-tags">
+              <span class="tpcard-tag">Trauma</span>
+              <span class="tpcard-tag">Sistemi famigliari</span>
+              <span class="tpcard-tag">IT · EN</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tpcard reveal reveal-3">
+          <div class="tpcard-photo">
+            <img src="images/therapist-hero-v2.jpg" alt="Elena Bruni">
+            <span class="tpcard-badge">DA €50</span>
+          </div>
+          <div class="tpcard-info">
+            <div class="tpcard-name">Elena Bruni</div>
+            <div class="tpcard-disc">Naturopatia · Numerologia</div>
+            <div class="tpcard-tags">
+              <span class="tpcard-tag">Prevenzione</span>
+              <span class="tpcard-tag">Stile di vita</span>
+              <span class="tpcard-tag">IT · PT</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top: 36px; display: flex; justify-content: center;">
+        <a href="#" class="btn btn-white">
+          Sfoglia tutti i terapeuti
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE -->
+  <section class="product">
+    <div class="container">
+      <div class="product-inner">
+        <div class="product-copy reveal">
+          <span class="eyebrow" style="display:inline-block; background: var(--magenta-wash); color: var(--magenta); padding: 5px 10px; border-radius: var(--r-sm); font-family: 'Archivo', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px;">Web app &amp; iOS</span>
+          <h2>Inizia dal <span class="italic-accent">browser</span>. L'app iOS sta <span class="italic-accent">arrivando</span>.</h2>
+          <p>Crea il tuo account ora e prenota la tua prima sessione direttamente dalla web app. L'app nativa iOS arriva presto.</p>
+          <div class="product-features">
+            <div class="pf">
+              <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+              <div class="pf-body"><strong>Ricerca intelligente</strong><span>Filtro per disciplina, lingua, prezzo e disponibilità oggi.</span></div>
+            </div>
+            <div class="pf">
+              <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="pf-body"><strong>Calendario unico</strong><span>Orari aggiornati in tempo reale. Nessuna email avanti e indietro.</span></div>
+            </div>
+            <div class="pf">
+              <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+              <div class="pf-body"><strong>Video call integrata</strong><span>Apri, premi via. Niente Zoom, niente link di fortuna.</span></div>
+            </div>
+          </div>
+          <div class="product-ctas">
+            <a href="#cta" class="btn btn-primary btn-lg">
+              Crea il tuo account
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="btn btn-disabled" aria-disabled="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              iOS · Coming soon
+            </a>
+          </div>
+        </div>
+        <div class="product-photo reveal reveal-1">
+          <span class="coming-soon-stamp">Coming soon</span>
+          <div class="phone-frame lg">
+            <div class="phone-frame-screen">
+              <img src="images/app-home-v2.png" alt="Schermata home app Holistic Unity">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Prezzi chiari</span>
+          <h2>Paghi solo <span class="italic-accent">quello che fai</span>.</h2>
+        </div>
+        <p class="lead">
+          Prima sessione conoscitiva sempre gratuita. Poi scegli: sessione singola, pacchetto 4 sessioni, o coppia. Zero abbonamenti.
+        </p>
+      </div>
+      <div class="price-cards">
+
+        <div class="pcard reveal">
+          <div class="lbl">Sessione conoscitiva</div>
+          <h3>Gratis</h3>
+          <div class="duration">Una sessione con il terapeuta</div>
+          <ul>
+            <li>Capisci se la persona è giusta</li>
+            <li>Nessun impegno, nessuna carta</li>
+            <li>Disponibile per ogni terapeuta</li>
+          </ul>
+          <a href="#cta" class="btn btn-ghost">Prenota sessione gratuita</a>
+        </div>
+
+        <div class="pcard featured reveal reveal-1">
+          <div class="lbl">Sessione singola</div>
+          <h3>da €60</h3>
+          <div class="duration">60 minuti · iva inclusa</div>
+          <ul>
+            <li>Video call integrata nell'app</li>
+            <li>Pagamento sicuro Stripe</li>
+            <li>Cancelli fino a 24h prima</li>
+            <li>Note sintetiche a fine sessione</li>
+          </ul>
+          <a href="#" class="btn btn-white">Prenota sessione</a>
+        </div>
+
+        <div class="pcard reveal reveal-2">
+          <div class="lbl">Pacchetto 4 sessioni</div>
+          <h3>−10%</h3>
+          <div class="duration">4 × 60 minuti · validità 6 mesi</div>
+          <ul>
+            <li>Con lo stesso terapeuta</li>
+            <li>Rimborso sessioni non usate</li>
+            <li>Sconto automatico</li>
+          </ul>
+          <a href="#" class="btn btn-ghost">Scopri pacchetto</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="quotes">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Recensioni verificate</span>
+          <h2>Parole degli <span class="italic-accent">utenti</span>.</h2>
+        </div>
+        <p class="lead">
+          Mostrate qui testuali, senza editing. Rating medio 4.9 su 84 recensioni. Niente cherry-picking.
+        </p>
+      </div>
+      <div class="quote-grid">
+
+        <article class="qcard reveal">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"Ho apprezzato la chiarezza. Mi hanno detto subito cosa il ThetaHealing® può e non può fare. La prima sessione gratuita mi ha aiutato a capire che faceva per me."</blockquote>
+          <div class="a"><strong>Giulia M.</strong><span>Milano · 5.0</span></div>
+        </article>
+
+        <article class="qcard reveal reveal-1">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"Cercavo una piattaforma seria per il Reiki, non un'app che promette miracoli. Qui mettono i terapeuti certificati in primo piano, niente marketing fuffa."</blockquote>
+          <div class="a"><strong>Roberto D.</strong><span>Roma · 4.8</span></div>
+        </article>
+
+        <article class="qcard reveal reveal-2">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"Inizialmente scettica. Dopo 3 sessioni di Costellazioni ho capito un pattern ricorrente che mi aiuta ancora. Terapeuta preparata, prezzi onesti, cancellazione facile."</blockquote>
+          <div class="a"><strong>Elena P.</strong><span>Bologna · 5.0</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">FAQ</span>
+          <h2>Cose che ci chiedete <span class="italic-accent">davvero</span>.</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div>
+            <div class="faq-q">Le terapie olistiche sono scientifiche?</div>
+            <div class="faq-a">Dipende dalla disciplina. Reiki e Ayurveda hanno studi clinici misti. ThetaHealing®, Human Design, Astrologia, Numerologia sono framework interpretativi, non scienza. Naturopatia è regolamentata come pratica bionaturale.</div>
+          </div>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-item">
+          <div>
+            <div class="faq-q">Sostituiscono medico o psicologo?</div>
+            <div class="faq-a">No. Sono sempre complementari, mai alternative. Lo scriviamo su ogni pagina. Se hai sintomi clinici, prima consulta medico o psicologo abilitato.</div>
+          </div>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-item">
+          <div>
+            <div class="faq-q">Come verificate i terapeuti?</div>
+            <div class="faq-a">Documento d'identità, attestato di formazione (ThetaHealing® Institute, IRHC Reiki, SIAF, ecc.), minimo 2 anni di pratica documentata, intervista video con il nostro team.</div>
+          </div>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-item">
+          <div>
+            <div class="faq-q">Posso cancellare dopo la prenotazione?</div>
+            <div class="faq-a">Sì. Fino a 24 ore prima, zero fee, rimborso automatico. Dopo le 24 ore la sessione è addebitata ma riprogrammabile entro 7 giorni.</div>
+          </div>
+          <span class="faq-toggle">+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="cta" class="final-cta">
+    <div class="container">
+      <div class="final-cta-inner reveal">
+        <div>
+          <span class="eyebrow" style="display:inline-block; background: rgba(245,181,211,0.12); color: var(--swipe-strong); padding: 5px 10px; border-radius: var(--r-sm); font-family: 'Archivo', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px;">Inizia qui</span>
+          <h2>La prima sessione è <span class="italic-accent" style="color: var(--swipe-strong);">gratuita</span>.</h2>
+          <p class="sub">Una sessione con il terapeuta per capire se è la persona giusta per te. Zero impegni, zero carta di credito richiesta.</p>
+          <div class="final-cta-buttons">
+            <a href="#" class="btn btn-primary btn-lg">Prenota sessione conoscitiva gratuita</a>
+            <a href="#" class="btn btn-white btn-lg">Sono un terapeuta →</a>
+          </div>
+        </div>
+        <div class="final-cta-photo">
+          <img src="images/client-videocall.jpg" alt="Cliente in video call dal divano di casa">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-bio">
+          <div class="footer-logo">
+            <span class="logo-mark"><img src="images/logo.png" alt=""></span>
+            Holistic Unity
+          </div>
+          <p>Marketplace di terapeuti olistici verificati. ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni. Storm X Digital S.R.L.</p>
+        </div>
+        <div>
+          <h4>Piattaforma</h4>
+          <ul>
+            <li><a href="#">Come funziona</a></li>
+            <li><a href="#">Tutte le terapie</a></li>
+            <li><a href="#">Prezzi</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Terapeuti</h4>
+          <ul>
+            <li><a href="#">Diventa terapeuta</a></li>
+            <li><a href="#">Requisiti</a></li>
+            <li><a href="#">Commissioni</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legale</h4>
+          <ul>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Termini clienti</a></li>
+            <li><a href="#">Termini terapeuti</a></li>
+            <li><a href="#">Cookie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Storm X Digital S.R.L.</span>
+        <span>P.IVA IT 12345678901</span>
+        <span>holisticunity.app</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px 50px 0px' });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('in'));
+    }
+    setTimeout(() => reveals.forEach(el => el.classList.add('in')), 700);
+  </script>
+
+</body>
+</html>

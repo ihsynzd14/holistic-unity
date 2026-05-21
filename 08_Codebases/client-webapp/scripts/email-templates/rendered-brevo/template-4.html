@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+</head>
+<body style="margin:0;padding:0;background:#FDF6F0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#2D2D2D;-webkit-text-size-adjust:100%;">
+  <div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">
+    Hai una nuova prenotazione
+  </div>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#FDF6F0;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;width:100%;background:#FFFFFF;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(139,34,82,0.10);">
+
+          <tr>
+            <td align="center" style="background:linear-gradient(135deg,#8B2252 0%,#C9A96E 100%);background-color:#8B2252;padding:40px 24px 32px 24px;">
+              <!--[if mso]>
+              <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0"><tr><td>
+              <![endif]-->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin:0 auto;">
+                <tr>
+                  <td align="center" style="background:#FFFFFF;border-radius:20px;padding:14px;line-height:0;">
+                    <img src="https://holisticunity.app/images/logo.png" alt="Holistic Unity" width="64" height="64" style="display:block;width:64px;height:64px;border:0;outline:none;text-decoration:none;border-radius:12px;">
+                  </td>
+                </tr>
+              </table>
+              <!--[if mso]>
+              </td></tr></table>
+              <![endif]-->
+              <h1 style="margin:20px 0 0 0;font-family:Georgia,'Cormorant Garamond','Times New Roman',serif;font-size:26px;font-weight:700;color:#FFFFFF;letter-spacing:0.4px;">Holistic Unity</h1>
+              <p style="margin:6px 0 0 0;font-size:13px;color:rgba(255,255,255,0.85);letter-spacing:0.5px;text-transform:uppercase;">Nuova prenotazione</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:36px 32px 28px 32px;font-size:15px;line-height:1.65;color:#2D2D2D;">
+              
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:#2D2D2D;">Nuova prenotazione</h2>
+<p style="margin:0 0 8px 0;">Hai una nuova sessione confermata con <strong>{{ params.client_name }}</strong>.</p>
+
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#FDF6F0;border-radius:14px;padding:18px 20px;margin:20px 0;border:1px solid #F0DFE5;"><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Cliente</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.client_name }}</td></tr><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Servizio</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.service_name }}</td></tr><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Data</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.session_date }}</td></tr><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Ora</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.session_time }}</td></tr><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Importo</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.amount }}</td></tr></table>
+
+<div style="text-align:center;margin:24px 0 8px 0;">
+  
+<!--[if mso]>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://therapistportal.holisticunity.app/dashboard/sessions" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="50%" stroke="f" fillcolor="#8B2252">
+  <w:anchorlock/>
+  <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:600;">Apri sessione</center>
+</v:roundrect>
+<![endif]-->
+<!--[if !mso]><!-- -->
+<a href="https://therapistportal.holisticunity.app/dashboard/sessions" target="_blank" style="display:inline-block;padding:15px 36px;background:#8B2252;color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;letter-spacing:0.3px;mso-hide:all;">Apri sessione</a>
+<!--<![endif]-->
+</div>
+
+<div style="border-top:1px solid #F0DFE5;margin-top:24px;padding-top:18px;">
+  <p style="margin:0 0 10px 0;font-size:13px;font-weight:600;color:#2D2D2D;">Aggiungi al calendario</p>
+  <a href="{{ params.google_cal_url }}" target="_blank" style="display:inline-block;margin:4px 4px 0 0;padding:9px 16px;background:#FFFFFF;border:1px solid #8B225230;color:#8B2252;font-size:12px;font-weight:600;text-decoration:none;border-radius:999px;">Google Calendar</a>
+  <a href="{{ params.outlook_cal_url }}" target="_blank" style="display:inline-block;margin:4px 4px 0 0;padding:9px 16px;background:#FFFFFF;border:1px solid #8B225230;color:#8B2252;font-size:12px;font-weight:600;text-decoration:none;border-radius:999px;">Outlook</a>
+  <a href="{{ params.ics_url }}" target="_blank" style="display:inline-block;margin:4px 4px 0 0;padding:9px 16px;background:#FFFFFF;border:1px solid #8B225230;color:#8B2252;font-size:12px;font-weight:600;text-decoration:none;border-radius:999px;">Apple / .ics</a>
+</div>
+
+<p style="margin:24px 0 0 0;font-size:12px;color:#7B7B7B;">La stanza video si apre 15 minuti prima dell'orario e resta attiva per 3 ore.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:22px 32px 28px 32px;border-top:1px solid #F0DFE5;background:#FDF6F0;font-size:12px;line-height:1.65;color:#7B7B7B;text-align:center;">
+              <p style="margin:0 0 6px 0;font-weight:600;color:#2D2D2D;letter-spacing:0.3px;">STORM X DIGITAL S.R.L.</p>
+              <p style="margin:0 0 4px 0;">Strada Del Carro 24 — 76011 Bisceglie (BA)</p>
+              <p style="margin:0 0 14px 0;">P.IVA / C.F. 08789080721</p>
+              <p style="margin:0 0 6px 0;">
+                <a href="https://holisticunity.app" style="color:#8B2252;text-decoration:none;">holisticunity.app</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:support@holisticunity.app" style="color:#8B2252;text-decoration:none;">support@holisticunity.app</a>
+              </p>
+              <p style="margin:0;font-size:11px;color:#7B7B7B;">
+                Hai ricevuto questa email perché è collegata al tuo account Holistic Unity.
+                Se non l'hai richiesta tu, puoi ignorarla in tutta sicurezza.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

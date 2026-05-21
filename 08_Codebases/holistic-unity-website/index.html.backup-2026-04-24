@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holistic Unity — Verified Holistic Therapists Online</title>
+  <meta name="description" content="Connect with verified holistic therapists for personalised online sessions. Explore ThetaHealing®, Astrology birth charts, Numerology life path, Human Design, Reiki, Ayurveda & more." />
+  <meta name="keywords" content="holistic therapy, ThetaHealing®, Reiki, Astrology, Ayurveda, Naturopathy, online therapist, wellness, energy practices, human design, numerology, birth chart, life path number" />
+  <meta name="author" content="Holistic Unity" />
+  <meta name="robots" content="index, follow" />
+  <!-- Google Search Console: add your verification code here once you verify the site -->
+  <!-- <meta name="google-site-verification" content="YOUR_CODE_HERE" /> -->
+  <meta name="theme-color" content="#7B2252" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="canonical" href="https://holisticunity.app/" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Holistic Unity — Find Your Wellness Therapist" />
+  <meta property="og:description" content="Connect with verified holistic therapists for personalised online video sessions. Discover ThetaHealing®, Reiki, Astrology, Ayurveda, and 6 other wellness modalities." />
+  <meta property="og:image" content="https://holisticunity.app/images/og-image.png" />
+  <meta property="og:url" content="https://holisticunity.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Holistic Unity — Find Your Wellness Therapist" />
+  <meta name="twitter:description" content="Connect with verified holistic therapists for personalised online video sessions. ThetaHealing®, Reiki, Astrology, Ayurveda, Naturopathy & more." />
+  <meta name="twitter:image" content="https://holisticunity.app/images/twitter-image.png" />
+
+  <!-- Hreflang Tags -->
+  <link rel="alternate" hreflang="en" href="https://holisticunity.app/" />
+  <link rel="alternate" hreflang="it" href="https://holisticunity.app/" />
+  <link rel="alternate" hreflang="pt" href="https://holisticunity.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://holisticunity.app/" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Holistic Unity",
+    "url": "https://holisticunity.app",
+    "logo": "https://holisticunity.app/images/logo.png",
+    "description": "A holistic wellness marketplace connecting verified therapists with seekers for online video sessions across 9 holistic modalities.",
+    "foundingDate": "2026",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "support@holisticunity.app"
+    },
+    "sameAs": [
+      "https://www.instagram.com/holisticunity",
+      "https://www.facebook.com/holisticunity",
+      "https://www.linkedin.com/company/holistic-unity"
+    ],
+    "areaServed": "Worldwide",
+    "availableLanguage": ["en", "it", "pt"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Strada del Carro 24",
+      "addressLocality": "Bisceglie",
+      "addressRegion": "BA",
+      "postalCode": "76011",
+      "addressCountry": "IT"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Holistic Unity",
+    "applicationCategory": "HealthAndFitness",
+    "operatingSystem": "iOS",
+    "description": "Connect with verified holistic therapists for personalised online sessions. Explore ThetaHealing®, Astrology birth charts, Human Design, Numerology, Reiki, Ayurveda & more.",
+    "url": "https://holisticunity.app",
+    "image": "https://holisticunity.app/images/og-image.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Holistic Unity",
+      "url": "https://holisticunity.app"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Holistic Unity",
+    "url": "https://holisticunity.app",
+    "description": "Verified holistic therapists for online sessions — ThetaHealing®, Astrology, Human Design, Numerology, Reiki, Ayurveda & more.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://holisticunity.app/?s={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to book a holistic therapy session on Holistic Unity",
+    "description": "Book a personalised online session with a verified holistic therapist in three simple steps.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Explore",
+        "text": "Browse a curated selection of holistic therapies and practitioners, from ThetaHealing® and Astrology to Human Design and Numerology."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Book Your Session",
+        "text": "Choose a time that works for you. Our secure booking system handles everything, from scheduling to payment."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Experience",
+        "text": "Connect with your therapist via the built-in video call in the app from anywhere in the world and begin your journey."
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Holistic Unity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Holistic Unity is a wellness marketplace app that connects you with verified holistic therapists for personalised online video sessions. We offer therapies including ThetaHealing®, Astrology, Human Design, Numerology, Reiki, Ayurveda, Naturopathy, Family Constellation, and Systemic Constellation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Human Design and how can it help me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Human Design is a system that maps your unique energetic blueprint using your birth date, time, and place. It reveals how you are designed to make decisions, interact with the world, and live authentically. A Human Design reading can provide deep self-awareness and practical guidance for everyday life."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I read my Numerology life path number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your life path number is calculated from your birth date and reveals your core purpose and the natural strengths you carry through life. Our verified Numerology practitioners on Holistic Unity can calculate and interpret your life path number, destiny number, and personal year cycles in a personalised session."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ThetaHealing®?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ThetaHealing® is a meditation and spiritual philosophy technique that works with the theta brainwave state to access deeper levels of the subconscious mind, enabling practitioners to help clients transform limiting beliefs and negative thought patterns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get an Astrology birth chart reading online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. On Holistic Unity you can book online Astrology birth chart readings with verified astrologers. They will decode your natal chart, revealing insights into your personality, relationships, life purpose, and key astrological transits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the therapists on Holistic Unity verified?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All practitioners on Holistic Unity go through a verification process before joining the platform. We review their credentials, experience, and background to ensure every session you book is with a qualified professional."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do online holistic sessions work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sessions take place entirely within the Holistic Unity app via built-in HD video calls. You browse therapists, book a time that suits you, complete payment securely through the app, and then connect with your therapist directly at the scheduled time — no third-party tools required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When will the Holistic Unity app be available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Holistic Unity is launching on iOS in May 2026. You can join the waitlist now to be among the first to access the platform and receive early-bird updates."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* index.html overrides */
+    .section-pad { padding: 120px 0; }
+    .reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--soft-pink) 40%, #E8D0D9 70%, #D4B8C5 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 800px; height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.15) 0%, transparent 70%);
+      animation: float-orb 20s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; left: -10%;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 34, 82, 0.08) 0%, transparent 70%);
+      animation: float-orb 15s ease-in-out infinite reverse;
+    }
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding-top: 100px;
+    }
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: 4.2rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--berry);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--charcoal-light);
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--berry);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 8px 30px rgba(139, 34, 82, 0.3);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+    .btn-primary:hover {
+      background: var(--berry-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(139, 34, 82, 0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--berry);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--berry);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+    .btn-secondary:hover {
+      background: var(--berry);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(139, 34, 82, 0.25);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      transform: rotate(-3deg);
+      width: 100%;
+      min-width: 280px;
+    }
+    .hero-image-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: transform 0.5s ease;
+    }
+    .hero-image-grid img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    .hero-image-grid img:nth-child(2) { transform: translateY(20px); }
+    .hero-image-grid img:nth-child(2):hover { transform: translateY(20px) scale(1.05) rotate(2deg); }
+    .hero-image-grid img:nth-child(5) { transform: translateY(-15px); }
+    .hero-image-grid img:nth-child(5):hover { transform: translateY(-15px) scale(1.05) rotate(2deg); }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      right: 30px;
+      background: var(--white);
+      padding: 16px 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3;
+    }
+    .hero-badge .pulse {
+      width: 12px; height: 12px;
+      background: #4CAF50;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+    .hero-badge span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    /* ==================== STATS BAR ==================== */
+    .stats-bar {
+      background: var(--white);
+      padding: 48px 0;
+      border-top: 1px solid rgba(139, 34, 82, 0.06);
+      border-bottom: 1px solid rgba(139, 34, 82, 0.06);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+      justify-items: center;
+    }
+    .stat-item h3 {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--berry);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-item p {
+      font-size: 0.9rem;
+      color: var(--charcoal-light);
+      font-weight: 500;
+    }
+
+    /* ==================== HOW IT WORKS ==================== */
+    .how-it-works {
+      background: var(--cream);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--berry);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--charcoal-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ==================== HOW IT WORKS STEPS ==================== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .step-card {
+      background: var(--white);
+      padding: 48px 40px;
+      border-radius: 20px;
+      text-align: left;
+      border: 1px solid rgba(139, 34, 82, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--berry), var(--gold));
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(139, 34, 82, 0.1);
+    }
+    .step-card h3 {
+      font-size: 1.3rem;
+      color: var(--berry);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .step-card p {
+      color: var(--charcoal-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .step-number {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(139, 34, 82, 0.05);
+    }
+
+    /* ==================== THERAPIES SECTION ==================== */
+    .therapies {
+      background: var(--white);
+    }
+    .therapies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+    .therapy-card {
+      background: var(--cream);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(139, 34, 82, 0.08);
+    }
+    .therapy-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(139, 34, 82, 0.15);
+    }
+    .therapy-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .therapy-info {
+      padding: 32px 24px;
+    }
+    .therapy-card h3 {
+      font-size: 1.4rem;
+      color: var(--berry);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .therapy-card p {
+      color: var(--charcoal-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .therapy-card a {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--berry);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .therapy-card a:hover {
+      color: var(--gold);
+    }
+
+    /* ==================== THERAPISTS SECTION ==================== */
+    .therapists {
+      background: var(--cream);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .benefit-card {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      border-left: 4px solid var(--gold);
+    }
+    .benefit-card h3 {
+      font-size: 1.3rem;
+      color: var(--berry);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .benefit-card p {
+      color: var(--charcoal-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .therapist-cta-section {
+      background: linear-gradient(135deg, rgba(139, 34, 82, 0.08), rgba(201, 169, 110, 0.08));
+      padding: 60px 48px;
+      border-radius: 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .therapist-cta-section h3 {
+      font-size: 2rem;
+      color: var(--berry);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .therapist-cta-section p {
+      color: var(--charcoal-light);
+      margin-bottom: 24px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ==================== QUOTE SECTION ==================== */
+    .quote-section {
+      background: linear-gradient(135deg, var(--berry) 0%, var(--berry-dark) 100%);
+      padding: 80px 40px;
+      text-align: center;
+      color: var(--white);
+    }
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .quote-author {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    /* ==================== CONTACT SECTION ==================== */
+    .contact {
+      background: var(--white);
+    }
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+    .contact-form-wrapper {
+      position: relative;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-weight: 600;
+      color: var(--berry);
+      font-size: 0.9rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 14px 16px;
+      border: 1px solid rgba(139, 34, 82, 0.2);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      transition: all 0.3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--berry);
+      box-shadow: 0 0 0 3px rgba(139, 34, 82, 0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-submit {
+      background: var(--berry);
+      color: var(--white);
+      padding: 14px 36px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      font-family: var(--font-body);
+    }
+    .form-submit:hover {
+      background: var(--berry-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 34, 82, 0.3);
+    }
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .form-success {
+      position: absolute;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .form-success.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .form-success h4 {
+      font-size: 1.3rem;
+      color: var(--berry);
+    }
+    .form-success p {
+      color: var(--charcoal-light);
+      text-align: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .contact-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .contact-info-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--berry);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .contact-info-item p {
+      color: var(--charcoal-light);
+      line-height: 1.7;
+    }
+    .contact-info-item a {
+      color: var(--berry);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .contact-info-item a:hover {
+      color: var(--gold);
+    }
+
+    /* ==================== COMING SOON ==================== */
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    @media (max-width: 1024px) { .coming-soon-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .coming-soon-grid { grid-template-columns: 1fr; } }
+
+    .coming-soon-card {
+      background: var(--white);
+      border: 1px solid var(--soft-pink);
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .coming-soon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(139,34,82,0.10);
+    }
+    .coming-soon-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .coming-soon-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--berry);
+      margin-bottom: 10px;
+    }
+    .coming-soon-card p {
+      font-size: 0.9rem;
+      color: var(--charcoal-light);
+      line-height: 1.6;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .hero .container { gap: 40px; }
+      .therapies-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; padding-top: 90px; }
+      .hero-content { text-align: center; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .hero-content p { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-image-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 340px; min-width: unset; margin: 0 auto; transform: rotate(-2deg); }
+      .hero-badge { bottom: -10px; right: 10px; padding: 12px 20px; font-size: 0.8rem; }
+      .section-header { margin-bottom: 48px; }
+      .section-subtitle { font-size: 1rem; }
+      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+      .therapies-grid { grid-template-columns: 1fr; gap: 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 24px; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .step-card { padding: 32px 24px; }
+      .benefit-card { padding: 28px 24px; }
+      .therapy-info { padding: 24px 20px; }
+      .therapist-cta-section { padding: 40px 24px; }
+      .therapist-cta-section h3 { font-size: 1.5rem; }
+      .quote-section { padding: 60px 24px; }
+      .quote-text { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item h3 { font-size: 2.2rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero-image-grid { max-width: 280px; gap: 6px; }
+      .quote-text { font-size: 1.3rem; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1445760663897743');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1445760663897743&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <script src="/shared-pixel-events.js" defer></script>
+
+</head>
+<body role="main">
+  <nav id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="images/logo.png" alt="Holistic Unity Logo" />
+        <span>Holistic Unity</span>
+      </a>
+      <button id="hamburger" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul id="navLinks" class="nav-links">
+        <li><a href="#how-it-works" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</a></li>
+        <li class="nav-dropdown"><a href="#therapies" data-en="Therapies" data-it="Terapie" data-pt="Terapias">Therapies</a><div class="dropdown-menu"><a href="thetahealing.html">ThetaHealing®</a><a href="reiki.html">Reiki</a><a href="astrology.html" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</a><a href="human-design.html">Human Design</a><a href="ayurveda.html">Ayurveda</a><a href="numerology.html" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</a><a href="naturopathy.html" data-en="Naturopathy" data-it="Naturopatia" data-pt="Naturopatia">Naturopathy</a><a href="family-constellation.html" data-en="Family Constellation" data-it="Costellazione Familiare" data-pt="Constelação Familiar">Family Constellation</a><a href="systemic-constellation.html" data-en="Systemic Constellation" data-it="Costellazione Sistemica" data-pt="Constelação Sistêmica">Systemic Constellation</a></div></li>
+        <li><a href="#therapists" data-en="For Therapists" data-it="Per i Terapeuti" data-pt="Para Terapeutas">For Therapists</a></li>
+        <li><a href="blog/" data-en="Blog" data-it="Blog" data-pt="Blog">Blog</a></li>
+        <li><a href="#faq" data-en="FAQ" data-it="FAQ" data-pt="FAQ">FAQ</a></li>
+        <li>
+          <div class="lang-toggle">
+            <button id="langEn" class="active" onclick="setLang('en')" aria-label="English">EN</button>
+            <button id="langIt" onclick="setLang('it')" aria-label="Italiano">IT</button>
+            <button id="langPt" onclick="setLang('pt')" aria-label="Português">PT</button>
+          </div>
+        </li>
+        <li><a href="#contact" class="nav-cta" data-en="Get Started" data-it="Inizia Ora" data-pt="Comece Agora">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="reveal" data-en="Your journey to <em>wholeness</em> starts here" data-it="Il tuo viaggio verso l'<em>armonia</em> inizia qui" data-pt="Sua jornada para a <em>plenitude</em> começa aqui">Your journey to <em>wholeness</em> starts here</h1>
+        <p class="reveal" style="transition-delay:0.15s" data-en="Connect with verified holistic therapists for personalized online sessions — all in one seamless platform. From ThetaHealing to Ayurveda, discover what truly resonates with you." data-it="Connettiti con terapeuti olistici verificati per sessioni online personalizzate — tutto in un'unica piattaforma. Dal ThetaHealing all'Ayurveda, scopri cosa risuona davvero con te." data-pt="Conecte-se com terapeutas holísticos verificados para sessões online personalizadas — tudo em uma plataforma integrada. De ThetaHealing ao Ayurveda, descubra o que realmente ressoa com você.">Connect with verified holistic therapists for personalized online sessions — all in one seamless platform. From ThetaHealing to Ayurveda, discover what truly resonates with you.</p>
+        <div class="hero-buttons">
+          <a href="#therapies" class="btn-primary" data-en="Explore Therapies" data-it="Esplora le Terapie" data-pt="Explorar Terapias">Explore Therapies</a>
+          <a href="#therapists" class="btn-secondary" data-en="Join as a Therapist" data-it="Unisciti come Terapeuta" data-pt="Junte-se como Terapeuta">Join as a Therapist</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-grid">
+          <img src="images/categories/ThetaHealing.png" alt="ThetaHealing® - Holistic wellness modality" loading="eager" />
+          <img src="images/categories/Reiki.png" alt="Reiki - Energy therapy" loading="eager" />
+          <img src="images/categories/Astrology.png" alt="Astrology - Celestial guidance" loading="eager" />
+          <img src="images/categories/Naturopathy.png" alt="Naturopathy - Natural wellness therapy" loading="eager" />
+          <img src="images/categories/Human Design.png" alt="Human Design - Energetic blueprint" loading="eager" />
+          <img src="images/categories/Ayurveda.png" alt="Ayurveda - Ancient wellness system" loading="eager" />
+          <img src="images/categories/Numerology.png" alt="Numerology - Sacred number wisdom" loading="eager" />
+          <img src="images/categories/Family Constellation.png" alt="Family Constellation - Generational patterns" loading="eager" />
+          <img src="images/categories/Systemic Constellation.png" alt="Systemic Constellation - Systems awareness" loading="eager" />
+        </div>
+        <div class="hero-badge">
+          <div class="pulse"></div>
+          <span data-en="Therapists online now" data-it="Terapeuti online adesso" data-pt="Terapeutas online agora">Therapists online now</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>9+</h3>
+          <p data-en="Therapy Modalities" data-it="Discipline Terapeutiche" data-pt="Modalidades Terapêuticas">Therapy Modalities</p>
+        </div>
+        <div class="stat-item">
+          <h3>3</h3>
+          <p data-en="Languages Supported" data-it="Lingue Supportate" data-pt="Idiomas Suportados">Languages Supported</p>
+        </div>
+        <div class="stat-item">
+          <h3>24/7</h3>
+          <p data-en="Book Anytime" data-it="Prenota Quando Vuoi" data-pt="Reserve a Qualquer Hora">Book Anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works section-pad" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Simple & Seamless" data-it="Semplice e Intuitivo" data-pt="Simples e Integrado">Simple & Seamless</span>
+        <h2 class="section-title" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</h2>
+        <p class="section-subtitle" data-en="Begin your self-discovery journey in just three steps. We've made it effortless to find and connect with the right therapist for you." data-it="Inizia il tuo percorso di scoperta in soli tre passi. Abbiamo reso semplice trovare e connetterti con il terapeuta giusto per te." data-pt="Comece sua jornada de autodescoberta em apenas três etapas. Tornamos fácil encontrar e conectar-se com o terapeuta certo para você.">Begin your self-discovery journey in just three steps. We've made it effortless to find and connect with the right therapist for you.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal-left">
+          <span class="step-number">1</span>
+          <h3 data-en="Explore" data-it="Esplora" data-pt="Explore">Explore</h3>
+          <p data-en="Browse a curated selection of holistic therapies and practitioners." data-it="Sfoglia una selezione curata di terapie olistiche e professionisti." data-pt="Navegue por uma seleção curada de terapias holísticas e profissionais.">Browse a curated selection of holistic therapies and practitioners.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-number">2</span>
+          <h3 data-en="Book Your Session" data-it="Prenota la Sessione" data-pt="Reserve sua Sessão">Book Your Session</h3>
+          <p data-en="Choose a time that works for you. Our secure booking system handles everything, from scheduling to payment." data-it="Scegli un orario che funzioni per te. Il nostro sistema di prenotazione sicuro gestisce tutto, dalla programmazione al pagamento." data-pt="Escolha um horário que funcione para você. Nosso sistema de reserva seguro cuida de tudo, desde agendamento até pagamento.">Choose a time that works for you. Our secure booking system handles everything, from scheduling to payment.</p>
+        </div>
+        <div class="step-card reveal-right">
+          <span class="step-number">3</span>
+          <h3 data-en="Experience" data-it="Esperienza" data-pt="Experimente">Experience</h3>
+          <p data-en="Connect with your therapist via the built-in call in the app from anywhere in the world and begin your journey." data-it="Connettiti con il tuo terapeuta tramite la chiamata integrata nell'app da qualsiasi parte del mondo e inizia il tuo percorso." data-pt="Conecte-se com seu terapeuta pela chamada integrada no app de qualquer lugar do mundo e comece sua jornada.">Connect with your therapist via the built-in call in the app from anywhere in the world and begin your journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="therapies section-pad" id="therapies">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Our Therapies" data-it="Le Nostre Terapie" data-pt="Nossas Terapias">Our Therapies</span>
+        <h2 class="section-title" data-en="Explore Holistic Therapies" data-it="Esplora le Terapie Olistiche" data-pt="Explore Terapias Holísticas">Explore Holistic Therapies</h2>
+        <p class="section-subtitle" data-en="From ancient traditions to modern techniques, explore therapies designed to support your inner balance and growth." data-it="Dalle tradizioni antiche alle tecniche moderne, esplora terapie pensate per sostenere il tuo equilibrio interiore e la tua crescita." data-pt="Das tradições antigas às técnicas modernas, explore terapias projetadas para apoiar seu equilíbrio interior e crescimento.">From ancient traditions to modern techniques, explore therapies designed to support your inner balance and growth.</p>
+      </div>
+      <div class="therapies-grid">
+        <div class="therapy-card reveal-left">
+          <img src="images/categories/ThetaHealing.png" alt="ThetaHealing® - Theta brainwave therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3>ThetaHealing<sup>®</sup></h3>
+            <p data-en="Access the theta brainwave state to reach deeper levels of awareness and transform limiting beliefs at the subconscious level." data-it="Accedi allo stato cerebrale theta per raggiungere livelli più profondi di consapevolezza e trasformare le convinzioni limitanti a livello subconscio." data-pt="Acesse o estado da onda cerebral theta para alcançar níveis mais profundos de consciência e transformar crenças limitantes em nível subconsciente.">Access the theta brainwave state to reach deeper levels of awareness and transform limiting beliefs at the subconscious level.</p>
+            <a href="thetahealing.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal">
+          <img src="images/categories/Family Constellation.png" alt="Family Constellation - Generational patterns therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Family Constellation" data-it="Costellazioni Familiari" data-pt="Constelação Familiar">Family Constellation</h3>
+            <p data-en="Reveal hidden family dynamics and release generational patterns that influence your life, relationships, and wellbeing." data-it="Rivela le dinamiche familiari nascoste e libera i pattern generazionali che influenzano la tua vita, le tue relazioni e il tuo benessere." data-pt="Revele dinâmicas familiares ocultas e libere padrões geracionais que influenciam sua vida, relacionamentos e bem-estar.">Reveal hidden family dynamics and release generational patterns that influence your life, relationships, and wellbeing.</p>
+            <a href="family-constellation.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal-right">
+          <img src="images/categories/Systemic Constellation.png" alt="Systemic Constellation - Systems awareness therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Systemic Constellation" data-it="Costellazioni Sistemiche" data-pt="Constelação Sistêmica">Systemic Constellation</h3>
+            <p data-en="Explore the interconnected systems of your life to find clarity, resolve conflicts, and restore balance." data-it="Esplora i sistemi interconnessi della tua vita per trovare chiarezza, risolvere conflitti e ripristinare l'equilibrio." data-pt="Explore os sistemas interconectados de sua vida para encontrar clareza, resolver conflitos e restaurar o equilíbrio.">Explore the interconnected systems of your life to find clarity, resolve conflicts, and restore balance.</p>
+            <a href="systemic-constellation.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal-left">
+          <img src="images/categories/Reiki.png" alt="Reiki - Universal life energy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Reiki" data-it="Reiki" data-pt="Reiki">Reiki</h3>
+            <p data-en="Experience the gentle flow of universal life energy remotely. Reiki transcends physical distance to promote deep relaxation and inner balance." data-it="Sperimenta il flusso delicato dell'energia vitale universale a distanza. Il Reiki trascende la distanza fisica per promuovere un profondo rilassamento e equilibrio interiore." data-pt="Experimente o fluxo suave da energia vital universal remotamente. Reiki transcende a distância física para promover relaxamento profundo e equilíbrio interior.">Experience the gentle flow of universal life energy remotely. Reiki transcends physical distance to promote deep relaxation and inner balance.</p>
+            <a href="reiki.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal">
+          <img src="images/categories/Naturopathy.png" alt="Naturopathy - Natural wellness therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Naturopathy" data-it="Naturopatia" data-pt="Naturopatia">Naturopathy</h3>
+            <p data-en="Harness the restorative power of nature with personalised nutrition, herbal remedies, and lifestyle guidance for whole-body wellness." data-it="Sfrutta il potere rigenerativo della natura con nutrizione personalizzata, rimedi erboristici e guida allo stile di vita per il benessere totale." data-pt="Aproveite o poder restaurador da natureza com nutrição personalizada, remédios à base de ervas e orientação de estilo de vida para bem-estar do corpo todo.">Harness the restorative power of nature with personalised nutrition, herbal remedies, and lifestyle guidance for whole-body wellness.</p>
+            <a href="naturopathy.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal-right">
+          <img src="images/categories/Astrology.png" alt="Astrology - Celestial guidance therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</h3>
+            <p data-en="Decode the celestial blueprint of your birth chart. Gain profound insights into your purpose, relationships, and life cycles." data-it="Decodifica il progetto celeste del tuo tema natale. Ottieni intuzioni profonde sul tuo scopo, le tue relazioni e i tuoi cicli di vita." data-pt="Decodifique o plano celeste de seu mapa natal. Obtenha insights profundos sobre seu propósito, relacionamentos e ciclos de vida.">Decode the celestial blueprint of your birth chart. Gain profound insights into your purpose, relationships, and life cycles.</p>
+            <a href="astrology.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal-left">
+          <img src="images/categories/Human Design.png" alt="Human Design - Energetic blueprint therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Human Design" data-it="Human Design" data-pt="Design Humano">Human Design</h3>
+            <p data-en="Discover your unique energetic blueprint. Learn how you're designed to make decisions, interact with the world, and live authentically." data-it="Scopri il tuo progetto energetico unico. Impara come sei progettato per prendere decisioni, interagire con il mondo e vivere autenticamente." data-pt="Descubra seu plano energético único. Aprenda como você foi projetado para tomar decisões, interagir com o mundo e viver autenticamente.">Discover your unique energetic blueprint. Learn how you're designed to make decisions, interact with the world, and live authentically.</p>
+            <a href="human-design.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal">
+          <img src="images/categories/Numerology.png" alt="Numerology - Number wisdom therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3 data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</h3>
+            <p data-en="Unlock the hidden meaning behind numbers in your life. Understand your life path, destiny, and the energetic patterns shaping your journey." data-it="Sblocca il significato nascosto dei numeri nella tua vita. Comprendi il tuo percorso di vita, il destino e i pattern energetici che plasmano il tuo viaggio." data-pt="Desbloqueie o significado oculto dos números em sua vida. Compreenda seu caminho de vida, destino e os padrões energéticos que moldam sua jornada.">Unlock the hidden meaning behind numbers in your life. Understand your life path, destiny, and the energetic patterns shaping your journey.</p>
+            <a href="numerology.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+        <div class="therapy-card reveal-right">
+          <img src="images/categories/Ayurveda.png" alt="Ayurveda - Ancient Indian wellness therapy" loading="lazy" />
+          <div class="therapy-info">
+            <h3>Ayurveda</h3>
+            <p data-en="Ancient Indian wisdom meets modern wellness. Receive personalised guidance on diet, lifestyle, and herbal protocols based on your unique dosha." data-it="L'antica saggezza indiana incontra il benessere moderno. Ricevi una guida personalizzata su dieta, stile di vita e protocolli erboristici basati sul tuo dosha unico." data-pt="A sabedoria indiana antiga encontra o bem-estar moderno. Receba orientação personalizada sobre dieta, estilo de vida e protocolos de ervas com base em seu dosha único.">Ancient Indian wisdom meets modern wellness. Receive personalised guidance on diet, lifestyle, and herbal protocols based on your unique dosha.</p>
+            <a href="ayurveda.html" data-en="Learn more →" data-it="Scopri di più →" data-pt="Saiba mais →">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="therapists section-pad" id="therapists">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Join the Movement" data-it="Unisciti al Movimento" data-pt="Junte-se ao Movimento">Join the Movement</span>
+        <h2 class="section-title" data-en="Are You a Holistic Therapist?" data-it="Sei un Terapeuta Olistico?" data-pt="Você é um Terapeuta Holístico?">Are You a Holistic Therapist?</h2>
+        <p class="section-subtitle" data-en="Holistic Unity is building the world's most trusted community of holistic wellness practitioners. Expand your reach, grow your practice, and transform lives globally." data-it="Holistic Unity sta costruendo la community più affidabile al mondo di professionisti del benessere olistico. Espandi la tua portata, fai crescere la tua pratica e trasforma vite a livello globale." data-pt="Holistic Unity está construindo a comunidade mais confiável do mundo de praticantes de bem-estar holístico. Expanda seu alcance, faça crescer sua prática e transforme vidas globalmente.">Holistic Unity is building the world's most trusted community of holistic wellness practitioners. Expand your reach, grow your practice, and transform lives globally.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-left">
+          <h3 data-en="Global Client Base" data-it="Clientela Globale" data-pt="Base de Clientes Global">Global Client Base</h3>
+          <p data-en="Reach clients across the world who are actively seeking your specific modality. No more geographical limitations on your practice." data-it="Raggiungi clienti in tutto il mondo che cercano attivamente la tua specifica disciplina. Nessun limite geografico alla tua pratica." data-pt="Alcance clientes em todo o mundo que estão buscando sua modalidade específica. Sem mais limitações geográficas em sua prática.">Reach clients across the world who are actively seeking your specific modality. No more geographical limitations on your practice.</p>
+        </div>
+        <div class="benefit-card reveal-right">
+          <h3 data-en="Effortless Payments" data-it="Pagamenti Senza Pensieri" data-pt="Pagamentos Sem Esforço">Effortless Payments</h3>
+          <p data-en="Set your own rates, get paid bi-weekly directly to your bank account. We handle all payment processing, invoicing, and compliance so you can focus on your practice." data-it="Imposta le tue tariffe, ricevi pagamenti bi-settimanali direttamente sul tuo conto. Gestiamo noi l'elaborazione dei pagamenti, la fatturazione e la conformità, così puoi concentrarti sulla tua pratica." data-pt="Defina suas próprias tarifas, receba pagamentos quinzenais diretamente em sua conta bancária. Cuidamos de todo o processamento de pagamentos, faturamento e conformidade para que você possa se concentrar em sua prática.">Set your own rates, get paid bi-weekly directly to your bank account. We handle all payment processing, invoicing, and compliance so you can focus on your practice.</p>
+        </div>
+        <div class="benefit-card reveal-left">
+          <h3 data-en="Built-in Video Platform" data-it="Piattaforma Video Integrata" data-pt="Plataforma de Vídeo Integrada">Built-in Video Platform</h3>
+          <p data-en="No need for Zoom or third-party apps. Our HD video platform is built right into the app with session management, notes, and follow-up tools." data-it="Nessun bisogno di Zoom o app di terze parti. La nostra piattaforma video HD è integrata nell'app con gestione sessioni, note e strumenti di follow-up." data-pt="Sem necessidade de Zoom ou aplicativos de terceiros. Nossa plataforma de vídeo HD está integrada ao aplicativo com gerenciamento de sessões, notas e ferramentas de acompanhamento.">No need for Zoom or third-party apps. Our HD video platform is built right into the app with session management, notes, and follow-up tools.</p>
+        </div>
+        <div class="benefit-card reveal-right">
+          <h3 data-en="We Market For You" data-it="Promuoviamo Per Te" data-pt="Nós Comercializamos Para Você">We Market For You</h3>
+          <p data-en="Our platform invests in client acquisition. You focus on what you do best while we bring clients to your virtual door through targeted marketing campaigns." data-it="La nostra piattaforma investe nell'acquisizione clienti. Concentrati su ciò che fai meglio mentre noi portiamo i clienti alla tua porta virtuale attraverso campagne mirate." data-pt="Nossa plataforma investe em aquisição de clientes. Você se concentra no que faz melhor enquanto trazemos clientes à sua porta virtual por meio de campanhas de marketing direcionadas.">Our platform invests in client acquisition. You focus on what you do best while we bring clients to your virtual door through targeted marketing campaigns.</p>
+        </div>
+      </div>
+      <div class="therapist-cta-section reveal">
+        <h3 data-en="Ready to Expand Your Practice?" data-it="Pronto ad Espandere la Tua Pratica?" data-pt="Pronto para Expandir sua Prática?">Ready to Expand Your Practice?</h3>
+        <p data-en="We're onboarding select therapists for our May 2026 launch. Apply now to be among the first practitioners on the platform." data-it="Stiamo selezionando terapeuti per il nostro lancio di Maggio 2026. Candidati ora per essere tra i primi professionisti sulla piattaforma." data-pt="Estamos selecionando terapeutas para nosso lançamento em maio de 2026. Candidate-se agora para estar entre os primeiros profissionais na plataforma.">We're onboarding select therapists for our May 2026 launch. Apply now to be among the first practitioners on the platform.</p>
+        <a href="#contact" class="btn-gold" data-en="Apply as a Therapist" data-it="Candidati come Terapeuta" data-pt="Candidate-se como Terapeuta">Apply as a Therapist</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMING SOON SECTION -->
+  <section class="coming-soon-section section-pad" id="coming-soon">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Expanding Soon" data-it="In Arrivo" data-pt="Em Breve">Expanding Soon</span>
+        <h2 class="section-title" data-en="More Practices Coming to Holistic Unity" data-it="Altre Pratiche in Arrivo su Holistic Unity" data-pt="Mais Práticas Chegando ao Holistic Unity">More Practices Coming to Holistic Unity</h2>
+        <p class="section-subtitle" data-en="We're constantly growing. These powerful modalities will be available on the platform soon." data-it="Siamo in continua crescita. Queste potenti discipline saranno presto disponibili sulla piattaforma." data-pt="Estamos sempre crescendo. Essas poderosas modalidades estarão disponíveis na plataforma em breve.">We're constantly growing. These powerful modalities will be available on the platform soon.</p>
+      </div>
+      <div class="coming-soon-grid">
+        <div class="coming-soon-card reveal-left">
+          <div class="coming-soon-badge" data-en="Coming Soon" data-it="In Arrivo" data-pt="Em Breve">Coming Soon</div>
+          <h3 data-en="Enneagram" data-it="Enneagramma" data-pt="Eneagrama">Enneagram</h3>
+          <p data-en="Discover your personality type and core motivations through the Enneagram — one of the most powerful tools for self-knowledge and interpersonal growth." data-it="Scopri il tuo tipo di personalità e le motivazioni fondamentali attraverso l'Enneagramma — uno degli strumenti più potenti per la conoscenza di sé e la crescita interpersonale." data-pt="Descubra seu tipo de personalidade e motivações centrais através do Eneagrama — uma das ferramentas mais poderosas para o autoconhecimento e crescimento interpessoal.">Discover your personality type and core motivations through the Enneagram — one of the most powerful tools for self-knowledge and interpersonal growth.</p>
+        </div>
+        <div class="coming-soon-card reveal">
+          <div class="coming-soon-badge" data-en="Coming Soon" data-it="In Arrivo" data-pt="Em Breve">Coming Soon</div>
+          <h3 data-en="Akashic Records" data-it="Registri Akashici" data-pt="Registros Akáshicos">Akashic Records</h3>
+          <p data-en="Access the energetic archive of your soul's journey. Akashic Records readings offer profound clarity on life purpose, past patterns, and future potential." data-it="Accedi all'archivio energetico del percorso della tua anima. Le letture dei Registri Akashici offrono una profonda chiarezza sullo scopo di vita, i pattern passati e il potenziale futuro." data-pt="Acesse o arquivo energético da jornada de sua alma. As leituras dos Registros Akáshicos oferecem clareza profunda sobre propósito de vida, padrões passados e potencial futuro.">Access the energetic archive of your soul's journey. Akashic Records readings offer profound clarity on life purpose, past patterns, and future potential.</p>
+        </div>
+        <div class="coming-soon-card reveal">
+          <div class="coming-soon-badge" data-en="Coming Soon" data-it="In Arrivo" data-pt="Em Breve">Coming Soon</div>
+          <h3 data-en="EFT Tapping" data-it="EFT Tapping" data-pt="EFT Tapping">EFT Tapping</h3>
+          <p data-en="Emotional Freedom Technique (EFT) combines gentle tapping on acupressure points with focused intention to release stress, anxiety, and emotional blocks." data-it="La Tecnica di Libertà Emotiva (EFT) combina un delicato tapping sui punti di agopressione con un'intenzione focalizzata per sciogliere stress, ansia e blocchi emotivi." data-pt="A Técnica de Libertação Emocional (EFT) combina tapping suave em pontos de acupressão com intenção focada para liberar estresse, ansiedade e bloqueios emocionais.">Emotional Freedom Technique (EFT) combines gentle tapping on acupressure points with focused intention to release stress, anxiety, and emotional blocks.</p>
+        </div>
+        <div class="coming-soon-card reveal-right">
+          <div class="coming-soon-badge" data-en="Coming Soon" data-it="In Arrivo" data-pt="Em Breve">Coming Soon</div>
+          <h3 data-en="Gene Keys" data-it="Gene Keys" data-pt="Gene Keys">Gene Keys</h3>
+          <p data-en="Explore your genetic code as a map of consciousness. Gene Keys bridges science and spirituality to reveal the unique gifts encoded in your DNA." data-it="Esplora il tuo codice genetico come mappa della coscienza. I Gene Keys uniscono scienza e spiritualità per rivelare i doni unici codificati nel tuo DNA." data-pt="Explore seu código genético como um mapa de consciência. Os Gene Keys unem ciência e espiritualidade para revelar os dons únicos codificados no seu DNA.">Explore your genetic code as a map of consciousness. Gene Keys bridges science and spirituality to reveal the unique gifts encoded in your DNA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-section section-pad" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Got Questions?" data-it="Hai Domande?" data-pt="Tem Dúvidas?">Got Questions?</span>
+        <h2 class="section-title" data-en="Frequently Asked Questions" data-it="Domande Frequenti" data-pt="Perguntas Frequentes">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="What is Holistic Unity?" data-it="Cos'è Holistic Unity?" data-pt="O que é Holistic Unity?">What is Holistic Unity?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Holistic Unity is a wellness marketplace app that connects you with verified holistic therapists for personalised online video sessions. We offer therapies including ThetaHealing®, Astrology, Human Design, Numerology, Reiki, Ayurveda, Naturopathy, Family Constellation, and more." data-it="Holistic Unity è una app marketplace del benessere che ti connette con terapeuti olistici verificati per sessioni video online personalizzate. Offriamo terapie tra cui ThetaHealing®, Astrologia, Human Design, Numerologia, Reiki, Ayurveda, Naturopatia, Costellazioni Familiari e altro ancora." data-pt="Holistic Unity é um aplicativo marketplace de bem-estar que conecta você com terapeutas holísticos verificados para sessões de vídeo online personalizadas. Oferecemos terapias incluindo ThetaHealing®, Astrologia, Design Humano, Numerologia, Reiki, Ayurveda, Naturopatia, Constelação Familiar e muito mais.">Holistic Unity is a wellness marketplace app that connects you with verified holistic therapists for personalised online video sessions. We offer therapies including ThetaHealing®, Astrology, Human Design, Numerology, Reiki, Ayurveda, Naturopathy, Family Constellation, and more.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="What is Human Design and how can it help me?" data-it="Cos'è l'Human Design e come può aiutarmi?" data-pt="O que é Design Humano e como pode me ajudar?">What is Human Design and how can it help me?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Human Design is a system that maps your unique energetic blueprint using your birth date, time, and place. It reveals how you are designed to make decisions, interact with the world, and live authentically — providing deep self-awareness and practical everyday guidance." data-it="Human Design è un sistema che mappa il tuo progetto energetico unico usando la tua data, ora e luogo di nascita. Rivela come sei progettato per prendere decisioni, interagire con il mondo e vivere autenticamente — fornendo profonda consapevolezza di sé e orientamento pratico quotidiano." data-pt="O Design Humano é um sistema que mapeia seu plano energético único usando sua data, hora e local de nascimento. Revela como você foi projetado para tomar decisões, interagir com o mundo e viver autenticamente — proporcionando profunda autoconsciência e orientação prática cotidiana.">Human Design is a system that maps your unique energetic blueprint using your birth date, time, and place. It reveals how you are designed to make decisions, interact with the world, and live authentically — providing deep self-awareness and practical everyday guidance.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="How do I calculate my Numerology life path number?" data-it="Come si calcola il numero del percorso di vita in Numerologia?" data-pt="Como calcular meu número de caminho de vida em Numerologia?">How do I calculate my Numerology life path number?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Your life path number is derived by reducing your full birth date to a single digit (or master number). Our verified Numerology practitioners can calculate and interpret your life path number, destiny number, and personal year cycles in a personalised session." data-it="Il tuo numero del percorso di vita si ottiene riducendo la tua data di nascita completa a una singola cifra (o numero maestro). I nostri esperti verificati di Numerologia possono calcolare e interpretare il tuo numero in una sessione personalizzata." data-pt="Seu número de caminho de vida é obtido reduzindo sua data de nascimento completa a um único dígito (ou número mestre). Nossos praticantes verificados de Numerologia podem calcular e interpretar seu número em uma sessão personalizada.">Your life path number is derived by reducing your full birth date to a single digit (or master number). Our verified Numerology practitioners can calculate and interpret your life path number, destiny number, and personal year cycles in a personalised session.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="Can I get an Astrology birth chart reading online?" data-it="Posso ottenere una lettura del tema natale astrologico online?" data-pt="Posso obter uma leitura do mapa natal astrológico online?">Can I get an Astrology birth chart reading online?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Yes. On Holistic Unity you can book online Astrology birth chart readings with verified astrologers. They will decode your natal chart, revealing insights into your personality, relationships, life purpose, and key astrological transits." data-it="Sì. Su Holistic Unity puoi prenotare letture del tema natale astrologico online con astrologi verificati. Decodificheranno il tuo tema natale, rivelando intuizioni sulla tua personalità, relazioni, scopo di vita e transiti astrologici chiave." data-pt="Sim. No Holistic Unity você pode agendar leituras de mapa natal astrológico online com astrólogos verificados. Eles vão decodificar seu mapa natal, revelando insights sobre sua personalidade, relacionamentos, propósito de vida e trânsitos astrológicos importantes.">Yes. On Holistic Unity you can book online Astrology birth chart readings with verified astrologers. They will decode your natal chart, revealing insights into your personality, relationships, life purpose, and key astrological transits.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="Are the therapists on Holistic Unity verified?" data-it="I terapeuti su Holistic Unity sono verificati?" data-pt="Os terapeutas no Holistic Unity são verificados?">Are the therapists on Holistic Unity verified?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Yes. All practitioners on Holistic Unity go through a thorough verification process before joining the platform. We review their credentials, experience, and background to ensure every session you book is with a qualified professional." data-it="Sì. Tutti i professionisti su Holistic Unity passano attraverso un rigoroso processo di verifica prima di unirsi alla piattaforma. Esaminiamo le loro credenziali, esperienza e background per garantire che ogni sessione sia con un professionista qualificato." data-pt="Sim. Todos os praticantes no Holistic Unity passam por um processo de verificação completo antes de ingressar na plataforma. Analisamos suas credenciais, experiência e histórico para garantir que cada sessão seja com um profissional qualificado.">Yes. All practitioners on Holistic Unity go through a thorough verification process before joining the platform. We review their credentials, experience, and background to ensure every session you book is with a qualified professional.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span data-en="When will the Holistic Unity app be available?" data-it="Quando sarà disponibile l'app Holistic Unity?" data-pt="Quando o aplicativo Holistic Unity estará disponível?">When will the Holistic Unity app be available?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p data-en="Holistic Unity is launching on iOS in May 2026. Join the waitlist now to be among the first to access the platform and receive early-bird updates." data-it="Holistic Unity sarà lanciato su iOS a Maggio 2026. Iscriviti alla waitlist ora per essere tra i primi ad accedere alla piattaforma e ricevere aggiornamenti in anteprima." data-pt="Holistic Unity será lançado no iOS em maio de 2026. Junte-se à lista de espera agora para estar entre os primeiros a acessar a plataforma e receber atualizações antecipadas.">Holistic Unity is launching on iOS in May 2026. Join the waitlist now to be among the first to access the platform and receive early-bird updates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="container">
+      <p class="quote-text" data-en="Reconnect with what's already within you." data-it="Riconnettiti con ciò che è già dentro di te." data-pt="Reconecte-se com o que já está dentro de você.">Reconnect with what's already within you.</p>
+      <a href="#contact" class="btn-primary" style="margin-top: 24px;" data-en="Join the Waitlist" data-it="Iscriviti alla Waitlist" data-pt="Entre na Lista de Espera">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <section class="contact section-pad" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" data-en="Get in Touch" data-it="Contattaci" data-pt="Entre em Contato">Get in Touch</span>
+        <h3 data-en="Start Your Journey Today" data-it="Inizia il Tuo Percorso Oggi" data-pt="Comece sua Jornada Hoje">Start Your Journey Today</h3>
+        <p class="section-subtitle" data-en="Whether you're seeking holistic therapy or you're a practitioner ready to join our community, we'd love to hear from you." data-it="Che tu stia cercando una terapia olistica o sia un professionista pronto a unirti alla nostra community, ci farebbe piacere sentirti." data-pt="Seja você uma pessoa buscando terapia holística ou um profissional pronto para se juntar à nossa comunidade, gostaríamos de ouvir você.">Whether you're seeking holistic therapy or you're a practitioner ready to join our community, we'd love to hear from you.</p>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-form-wrapper">
+          <form id="contactForm" class="contact-form" action="https://formsubmit.co/ajax/support@holisticunity.app" method="POST">
+            <input type="hidden" name="_subject" value="New Contact — Holistic Unity Website" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" />
+            <div class="form-group">
+              <label data-en="First Name" data-it="Nome" data-pt="Primeiro Nome">First Name</label>
+              <input type="text" name="firstName" required placeholder="" />
+            </div>
+            <div class="form-group">
+              <label data-en="Last Name" data-it="Cognome" data-pt="Sobrenome">Last Name</label>
+              <input type="text" name="lastName" required placeholder="" />
+            </div>
+            <div class="form-group">
+              <label data-en="Email" data-it="Email" data-pt="Email">Email</label>
+              <input type="email" name="email" required placeholder="" />
+            </div>
+            <div class="form-group">
+              <label data-en="Phone (optional)" data-it="Telefono (opzionale)" data-pt="Telefone (opcional)">Phone (optional)</label>
+              <input type="tel" name="phone" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label data-en="I am a..." data-it="Sono un/una..." data-pt="Eu sou um/uma...">I am a...</label>
+              <select name="userType" required>
+                <option value="" disabled selected data-en="Select one" data-it="Seleziona" data-pt="Selecione uma opção">Select one</option>
+                <option value="client" data-en="Client seeking therapy" data-it="Cliente in cerca di terapia" data-pt="Cliente buscando terapia">Client seeking therapy</option>
+                <option value="therapist" data-en="Therapist wanting to join" data-it="Terapeuta che vuole unirsi" data-pt="Terapeuta interessado em participar">Therapist wanting to join</option>
+                <option value="other" data-en="Other" data-it="Altro" data-pt="Outro">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-en="Message" data-it="Messaggio" data-pt="Mensagem">Message</label>
+              <textarea name="message" required></textarea>
+            </div>
+            <button type="submit" class="form-submit" data-en="Send Message" data-it="Invia Messaggio" data-pt="Enviar Mensagem">Send Message</button>
+          </form>
+          <div id="formSuccess" class="form-success">
+            <h4 data-en="Thank you!" data-it="Grazie!" data-pt="Obrigado!">Thank you!</h4>
+            <p data-en="We've received your message and will get back to you within 24 hours." data-it="Abbiamo ricevuto il tuo messaggio e ti risponderemo entro 24 ore." data-pt="Recebemos sua mensagem e responderemos em 24 horas.">We've received your message and will get back to you within 24 hours.</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <h4 data-en="Download the App" data-it="Scarica l'App" data-pt="Baixar o Aplicativo">Download the App</h4>
+            <span data-en="Coming May 2026 on iOS" data-it="In arrivo a Maggio 2026 su iOS" data-pt="Chegando em Maio de 2026 no iOS">Coming May 2026 on iOS</span>
+          </div>
+          <div class="contact-info-item">
+            <h4 data-en="Headquarters" data-it="Sede" data-pt="Sede">Headquarters</h4>
+            <p>STORM X DIGITAL S.R.L.<br />
+            <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <img src="images/logo.png" alt="Holistic Unity" width="44" height="44">
+            <span>Holistic Unity</span>
+          </a>
+          <p data-en="The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time." data-it="Il marketplace del benessere olistico che unisce terapeuti verificati e cercatori, una sessione alla volta." data-pt="O mercado de bem-estar holistico que une terapeutas verificados e buscadores, uma sessao de cada vez.">The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/holisticunityapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4 data-en="Therapies" data-it="Terapie" data-pt="Terapias">Therapies</h4>
+          <a href="human-design.html" data-en="Human Design" data-it="Human Design" data-pt="Design Humano">Human Design</a>
+          <a href="astrology.html" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</a>
+          <a href="numerology.html" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</a>
+          <a href="thetahealing.html">ThetaHealing®</a>
+          <a href="reiki.html" data-en="Reiki" data-it="Reiki" data-pt="Reiki">Reiki</a>
+          <a href="ayurveda.html" data-en="Ayurveda" data-it="Ayurveda" data-pt="Ayurveda">Ayurveda</a>
+          <a href="naturopathy.html" data-en="Naturopathy" data-it="Naturopatia" data-pt="Naturopatia">Naturopathy</a>
+          <a href="family-constellation.html" data-en="Family Constellation" data-it="Costellazioni Familiari" data-pt="Constelação Familiar">Family Constellation</a>
+          <a href="systemic-constellation.html" data-en="Systemic Constellation" data-it="Costellazioni Sistemiche" data-pt="Constelação Sistêmica">Systemic Constellation</a>
+        </div>
+        <div class="footer-column">
+          <h4 data-en="Platform" data-it="Piattaforma" data-pt="Plataforma">Platform</h4>
+          <a href="#how-it-works" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</a>
+          <a href="#therapists" data-en="For Therapists" data-it="Per i Terapeuti" data-pt="Para Terapeutas">For Therapists</a>
+        <a href="blog/" data-en="Blog" data-it="Blog" data-pt="Blog">Blog</a>
+          <a href="#contact" data-en="Contact" data-it="Contatti" data-pt="Contato">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4 data-en="Legal" data-it="Legale" data-pt="Legal">Legal</h4>
+          <a href="privacy-policy.html" data-en="Privacy Policy" data-it="Privacy Policy" data-pt="Política de Privacidade">Privacy Policy</a>
+          <a href="cookie-policy.html" data-en="Cookie Policy" data-it="Cookie Policy" data-pt="Política de Cookies">Cookie Policy</a>
+          <a href="terms-clients.html" data-en="Terms &amp; Conditions (Clients)" data-it="Termini e Condizioni (Clienti)" data-pt="Termos e Condições (Clientes)">Terms &amp; Conditions (Clients)</a>
+          <a href="terms-therapists.html" data-en="Terms &amp; Conditions (Therapists)" data-it="Termini e Condizioni (Terapeuti)" data-pt="Termos e Condições (Terapeutas)">Terms &amp; Conditions (Therapists)</a>
+          <a href="#" onclick="event.preventDefault();huOpenCookieSettings();return false;" data-en="Cookie Settings" data-it="Impostazioni Cookie" data-pt="Configurações de Cookies">Cookie Settings</a>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Storm X Digital S.R.L. <span data-en="All rights reserved." data-it="Tutti i diritti riservati." data-pt="Todos os direitos reservados.">All rights reserved.</span></span>
+        <a href="https://www.instagram.com/holisticunityapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">@holisticunityapp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    /* ==================== FORM HANDLING ==================== */
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      const origText = btn.textContent;
+      btn.textContent = currentLang === 'it' ? 'Invio in corso...' : (currentLang === 'pt' ? 'Enviando...' : 'Sending...');
+      btn.disabled = true;
+
+      try {
+        const formData = new FormData(form);
+        const jsonData = {};
+        formData.forEach((value, key) => { jsonData[key] = value; });
+
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(jsonData)
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').classList.add('show');
+        } else {
+          btn.textContent = currentLang === 'it' ? 'Errore, riprova' : (currentLang === 'pt' ? 'Erro, tente novamente' : 'Error, try again');
+          btn.disabled = false;
+          setTimeout(() => { btn.textContent = origText; }, 3000);
+        }
+      } catch (err) {
+        btn.textContent = currentLang === 'it' ? 'Errore, riprova' : (currentLang === 'pt' ? 'Erro, tente novamente' : 'Error, try again');
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = origText; }, 3000);
+      }
+    });
+
+    /* ==================== SMOOTH PARALLAX ON HERO ==================== */
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const hero = document.querySelector('.hero-visual');
+      if (hero && scrollY < window.innerHeight) {
+        hero.style.transform = `translateY(${scrollY * 0.15}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Holistic Unity Logo Holistic Unity" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img "Holistic Unity Logo" [ref=e5]
+        - generic [ref=e6]: Holistic Unity
+      - button "Toggle navigation menu" [ref=e7] [cursor=pointer]
+      - text: ▾
+  - main [ref=e11]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: index.html
+          - text: / ThetaHealing®
+        - heading "Online ThetaHealing® Sessions" [level=1] [ref=e17]:
+          - text: Online
+          - emphasis [ref=e18]: ThetaHealing®
+          - text: Sessions
+        - paragraph [ref=e19]: Access the theta brainwave state to reach deeper layers of your subconscious mind, shift limiting beliefs, and create profound inner transformation with a certified practitioner.
+        - generic [ref=e20]:
+          - link "Book Your Session" [ref=e21] [cursor=pointer]:
+            - /url: https://app.holisticunity.app/register
+          - link "Learn More" [ref=e22] [cursor=pointer]:
+            - /url: "#what-is-theta"
+      - img "ThetaHealing® Illustration" [ref=e24]
+    - generic [ref=e26]:
+      - heading "What is ThetaHealing®?" [level=2] [ref=e27]
+      - paragraph [ref=e28]: ThetaHealing® is a meditation and energy work technique developed by Vianna Stibal in 1995. It is based on the principle that the theta brainwave state — the same slow frequency experienced just before sleep — allows access to the subconscious mind, where deep-rooted beliefs, patterns, and programmes are stored.
+      - paragraph [ref=e29]: "In a ThetaHealing® session, a certified practitioner enters a meditative theta state and works with the client to identify and transform limiting beliefs at four levels: core, genetic, history, and soul. Unlike many approaches that require years of talk therapy, ThetaHealing® works directly at the level of belief — facilitating shifts that many clients describe as immediate and profound."
+      - paragraph [ref=e30]: The technique incorporates muscle testing (applied kinesiology) to identify what the body believes at a subconscious level, and the 'Belief Work' process to replace limiting programmes with more expansive, supportive ones. It is used by practitioners globally to support clients in areas including self-worth, relationships, abundance, purpose, trauma, and fear.
+    - generic [ref=e32]:
+      - heading "How a ThetaHealing® Session Works" [level=2] [ref=e33]
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]: "1"
+          - generic [ref=e37]:
+            - heading "Intake & Intention" [level=4] [ref=e38]
+            - paragraph [ref=e39]: Share what you want to explore or shift — whether it's a specific belief, emotion, life area, or deeper pattern you're ready to address.
+        - generic [ref=e40]:
+          - generic [ref=e41]: "2"
+          - generic [ref=e42]:
+            - heading "Muscle Testing" [level=4] [ref=e43]
+            - paragraph [ref=e44]: Practitioner identifies key limiting beliefs in your subconscious using applied kinesiology — your body's wisdom reveals what needs to shift.
+        - generic [ref=e45]:
+          - generic [ref=e46]: "3"
+          - generic [ref=e47]:
+            - heading "Belief Work" [level=4] [ref=e48]
+            - paragraph [ref=e49]: Together you clear and replace the identified programmes using guided visualization and theta state work — transforming the very foundation of how you operate.
+        - generic [ref=e50]:
+          - generic [ref=e51]: "4"
+          - generic [ref=e52]:
+            - heading "Integration" [level=4] [ref=e53]
+            - paragraph [ref=e54]: Practitioner shares what was witnessed and you receive guidance for integration — simple practices to anchor the new beliefs into your daily life.
+    - generic [ref=e56]:
+      - heading "Benefits of ThetaHealing®" [level=2] [ref=e57]
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]: 🧠
+          - heading "Subconscious Transformation" [level=3] [ref=e61]
+          - paragraph [ref=e62]: Work directly at the level of belief, not just behaviour — for shifts that feel deep and lasting. When you change what you believe, everything else follows.
+        - generic [ref=e63]:
+          - generic [ref=e64]: 💬
+          - heading "Non-Talk Approach" [level=3] [ref=e65]
+          - paragraph [ref=e66]: No need to re-live painful stories — ThetaHealing® works energetically with the root of the pattern. You move forward without re-traumatising yourself.
+        - generic [ref=e67]:
+          - generic [ref=e68]: 🌐
+          - heading "Available Online" [level=3] [ref=e69]
+          - paragraph [ref=e70]: The theta state transcends physical space. Sessions are fully effective online via video call — receive the same depth of work from your own home.
+    - generic [ref=e72]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e73]
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - button "What is ThetaHealing®? +" [ref=e76] [cursor=pointer]:
+            - generic [ref=e77]: What is ThetaHealing®?
+            - generic [ref=e78]: +
+          - paragraph [ref=e79]: ThetaHealing® is a technique developed by Vianna Stibal that uses the theta brainwave state to access the subconscious mind and transform limiting beliefs at core, genetic, history, and soul levels.
+        - generic [ref=e80]:
+          - button "Is ThetaHealing® done online? +" [ref=e81] [cursor=pointer]:
+            - generic [ref=e82]: Is ThetaHealing® done online?
+            - generic [ref=e83]: +
+          - paragraph [ref=e84]: Yes. ThetaHealing® is fully effective online. Certified practitioners on Holistic Unity conduct sessions via built-in HD video calls from anywhere in the world.
+        - generic [ref=e85]:
+          - button "How many sessions do I need? +" [ref=e86] [cursor=pointer]:
+            - generic [ref=e87]: How many sessions do I need?
+            - generic [ref=e88]: +
+          - paragraph [ref=e89]: This varies by individual. Some clients notice significant shifts in one session; others choose to work with a practitioner over several sessions to address multiple belief systems.
+        - generic [ref=e90]:
+          - button "Do I need to do anything to prepare? +" [ref=e91] [cursor=pointer]:
+            - generic [ref=e92]: Do I need to do anything to prepare?
+            - generic [ref=e93]: +
+          - paragraph [ref=e94]: Come with an open mind and a clear intention for what you want to explore. Some practitioners may ask you to avoid alcohol 24 hours before a session.
+        - generic [ref=e95]:
+          - button "Is ThetaHealing® a religion? +" [ref=e96] [cursor=pointer]:
+            - generic [ref=e97]: Is ThetaHealing® a religion?
+            - generic [ref=e98]: +
+          - paragraph [ref=e99]: No. ThetaHealing® is a technique, not a religion. While it involves a concept of universal energy or creator energy, it welcomes people of all belief systems and backgrounds.
+    - generic [ref=e101]:
+      - heading "New to ThetaHealing®?" [level=2] [ref=e102]
+      - paragraph [ref=e103]: Not sure if it's right for you? Read our plain-English beginner's guide — what a session actually looks like, who it's for, and what to realistically expect.
+      - 'link "Read: What Is ThetaHealing®? →" [ref=e104] [cursor=pointer]':
+        - /url: blog/what-is-theta-healing.html
+    - generic [ref=e106]:
+      - heading "Are You a Certified ThetaHealing® Practitioner?" [level=2] [ref=e107]
+      - paragraph [ref=e108]: Join Holistic Unity to reach clients worldwide who are actively seeking ThetaHealing® sessions for personal transformation.
+      - link "Become a Holistic Unity Practitioner" [ref=e109] [cursor=pointer]:
+        - /url: about.html#therapists
+    - generic [ref=e111]:
+      - heading "Explore Other Therapies" [level=2] [ref=e112]
+      - generic [ref=e113]:
+        - link "Human Design Human Design" [ref=e114] [cursor=pointer]:
+          - /url: human-design.html
+          - img "Human Design" [ref=e115]
+          - generic [ref=e116]: Human Design
+        - link "Astrology Astrology" [ref=e117] [cursor=pointer]:
+          - /url: astrology.html
+          - img "Astrology" [ref=e118]
+          - generic [ref=e119]: Astrology
+        - link "Reiki Reiki" [ref=e120] [cursor=pointer]:
+          - /url: reiki.html
+          - img "Reiki" [ref=e121]
+          - generic [ref=e122]: Reiki
+        - link "Family Constellation Family Constellation" [ref=e123] [cursor=pointer]:
+          - /url: family-constellation.html
+          - img "Family Constellation" [ref=e124]
+          - generic [ref=e125]: Family Constellation
+  - contentinfo [ref=e126]:
+    - generic [ref=e127]:
+      - generic [ref=e128]:
+        - generic [ref=e129]:
+          - link "Holistic Unity Holistic Unity" [ref=e130] [cursor=pointer]:
+            - /url: index.html
+            - img "Holistic Unity" [ref=e131]
+            - generic [ref=e132]: Holistic Unity
+          - paragraph [ref=e133]: The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time.
+          - link "Instagram" [ref=e135] [cursor=pointer]:
+            - /url: https://www.instagram.com/holisticunityapp/
+            - img [ref=e136]
+        - generic [ref=e138]:
+          - heading "Therapies" [level=4] [ref=e139]
+          - link "Human Design" [ref=e140] [cursor=pointer]:
+            - /url: human-design.html
+          - link "Astrology" [ref=e141] [cursor=pointer]:
+            - /url: astrology.html
+          - link "Numerology" [ref=e142] [cursor=pointer]:
+            - /url: numerology.html
+          - link "ThetaHealing®" [ref=e143] [cursor=pointer]:
+            - /url: thetahealing.html
+          - link "Reiki" [ref=e144] [cursor=pointer]:
+            - /url: reiki.html
+          - link "Ayurveda" [ref=e145] [cursor=pointer]:
+            - /url: ayurveda.html
+          - link "Naturopathy" [ref=e146] [cursor=pointer]:
+            - /url: naturopathy.html
+          - link "Family Constellation" [ref=e147] [cursor=pointer]:
+            - /url: family-constellation.html
+          - link "Systemic Constellation" [ref=e148] [cursor=pointer]:
+            - /url: systemic-constellation.html
+        - generic [ref=e149]:
+          - heading "Platform" [level=4] [ref=e150]
+          - link "How It Works" [ref=e151] [cursor=pointer]:
+            - /url: index.html#how-it-works
+          - link "For Therapists" [ref=e152] [cursor=pointer]:
+            - /url: about.html#therapists
+          - link "Blog" [ref=e153] [cursor=pointer]:
+            - /url: blog/
+          - link "About" [ref=e154] [cursor=pointer]:
+            - /url: about.html
+          - link "Contact" [ref=e155] [cursor=pointer]:
+            - /url: about.html#contact
+        - generic [ref=e156]:
+          - heading "Legal" [level=4] [ref=e157]
+          - link "Privacy Policy" [ref=e158] [cursor=pointer]:
+            - /url: privacy-policy.html
+          - link "Cookie Policy" [ref=e159] [cursor=pointer]:
+            - /url: cookie-policy.html
+          - link "Terms (Clients)" [ref=e160] [cursor=pointer]:
+            - /url: terms-clients.html
+          - link "Terms (Therapists)" [ref=e161] [cursor=pointer]:
+            - /url: terms-therapists.html
+          - link "Cookie Settings" [ref=e162] [cursor=pointer]:
+            - /url: "#"
+      - separator [ref=e163]
+      - generic [ref=e164]:
+        - generic [ref=e165]: © 2026 Storm X Digital S.R.L. All rights reserved.
+        - link "Instagram" [ref=e166] [cursor=pointer]:
+          - /url: https://www.instagram.com/holisticunityapp/
+          - text: "@holisticunityapp"
+  - dialog "Cookie consent" [ref=e167]:
+    - heading "Your privacy choices" [level=3] [ref=e168]
+    - paragraph [ref=e169]:
+      - text: We use essential cookies to make this site work. We’d also like to set optional analytics cookies to help us understand how visitors use the site. We won’t set analytics cookies unless you accept.
+      - link "Read our Cookie Policy" [ref=e170] [cursor=pointer]:
+        - /url: cookie-policy.html
+    - generic [ref=e171]:
+      - button "Accept all" [ref=e172] [cursor=pointer]
+      - button "Reject non-essential" [ref=e173] [cursor=pointer]
+      - button "Customize" [ref=e174] [cursor=pointer]

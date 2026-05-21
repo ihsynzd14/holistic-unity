@@ -1,0 +1,49 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 6 di 10
+    - main [ref=e12]:
+      - generic [ref=e267]:
+        - heading "In che fase della vita ti senti?" [level=1] [ref=e268]
+        - paragraph [ref=e269]: Non c'è una risposta giusta. Ascolta cosa risuona ora.
+        - generic [ref=e270]:
+          - button "Sono in transizione Sto attraversando un cambiamento importante" [ref=e271]:
+            - generic [ref=e274]:
+              - paragraph [ref=e275]: Sono in transizione
+              - paragraph [ref=e276]: Sto attraversando un cambiamento importante
+          - button "In una fase stabile Voglio approfondire e integrare" [ref=e277]:
+            - generic [ref=e280]:
+              - paragraph [ref=e281]: In una fase stabile
+              - paragraph [ref=e282]: Voglio approfondire e integrare
+          - button "In crescita attiva Mi sto espandendo, esploro tanto" [ref=e283]:
+            - generic [ref=e286]:
+              - paragraph [ref=e287]: In crescita attiva
+              - paragraph [ref=e288]: Mi sto espandendo, esploro tanto
+          - button "In riallineamento Sto ritrovando il mio centro" [ref=e289]:
+            - generic [ref=e292]:
+              - paragraph [ref=e293]: In riallineamento
+              - paragraph [ref=e294]: Sto ritrovando il mio centro
+          - button "Un po' disorientato/a Cerco una direzione, non so bene dove andare" [ref=e295]:
+            - generic [ref=e298]:
+              - paragraph [ref=e299]: Un po' disorientato/a
+              - paragraph [ref=e300]: Cerco una direzione, non so bene dove andare
+          - button "Non saprei dire Va bene così, possiamo lasciarlo aperto" [ref=e301]:
+            - generic [ref=e304]:
+              - paragraph [ref=e305]: Non saprei dire
+              - paragraph [ref=e306]: Va bene così, possiamo lasciarlo aperto
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [disabled] [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Cookie Policy - Holistic Unity" data-it="Politica sui Cookie - Holistic Unity" data-pt="Política de Cookies - Holistic Unity">Cookie Policy - Holistic Unity</title>
+    <meta name="description" content="Cookie policy for Holistic Unity. What cookies we use, why we use them, and how to manage your preferences.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://holisticunity.app/cookie-policy.html">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --berry: #7B2252;
+            --gold: #C9A96E;
+            --cream: #FDF6F0;
+            --charcoal: #2D2D2D;
+            --light-gray: #f9f9f9;
+            --border-gray: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--cream);
+            border-bottom: 2px solid var(--gold);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--berry);
+        }
+
+        .nav-back {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background-color: var(--gold);
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-toggle {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle.active {
+            background-color: var(--berry);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Header */
+        .policy-header {
+            margin-bottom: 3rem;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 2rem;
+        }
+
+        .policy-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--berry);
+            margin-bottom: 0.5rem;
+        }
+
+        .effective-date {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--berry);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        p, li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--berry);
+            font-weight: 600;
+        }
+
+        em {
+            color: #666;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Table */
+        .cookies-table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .cookies-table thead {
+            background-color: var(--berry);
+            color: #ffffff;
+        }
+
+        .cookies-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid var(--border-gray);
+        }
+
+        .cookies-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-gray);
+            font-size: 0.95rem;
+        }
+
+        .cookies-table tbody tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .cookies-table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .cookie-type {
+            font-weight: 600;
+            color: var(--berry);
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background-color: var(--cream);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: #ffffff;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 1.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .policy-header h1 {
+                font-size: 1.8rem;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-left, .nav-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cookies-table {
+                font-size: 0.85rem;
+            }
+
+            .cookies-table th,
+            .cookies-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Language-specific display */
+        [data-lang="en"] .text-it,
+        [data-lang="en"] .text-pt,
+        [data-lang="it"] .text-en,
+        [data-lang="it"] .text-pt,
+        [data-lang="pt"] .text-en,
+        [data-lang="pt"] .text-it {
+            display: none;
+        }
+    </style>
+  <!-- Meta Pixel: gated behind marketing consent in shared.js -->
+
+  <!-- Google Analytics 4 -->
+  <script async src="/analytics.js"></script>
+
+</head>
+<body data-lang="en">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="nav-back">← <span class="text-en">Back to Home</span><span class="text-it">Torna alla Home</span><span class="text-pt" style="display: none;">Voltar ao Início</span></a>
+            <div class="nav-logo">Holistic Unity</div>
+        </div>
+        <div class="nav-right">
+            <button class="lang-toggle active" onclick="toggleLanguage('en')">English</button>
+            <button class="lang-toggle" onclick="toggleLanguage('it')">Italiano</button>
+            <button class="lang-toggle" onclick="toggleLanguage('pt')">Português</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="policy-header">
+            <h1 class="text-en">Cookie Policy</h1>
+            <h1 class="text-it" style="display: none;">Politica sui Cookie</h1>
+            <h1 class="text-pt" style="display: none;">Política de Cookies</h1>
+            <p class="effective-date text-en">Effective Date: May 1, 2026</p>
+            <p class="effective-date text-it" style="display: none;">Data di Effettuazione: 1 maggio 2026</p>
+            <p class="effective-date text-pt" style="display: none;">Data de Vigência: 1º de maio de 2026</p>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <section>
+            <h2 class="text-en">1. Introduction</h2>
+            <h2 class="text-it" style="display: none;">1. Introduzione</h2>
+            <h2 class="text-pt" style="display: none;">1. Introdução</h2>
+
+            <p class="text-en">
+                <strong>Holistic Unity</strong> ("we," "us," "our," or the "Platform") is committed to protecting your privacy and providing transparency about how we use cookies and similar tracking technologies. This Cookie Policy explains what cookies are, how we use them, and your rights regarding cookies on our Platform.
+            </p>
+            <p class="text-it" style="display: none;">
+                <strong>Holistic Unity</strong> ("noi," "nostro," o la "Piattaforma") si impegna a proteggere la tua privacy e fornire trasparenza su come utilizziamo i cookie e tecnologie di tracciamento simili. Questa Politica sui Cookie spiega cosa sono i cookie, come li utilizziamo e i tuoi diritti relativi ai cookie sulla nostra Piattaforma.
+            </p>
+            <p class="text-pt" style="display: none;">
+                <strong>Holistic Unity</strong> ("nós," "nosso," ou a "Plataforma") está comprometida em proteger sua privacidade e fornecer transparência sobre como usamos cookies e tecnologias de rastreamento semelhantes. Esta Política de Cookies explica o que são cookies, como os usamos e seus direitos sobre cookies em nossa Plataforma.
+            </p>
+
+            <p class="text-en">
+                Holistic Unity is a marketplace platform connecting clients with verified holistic therapists for online video sessions. This Cookie Policy applies to our website and mobile application accessible at <strong>www.holisticunity.app</strong> and related domains.
+            </p>
+            <p class="text-it" style="display: none;">
+                Holistic Unity è una piattaforma di mercato che connette clienti con operatori olistici verificati (L. 4/2013) per sessioni video online. Questa Politica sui Cookie si applica al nostro sito web e all'applicazione mobile accessibili su <strong>www.holisticunity.app</strong> e domini correlati.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Holistic Unity é uma plataforma de marketplace que conecta clientes com terapeutas holistas verificados para sessões de vídeo online. Esta Política de Cookies se aplica ao nosso website e aplicação móvel acessíveis em <strong>www.holisticunity.app</strong> e domínios relacionados.
+            </p>
+
+            <p class="text-en">
+                This policy complies with the EU Cookie Law (ePrivacy Directive 2002/58/EC), the GDPR (General Data Protection Regulation (EU) 2016/679), and applicable national privacy laws in EU member states.
+            </p>
+            <p class="text-it" style="display: none;">
+                Questa politica è conforme alla Legge sui Cookie dell'UE (Direttiva ePrivacy 2002/58/EC), al GDPR (Regolamento generale sulla protezione dei dati (UE) 2016/679) e alle leggi sulla privacy nazionali applicabili negli stati membri dell'UE.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Esta política está em conformidade com a Lei de Cookies da UE (Diretiva de Privacidade Eletrônica 2002/58/EC), o GDPR (Regulamento Geral de Proteção de Dados (UE) 2016/679) e as leis nacionais de privacidade aplicáveis nos Estados Membros da UE.
+            </p>
+        </section>
+
+        <!-- Section 2: What Are Cookies -->
+        <section>
+            <h2 class="text-en">2. What Are Cookies?</h2>
+            <h2 class="text-it" style="display: none;">2. Cosa Sono i Cookie?</h2>
+            <h2 class="text-pt" style="display: none;">2. O Que São Cookies?</h2>
+
+            <p class="text-en">
+                Cookies are small text files stored on your device (computer, tablet, or mobile phone) when you visit a website or use an application. They are widely used to make websites and applications work more efficiently and to provide information to website and application owners.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie sono piccoli file di testo memorizzati sul tuo dispositivo (computer, tablet o telefono cellulare) quando visiti un sito web o utilizzi un'applicazione. Sono ampiamente utilizzati per far funzionare i siti web e le applicazioni in modo più efficiente e per fornire informazioni ai proprietari di siti web e applicazioni.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Cookies são pequenos arquivos de texto armazenados no seu dispositivo (computador, tablet ou telefone móvel) quando você visita um website ou usa uma aplicação. Eles são amplamente utilizados para fazer websites e aplicações funcionarem mais eficientemente e para fornecer informações aos proprietários de websites e aplicações.
+            </p>
+
+            <h3 class="text-en">Types of Cookies:</h3>
+            <h3 class="text-it" style="display: none;">Tipi di Cookie:</h3>
+            <h3 class="text-pt" style="display: none;">Tipos de Cookies:</h3>
+
+            <ul>
+                <li class="text-en"><strong>First-Party Cookies:</strong> Set directly by Holistic Unity</li>
+                <li class="text-it" style="display: none;"><strong>Cookie di Prima Parte:</strong> Impostati direttamente da Holistic Unity</li>
+                <li class="text-pt" style="display: none;"><strong>Cookies de Primeira Parte:</strong> Definidos diretamente por Holistic Unity</li>
+
+                <li class="text-en"><strong>Third-Party Cookies:</strong> Set by other services (e.g., analytics providers, payment processors)</li>
+                <li class="text-it" style="display: none;"><strong>Cookie di Terze Parti:</strong> Impostati da altri servizi (ad es., fornitori di analitiche, processori di pagamenti)</li>
+                <li class="text-pt" style="display: none;"><strong>Cookies de Terceiros:</strong> Definidos por outros serviços (por exemplo, provedores de análise, processadores de pagamento)</li>
+
+                <li class="text-en"><strong>Session Cookies:</strong> Temporary cookies deleted when you close your browser</li>
+                <li class="text-it" style="display: none;"><strong>Cookie di Sessione:</strong> Cookie temporanei eliminati quando chiudi il tuo browser</li>
+                <li class="text-pt" style="display: none;"><strong>Cookies de Sessão:</strong> Cookies temporários excluídos quando você fecha o navegador</li>
+
+                <li class="text-en"><strong>Persistent Cookies:</strong> Remain on your device for a set period or until you delete them</li>
+                <li class="text-it" style="display: none;"><strong>Cookie Persistenti:</strong> Rimangono sul tuo dispositivo per un periodo impostato o fino a quando non li elimini</li>
+                <li class="text-pt" style="display: none;"><strong>Cookies Persistentes:</strong> Permanecem no seu dispositivo por um período definido ou até você excluí-los</li>
+            </ul>
+        </section>
+
+        <!-- Section 3: Cookies Categories -->
+        <section>
+            <h2 class="text-en">3. Cookie Categories</h2>
+            <h2 class="text-it" style="display: none;">3. Categorie di Cookie</h2>
+            <h2 class="text-pt" style="display: none;">3. Categorias de Cookies</h2>
+
+            <h3 class="text-en">3.1 Essential Cookies (Strictly Necessary)</h3>
+            <h3 class="text-it" style="display: none;">3.1 Cookie Essenziali (Strettamente Necessari)</h3>
+            <h3 class="text-pt" style="display: none;">3.1 Cookies Essenciais (Estritamente Necessários)</h3>
+
+            <p class="text-en">
+                <strong>Legal Basis:</strong> These cookies do not require your consent as they are necessary for the proper functioning of the Platform and to provide the services you request. They are processed under Article 6(1)(b) GDPR (performance of a contract) and Article 6(1)(f) GDPR (legitimate interests).
+            </p>
+            <p class="text-it" style="display: none;">
+                <strong>Base Legale:</strong> Questi cookie non richiedono il tuo consenso in quanto sono necessari per il corretto funzionamento della Piattaforma e per fornire i servizi da te richiesti. Sono elaborati secondo l'Articolo 6(1)(b) del GDPR (esecuzione di un contratto) e l'Articolo 6(1)(f) del GDPR (interessi legittimi).
+            </p>
+            <p class="text-pt" style="display: none;">
+                <strong>Base Legal:</strong> Esses cookies não requerem seu consentimento, pois são necessários para o funcionamento adequado da Plataforma e para fornecer os serviços solicitados. Eles são processados sob o Artigo 6(1)(b) GDPR (execução de contrato) e Artigo 6(1)(f) GDPR (interesses legítimos).
+            </p>
+
+            <p class="text-en">
+                Essential cookies enable core functionality such as user authentication, account security, payment processing, and session management. Without these cookies, the Platform cannot function properly.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie essenziali abilitano la funzionalità principale come l'autenticazione dell'utente, la sicurezza dell'account, l'elaborazione dei pagamenti e la gestione della sessione. Senza questi cookie, la Piattaforma non può funzionare correttamente.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Cookies essenciais habilitam funcionalidades principais como autenticação do usuário, segurança da conta, processamento de pagamentos e gerenciamento de sessão. Sem esses cookies, a Plataforma não pode funcionar adequadamente.
+            </p>
+
+            <h3 class="text-en">3.2 Functional Cookies</h3>
+            <h3 class="text-it" style="display: none;">3.2 Cookie Funzionali</h3>
+            <h3 class="text-pt" style="display: none;">3.2 Cookies Funcionais</h3>
+
+            <p class="text-en">
+                <strong>Legal Basis:</strong> These cookies are processed under Article 6(1)(f) GDPR (legitimate interests) and may be placed based on your consent. They are used to enhance user experience.
+            </p>
+            <p class="text-it" style="display: none;">
+                <strong>Base Legale:</strong> Questi cookie sono elaborati secondo l'Articolo 6(1)(f) del GDPR (interessi legittimi) e possono essere inseriti sulla base del tuo consenso. Vengono utilizzati per migliorare l'esperienza dell'utente.
+            </p>
+            <p class="text-pt" style="display: none;">
+                <strong>Base Legal:</strong> Esses cookies são processados sob o Artigo 6(1)(f) GDPR (interesses legítimos) e podem ser colocados com base em seu consentimento. Eles são usados para melhorar a experiência do usuário.
+            </p>
+
+            <p class="text-en">
+                Functional cookies remember your preferences (language, region, login preferences) and allow us to provide personalized features that enhance your experience on the Platform.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie funzionali ricordano le tue preferenze (lingua, regione, preferenze di login) e ci permettono di fornire funzioni personalizzate che migliorano la tua esperienza sulla Piattaforma.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Cookies funcionais lembram suas preferências (idioma, região, preferências de login) e nos permitem fornecer recursos personalizados que melhoram sua experiência na Plataforma.
+            </p>
+
+            <h3 class="text-en">3.3 Analytics Cookies</h3>
+            <h3 class="text-it" style="display: none;">3.3 Cookie Analitici</h3>
+            <h3 class="text-pt" style="display: none;">3.3 Cookies de Análise</h3>
+
+            <p class="text-en">
+                <strong>Legal Basis:</strong> These cookies are processed under Article 6(1)(f) GDPR (legitimate interests in understanding Platform usage, improving services, and preventing fraud). We do not require your explicit consent for analytics when data is sufficiently anonymized and aggregated.
+            </p>
+            <p class="text-it" style="display: none;">
+                <strong>Base Legale:</strong> Questi cookie sono elaborati secondo l'Articolo 6(1)(f) del GDPR (interessi legittimi nel comprendere l'utilizzo della Piattaforma, nel migliorare i servizi e nel prevenire le frodi). Non richiadiamo il tuo consenso esplicito per l'analitca quando i dati sono sufficientemente anonimizzati e aggregati.
+            </p>
+            <p class="text-pt" style="display: none;">
+                <strong>Base Legal:</strong> Esses cookies são processados sob o Artigo 6(1)(f) GDPR (interesses legítimos em entender o uso da Plataforma, melhorar serviços e prevenir fraude). Não requeremos seu consentimento explícito para análise quando os dados são suficientemente anonimizados e agregados.
+            </p>
+
+            <p class="text-en">
+                Analytics cookies help us understand how users interact with the Platform, allowing us to improve features, fix bugs, and optimize performance. We use tools such as Google Analytics to track aggregated usage patterns and conversion metrics.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie analitici ci aiutano a capire come gli utenti interagiscono con la Piattaforma, permettendoci di migliorare le funzionalità, correggere i bug e ottimizzare le prestazioni. Utilizziamo strumenti come Google Analytics per tracciare i modelli di utilizzo aggregati e le metriche di conversione.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Cookies de análise nos ajudam a entender como os usuários interagem com a Plataforma, permitindo-nos melhorar recursos, corrigir bugs e otimizar o desempenho. Usamos ferramentas como Google Analytics para rastrear padrões de uso agregados e métricas de conversão.
+            </p>
+
+            <h3 class="text-en">3.4 Marketing Cookies</h3>
+            <h3 class="text-it" style="display: none;">3.4 Cookie di Marketing</h3>
+            <h3 class="text-pt" style="display: none;">3.4 Cookies de Marketing</h3>
+
+            <p class="text-en">
+                <strong>Legal Basis:</strong> These cookies are processed based on your explicit consent under Article 7 GDPR. We do not place marketing cookies without your prior consent.
+            </p>
+            <p class="text-it" style="display: none;">
+                <strong>Base Legale:</strong> Questi cookie sono elaborati sulla base del tuo consenso esplicito secondo l'Articolo 7 del GDPR. Non inseriamo cookie di marketing senza il tuo precedente consenso.
+            </p>
+            <p class="text-pt" style="display: none;">
+                <strong>Base Legal:</strong> Esses cookies são processados com base em seu consentimento explícito sob o Artigo 7 GDPR. Não colocamos cookies de marketing sem seu consentimento prévio.
+            </p>
+
+            <p class="text-en">
+                Marketing cookies are used to deliver targeted advertising, track campaign effectiveness, and understand which therapists or services interest you. They may be shared with advertising networks and social media platforms to create relevant promotional content.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie di marketing sono utilizzati per fornire pubblicità mirata, tracciare l'efficacia delle campagne e capire quali operatori o servizi ti interessano. Possono essere condivisi con reti pubblicitarie e piattaforme di social media per creare contenuti promozionali rilevanti.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Cookies de marketing são usados para entregar publicidade direcionada, rastrear a eficácia da campanha e entender quais terapeutas ou serviços interessam você. Eles podem ser compartilhados com redes de publicidade e plataformas de mídia social para criar conteúdo promocional relevante.
+            </p>
+        </section>
+
+        <!-- Section 4: Cookies Table -->
+        <section>
+            <h2 class="text-en">4. Specific Cookies Used</h2>
+            <h2 class="text-it" style="display: none;">4. Cookie Specifici Utilizzati</h2>
+            <h2 class="text-pt" style="display: none;">4. Cookies Específicos Utilizados</h2>
+
+            <p class="text-en">
+                The following table lists the main cookies used on Holistic Unity:
+            </p>
+            <p class="text-it" style="display: none;">
+                La tabella seguente elenca i principali cookie utilizzati su Holistic Unity:
+            </p>
+            <p class="text-pt" style="display: none;">
+                A tabela a seguir lista os principais cookies usados no Holistic Unity:
+            </p>
+
+            <div style="overflow-x: auto;">
+                <table class="cookies-table">
+                    <thead>
+                        <tr>
+                            <th class="text-en">Cookie Name</th>
+                            <th class="text-it" style="display: none;">Nome Cookie</th>
+                            <th class="text-pt" style="display: none;">Nome do Cookie</th>
+                            <th class="text-en">Type</th>
+                            <th class="text-it" style="display: none;">Tipo</th>
+                            <th class="text-pt" style="display: none;">Tipo</th>
+                            <th class="text-en">Purpose</th>
+                            <th class="text-it" style="display: none;">Scopo</th>
+                            <th class="text-pt" style="display: none;">Finalidade</th>
+                            <th class="text-en">Duration</th>
+                            <th class="text-it" style="display: none;">Durata</th>
+                            <th class="text-pt" style="display: none;">Duração</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Session Management -->
+                        <tr>
+                            <td>session_id</td>
+                            <td class="cookie-type text-en">Essential</td>
+                            <td class="cookie-type text-it" style="display: none;">Essenziale</td>
+                            <td class="cookie-type text-pt" style="display: none;">Essencial</td>
+                            <td class="text-en">Session authentication and user login management</td>
+                            <td class="text-it" style="display: none;">Autenticazione della sessione e gestione dell'accesso dell'utente</td>
+                            <td class="text-pt" style="display: none;">Autenticação de sessão e gerenciamento de login do usuário</td>
+                            <td class="text-en">Session</td>
+                            <td class="text-it" style="display: none;">Sessione</td>
+                            <td class="text-pt" style="display: none;">Sessão</td>
+                        </tr>
+                        <tr>
+                            <td>csrf_token</td>
+                            <td class="cookie-type text-en">Essential</td>
+                            <td class="cookie-type text-it" style="display: none;">Essenziale</td>
+                            <td class="cookie-type text-pt" style="display: none;">Essencial</td>
+                            <td class="text-en">CSRF protection for form submissions</td>
+                            <td class="text-it" style="display: none;">Protezione CSRF per l'invio di moduli</td>
+                            <td class="text-pt" style="display: none;">Proteção CSRF para envios de formulário</td>
+                            <td class="text-en">Session</td>
+                            <td class="text-it" style="display: none;">Sessione</td>
+                            <td class="text-pt" style="display: none;">Sessão</td>
+                        </tr>
+
+                        <!-- User Preferences -->
+                        <tr>
+                            <td>language_preference</td>
+                            <td class="cookie-type text-en">Functional</td>
+                            <td class="cookie-type text-it" style="display: none;">Funzionale</td>
+                            <td class="cookie-type text-pt" style="display: none;">Funcional</td>
+                            <td class="text-en">Stores user language preference (en/it)</td>
+                            <td class="text-it" style="display: none;">Memorizza la preferenza linguistica dell'utente (en/it)</td>
+                            <td class="text-pt" style="display: none;">Armazena a preferência de idioma do usuário (en/it/pt)</td>
+                            <td class="text-en">1 year</td>
+                            <td class="text-it" style="display: none;">1 anno</td>
+                            <td class="text-pt" style="display: none;">1 ano</td>
+                        </tr>
+                        <tr>
+                            <td>theme_preference</td>
+                            <td class="cookie-type text-en">Functional</td>
+                            <td class="cookie-type text-it" style="display: none;">Funzionale</td>
+                            <td class="cookie-type text-pt" style="display: none;">Funcional</td>
+                            <td class="text-en">Remembers dark/light mode preference</td>
+                            <td class="text-it" style="display: none;">Ricorda la preferenza della modalità scura/chiara</td>
+                            <td class="text-pt" style="display: none;">Lembra a preferência de modo escuro/claro</td>
+                            <td class="text-en">1 year</td>
+                            <td class="text-it" style="display: none;">1 anno</td>
+                            <td class="text-pt" style="display: none;">1 ano</td>
+                        </tr>
+
+                        <!-- Analytics -->
+                        <tr>
+                            <td>_ga</td>
+                            <td class="cookie-type text-en">Analytics</td>
+                            <td class="cookie-type text-it" style="display: none;">Analitico</td>
+                            <td class="cookie-type text-pt" style="display: none;">Análise</td>
+                            <td class="text-en">Google Analytics - unique visitor identification</td>
+                            <td class="text-it" style="display: none;">Google Analytics - identificazione visitatore unico</td>
+                            <td class="text-pt" style="display: none;">Google Analytics - identificação de visitante único</td>
+                            <td class="text-en">2 years</td>
+                            <td class="text-it" style="display: none;">2 anni</td>
+                            <td class="text-pt" style="display: none;">2 anos</td>
+                        </tr>
+                        <tr>
+                            <td>_gid</td>
+                            <td class="cookie-type text-en">Analytics</td>
+                            <td class="cookie-type text-it" style="display: none;">Analitico</td>
+                            <td class="cookie-type text-pt" style="display: none;">Análise</td>
+                            <td class="text-en">Google Analytics - session tracking</td>
+                            <td class="text-it" style="display: none;">Google Analytics - tracciamento sessione</td>
+                            <td class="text-pt" style="display: none;">Google Analytics - rastreamento de sessão</td>
+                            <td class="text-en">24 hours</td>
+                            <td class="text-it" style="display: none;">24 ore</td>
+                            <td class="text-pt" style="display: none;">24 horas</td>
+                        </tr>
+                        <tr>
+                            <td>_gat</td>
+                            <td class="cookie-type text-en">Analytics</td>
+                            <td class="cookie-type text-it" style="display: none;">Analitico</td>
+                            <td class="cookie-type text-pt" style="display: none;">Análise</td>
+                            <td class="text-en">Google Analytics - request throttling</td>
+                            <td class="text-it" style="display: none;">Google Analytics - limitazione delle richieste</td>
+                            <td class="text-pt" style="display: none;">Google Analytics - limitação de requisições</td>
+                            <td class="text-en">1 minute</td>
+                            <td class="text-it" style="display: none;">1 minuto</td>
+                            <td class="text-pt" style="display: none;">1 minuto</td>
+                        </tr>
+
+                        <!-- Marketing -->
+                        <tr>
+                            <td>fb_pixel</td>
+                            <td class="cookie-type text-en">Marketing</td>
+                            <td class="cookie-type text-it" style="display: none;">Marketing</td>
+                            <td class="cookie-type text-pt" style="display: none;">Marketing</td>
+                            <td class="text-en">Facebook Pixel - conversion tracking and audience building</td>
+                            <td class="text-it" style="display: none;">Facebook Pixel - tracciamento conversioni e costruzione del pubblico</td>
+                            <td class="text-pt" style="display: none;">Facebook Pixel - rastreamento de conversão e construção de público</td>
+                            <td class="text-en">90 days</td>
+                            <td class="text-it" style="display: none;">90 giorni</td>
+                            <td class="text-pt" style="display: none;">90 dias</td>
+                        </tr>
+                        <tr>
+                            <td>stripe_session</td>
+                            <td class="cookie-type text-en">Essential</td>
+                            <td class="cookie-type text-it" style="display: none;">Essenziale</td>
+                            <td class="cookie-type text-pt" style="display: none;">Essencial</td>
+                            <td class="text-en">Stripe payment processing</td>
+                            <td class="text-it" style="display: none;">Elaborazione dei pagamenti Stripe</td>
+                            <td class="text-pt" style="display: none;">Processamento de pagamento Stripe</td>
+                            <td class="text-en">Session</td>
+                            <td class="text-it" style="display: none;">Sessione</td>
+                            <td class="text-pt" style="display: none;">Sessão</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 5: Third-Party Services -->
+        <section>
+            <h2 class="text-en">5. Third-Party Cookies and Services</h2>
+            <h2 class="text-it" style="display: none;">5. Cookie e Servizi di Terze Parti</h2>
+            <h2 class="text-pt" style="display: none;">5. Cookies de Terceiros e Serviços</h2>
+
+            <h3 class="text-en">5.1 Google Analytics</h3>
+            <h3 class="text-it" style="display: none;">5.1 Google Analytics</h3>
+            <h3 class="text-pt" style="display: none;">5.1 Google Analytics</h3>
+
+            <p class="text-en">
+                We use Google Analytics to understand how users interact with the Platform. Google Analytics sets cookies to track user behavior, including pages visited, time on site, and referral sources. Data is aggregated and anonymized. Google's privacy policy is available at <strong>https://policies.google.com/privacy</strong>.
+            </p>
+            <p class="text-it" style="display: none;">
+                Utilizziamo Google Analytics per comprendere come gli utenti interagiscono con la Piattaforma. Google Analytics imposta cookie per tracciare il comportamento degli utenti, incluse le pagine visitate, il tempo sul sito e le fonti di provenienza. I dati sono aggregati e anonimizzati. La politica sulla privacy di Google è disponibile su <strong>https://policies.google.com/privacy</strong>.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Usamos Google Analytics para entender como os usuários interagem com a Plataforma. Google Analytics define cookies para rastrear o comportamento do usuário, incluindo páginas visitadas, tempo no site e fontes de referência. Os dados são agregados e anonimizados. A política de privacidade do Google está disponível em <strong>https://policies.google.com/privacy</strong>.
+            </p>
+
+            <h3 class="text-en">5.2 Stripe Payment Processing</h3>
+            <h3 class="text-it" style="display: none;">5.2 Elaborazione dei Pagamenti Stripe</h3>
+            <h3 class="text-pt" style="display: none;">5.2 Processamento de Pagamento Stripe</h3>
+
+            <p class="text-en">
+                Stripe is used to securely process payments for therapy sessions. Stripe may set cookies for fraud prevention and payment security. Stripe's privacy policy is available at <strong>https://stripe.com/privacy</strong>.
+            </p>
+            <p class="text-it" style="display: none;">
+                Stripe viene utilizzato per elaborare in modo sicuro i pagamenti per le sessioni. Stripe può impostare cookie per la prevenzione delle frodi e la sicurezza dei pagamenti. La politica sulla privacy di Stripe è disponibile su <strong>https://stripe.com/privacy</strong>.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Stripe é usado para processar com segurança os pagamentos das sessões de terapia. Stripe pode definir cookies para prevenção de fraude e segurança de pagamento. A política de privacidade do Stripe está disponível em <strong>https://stripe.com/privacy</strong>.
+            </p>
+
+            <h3 class="text-en">5.3 Facebook Pixel</h3>
+            <h3 class="text-it" style="display: none;">5.3 Facebook Pixel</h3>
+            <h3 class="text-pt" style="display: none;">5.3 Facebook Pixel</h3>
+
+            <p class="text-en">
+                We use Facebook Pixel to track conversions and build audiences for targeted marketing. Facebook sets cookies to identify you across the internet. You can opt out of Facebook tracking at <strong>https://www.facebook.com/settings/?tab=ads</strong>. Facebook's data policy is at <strong>https://www.facebook.com/policies/</strong>.
+            </p>
+            <p class="text-it" style="display: none;">
+                Utilizziamo Facebook Pixel per tracciare le conversioni e costruire audience per il marketing mirato. Facebook imposta cookie per identificarti su internet. Puoi rinunciare al tracciamento di Facebook su <strong>https://www.facebook.com/settings/?tab=ads</strong>. La politica sui dati di Facebook è su <strong>https://www.facebook.com/policies/</strong>.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Usamos Facebook Pixel para rastrear conversões e construir públicos para marketing direcionado. Facebook define cookies para identificá-lo na internet. Você pode optar por não ser rastreado pelo Facebook em <strong>https://www.facebook.com/settings/?tab=ads</strong>. A política de dados do Facebook está em <strong>https://www.facebook.com/policies/</strong>.
+            </p>
+        </section>
+
+        <!-- Section 6: Your Rights -->
+        <section>
+            <h2 class="text-en">6. Your Cookie Rights and Choices</h2>
+            <h2 class="text-it" style="display: none;">6. I Tuoi Diritti e Scelte sui Cookie</h2>
+            <h2 class="text-pt" style="display: none;">6. Seus Direitos e Escolhas sobre Cookies</h2>
+
+            <h3 class="text-en">6.1 Consent and Withdrawal</h3>
+            <h3 class="text-it" style="display: none;">6.1 Consenso e Ritiro</h3>
+            <h3 class="text-pt" style="display: none;">6.1 Consentimento e Retirada</h3>
+
+            <p class="text-en">
+                When you visit the Platform, we present a cookie consent banner. You can:
+            </p>
+            <p class="text-it" style="display: none;">
+                Quando visiti la Piattaforma, ti presentiamo un banner di consenso dei cookie. Puoi:
+            </p>
+            <p class="text-pt" style="display: none;">
+                Quando você visita a Plataforma, apresentamos um banner de consentimento de cookies. Você pode:
+            </p>
+
+            <ul>
+                <li class="text-en"><strong>Accept All:</strong> Consent to all cookie categories</li>
+                <li class="text-it" style="display: none;"><strong>Accetta Tutto:</strong> Consenti a tutte le categorie di cookie</li>
+                <li class="text-pt" style="display: none;"><strong>Aceitar Tudo:</strong> Consentir com todas as categorias de cookies</li>
+
+                <li class="text-en"><strong>Customize:</strong> Choose which cookie categories to accept (essential cookies are always enabled)</li>
+                <li class="text-it" style="display: none;"><strong>Personalizza:</strong> Scegli quali categorie di cookie accettare (i cookie essenziali sono sempre abilitati)</li>
+                <li class="text-pt" style="display: none;"><strong>Personalizar:</strong> Escolha quais categorias de cookies aceitar (cookies essenciais estão sempre habilitados)</li>
+
+                <li class="text-en"><strong>Reject All (except Essential):</strong> Decline non-essential cookies</li>
+                <li class="text-it" style="display: none;"><strong>Rifiuta Tutto (tranne Essenziali):</strong> Rifiuta i cookie non essenziali</li>
+                <li class="text-pt" style="display: none;"><strong>Rejeitar Tudo (exceto Essenciais):</strong> Recusar cookies não essenciais</li>
+
+                <li class="text-en"><strong>Withdraw Consent:</strong> Change your preferences at any time in your account settings</li>
+                <li class="text-it" style="display: none;"><strong>Ritira il Consenso:</strong> Cambia le tue preferenze in qualsiasi momento nelle impostazioni del tuo account</li>
+                <li class="text-pt" style="display: none;"><strong>Retirar Consentimento:</strong> Altere suas preferências a qualquer momento nas configurações da sua conta</li>
+            </ul>
+
+            <h3 class="text-en">6.2 Browser Controls</h3>
+            <h3 class="text-it" style="display: none;">6.2 Controlli del Browser</h3>
+            <h3 class="text-pt" style="display: none;">6.2 Controles do Navegador</h3>
+
+            <p class="text-en">
+                Most browsers allow you to control cookies through settings. You can:
+            </p>
+            <p class="text-it" style="display: none;">
+                La maggior parte dei browser consente di controllare i cookie tramite le impostazioni. Puoi:
+            </p>
+            <p class="text-pt" style="display: none;">
+                A maioria dos navegadores permite controlar cookies através das configurações. Você pode:
+            </p>
+
+            <ul>
+                <li class="text-en">Block all cookies or specific categories</li>
+                <li class="text-it" style="display: none;">Bloccare tutti i cookie o categorie specifiche</li>
+                <li class="text-pt" style="display: none;">Bloquear todos os cookies ou categorias específicas</li>
+
+                <li class="text-en">Delete existing cookies</li>
+                <li class="text-it" style="display: none;">Eliminare i cookie esistenti</li>
+                <li class="text-pt" style="display: none;">Excluir cookies existentes</li>
+
+                <li class="text-en">Set alerts when cookies are placed</li>
+                <li class="text-it" style="display: none;">Impostare avvisi quando i cookie vengono inseriti</li>
+                <li class="text-pt" style="display: none;">Definir alertas quando os cookies são colocados</li>
+
+                <li class="text-en">Use private/incognito browsing mode</li>
+                <li class="text-it" style="display: none;">Utilizzare la modalità di navigazione privata/in incognito</li>
+                <li class="text-pt" style="display: none;">Usar modo de navegação privada/incógnito</li>
+            </ul>
+
+            <p class="text-en">
+                Please note: Disabling essential cookies may prevent the Platform from functioning correctly. You can manage cookies in your browser settings:
+            </p>
+            <p class="text-it" style="display: none;">
+                Si prega di notare: La disabilitazione dei cookie essenziali potrebbe impedire il corretto funzionamento della Piattaforma. Puoi gestire i cookie nelle impostazioni del tuo browser:
+            </p>
+            <p class="text-pt" style="display: none;">
+                Observe que: Desabilitar cookies essenciais pode impedir o funcionamento correto da Plataforma. Você pode gerenciar cookies nas configurações do seu navegador:
+            </p>
+
+            <ul>
+                <li class="text-en"><strong>Chrome:</strong> Settings → Privacy and security → Cookies and other site data</li>
+                <li class="text-it" style="display: none;"><strong>Chrome:</strong> Impostazioni → Privacy e sicurezza → Cookie e dati dei siti</li>
+                <li class="text-pt" style="display: none;"><strong>Chrome:</strong> Configurações → Privacidade e segurança → Cookies e outros dados do site</li>
+
+                <li class="text-en"><strong>Firefox:</strong> Preferences → Privacy & Security → Cookies and Site Data</li>
+                <li class="text-it" style="display: none;"><strong>Firefox:</strong> Preferenze → Privacy e sicurezza → Cookie e dati dei siti</li>
+                <li class="text-pt" style="display: none;"><strong>Firefox:</strong> Preferências → Privacidade e Segurança → Cookies e dados do site</li>
+
+                <li class="text-en"><strong>Safari:</strong> Preferences → Privacy → Cookies and website data</li>
+                <li class="text-it" style="display: none;"><strong>Safari:</strong> Preferenze → Privacy → Cookie e dati dei siti web</li>
+                <li class="text-pt" style="display: none;"><strong>Safari:</strong> Preferências → Privacidade → Cookies e dados do website</li>
+
+                <li class="text-en"><strong>Edge:</strong> Settings → Privacy, search, and services → Cookies and other site permissions</li>
+                <li class="text-it" style="display: none;"><strong>Edge:</strong> Impostazioni → Privacy, ricerca e servizi → Cookie e altre autorizzazioni del sito</li>
+                <li class="text-pt" style="display: none;"><strong>Edge:</strong> Configurações → Privacidade, pesquisa e serviços → Cookies e outras permissões do site</li>
+            </ul>
+
+            <h3 class="text-en">6.3 Do Not Track Signals</h3>
+            <h3 class="text-it" style="display: none;">6.3 Segnali Non Mi Tracciare</h3>
+            <h3 class="text-pt" style="display: none;">6.3 Sinais de Não Me Rastreie</h3>
+
+            <p class="text-en">
+                Some browsers include a "Do Not Track" (DNT) feature. The Platform respects DNT signals where technically feasible. However, DNT implementation is not standardized across all websites and browsers.
+            </p>
+            <p class="text-it" style="display: none;">
+                Alcuni browser includono una funzione "Non mi tracciare" (DNT). La Piattaforma rispetta i segnali DNT dove tecnicamente fattibile. Tuttavia, l'implementazione di DNT non è standardizzata su tutti i siti web e browser.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Alguns navegadores incluem um recurso "Não Me Rastreie" (DNT). A Plataforma respeita sinais DNT onde tecnicamente viável. No entanto, a implementação do DNT não é padronizada em todos os websites e navegadores.
+            </p>
+
+            <h3 class="text-en">6.4 Opt-Out Links</h3>
+            <h3 class="text-it" style="display: none;">6.4 Link di Opt-Out</h3>
+            <h3 class="text-pt" style="display: none;">6.4 Links de Opt-Out</h3>
+
+            <ul>
+                <li class="text-en"><strong>Google Analytics Opt-Out:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color: var(--gold); text-decoration: none;">Google Analytics Opt-Out Browser Add-on</a></li>
+                <li class="text-it" style="display: none;"><strong>Opt-Out di Google Analytics:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color: var(--gold); text-decoration: none;">Componente aggiuntivo del browser per l'opt-out di Google Analytics</a></li>
+                <li class="text-pt" style="display: none;"><strong>Google Analytics Opt-Out:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color: var(--gold); text-decoration: none;">Complemento do Navegador Google Analytics Opt-Out</a></li>
+
+                <li class="text-en"><strong>Facebook Ads Preferences:</strong> <a href="https://www.facebook.com/ads/preferences" target="_blank" style="color: var(--gold); text-decoration: none;">Manage Your Ad Preferences</a></li>
+                <li class="text-it" style="display: none;"><strong>Preferenze Annunci Facebook:</strong> <a href="https://www.facebook.com/ads/preferences" target="_blank" style="color: var(--gold); text-decoration: none;">Gestisci le tue preferenze di annunci</a></li>
+                <li class="text-pt" style="display: none;"><strong>Preferências de Anúncios do Facebook:</strong> <a href="https://www.facebook.com/ads/preferences" target="_blank" style="color: var(--gold); text-decoration: none;">Gerenciar Suas Preferências de Anúncios</a></li>
+            </ul>
+        </section>
+
+        <!-- Section 7: Data Security -->
+        <section>
+            <h2 class="text-en">7. Security of Cookie Data</h2>
+            <h2 class="text-it" style="display: none;">7. Sicurezza dei Dati dei Cookie</h2>
+            <h2 class="text-pt" style="display: none;">7. Segurança dos Dados dos Cookies</h2>
+
+            <p class="text-en">
+                We implement industry-standard security measures to protect cookie data from unauthorized access, alteration, and destruction. All data transmitted to and from the Platform is encrypted using SSL/TLS protocols. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
+            </p>
+            <p class="text-it" style="display: none;">
+                Implementiamo misure di sicurezza standard del settore per proteggere i dati dei cookie dall'accesso non autorizzato, dall'alterazione e dalla distruzione. Tutti i dati trasmessi verso e dalla Piattaforma sono crittografati utilizzando i protocolli SSL/TLS. Tuttavia, nessun metodo di trasmissione su Internet è sicuro al 100% e non possiamo garantire una sicurezza assoluta.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Implementamos medidas de segurança padrão da indústria para proteger os dados dos cookies contra acesso não autorizado, alteração e destruição. Todos os dados transmitidos para e da Plataforma são criptografados usando protocolos SSL/TLS. No entanto, nenhum método de transmissão pela internet é 100% seguro, e não podemos garantir segurança absoluta.
+            </p>
+
+            <div class="info-box">
+                <p class="text-en"><strong>Essential Cookies:</strong> Session tokens and CSRF tokens are cryptographically signed to prevent tampering.</p>
+                <p class="text-it" style="display: none;"><strong>Cookie Essenziali:</strong> I token di sessione e i token CSRF sono crittograficamente firmati per prevenire manomissioni.</p>
+                <p class="text-pt" style="display: none;"><strong>Cookies Essenciais:</strong> Tokens de sessão e tokens CSRF são assinados criptograficamente para evitar adulteração.</p>
+            </div>
+        </section>
+
+        <!-- Section 8: Retention and Deletion -->
+        <section>
+            <h2 class="text-en">8. Cookie Retention and Deletion</h2>
+            <h2 class="text-it" style="display: none;">8. Conservazione e Eliminazione dei Cookie</h2>
+            <h2 class="text-pt" style="display: none;">8. Retenção e Exclusão de Cookies</h2>
+
+            <p class="text-en">
+                Cookies are retained for the periods specified in Section 4. You can delete cookies at any time using your browser controls. When you clear cookies from your browser, you may need to re-authenticate on the Platform.
+            </p>
+            <p class="text-it" style="display: none;">
+                I cookie vengono conservati per i periodi specificati nella Sezione 4. Puoi eliminare i cookie in qualsiasi momento utilizzando i controlli del tuo browser. Quando cancelli i cookie dal tuo browser, potrebbe essere necessario autenticarti di nuovo sulla Piattaforma.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Os cookies são retidos pelos períodos especificados na Seção 4. Você pode excluir cookies a qualquer momento usando os controles do seu navegador. Quando você limpa cookies do seu navegador, talvez seja necessário se autenticar novamente na Plataforma.
+            </p>
+
+            <p class="text-en">
+                To exercise your right to erasure under GDPR Article 17, you can:
+            </p>
+            <p class="text-it" style="display: none;">
+                Per esercitare il tuo diritto di cancellazione secondo l'Articolo 17 del GDPR, puoi:
+            </p>
+            <p class="text-pt" style="display: none;">
+                Para exercer seu direito de exclusão sob o Artigo 17 do GDPR, você pode:
+            </p>
+
+            <ul>
+                <li class="text-en">Delete cookies from your browser settings</li>
+                <li class="text-it" style="display: none;">Eliminare i cookie dalle impostazioni del tuo browser</li>
+                <li class="text-pt" style="display: none;">Excluir cookies das configurações do seu navegador</li>
+
+                <li class="text-en">Request data deletion from your Holistic Unity account dashboard</li>
+                <li class="text-it" style="display: none;">Richiedere l'eliminazione dei dati dal dashboard del tuo account Holistic Unity</li>
+                <li class="text-pt" style="display: none;">Solicitar exclusão de dados do painel de controle da sua conta Holistic Unity</li>
+
+                <li class="text-en">Contact us directly (see Section 11 for contact information)</li>
+                <li class="text-it" style="display: none;">Contattaci direttamente (vedi Sezione 11 per le informazioni di contatto)</li>
+                <li class="text-pt" style="display: none;">Contate-nos diretamente (veja a Seção 11 para informações de contato)</li>
+            </ul>
+        </section>
+
+        <!-- Section 9: Children's Privacy -->
+        <section>
+            <h2 class="text-en">9. Children's Privacy</h2>
+            <h2 class="text-it" style="display: none;">9. Privacy dei Minori</h2>
+            <h2 class="text-pt" style="display: none;">9. Privacidade das Crianças</h2>
+
+            <p class="text-en">
+                The Platform is not intended for children under the age of 18. We do not knowingly collect personal data or place cookies for children. If we learn that a child under 18 has created an account or provided information, we will delete such data promptly and notify the account holder.
+            </p>
+            <p class="text-it" style="display: none;">
+                La Piattaforma non è destinata a bambini di età inferiore a 18 anni. Non raccogliamo consapevolmente dati personali o inseriamo cookie per i bambini. Se veniamo a conoscenza che un bambino di età inferiore a 18 anni ha creato un account o fornito informazioni, elimineremo tali dati prontamente e notificheremo il titolare dell'account.
+            </p>
+            <p class="text-pt" style="display: none;">
+                A Plataforma não é destinada a crianças menores de 18 anos. Não coletamos conscientemente dados pessoais ou colocamos cookies para crianças. Se descobrirmos que uma criança menor de 18 anos criou uma conta ou forneceu informações, excluiremos esses dados imediatamente e notificaremos o titular da conta.
+            </p>
+
+            <p class="text-en">
+                Parents or guardians who believe their child has created an account should contact us immediately at <strong>support@holisticunity.app</strong>.
+            </p>
+            <p class="text-it" style="display: none;">
+                I genitori o i tutori che ritengono che il loro figlio abbia creato un account devono contattarci immediatamente su <strong>support@holisticunity.app</strong>.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Pais ou tutores que acreditam que seu filho criou uma conta devem nos contatar imediatamente em <strong>support@holisticunity.app</strong>.
+            </p>
+        </section>
+
+        <!-- Section 10: Changes to This Policy -->
+        <section>
+            <h2 class="text-en">10. Changes to This Cookie Policy</h2>
+            <h2 class="text-it" style="display: none;">10. Modifiche a Questa Politica sui Cookie</h2>
+            <h2 class="text-pt" style="display: none;">10. Alterações a Esta Política de Cookies</h2>
+
+            <p class="text-en">
+                Holistic Unity reserves the right to update this Cookie Policy at any time to reflect changes in law, technology, or our business practices. The "Effective Date" at the top of this page indicates when this policy was last updated. Your continued use of the Platform after any modifications constitutes your acceptance of the revised Cookie Policy.
+            </p>
+            <p class="text-it" style="display: none;">
+                Holistic Unity si riserva il diritto di aggiornare questa Politica sui Cookie in qualsiasi momento per riflettere i cambiamenti nella legge, nella tecnologia o nelle nostre pratiche commerciali. La "Data di Effettuazione" in cima a questa pagina indica quando questa politica è stata aggiornata per l'ultima volta. L'utilizzo continuo della Piattaforma dopo qualsiasi modifica costituisce l'accettazione della Politica sui Cookie revisionata.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Holistic Unity se reserva o direito de atualizar esta Política de Cookies a qualquer momento para refletir mudanças na lei, tecnologia ou nossas práticas comerciais. A "Data de Vigência" no topo desta página indica quando esta política foi atualizada pela última vez. O uso continuado da Plataforma após qualquer modificação constitui sua aceitação da Política de Cookies revisada.
+            </p>
+
+            <p class="text-en">
+                We will notify you of material changes via email or by posting a notice on the Platform.
+            </p>
+            <p class="text-it" style="display: none;">
+                Vi comunicheremo i cambiamenti materiali via email o pubblicando un avviso sulla Piattaforma.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Notificaremos você sobre mudanças significativas por email ou postando um aviso na Plataforma.
+            </p>
+        </section>
+
+        <!-- Section 11: Contact Us -->
+        <section>
+            <h2 class="text-en">11. Contact Us</h2>
+            <h2 class="text-it" style="display: none;">11. Contattaci</h2>
+            <h2 class="text-pt" style="display: none;">11. Contate-nos</h2>
+
+            <p class="text-en">
+                If you have questions about this Cookie Policy, your rights, or wish to exercise your privacy choices, please contact us:
+            </p>
+            <p class="text-it" style="display: none;">
+                Se hai domande su questa Politica sui Cookie, i tuoi diritti o desideri esercitare le tue scelte sulla privacy, contattaci:
+            </p>
+            <p class="text-pt" style="display: none;">
+                Se você tiver dúvidas sobre esta Política de Cookies, seus direitos ou deseja exercer suas escolhas de privacidade, entre em contato conosco:
+            </p>
+
+            <div class="info-box">
+                <p><strong>Holistic Unity</strong></p>
+                <p class="text-en">Operated by: <strong>STORM X DIGITAL S.R.L.</strong></p>
+                <p class="text-it" style="display: none;">Gestito da: <strong>STORM X DIGITAL S.R.L.</strong></p>
+                <p class="text-pt" style="display: none;">Operado por: <strong>STORM X DIGITAL S.R.L.</strong></p>
+                <p><strong>Email:</strong> <a href="mailto:support@holisticunity.app" style="color: var(--gold); text-decoration: none;">support@holisticunity.app</a></p>
+                <p><strong>PEC:</strong> <a href="mailto:stormxdigital@pec.it" style="color: var(--gold); text-decoration: none;">stormxdigital@pec.it</a></p>
+                <p><strong class="text-en">Address:</strong><strong class="text-it" style="display: none;">Indirizzo:</strong><strong class="text-pt" style="display: none;">Endereço:</strong> Via Strada del Carro 24, 76011 Bisceglie (BA), Italy</p>
+                <p><strong class="text-en">Tax ID (P.Iva):</strong><strong class="text-it" style="display: none;">ID Fiscale (P.Iva):</strong><strong class="text-pt" style="display: none;">ID Fiscal (P.Iva):</strong> 08789080721</p>
+            </div>
+
+            <h3 class="text-en">Data Protection Authority Contact</h3>
+            <h3 class="text-it" style="display: none;">Contatto dell'Autorità di Protezione dei Dati</h3>
+            <h3 class="text-pt" style="display: none;">Contato da Autoridade de Proteção de Dados</h3>
+
+            <p class="text-en">
+                If you believe your privacy rights have been violated, you have the right to lodge a complaint with your local Data Protection Authority (DPA):
+            </p>
+            <p class="text-it" style="display: none;">
+                Se ritieni che i tuoi diritti sulla privacy siano stati violati, hai il diritto di presentare un reclamo alla tua Autorità Locale di Protezione dei Dati (DPA):
+            </p>
+            <p class="text-pt" style="display: none;">
+                Se você acredita que seus direitos de privacidade foram violados, você tem o direito de apresentar uma reclamação à sua autoridade local de proteção de dados (APD):
+            </p>
+
+            <ul>
+                <li class="text-en"><strong>Italy (Garante per la Protezione dei Dati Personali):</strong> <a href="https://www.garanteprivacy.it" target="_blank" style="color: var(--gold); text-decoration: none;">www.garanteprivacy.it</a></li>
+                <li class="text-it" style="display: none;"><strong>Italia (Garante per la Protezione dei Dati Personali):</strong> <a href="https://www.garanteprivacy.it" target="_blank" style="color: var(--gold); text-decoration: none;">www.garanteprivacy.it</a></li>
+                <li class="text-pt" style="display: none;"><strong>Brasil (Autoridade Nacional de Proteção de Dados):</strong> <a href="https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd" target="_blank" style="color: var(--gold); text-decoration: none;">www.gov.br</a></li>
+            </ul>
+        </section>
+
+        <!-- Section 12: Legal Basis Summary -->
+        <section>
+            <h2 class="text-en">12. Legal Basis Summary (GDPR Transparency)</h2>
+            <h2 class="text-it" style="display: none;">12. Riepilogo della Base Legale (Trasparenza GDPR)</h2>
+            <h2 class="text-pt" style="display: none;">12. Resumo da Base Legal (Transparência GDPR)</h2>
+
+            <p class="text-en">
+                Under GDPR, we process cookie data on the following legal bases:
+            </p>
+            <p class="text-it" style="display: none;">
+                Secondo il GDPR, elaboriamo i dati dei cookie sulle seguenti basi legali:
+            </p>
+            <p class="text-pt" style="display: none;">
+                Sob o GDPR, processamos dados de cookies nas seguintes bases legais:
+            </p>
+
+            <ul>
+                <li class="text-en"><strong>Article 6(1)(b) GDPR:</strong> Performance of a contract (essential cookies for payment processing and account management)</li>
+                <li class="text-it" style="display: none;"><strong>Articolo 6(1)(b) GDPR:</strong> Esecuzione di un contratto (cookie essenziali per l'elaborazione dei pagamenti e la gestione dell'account)</li>
+                <li class="text-pt" style="display: none;"><strong>Artigo 6(1)(b) GDPR:</strong> Execução de contrato (cookies essenciais para processamento de pagamento e gerenciamento de conta)</li>
+
+                <li class="text-en"><strong>Article 6(1)(f) GDPR:</strong> Legitimate interests (analytics, functional cookies, and fraud prevention)</li>
+                <li class="text-it" style="display: none;"><strong>Articolo 6(1)(f) GDPR:</strong> Interessi legittimi (analitiche, cookie funzionali e prevenzione delle frodi)</li>
+                <li class="text-pt" style="display: none;"><strong>Artigo 6(1)(f) GDPR:</strong> Interesses legítimos (análise, cookies funcionais e prevenção de fraude)</li>
+
+                <li class="text-en"><strong>Article 7 GDPR:</strong> Explicit consent (marketing cookies)</li>
+                <li class="text-it" style="display: none;"><strong>Articolo 7 GDPR:</strong> Consenso esplicito (cookie di marketing)</li>
+                <li class="text-pt" style="display: none;"><strong>Artigo 7 GDPR:</strong> Consentimento explícito (cookies de marketing)</li>
+            </ul>
+
+            <p class="text-en">
+                We do not use cookies for profiling or automated decision-making that produces legal or similarly significant effects under GDPR Article 22.
+            </p>
+            <p class="text-it" style="display: none;">
+                Non utilizziamo cookie per la profilazione o il processo decisionale automatizzato che produce effetti legali o altrettanto significativi secondo l'Articolo 22 del GDPR.
+            </p>
+            <p class="text-pt" style="display: none;">
+                Não usamos cookies para criação de perfil ou tomada de decisão automatizada que produz efeitos legais ou igualmente significativos sob o Artigo 22 do GDPR.
+            </p>
+        </section>
+
+        <!-- Section 13: Acknowledgment -->
+        <section>
+            <h2 class="text-en">13. Acknowledgment</h2>
+            <h2 class="text-it" style="display: none;">13. Riconoscimento</h2>
+            <h2 class="text-pt" style="display: none;">13. Reconhecimento</h2>
+
+            <div class="info-box">
+                <p class="text-en">
+                    By using the Holistic Unity Platform, you acknowledge that you have read and understood this Cookie Policy, and you agree to our use of cookies in accordance with its terms. Your continued use of the Platform constitutes your acceptance of this policy.
+                </p>
+                <p class="text-it" style="display: none;">
+                    Utilizzando la Piattaforma Holistic Unity, riconosci che hai letto e compreso questa Politica sui Cookie e accetti il nostro utilizzo dei cookie in conformità ai suoi termini. L'utilizzo continuo della Piattaforma costituisce l'accettazione di questa politica.
+                </p>
+                <p class="text-pt" style="display: none;">
+                    Ao usar a Plataforma Holistic Unity, você reconhece que leu e compreendeu esta Política de Cookies e concorda com nosso uso de cookies de acordo com seus termos. O uso continuado da Plataforma constitui sua aceitação desta política.
+                </p>
+            </div>
+        </section>
+
+        <section style="text-align: center; padding: 2rem 0; border-top: 2px solid var(--border-gray);">
+            <p class="text-en" style="font-size: 0.9rem; color: #666;">
+                <strong>Cookie Policy Version:</strong> 1.0<br>
+                <strong>Effective Date:</strong> May 1, 2026<br>
+                <strong>Last Updated:</strong> May 1, 2026
+            </p>
+            <p class="text-it" style="display: none; font-size: 0.9rem; color: #666;">
+                <strong>Versione della Politica sui Cookie:</strong> 1.0<br>
+                <strong>Data di Effettuazione:</strong> 1 maggio 2026<br>
+                <strong>Ultimo Aggiornamento:</strong> 1 maggio 2026
+            </p>
+            <p class="text-pt" style="display: none; font-size: 0.9rem; color: #666;">
+                <strong>Versão da Política de Cookies:</strong> 1.0<br>
+                <strong>Data de Vigência:</strong> 1º de maio de 2026<br>
+                <strong>Última Atualização:</strong> 1º de maio de 2026
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Holistic Unity</strong></p>
+        <p class="text-en">A marketplace connecting clients with verified holistic therapists</p>
+        <p class="text-it" style="display: none;">Un marketplace che connette clienti con operatori olistici verificati (L. 4/2013)</p>
+        <p class="text-pt" style="display: none;">Um marketplace que conecta clientes com terapeutas holistas verificados</p>
+
+        <div class="footer-divider"></div>
+
+        <p class="text-en"><strong>Operated by STORM X DIGITAL S.R.L.</strong></p>
+        <p class="text-it" style="display: none;"><strong>Gestito da STORM X DIGITAL S.R.L.</strong></p>
+        <p class="text-pt" style="display: none;"><strong>Operado por STORM X DIGITAL S.R.L.</strong></p>
+        <p>VAT/P.Iva: 08789080721</p>
+        <p><a href="mailto:stormxdigital@pec.it">stormxdigital@pec.it</a></p>
+        <p>Via Strada del Carro 24, 76011 Bisceglie (BA), Italy</p>
+
+        <div class="footer-divider"></div>
+
+        <p class="text-en"><strong>Support:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></p>
+        <p class="text-it" style="display: none;"><strong>Supporto:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></p>
+        <p class="text-pt" style="display: none;"><strong>Suporte:</strong> <a href="mailto:support@holisticunity.app">support@holisticunity.app</a></p>
+
+        <div class="footer-divider"></div>
+
+        <p class="text-en">
+            <a href="index.html" style="color: var(--gold);">Home</a> |
+            <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a> |
+            <a href="terms-clients.html" style="color: var(--gold);">Terms of Service</a> |
+            <a href="cookie-policy.html" style="color: var(--gold);">Cookie Policy</a>
+        </p>
+        <p class="text-it" style="display: none;">
+            <a href="index.html" style="color: var(--gold);">Home</a> |
+            <a href="privacy-policy.html" style="color: var(--gold);">Politica sulla Privacy</a> |
+            <a href="terms-clients.html" style="color: var(--gold);">Termini di Servizio</a> |
+            <a href="cookie-policy.html" style="color: var(--gold);">Politica sui Cookie</a>
+        </p>
+        <p class="text-pt" style="display: none;">
+            <a href="index.html" style="color: var(--gold);">Home</a> |
+            <a href="privacy-policy.html" style="color: var(--gold);">Política de Privacidade</a> |
+            <a href="terms-clients.html" style="color: var(--gold);">Termos de Serviço</a> |
+            <a href="cookie-policy.html" style="color: var(--gold);">Política de Cookies</a>
+        </p>
+
+        <div class="footer-divider"></div>
+
+        <p class="text-en" style="font-size: 0.8rem; margin-top: 1rem;">
+            &copy; 2026 Holistic Unity. All rights reserved. |
+            <a href="cookie-policy.html" style="color: var(--gold);">Cookie Policy</a>
+        </p>
+        <p class="text-it" style="display: none; font-size: 0.8rem; margin-top: 1rem;">
+            &copy; 2026 Holistic Unity. Tutti i diritti riservati. |
+            <a href="cookie-policy.html" style="color: var(--gold);">Politica sui Cookie</a>
+        </p>
+        <p class="text-pt" style="display: none; font-size: 0.8rem; margin-top: 1rem;">
+            &copy; 2026 Holistic Unity. Todos os direitos reservados. |
+            <a href="cookie-policy.html" style="color: var(--gold);">Política de Cookies</a>
+        </p>
+    </footer>
+
+    <script>
+        // Language Toggle Functionality
+        function toggleLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.body.setAttribute('data-lang', lang);
+
+            // Show/hide language elements by manipulating inline styles
+            ['en', 'it', 'pt'].forEach(l => {
+                document.querySelectorAll('.text-' + l).forEach(el => {
+                    el.style.display = (l === lang) ? '' : 'none';
+                });
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-toggle').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`button[onclick="toggleLanguage('${lang}')"]`).classList.add('active');
+
+            // Store preference
+            localStorage.setItem('holisticunity_language', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('holisticunity_language') || 'en';
+            toggleLanguage(savedLang);
+        });
+
+        // Analytics tracking (if GA is configured)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_path': '/cookie-policy',
+                'page_title': 'Cookie Policy'
+            });
+        }
+    </script>
+</body>
+</html>

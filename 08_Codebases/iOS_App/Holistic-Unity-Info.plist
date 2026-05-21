@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Google OAuth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.446468190938-sfbcfb83u38cqj5fuehln7sv9iv4gj4u</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>Stripe Connect Redirect</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>holisticunity</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>remote-notification</string>
+	</array>
+	<key>SUPABASE_URL</key>
+	<string>$(SUPABASE_URL)</string>
+	<key>SUPABASE_ANON_KEY</key>
+	<string>$(SUPABASE_ANON_KEY)</string>
+	<key>STRIPE_PUBLISHABLE_KEY</key>
+	<string>$(STRIPE_PUBLISHABLE_KEY)</string>
+	<key>STREAM_API_KEY</key>
+	<string>$(STREAM_API_KEY)</string>
+	<key>LIVEKIT_WS_URL</key>
+	<string>$(LIVEKIT_WS_URL)</string>
+	<key>SENTRY_DSN</key>
+	<string>$(SENTRY_DSN)</string>
+	<key>GIDClientID</key>
+	<string>446468190938-sfbcfb83u38cqj5fuehln7sv9iv4gj4u.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>446468190938-sfbcfb83u38cqj5fuehln7sv9iv4gj4u.apps.googleusercontent.com</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Holistic Unity uses your camera during live video sessions with your therapist so they can see you.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Holistic Unity uses your microphone during live video sessions so you can talk with your therapist.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Holistic Unity uses your photo library when you choose a profile picture or share an image in chat with your therapist.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Holistic Unity saves media from chats to your photo library when you tap to save.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Holistic Unity uses your location only to suggest therapists near you. You can decline and still use the app.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Holistic Unity uses Face ID to quickly unlock the app when you enable biometric lock in Settings.</string>
+	<!--
+	  NSUserTrackingUsageDescription intentionally NOT declared.
+	  The app does not call ATTrackingManager.requestTrackingAuthorization
+	  anywhere — analytics go to TelemetryDeck (privacy-first, IDFA-free).
+	  Apple Review may flag a usage description that is never shown; and a
+	  prompt copy that says "we do not track you" would still be a tracking
+	  prompt, which is contradictory. Re-add this key + the ATT call
+	  together if cross-app tracking is ever introduced.
+	-->
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fraunces72pt-Regular.ttf</string>
+		<string>Fraunces72pt-SemiBold.ttf</string>
+		<string>Fraunces72pt-Bold.ttf</string>
+		<string>Fraunces72pt-Italic.ttf</string>
+	</array>
+	<!--
+	  Force light appearance app-wide (2026-05-16).
+	  The brand palette and painted illustrations are calibrated on a
+	  light cream ground (#FDF6F0). Dark mode would invert the
+	  cream/white surfaces and the painted PNGs — drawn on a light
+	  ground — would float on black and look broken. Until dark
+	  variants of every category illustration exist, we lock the app
+	  to light. This Info.plist key is Apple-recommended; users
+	  cannot override it from the system Dark Mode toggle.
+	-->
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<!--
+	  Export compliance (App Store rule 5.1.2 / encryption).
+	  We use ONLY HTTPS + iOS-standard CommonCrypto via SDK
+	  dependencies (Supabase, Stripe, Stream, LiveKit, Sentry).
+	  No custom crypto. Per Apple, this qualifies as "exempt"
+	  encryption — but the key MUST be declared or App Store
+	  Connect will ask at every build upload.
+	-->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+</dict>
+</plist>

@@ -1,0 +1,117 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Trova il tuo benessere
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Esplora pratiche" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Esplora pratiche
+        - link "Trova operatore" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Trova operatore
+        - link "Prenotazioni" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Prenotazioni
+        - link "Messaggi" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messaggi
+        - link "Sessioni Video" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Sessioni Video
+        - link "Notifiche" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifiche
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Esci" [ref=e48]:
+          - img [ref=e49]
+          - text: Esci
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e58]:
+          - heading "Le mie prenotazioni" [level=1] [ref=e59]
+          - paragraph [ref=e60]: Storia delle tue sessioni e richieste in corso
+        - generic [ref=e61]:
+          - button "Tutte" [ref=e62]
+          - button "In attesa" [ref=e63]
+          - button "Confermate" [ref=e64]
+          - button "Completate" [ref=e65]
+          - button "Annullate" [ref=e66]
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]:
+                - generic [ref=e71]: mag
+                - generic [ref=e72]: "7"
+              - generic [ref=e73]:
+                - generic [ref=e74]:
+                  - paragraph [ref=e75]: Gabriele Vico
+                  - generic [ref=e76]:
+                    - img [ref=e77]
+                    - text: Pagamento in elaborazione
+                - paragraph [ref=e80]: Sessione di ThetaHealing® · giovedì 7 maggio alle 12:15 · 60 min
+              - generic [ref=e81]:
+                - paragraph [ref=e82]: €110.00
+                - img [ref=e83]
+            - generic [ref=e119]:
+              - generic [ref=e121]:
+                - paragraph [ref=e122]: Operatore
+                - paragraph [ref=e123]: Gabriele Vico
+              - button "Annulla" [ref=e125]:
+                - img [ref=e126]
+                - text: Annulla
+          - generic [ref=e86] [cursor=pointer]:
+            - generic [ref=e87]:
+              - generic [ref=e88]: apr
+              - generic [ref=e89]: "15"
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - paragraph [ref=e92]: Marcello Di Pierro
+                - generic [ref=e93]:
+                  - img [ref=e94]
+                  - text: Completato
+              - paragraph [ref=e97]: Free Introductory Call · mercoledì 15 aprile alle 15:26 · 60 min
+            - generic [ref=e98]:
+              - paragraph [ref=e99]: €1.28
+              - img [ref=e100]
+          - generic [ref=e103] [cursor=pointer]:
+            - generic [ref=e104]:
+              - generic [ref=e105]: apr
+              - generic [ref=e106]: "9"
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - paragraph [ref=e109]: Marcello Di Pierro
+                - generic [ref=e110]:
+                  - img [ref=e111]
+                  - text: Completato
+              - paragraph [ref=e114]: Free Introductory Call · giovedì 9 aprile alle 14:16 · 60 min
+            - generic [ref=e115]:
+              - paragraph [ref=e116]: €3.79
+              - img [ref=e117]
+        - generic [ref=e130]:
+          - heading "Annulla" [level=3] [ref=e131]
+          - paragraph [ref=e132]: "Vuoi davvero annullare questa prenotazione? Inserisci una breve motivazione (opzionale):"
+          - textbox "Annullato dal cliente" [active] [ref=e133]
+          - generic [ref=e134]:
+            - button "Indietro" [ref=e135]
+            - button "Annulla" [ref=e136]
+  - alert [ref=e57]

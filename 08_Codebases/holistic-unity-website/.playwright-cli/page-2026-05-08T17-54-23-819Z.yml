@@ -1,0 +1,706 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Holistic Unity Holistic Unity" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]: Holistic Unity
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "Come Funziona" [ref=e9] [cursor=pointer]:
+            - /url: "#how-it-works"
+        - listitem [ref=e10]:
+          - link "Discipline ▾" [ref=e11] [cursor=pointer]:
+            - /url: "#therapies"
+          - generic:
+            - link "ThetaHealing®":
+              - /url: thetahealing.html
+            - link "Reiki":
+              - /url: reiki.html
+            - link "Astrologia":
+              - /url: astrology.html
+            - link "Human Design":
+              - /url: human-design.html
+            - link "Numerologia":
+              - /url: numerology.html
+            - link "Ayurveda":
+              - /url: ayurveda.html
+            - link "Naturopatia":
+              - /url: naturopathy.html
+            - link "Costellazioni Familiari":
+              - /url: family-constellation.html
+            - link "Costellazioni Sistemiche":
+              - /url: systemic-constellation.html
+        - listitem [ref=e12]:
+          - link "Prezzi" [ref=e13] [cursor=pointer]:
+            - /url: "#pricing"
+        - listitem [ref=e14]:
+          - link "Blog" [ref=e15] [cursor=pointer]:
+            - /url: blog/
+        - listitem [ref=e16]:
+          - link "FAQ" [ref=e17] [cursor=pointer]:
+            - /url: "#faq"
+        - listitem [ref=e18]:
+          - generic [ref=e19] [cursor=pointer]:
+            - button "English" [ref=e20]: EN
+            - button "Italiano" [ref=e21]: IT
+            - button "Português" [ref=e22]: PT
+        - listitem [ref=e23]:
+          - link "Inizia gratis" [ref=e24] [cursor=pointer]:
+            - /url: https://app.holisticunity.app/register
+  - generic [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - img [ref=e29]
+        - text: Lancio 2026 ·
+        - strong [ref=e31]: In beta privata
+      - heading "Discipline olistiche verificate . Prezzi chiari ." [level=1] [ref=e32]:
+        - text: Discipline olistiche
+        - emphasis [ref=e33]: verificate
+        - text: .
+        - text: Prezzi
+        - emphasis [ref=e34]: chiari
+        - text: .
+      - paragraph [ref=e35]: Trova un operatore olistico verificato in 5 minuti. 9 discipline, 3 lingue, prezzi chiari — senza finire su Instagram.
+      - generic [ref=e36]:
+        - link "Trova il tuo operatore in 5 minuti" [ref=e37] [cursor=pointer]:
+          - /url: https://app.holisticunity.app/register
+          - text: Trova il tuo operatore in 5 minuti
+          - img [ref=e38]
+        - link "Come funziona" [ref=e40] [cursor=pointer]:
+          - /url: "#how-it-works"
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - img [ref=e43]
+          - text: Gratis
+        - generic [ref=e45]:
+          - img [ref=e46]
+          - text: Senza carta di credito
+        - generic [ref=e48]:
+          - img [ref=e49]
+          - text: Ripianifichi fino a 48h prima
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: "1"
+          - generic [ref=e54]: Discipline verificate
+        - generic [ref=e55]:
+          - generic [ref=e56]: "0"
+          - generic [ref=e57]: Lingue (IT · EN · PT)
+        - generic [ref=e58]:
+          - generic [ref=e59]: 0ª
+          - generic [ref=e60]: Call conoscitiva
+    - generic [ref=e61]:
+      - img "Cliente italiana in sessione olistica con il laptop dal divano di casa" [ref=e63]
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - img "Sara Conti, praticante ThetaHealing®" [ref=e66]
+          - generic "In linea ora" [ref=e67]
+        - generic [ref=e68]:
+          - generic [ref=e69]: Sara Conti
+          - generic [ref=e70]: In linea · ThetaHealing® · 4.9★
+        - generic [ref=e71]:
+          - img [ref=e73]
+          - img [ref=e76]
+  - generic [ref=e80]:
+    - generic [ref=e81]:
+      - img [ref=e83]
+      - generic [ref=e85]:
+        - strong [ref=e86]: Credenziali verificate
+        - text: Documento, attestato di formazione, min. 2 anni di pratica
+    - generic [ref=e87]:
+      - img [ref=e89]
+      - generic [ref=e93]:
+        - strong [ref=e94]: Pagamento sicuro Stripe
+        - text: IVA inclusa · Nessun costo nascosto
+    - generic [ref=e95]:
+      - img [ref=e97]
+      - generic [ref=e100]:
+        - strong [ref=e101]: Flessibilità fino a 48h prima
+        - text: Puoi ripianificare o annullare senza costi
+    - generic [ref=e102]:
+      - img [ref=e104]
+      - generic [ref=e106]:
+        - strong [ref=e107]: Soddisfatto o rimborsato
+        - text: Call conoscitiva gratuita (~15 min), senza carta di credito
+  - generic [ref=e109]:
+    - generic [ref=e110]:
+      - generic [ref=e111]: Il nostro manifesto
+      - heading "Crediamo nelle discipline olistiche. Non nel marketing che le circonda." [level=2] [ref=e112]:
+        - text: Crediamo nelle discipline olistiche.
+        - text: Non nel
+        - emphasis [ref=e113]: marketing
+        - text: che le circonda.
+      - paragraph [ref=e114]: Una piattaforma onesta con chi le pratica e con chi le riceve. Niente hype, nessuna promessa impossibile, credenziali sempre verificate.
+    - generic [ref=e115]:
+      - article [ref=e116]:
+        - generic [ref=e117]: Cosa siamo
+        - heading "Un marketplace che rispetta operatori e clienti." [level=3] [ref=e118]
+        - list [ref=e119]:
+          - listitem [ref=e120]:
+            - text: ✓ Operatori olistici con
+            - strong [ref=e121]: credenziali verificate
+            - text: da scuole e associazioni di categoria
+          - listitem [ref=e122]:
+            - text: ✓ Ogni disciplina spiegata con
+            - strong [ref=e123]: onestà
+            - text: ": cosa fa, cosa non fa"
+          - listitem [ref=e124]: ✓ Prezzi sempre visibili, zero sorprese al checkout
+          - listitem [ref=e125]: ✓ Una persona reale per ogni sessione — mai un bot
+          - listitem [ref=e126]:
+            - text: ✓ Call conoscitiva
+            - strong [ref=e127]: sempre gratis
+            - text: (~15 min), senza impegno
+      - article [ref=e128]:
+        - generic [ref=e129]: Cosa NON siamo
+        - heading "Non vendiamo iper-promesse né scorciatoie." [level=3] [ref=e130]
+        - list [ref=e131]:
+          - listitem [ref=e132]: ✕ Un'app che promette risultati in 7 giorni
+          - listitem [ref=e133]: ✕ Frasi svuotate tipo "sblocca il tuo potenziale"
+          - listitem [ref=e134]: ✕ Algoritmi al posto di un operatore reale
+          - listitem [ref=e135]: ✕ Profili senza credenziali verificabili
+          - listitem [ref=e136]: ✕ Prezzi nascosti fino al checkout
+  - generic [ref=e139]:
+    - generic [ref=e140]:
+      - generic [ref=e141]: Quando può aiutarti un percorso olistico?
+      - heading "Il percorso giusto per ciò che stai vivendo." [level=2] [ref=e142]:
+        - text: Il percorso giusto per
+        - emphasis [ref=e143]: ciò che stai vivendo
+        - text: .
+      - paragraph [ref=e144]: "Periodi di tensione, fasi di transizione, momenti in cui cerchi più consapevolezza: qualunque sia la tua storia, merita attenzione. I nostri operatori olistici verificati lavorano con approcci diversi — scegli quello che risuona con te. Per condizioni cliniche, parla prima con un medico o psicologo."
+      - link "Scopri le discipline" [ref=e145] [cursor=pointer]:
+        - /url: "#therapies"
+        - text: Scopri le discipline
+        - img [ref=e146]
+    - generic [ref=e148]:
+      - generic [ref=e149]: ✓ Tensione e sovraccarico
+      - generic [ref=e150]: ✓ Bisogno di pausa
+      - generic [ref=e151]: ✓ Dinamiche familiari
+      - generic [ref=e152]: ✓ Transizioni di vita
+      - generic [ref=e153]: ✓ Scelte difficili
+      - generic [ref=e154]: ✓ Schemi ricorrenti
+      - generic [ref=e155]: ✓ Ricerca di consapevolezza
+      - generic [ref=e156]: ✓ Benessere quotidiano
+      - generic [ref=e157]: ✓ Supporto complementare
+      - generic [ref=e158]: — Non sostituisce cure mediche
+      - generic [ref=e159]: — Non è psicoterapia clinica
+      - generic [ref=e160]: — Per sintomi clinici parla con un medico
+  - generic [ref=e162]:
+    - generic [ref=e163]:
+      - generic [ref=e164]: Come funziona
+      - heading "Tre passaggi. Niente telefonate." [level=2] [ref=e165]:
+        - text: Tre passaggi.
+        - emphasis [ref=e166]: Niente telefonate
+        - text: .
+      - paragraph [ref=e167]: Niente questionari da 30 minuti o email di conferma in 24 ore. Trovi, prenoti, fai la sessione direttamente dall'app.
+    - generic [ref=e168]:
+      - generic [ref=e169]:
+        - img "Schermata app — 9 discipline olistiche" [ref=e171]
+        - generic [ref=e172]:
+          - generic [ref=e173]: "1"
+          - generic [ref=e174]: Scegli
+          - heading "Scegli la disciplina" [level=3] [ref=e175]
+          - paragraph [ref=e176]: 9 discipline, 3 lingue, profili con credenziali verificate. Filtro per lingua, prezzo e disponibilità oggi.
+      - generic [ref=e177]:
+        - img "Schermata app — sessione confermata pronta per Join" [ref=e179]
+        - generic [ref=e180]:
+          - generic [ref=e181]: "2"
+          - generic [ref=e182]: Prenota
+          - heading "Prenota e ricevi conferma" [level=3] [ref=e183]
+          - paragraph [ref=e184]: Pagamento sicuro Stripe. Conferma immediata con link video integrato. Ripianifichi o annulli fino a 48h prima.
+      - generic [ref=e185]:
+        - generic [ref=e186]:
+          - img "Cliente con tazza di tè durante una sessione video" [ref=e187]
+          - generic [ref=e188]:
+            - generic "In sessione" [ref=e190]
+            - generic [ref=e191]:
+              - strong [ref=e192]: Sara Conti
+              - generic [ref=e193]: In sessione · 38:24
+        - generic [ref=e194]:
+          - generic [ref=e195]: "3"
+          - generic [ref=e196]: Sessione
+          - heading "Fai la sessione da casa" [level=3] [ref=e197]
+          - paragraph [ref=e198]: Video call integrata nell'app. Nessun Zoom da configurare. Dopo, ricevi note sintetiche e passi successivi.
+  - generic [ref=e200]:
+    - generic [ref=e201]:
+      - generic [ref=e202]: Le 9 discipline
+      - heading "Ogni disciplina, spiegata come si deve." [level=2] [ref=e203]:
+        - text: Ogni disciplina,
+        - emphasis [ref=e204]: spiegata come si deve
+        - text: .
+      - paragraph [ref=e205]:
+        - text: Per ciascuna diciamo cosa fa, cosa
+        - emphasis [ref=e206]: non
+        - text: fa, e a chi potrebbe servire. Niente hype, solo onestà.
+    - generic [ref=e207]:
+      - link "Primo incontro ThetaHealing® 01 / 09 ThetaHealing® Tecnica di rilassamento profondo basata sulle onde cerebrali theta. Lavora sul piano della consapevolezza personale. Non sostituisce un percorso psicologico professionale. Scopri la disciplina → Per chi è ✓ Schemi emotivi che si ripetono ✓ Idee bloccanti su di sé ✓ Chi cerca un primo approccio olistico Per chi NON è ✕ Diagnosi cliniche o disturbi psichiatrici ✕ Chi cerca risultati in 1 sessione" [ref=e208] [cursor=pointer]:
+        - /url: thetahealing.html
+        - generic [ref=e209]: Primo incontro
+        - img "ThetaHealing®" [ref=e211]
+        - generic [ref=e212]:
+          - generic [ref=e213]: 01 / 09
+          - heading "ThetaHealing®" [level=3] [ref=e214]:
+            - text: ThetaHealing
+            - superscript [ref=e215]: ®
+          - paragraph [ref=e216]: Tecnica di rilassamento profondo basata sulle onde cerebrali theta. Lavora sul piano della consapevolezza personale. Non sostituisce un percorso psicologico professionale.
+          - generic [ref=e217]: Scopri la disciplina →
+        - generic:
+          - generic:
+            - heading "Per chi è" [level=4]
+            - list:
+              - listitem: ✓ Schemi emotivi che si ripetono
+              - listitem: ✓ Idee bloccanti su di sé
+              - listitem: ✓ Chi cerca un primo approccio olistico
+          - generic:
+            - heading "Per chi NON è" [level=4]
+            - list:
+              - listitem: ✕ Diagnosi cliniche o disturbi psichiatrici
+              - listitem: ✕ Chi cerca risultati in 1 sessione
+      - link "Più prenotata Reiki 02 / 09 Reiki Pratica energetica per il rilassamento. Studi limitati su effetti su stress percepito. Sempre complementare alle cure mediche. Scopri la disciplina → Per chi è ✓ Periodi di forte tensione e affaticamento ✓ Supporto al riposo dopo periodi difficili ✓ Chi cerca una pratica a contatto leggero Per chi NON è ✕ Cure di patologie mediche ✕ Chi cerca prove sperimentali rigorose" [ref=e218] [cursor=pointer]:
+        - /url: reiki.html
+        - generic [ref=e219]: Più prenotata
+        - img "Reiki" [ref=e221]
+        - generic [ref=e222]:
+          - generic [ref=e223]: 02 / 09
+          - heading "Reiki" [level=3] [ref=e224]
+          - paragraph [ref=e225]: Pratica energetica per il rilassamento. Studi limitati su effetti su stress percepito. Sempre complementare alle cure mediche.
+          - generic [ref=e226]: Scopri la disciplina →
+        - generic:
+          - generic:
+            - heading "Per chi è" [level=4]
+            - list:
+              - listitem: ✓ Periodi di forte tensione e affaticamento
+              - listitem: ✓ Supporto al riposo dopo periodi difficili
+              - listitem: ✓ Chi cerca una pratica a contatto leggero
+          - generic:
+            - heading "Per chi NON è" [level=4]
+            - list:
+              - listitem: ✕ Cure di patologie mediche
+              - listitem: ✕ Chi cerca prove sperimentali rigorose
+      - link "Astrologia 03 / 09 Astrologia Lettura del tema natale per auto-comprensione. Strumento interpretativo, non predittivo. Zero profezia. Scopri la disciplina →" [ref=e227] [cursor=pointer]:
+        - /url: astrology.html
+        - img "Astrologia" [ref=e229]
+        - generic [ref=e230]:
+          - generic [ref=e231]: 03 / 09
+          - heading "Astrologia" [level=3] [ref=e232]
+          - paragraph [ref=e233]: Lettura del tema natale per auto-comprensione. Strumento interpretativo, non predittivo. Zero profezia.
+          - generic [ref=e234]: Scopri la disciplina →
+      - link "Human Design 04 / 09 Human Design Mappa energetica da I Ching, astrologia e chakra. Framework interpretativo, non scienza. Per scelte di vita. Scopri la disciplina →" [ref=e235] [cursor=pointer]:
+        - /url: human-design.html
+        - img "Human Design" [ref=e237]
+        - generic [ref=e238]:
+          - generic [ref=e239]: 04 / 09
+          - heading "Human Design" [level=3] [ref=e240]
+          - paragraph [ref=e241]: Mappa energetica da I Ching, astrologia e chakra. Framework interpretativo, non scienza. Per scelte di vita.
+          - generic [ref=e242]: Scopri la disciplina →
+      - link "Numerologia 05 / 09 Numerologia Simbolismo dei numeri legati a nome e data. Riflessione personale. Non prevede il futuro. Serio, non magico. Scopri la disciplina →" [ref=e243] [cursor=pointer]:
+        - /url: numerology.html
+        - img "Numerologia" [ref=e245]
+        - generic [ref=e246]:
+          - generic [ref=e247]: 05 / 09
+          - heading "Numerologia" [level=3] [ref=e248]
+          - paragraph [ref=e249]: Simbolismo dei numeri legati a nome e data. Riflessione personale. Non prevede il futuro. Serio, non magico.
+          - generic [ref=e250]: Scopri la disciplina →
+      - link "Ayurveda 06 / 09 Ayurveda Medicina tradizionale indiana. Dosha, nutrizione, stile di vita. Evidenze miste. Complementare alla medicina. Scopri la disciplina →" [ref=e251] [cursor=pointer]:
+        - /url: ayurveda.html
+        - img "Ayurveda" [ref=e253]
+        - generic [ref=e254]:
+          - generic [ref=e255]: 06 / 09
+          - heading "Ayurveda" [level=3] [ref=e256]
+          - paragraph [ref=e257]: Medicina tradizionale indiana. Dosha, nutrizione, stile di vita. Evidenze miste. Complementare alla medicina.
+          - generic [ref=e258]: Scopri la disciplina →
+      - link "Naturopatia 07 / 09 Naturopatia Prevenzione con nutrizione, fitoterapia, stile di vita. Regolamentata come pratica bionaturale. Sempre con medico. Scopri la disciplina →" [ref=e259] [cursor=pointer]:
+        - /url: naturopathy.html
+        - img "Naturopatia" [ref=e261]
+        - generic [ref=e262]:
+          - generic [ref=e263]: 07 / 09
+          - heading "Naturopatia" [level=3] [ref=e264]
+          - paragraph [ref=e265]: Prevenzione con nutrizione, fitoterapia, stile di vita. Regolamentata come pratica bionaturale. Sempre con medico.
+          - generic [ref=e266]: Scopri la disciplina →
+      - link "Percorso profondo Costellazioni Familiari 08 / 09 Costellazioni Familiari Dinamiche ereditate dal sistema famigliare. Metodo Hellinger. Per pattern ricorrenti nelle relazioni. Scopri la disciplina → Per chi è ✓ Schemi ricorrenti nelle relazioni ✓ Dinamiche famigliari irrisolte ✓ Chi ha già fatto un percorso psicologico Per chi NON è ✕ Primo approccio olistico (intenso) ✕ Chi cerca una sessione \"leggera\"" [ref=e267] [cursor=pointer]:
+        - /url: family-constellation.html
+        - generic [ref=e268]: Percorso profondo
+        - img "Costellazioni Familiari" [ref=e270]
+        - generic [ref=e271]:
+          - generic [ref=e272]: 08 / 09
+          - heading "Costellazioni Familiari" [level=3] [ref=e273]
+          - paragraph [ref=e274]: Dinamiche ereditate dal sistema famigliare. Metodo Hellinger. Per pattern ricorrenti nelle relazioni.
+          - generic [ref=e275]: Scopri la disciplina →
+        - generic:
+          - generic:
+            - heading "Per chi è" [level=4]
+            - list:
+              - listitem: ✓ Schemi ricorrenti nelle relazioni
+              - listitem: ✓ Dinamiche famigliari irrisolte
+              - listitem: ✓ Chi ha già fatto un percorso psicologico
+          - generic:
+            - heading "Per chi NON è" [level=4]
+            - list:
+              - listitem: ✕ Primo approccio olistico (intenso)
+              - listitem: ✕ Chi cerca una sessione "leggera"
+      - link "Costellazioni Sistemiche 09 / 09 Costellazioni Sistemiche Estensione a contesti professionali e organizzativi. Per team, decisioni complesse, pattern aziendali. Scopri la disciplina →" [ref=e276] [cursor=pointer]:
+        - /url: systemic-constellation.html
+        - img "Costellazioni Sistemiche" [ref=e278]
+        - generic [ref=e279]:
+          - generic [ref=e280]: 09 / 09
+          - heading "Costellazioni Sistemiche" [level=3] [ref=e281]
+          - paragraph [ref=e282]: Estensione a contesti professionali e organizzativi. Per team, decisioni complesse, pattern aziendali.
+          - generic [ref=e283]: Scopri la disciplina →
+  - generic [ref=e286]:
+    - generic [ref=e287]:
+      - generic [ref=e288]: Dentro la piattaforma
+      - heading "Tutto in un posto. In 5 minuti." [level=2] [ref=e289]:
+        - text: Tutto
+        - emphasis [ref=e290]: in un posto
+        - text: . In
+        - emphasis [ref=e291]: 5 minuti
+        - text: .
+      - paragraph [ref=e292]: Cerca l'operatore, leggi credenziali verificate, prenota l'orario, ricevi il link video. Tutto da browser — da mobile, tablet o desktop. Zero Zoom, zero email avanti e indietro, zero installazioni.
+      - generic [ref=e293]:
+        - generic [ref=e294]:
+          - img [ref=e296]
+          - generic [ref=e299]:
+            - strong [ref=e300]: Ricerca intelligente
+            - text: Filtro per disciplina, lingua, prezzo e disponibilità oggi.
+        - generic [ref=e301]:
+          - img [ref=e303]
+          - generic [ref=e305]:
+            - strong [ref=e306]: Calendario unico
+            - text: Orari aggiornati in tempo reale. Nessuna email avanti e indietro.
+        - generic [ref=e307]:
+          - img [ref=e309]
+          - generic [ref=e312]:
+            - strong [ref=e313]: Video call integrata
+            - text: Apri, premi via. Niente Zoom, niente link di fortuna.
+      - link "Trova il tuo operatore in 5 minuti" [ref=e315] [cursor=pointer]:
+        - /url: https://app.holisticunity.app/register
+        - text: Trova il tuo operatore in 5 minuti
+        - img [ref=e316]
+    - img "Schermata home dell'app Holistic Unity — anteprima mobile" [ref=e319]
+  - generic [ref=e321]:
+    - generic [ref=e322]:
+      - generic [ref=e323]:
+        - generic [ref=e324]: Prezzi chiari, zero vincoli
+        - heading "Quanto costa iniziare un percorso olistico?" [level=2] [ref=e325]:
+          - text: Quanto costa iniziare un
+          - emphasis [ref=e326]: percorso olistico
+          - text: "?"
+        - paragraph [ref=e327]:
+          - text: Il tuo percorso inizia con una
+          - strong [ref=e328]: call conoscitiva gratuita di ~15 minuti
+          - text: in videochiamata — per capire se la disciplina e l'operatore fanno per te, prima di prenotare una sessione vera e propria. Se scegli di proseguire,
+          - strong [ref=e329]: le sessioni partono da €60
+          - text: — il prezzo varia a seconda della disciplina e dell'operatore scelto ed è sempre visibile prima della prenotazione. Zero abbonamenti, paghi solo quello che fai.
+        - generic [ref=e330]:
+          - img "Mastercard" [ref=e331]
+          - img "Visa" [ref=e332]
+          - img "Apple Pay" [ref=e333]
+          - img "Google Pay" [ref=e334]
+          - generic [ref=e335]:
+            - generic [ref=e336]: Powered by
+            - img "Stripe" [ref=e337]
+      - generic [ref=e338]:
+        - img "Operatore olistico in videochiamata" [ref=e340]
+        - generic [ref=e341]:
+          - generic [ref=e342]: Call conoscitiva
+          - generic [ref=e343]: GRATIS
+        - generic [ref=e344]:
+          - generic [ref=e345]: Sessione singola
+          - generic [ref=e346]: da €60
+    - generic [ref=e347]:
+      - generic [ref=e348]: Piani disponibili
+      - heading "Paghi solo quello che fai." [level=2] [ref=e349]:
+        - text: Paghi solo
+        - emphasis [ref=e350]: quello che fai
+        - text: .
+    - generic [ref=e351]:
+      - generic [ref=e352]:
+        - generic [ref=e353]: Call conoscitiva
+        - heading "Gratis" [level=3] [ref=e354]
+        - generic [ref=e355]: ~15 min in videochiamata
+        - list [ref=e356]:
+          - listitem [ref=e357]: ✓ Capisci se la persona è giusta
+          - listitem [ref=e358]: ✓ Nessun impegno, nessuna carta
+          - listitem [ref=e359]: ✓ Disponibile con ogni operatore
+        - link "Inizia gratis" [ref=e360] [cursor=pointer]:
+          - /url: https://app.holisticunity.app/register
+      - generic [ref=e361]:
+        - text: CONSIGLIATO
+        - generic [ref=e362]: Sessione singola
+        - heading "da €60" [level=3] [ref=e363]
+        - generic [ref=e364]: 60 minuti · IVA inclusa
+        - list [ref=e365]:
+          - listitem [ref=e366]: ✓ Video call integrata
+          - listitem [ref=e367]: ✓ Pagamento sicuro Stripe
+          - listitem [ref=e368]: ✓ Ripianifichi fino a 48h prima
+          - listitem [ref=e369]: ✓ Note sintetiche a fine sessione
+        - link "Inizia gratis" [ref=e370] [cursor=pointer]:
+          - /url: https://app.holisticunity.app/register
+      - generic [ref=e371]:
+        - generic [ref=e372]: Pacchetto 4 sessioni
+        - heading "−10%" [level=3] [ref=e373]
+        - generic [ref=e374]: 4 × 60 minuti · validità 6 mesi
+        - list [ref=e375]:
+          - listitem [ref=e376]: ✓ Con lo stesso operatore
+          - listitem [ref=e377]: ✓ Sconto automatico
+          - listitem [ref=e378]: ✓ Riprogrammabili fino a 48h prima
+        - link "Crea account" [ref=e379] [cursor=pointer]:
+          - /url: https://app.holisticunity.app/register
+    - generic [ref=e380]:
+      - generic [ref=e381]:
+        - img [ref=e382]
+        - generic [ref=e384]:
+          - text: Prezzo
+          - strong [ref=e385]: finale
+          - text: ", IVA inclusa"
+      - generic [ref=e386]:
+        - img [ref=e387]
+        - generic [ref=e389]:
+          - text: Pagamento sicuro
+          - strong [ref=e390]: Stripe
+      - generic [ref=e391]:
+        - img [ref=e392]
+        - generic [ref=e395]:
+          - text: Ripianifichi fino a
+          - strong [ref=e396]: 48h prima
+          - text: ", senza costi"
+      - generic [ref=e397]:
+        - img [ref=e398]
+        - generic [ref=e401]:
+          - text: Nessun abbonamento,
+          - strong [ref=e402]: paghi solo quello che fai
+  - generic [ref=e404]:
+    - generic [ref=e405]:
+      - generic [ref=e406]: Recensioni beta privata
+      - heading "Parole degli utenti." [level=2] [ref=e407]:
+        - text: Parole degli
+        - emphasis [ref=e408]: utenti
+        - text: .
+      - paragraph [ref=e409]: Recensioni raccolte durante la beta privata con i primi utenti. Ogni recensione è verificata dopo una sessione completata e pagata.
+    - generic [ref=e410]:
+      - article [ref=e411]:
+        - generic [ref=e412]:
+          - img [ref=e413]
+          - img [ref=e415]
+          - img [ref=e417]
+          - img [ref=e419]
+          - img [ref=e421]
+        - blockquote [ref=e423]: "\"Ho apprezzato la chiarezza. Mi hanno detto subito cosa il ThetaHealing® può e non può fare. La call conoscitiva gratuita mi ha aiutato a capire che faceva per me.\""
+        - generic [ref=e424]:
+          - generic [ref=e425]:
+            - strong [ref=e426]: Giulia M.
+            - text: Milano · ThetaHealing®
+          - generic [ref=e427]:
+            - img [ref=e428]
+            - text: Verificata
+      - article [ref=e430]:
+        - generic [ref=e431]:
+          - img [ref=e432]
+          - img [ref=e434]
+          - img [ref=e436]
+          - img [ref=e438]
+          - img [ref=e440]
+        - blockquote [ref=e442]: "\"Cercavo una piattaforma seria per il Reiki, non un'app che promette miracoli. Qui mettono i terapeuti certificati in primo piano, niente marketing fuffa.\""
+        - generic [ref=e443]:
+          - generic [ref=e444]:
+            - strong [ref=e445]: Roberto D.
+            - text: Roma · Reiki
+          - generic [ref=e446]:
+            - img [ref=e447]
+            - text: Verificata
+      - article [ref=e449]:
+        - generic [ref=e450]:
+          - img [ref=e451]
+          - img [ref=e453]
+          - img [ref=e455]
+          - img [ref=e457]
+          - img [ref=e459]
+        - blockquote [ref=e461]: "\"Inizialmente scettica. Dopo 3 sessioni di Costellazioni ho capito un pattern ricorrente che mi aiuta ancora. Terapeuta preparata, prezzi onesti, cancellazione facile.\""
+        - generic [ref=e462]:
+          - generic [ref=e463]:
+            - strong [ref=e464]: Elena P.
+            - text: Bologna · Costellazioni
+          - generic [ref=e465]:
+            - img [ref=e466]
+            - text: Verificata
+  - generic [ref=e469]:
+    - generic [ref=e470]:
+      - generic [ref=e471]: FAQ
+      - heading "Cose che ci chiedete davvero." [level=2] [ref=e472]:
+        - text: Cose che ci chiedete
+        - emphasis [ref=e473]: davvero
+        - text: .
+    - generic [ref=e474]:
+      - generic [ref=e475]:
+        - button "Come so se questa cosa funziona davvero per me? +" [ref=e476] [cursor=pointer]:
+          - text: Come so se questa cosa funziona davvero per me?
+          - generic [ref=e477]: +
+        - paragraph [ref=e478]:
+          - text: Quando crei l'account ti facciamo
+          - strong [ref=e479]: 6 domande in ~3 minuti
+          - text: e ti suggeriamo 3 operatori e 3 pratiche in linea con te. Poi puoi prenotare una
+          - strong [ref=e480]: call conoscitiva gratuita di ~15 minuti
+          - text: direttamente dal profilo dell'operatore — senza pagare niente, senza carta di credito. Una chiacchierata introduttiva per vedere se c'è sintonia, non una sessione completa. Se non ti è stata utile, chiudiamo lì — nessuna domanda, nessuna pressione.
+      - generic [ref=e481]:
+        - button "Le discipline olistiche sono scientifiche? +" [ref=e482] [cursor=pointer]:
+          - text: Le discipline olistiche sono scientifiche?
+          - generic [ref=e483]: +
+        - paragraph [ref=e484]: Dipende dalla disciplina. Reiki e Ayurveda hanno studi clinici misti. ThetaHealing®, Human Design, Astrologia, Numerologia sono framework interpretativi, non scienza. Naturopatia è regolamentata come pratica bionaturale.
+      - generic [ref=e485]:
+        - button "Sostituiscono medico o psicologo? +" [ref=e486] [cursor=pointer]:
+          - text: Sostituiscono medico o psicologo?
+          - generic [ref=e487]: +
+        - paragraph [ref=e488]: No. Sono sempre complementari, mai alternative. Lo scriviamo su ogni pagina. Se hai sintomi clinici, consulta prima medico o psicologo abilitato.
+      - generic [ref=e489]:
+        - button "Come verificate gli operatori? +" [ref=e490] [cursor=pointer]:
+          - text: Come verificate gli operatori?
+          - generic [ref=e491]: +
+        - paragraph [ref=e492]: Documento d'identità, attestato di formazione (ThetaHealing® Institute, IRHC Reiki, SIAF, ecc.), minimo 2 anni di pratica documentata, intervista video con il nostro team.
+      - generic [ref=e493]:
+        - button "Posso annullare o spostare la sessione dopo la prenotazione? +" [ref=e494] [cursor=pointer]:
+          - text: Posso annullare o spostare la sessione dopo la prenotazione?
+          - generic [ref=e495]: +
+        - paragraph [ref=e496]:
+          - text: Sì,
+          - strong [ref=e497]: fino a 48 ore prima della sessione
+          - text: ": puoi ripianificarla o annullarla direttamente dalla piattaforma, senza costi. Dopo le 48 ore la sessione resta confermata — questa policy tutela il tempo prenotato dal tuo operatore. La call conoscitiva iniziale è sempre gratuita, quindi non hai nulla da perdere."
+      - generic [ref=e498]:
+        - button "Quanto costa una sessione? +" [ref=e499] [cursor=pointer]:
+          - text: Quanto costa una sessione?
+          - generic [ref=e500]: +
+        - paragraph [ref=e501]: Le sessioni partono da €60 (60 minuti, IVA inclusa). La call conoscitiva iniziale (~15 min) è sempre gratuita, senza carta di credito richiesta. Il pacchetto 4 sessioni ti dà il 10% di sconto automatico.
+  - generic [ref=e503]:
+    - generic [ref=e504]:
+      - generic [ref=e505]: Cosa succede dopo
+      - heading "Zero sorprese. 3 passaggi semplici." [level=2] [ref=e506]:
+        - text: Zero sorprese.
+        - emphasis [ref=e507]: 3 passaggi semplici
+        - text: .
+    - generic [ref=e508]:
+      - generic [ref=e509]:
+        - generic [ref=e510]:
+          - img [ref=e511]
+          - generic [ref=e514]: ~1 minuto
+        - heading "Crea il tuo account" [level=3] [ref=e515]
+        - paragraph [ref=e516]:
+          - text: Email + password.
+          - strong [ref=e517]: Senza carta di credito
+          - text: ", senza impegno."
+      - generic [ref=e518]:
+        - generic [ref=e519]:
+          - img [ref=e520]
+          - generic [ref=e523]: ~3 minuti
+        - heading "6 domande per personalizzare" [level=3] [ref=e524]
+        - paragraph [ref=e525]:
+          - text: Cosa cerchi, su cosa vuoi lavorare, quando vuoi iniziare.
+          - strong [ref=e526]: Risposte salvate
+          - text: — puoi tornare quando vuoi.
+      - generic [ref=e527]:
+        - generic [ref=e528]:
+          - img [ref=e529]
+          - generic [ref=e532]: Subito
+        - heading "3 operatori + 3 pratiche su misura" [level=3] [ref=e533]
+        - paragraph [ref=e534]:
+          - text: Selezione automatica dalle tue risposte.
+          - strong [ref=e535]: Profili verificati
+          - text: ", recensioni, prezzi chiari."
+    - generic [ref=e536]:
+      - img [ref=e537]
+      - generic [ref=e539]: Quando trovi quello giusto, prenoti la call conoscitiva gratuita direttamente dal suo profilo. Senza carta di credito.
+  - generic [ref=e542]:
+    - generic [ref=e543]:
+      - generic [ref=e544]: Inizia qui
+      - heading "Pronto a iniziare?" [level=2] [ref=e545]
+      - paragraph [ref=e546]: Crea il tuo account, rispondi a 6 domande, vedi subito 3 operatori in linea con te. Niente carta di credito, niente impegno.
+      - link "Trova il tuo operatore in 5 minuti" [ref=e547] [cursor=pointer]:
+        - /url: https://app.holisticunity.app/register
+        - text: Trova il tuo operatore in 5 minuti
+        - img [ref=e548]
+      - paragraph [ref=e550]:
+        - text: Hai già un account?
+        - link "Accedi" [ref=e551] [cursor=pointer]:
+          - /url: https://app.holisticunity.app/login
+      - generic [ref=e552]:
+        - generic [ref=e553]: ✓ Email + password
+        - generic [ref=e554]: ✓ ~1 minuto
+        - generic [ref=e555]: ✓ Senza carta di credito
+    - img "Cliente in sessione olistica dal salotto di casa" [ref=e557]
+  - generic [ref=e560]:
+    - img [ref=e562]
+    - generic [ref=e564]:
+      - strong [ref=e565]: App iOS in arrivo
+      - text: Ti avvisiamo appena è disponibile sull'App Store.
+    - generic [ref=e566]:
+      - textbox "la-tua@email.com" [ref=e567]
+      - button "Avvisami" [ref=e568] [cursor=pointer]
+  - contentinfo [ref=e569]:
+    - generic [ref=e570]:
+      - generic [ref=e571]:
+        - generic [ref=e572]:
+          - link "Holistic Unity Holistic Unity" [ref=e573] [cursor=pointer]:
+            - /url: /
+            - img "Holistic Unity" [ref=e574]
+            - generic [ref=e575]: Holistic Unity
+          - paragraph [ref=e576]: Marketplace di operatori olistici verificati (L. 4/2013). ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni. Storm X Digital S.R.L.
+          - link "Instagram" [ref=e578] [cursor=pointer]:
+            - /url: https://www.instagram.com/holisticunityapp/
+            - img [ref=e579]
+        - generic [ref=e581]:
+          - heading "Discipline" [level=4] [ref=e582]
+          - link "ThetaHealing®" [ref=e583] [cursor=pointer]:
+            - /url: thetahealing.html
+          - link "Reiki" [ref=e584] [cursor=pointer]:
+            - /url: reiki.html
+          - link "Astrologia" [ref=e585] [cursor=pointer]:
+            - /url: astrology.html
+          - link "Human Design" [ref=e586] [cursor=pointer]:
+            - /url: human-design.html
+          - link "Numerologia" [ref=e587] [cursor=pointer]:
+            - /url: numerology.html
+          - link "Ayurveda" [ref=e588] [cursor=pointer]:
+            - /url: ayurveda.html
+          - link "Naturopatia" [ref=e589] [cursor=pointer]:
+            - /url: naturopathy.html
+          - link "Costellazioni Familiari" [ref=e590] [cursor=pointer]:
+            - /url: family-constellation.html
+          - link "Costellazioni Sistemiche" [ref=e591] [cursor=pointer]:
+            - /url: systemic-constellation.html
+        - generic [ref=e592]:
+          - heading "Piattaforma" [level=4] [ref=e593]
+          - link "Come funziona" [ref=e594] [cursor=pointer]:
+            - /url: "#how-it-works"
+          - link "Le 9 discipline" [ref=e595] [cursor=pointer]:
+            - /url: "#therapies"
+          - link "Prezzi" [ref=e596] [cursor=pointer]:
+            - /url: "#pricing"
+          - link "Blog" [ref=e597] [cursor=pointer]:
+            - /url: blog/
+          - link "Chi Siamo" [ref=e598] [cursor=pointer]:
+            - /url: about.html
+          - link "FAQ" [ref=e599] [cursor=pointer]:
+            - /url: "#faq"
+        - generic [ref=e600]:
+          - heading "Legale" [level=4] [ref=e601]
+          - link "Privacy Policy" [ref=e602] [cursor=pointer]:
+            - /url: privacy-policy.html
+          - link "Cookie Policy" [ref=e603] [cursor=pointer]:
+            - /url: cookie-policy.html
+          - link "Termini clienti" [ref=e604] [cursor=pointer]:
+            - /url: terms-clients.html
+          - link "Termini operatori" [ref=e605] [cursor=pointer]:
+            - /url: terms-therapists.html
+      - separator [ref=e606]
+      - paragraph [ref=e607]: Le pratiche olistiche offerte dagli operatori ex Legge 4/2013 sono pratiche bionaturali di benessere — non sono prestazioni sanitarie e non sostituiscono parere, diagnosi o trattamento medico, psicologico o nutrizionale. Per sintomi clinici consulta un professionista sanitario iscritto all'albo.
+      - generic [ref=e608]:
+        - generic [ref=e609]: © 2026 Storm X Digital S.R.L. · Tutti i diritti riservati.
+        - link "@holisticunityapp" [ref=e610] [cursor=pointer]:
+          - /url: https://www.instagram.com/holisticunityapp/
+  - dialog "Cookie consent" [ref=e611]:
+    - heading "Your privacy choices" [level=3] [ref=e612]
+    - paragraph [ref=e613]:
+      - text: We use essential cookies to make this site work. We’d also like to set optional analytics cookies to help us understand how visitors use the site. We won’t set analytics cookies unless you accept.
+      - link "Read our Cookie Policy" [ref=e614] [cursor=pointer]:
+        - /url: cookie-policy.html
+    - generic [ref=e615]:
+      - button "Accept all" [ref=e616] [cursor=pointer]
+      - button "Reject non-essential" [ref=e617] [cursor=pointer]
+      - button "Customize" [ref=e618] [cursor=pointer]

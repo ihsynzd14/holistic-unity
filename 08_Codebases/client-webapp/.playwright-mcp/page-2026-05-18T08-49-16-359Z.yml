@@ -1,0 +1,91 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 10 di 10
+    - main [ref=e12]:
+      - generic [ref=e447]:
+        - generic [ref=e448]:
+          - generic [ref=e449]:
+            - img [ref=e450]
+            - text: Il tuo percorso personalizzato
+          - heading "Abbiamo qualche idea per te" [level=1] [ref=e453]
+          - paragraph [ref=e454]: In base a quello che ci hai raccontato, queste pratiche e questi professionisti potrebbero risuonare con te. Esplora con calma, niente fretta.
+        - generic [ref=e455]:
+          - heading "Pratiche consigliate" [level=2] [ref=e456]
+          - generic [ref=e457]:
+            - link "ThetaHealing® Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta. Scopri di più" [ref=e458] [cursor=pointer]:
+              - /url: /dashboard/pratiche/theta-healing
+              - img [ref=e460]
+              - paragraph [ref=e463]: ThetaHealing®
+              - paragraph [ref=e464]: Riprogramma le convinzioni limitanti che ti tengono fermo, accedendo allo stato cerebrale Theta.
+              - paragraph [ref=e465]:
+                - text: Scopri di più
+                - img [ref=e466]
+            - link "Reiki Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale. Scopri di più" [ref=e468] [cursor=pointer]:
+              - /url: /dashboard/pratiche/reiki
+              - img [ref=e470]
+              - paragraph [ref=e473]: Reiki
+              - paragraph [ref=e474]: Riequilibra il tuo sistema energetico attraverso il flusso dolce dell'energia universale.
+              - paragraph [ref=e475]:
+                - text: Scopri di più
+                - img [ref=e476]
+            - 'link "Naturopatia Il potere riequilibrante della natura: alimentazione, fitoterapia, stile di vita personalizzati. Scopri di più" [ref=e478] [cursor=pointer]':
+              - /url: /dashboard/pratiche/naturopatia
+              - img [ref=e480]
+              - paragraph [ref=e483]: Naturopatia
+              - paragraph [ref=e484]: "Il potere riequilibrante della natura: alimentazione, fitoterapia, stile di vita personalizzati."
+              - paragraph [ref=e485]:
+                - text: Scopri di più
+                - img [ref=e486]
+        - generic [ref=e488]:
+          - heading "Professionisti olistici per te" [level=2] [ref=e489]
+          - generic [ref=e490]:
+            - link "Gioia & Giorgio Gioia & Giorgio SEED - Energy Process®" [ref=e491] [cursor=pointer]:
+              - /url: /dashboard/therapists/79b4121f-f1e7-4679-b2fa-6f679204957c
+              - generic [ref=e492]:
+                - img "Gioia & Giorgio" [ref=e494]
+                - generic [ref=e495]:
+                  - generic [ref=e496]:
+                    - paragraph [ref=e497]: Gioia & Giorgio
+                    - img [ref=e498]
+                  - paragraph [ref=e501]: SEED - Energy Process®
+            - link "Camilla Di Pinto Camilla Di Pinto Operatrice olistica" [ref=e502] [cursor=pointer]:
+              - /url: /dashboard/therapists/75eb89a9-9235-450c-9e18-aac7f450b174
+              - generic [ref=e503]:
+                - img "Camilla Di Pinto" [ref=e505]
+                - generic [ref=e506]:
+                  - generic [ref=e507]:
+                    - paragraph [ref=e508]: Camilla Di Pinto
+                    - img [ref=e509]
+                  - paragraph [ref=e512]: Operatrice olistica
+            - link "Giorgia Giaccaglia Giorgia Giaccaglia Naturopata certificato" [ref=e513] [cursor=pointer]:
+              - /url: /dashboard/therapists/38c34dfe-0d5a-465a-8491-2797c050cd13
+              - generic [ref=e514]:
+                - img "Giorgia Giaccaglia" [ref=e516]
+                - generic [ref=e517]:
+                  - generic [ref=e518]:
+                    - paragraph [ref=e519]: Giorgia Giaccaglia
+                    - img [ref=e520]
+                  - paragraph [ref=e523]: Naturopata certificato
+        - generic [ref=e525] [cursor=pointer]:
+          - checkbox "Aiuta l'ecosistema olistico (opzionale) Acconsento all'uso anonimo e aggregato delle mie risposte per generare report di settore e migliorare l'esperienza per tutti. Nessun dato personale identificabile viene condiviso. Puoi cambiare idea in qualsiasi momento dal tuo profilo." [ref=e526]
+          - generic [ref=e527]:
+            - strong [ref=e528]: Aiuta l'ecosistema olistico (opzionale)
+            - generic [ref=e529]: Acconsento all'uso anonimo e aggregato delle mie risposte per generare report di settore e migliorare l'esperienza per tutti. Nessun dato personale identificabile viene condiviso. Puoi cambiare idea in qualsiasi momento dal tuo profilo.
+        - button "Modifica le tue risposte" [ref=e530]
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Inizia il tuo percorso" [active] [ref=e531]:
+          - text: Inizia il tuo percorso
+          - img [ref=e532]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

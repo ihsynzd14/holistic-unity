@@ -1,0 +1,3 @@
+[   22782ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/api/security/log-login:0
+[   22941ms] [ERROR] Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR @ https://localhost:3000/dashboard:0
+[   23099ms] [ERROR] Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR @ https://localhost:3000/dashboard:0

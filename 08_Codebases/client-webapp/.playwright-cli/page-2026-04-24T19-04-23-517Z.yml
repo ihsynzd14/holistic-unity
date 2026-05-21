@@ -1,0 +1,104 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [active] [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - generic [ref=e544]:
+        - generic [ref=e545]:
+          - heading "Your account" [level=1] [ref=e546]
+          - paragraph [ref=e547]: Update your personal info and security settings
+        - generic [ref=e548]:
+          - heading "Personal info" [level=2] [ref=e549]
+          - generic [ref=e550]:
+            - generic [ref=e551]:
+              - img [ref=e552]
+              - text: Full name
+            - textbox [ref=e555]: Marcello
+          - generic [ref=e556]:
+            - generic [ref=e557]:
+              - img [ref=e558]
+              - text: Phone
+            - textbox [ref=e560]
+          - generic [ref=e561]:
+            - generic [ref=e562]:
+              - img [ref=e563]
+              - text: Email
+            - textbox [disabled] [ref=e566]: marcellodipierro@outlook.com
+            - paragraph [ref=e567]: To change your email, contact support.
+          - button "Save" [ref=e569]
+        - generic [ref=e570]:
+          - heading "Security" [level=2] [ref=e571]
+          - generic [ref=e572]:
+            - generic [ref=e573]:
+              - img [ref=e574]
+              - text: New password
+            - textbox [ref=e577]
+            - paragraph [ref=e578]: At least 8 characters.
+          - generic [ref=e579]:
+            - generic [ref=e580]:
+              - img [ref=e581]
+              - text: Confirm new password
+            - textbox [ref=e584]
+          - button "Change password" [disabled] [ref=e586]
+        - generic [ref=e587]:
+          - heading "Language" [level=2] [ref=e588]:
+            - img [ref=e589]
+            - text: Language
+          - generic [ref=e592]:
+            - button "Italiano" [ref=e593]
+            - button "English" [ref=e594]
+        - button "Sign out" [ref=e595]:
+          - img [ref=e596]
+          - text: Sign out
+        - generic [ref=e600]:
+          - img [ref=e601]
+          - generic [ref=e603]:
+            - heading "Delete account" [level=3] [ref=e604]
+            - paragraph [ref=e605]: This action is irreversible. All your data will be permanently removed — bookings, messages, payments, profile.
+            - button "Delete account" [ref=e606]:
+              - img [ref=e607]
+              - text: Delete account
+  - alert [ref=e65]

@@ -1,0 +1,62 @@
+# =====================================================================
+# .vercelignore — files Vercel should NEVER deploy to holisticunity.app.
+#
+# Ranges from "would expose secrets" (P0) to "just clutter".
+# When in doubt: prefer ignoring. Anything truly public must live under
+# explicit subdirs (/blog/, /images/, root-level *.html, shared.css, etc.).
+# =====================================================================
+
+# Internal documentation — describes our infrastructure, would help a
+# scraper map our stack and find more attack surface.
+CLAUDE.md
+AGENTS.md
+README.md
+docs/
+
+# Editorial drafts — pre-publication markdown. Indexable by Google if
+# served, would compete with the real published articles for SEO.
+blog/_drafts/
+blog/_*.py
+
+# Generator scripts — historically have been the source of P0 leaks
+# (FAL_KEY hardcoded fallbacks). They have ZERO reason to be public,
+# regardless of whether they currently contain secrets.
+images/blog/_*.py
+images/blog/_*.sh
+scripts/*.py
+
+# Preview / staging mirrors — these are local-only iteration spaces.
+# Originally this excluded the whole `preview-redesign/` and
+# `preview-live-style/` directories. That broke the production homepage
+# in 2026-05-08: index.html references images from those folders
+# (e.g. `preview-redesign/images/hero-v4-session.jpg`, hu-theta.jpg, …)
+# and a CLI deploy honoured the wholesale ignore, leaving 18 broken
+# <img> tags on the live homepage.
+#
+# The original intent was "no staging HTML pages or generator scripts
+# on the public domain", not "no images". So we now exclude only the
+# things that genuinely need to be hidden — HTML pages and generator
+# scripts (the P0 leak source) — and let image assets ride along.
+# Subdirectory excludes use `**/*.py` so scripts at any depth (e.g.
+# `preview-redesign/images/_gen_hero_hu.py`) stay out.
+preview-redesign/*.html
+preview-redesign/**/*.py
+preview-redesign/**/*.sh
+preview-live-style/*.html
+preview-live-style/**/*.py
+preview-live-style/**/*.sh
+
+# Dated backups left in the repo from manual edits.
+*.backup-*
+*.bak
+*.orig
+
+# OS / editor cruft.
+.DS_Store
+.playwright-cli/
+output/
+.claude/
+
+# Misterious one-off file (unverified content fingerprint?). Excluded
+# by default; if it turns out to be needed, it can be re-added explicitly.
+1e88c1c8a5c297b7219332e0ab88e974236f0d2cb9974f1f48646d072ff3aeb4.txt

@@ -1,0 +1,27 @@
+# Supabase Edge Functions configuration
+# These functions handle JWT verification internally via supabaseAdmin.auth.getUser(),
+# so gateway-level JWT verification is disabled to avoid "Invalid JWT" / "missing sub claim" errors.
+
+[functions.create-payment-intent]
+verify_jwt = false
+
+[functions.create-connect-account]
+verify_jwt = false
+
+[functions.connect-dashboard]
+verify_jwt = false
+
+[functions.connect-redirect]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.request-refund]
+verify_jwt = false
+
+[functions.stream-token]
+verify_jwt = false
+
+[functions.livekit-token]
+verify_jwt = false

@@ -1,0 +1,246 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [active] [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - heading "Messages" [level=1] [ref=e145]
+          - paragraph [ref=e146]: Chat with your clients
+        - generic [ref=e148]:
+          - generic [ref=e150]:
+            - generic [ref=e153]:
+              - img [ref=e155]
+              - textbox "Search" [ref=e157]
+              - button [disabled] [ref=e158]:
+                - img [ref=e159]
+            - listbox "Channel list" [ref=e162]:
+              - generic [ref=e163]:
+                - generic [ref=e164]:
+                  - button "Pin" [ref=e165] [cursor=pointer]:
+                    - img [ref=e166]
+                  - button "Archive" [ref=e168] [cursor=pointer]:
+                    - img [ref=e169]
+                - 'option "Select Channel: Marcello Di Pierro" [selected] [ref=e171] [cursor=pointer]':
+                  - button "M" [ref=e173]:
+                    - img "M" [ref=e174]
+                  - generic [ref=e175]:
+                    - generic [ref=e177]: Marcello Di Pierro
+                    - generic [ref=e178]: 🏙 Attachment...
+              - generic [ref=e179]:
+                - generic [ref=e180]:
+                  - button "Pin" [ref=e181] [cursor=pointer]:
+                    - img [ref=e182]
+                  - button "Archive" [ref=e184] [cursor=pointer]:
+                    - img [ref=e185]
+                - 'option "Select Channel: Holistic Unity" [ref=e187] [cursor=pointer]':
+                  - button "H" [ref=e189]:
+                    - generic [ref=e190]: H
+                  - generic [ref=e191]:
+                    - generic [ref=e193]: Holistic Unity
+                    - generic [ref=e194]: Nothing yet...
+              - button "Load More Channels" [ref=e196] [cursor=pointer]: Load more
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - button "M" [ref=e202]:
+                - img "M" [ref=e203]
+              - generic [ref=e204]:
+                - paragraph [ref=e205]: Marcello Di Pierro
+                - paragraph [ref=e206]: 2 members, 1 online
+            - list [ref=e210]:
+              - listitem [ref=e211]:
+                - generic [ref=e212]:
+                  - separator [ref=e213]
+                  - generic [ref=e214]: 03/23/2026
+              - listitem [ref=e215]:
+                - generic [ref=e216]:
+                  - button "M" [ref=e217]:
+                    - img "M" [ref=e218]
+                  - paragraph [ref=e224]: Hi
+                  - generic [ref=e225]:
+                    - generic [ref=e226]: Marcello Di Pierro
+                    - time [ref=e227]: 03/23/2026
+              - listitem [ref=e228]:
+                - generic [ref=e229]:
+                  - button "M" [ref=e230]:
+                    - img "M" [ref=e231]
+                  - generic [ref=e235]:
+                    - img [ref=e236]
+                    - link "Attachment" [ref=e237] [cursor=pointer]:
+                      - /url: https://ohio.stream-io-cdn.com/1558357/images/adfe7ca9-fde6-4fca-92d9-3b4fa4a55046.messaging--members-MflIepwKyLPrnSQYvnv5FEabk.jpg?Key-Pair-Id=APKAIHG36VEWPDULE23Q&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9vaGlvLnN0cmVhbS1pby1jZG4uY29tLzE1NTgzNTcvaW1hZ2VzL2FkZmU3Y2E5LWZkZTYtNGZjYS05MmQ5LTNiNGZhNGE1NTA0Ni5tZXNzYWdpbmctLW1lbWJlcnMtTWZsSWVwd0t5TFByblNRWXZudjVGRWFiay5qcGc%7EKm9oPTQwMzIqb3c9MzAyNCoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NzgyNjcwNDZ9fX1dfQ__&Signature=L0FN5ig8Om66OSkzng6S28vHP92cNEHLVbmi0j8%7EkCabjQKC-IYjbkoswCilJyJHFAPkVGW2dCfodOQOFP6hbW-QAK2oTxoSiQije3NLnKLucnzo4lH1L6RrVlfXOK1EsHyYpwQf3Ll3CjOlf0atPlf-4xOZJVcPoDoaQ-cjfbDsal4fB9MsiZJGYetF-na%7EAuJabZCjXOitZHk%7Epfp0lLpL59TSnZyZOUoVmfaFRv-x3Q%7E79LQqR1oGP6iLaJ1U5PTbgfsFkT8E8Vkk-AUH22KHlVBwe4Lpr9i-QpCy5lvKxclr5cCXfymALFviEecBynqSEI5WBNQiAo0UNG0WNw__&oh=4032&ow=3024&h=790&w=592
+                      - img [ref=e238]
+                  - generic [ref=e240]:
+                    - generic [ref=e241]: Marcello Di Pierro
+                    - time [ref=e242]: 03/23/2026
+              - listitem [ref=e243]:
+                - paragraph [ref=e250]: Perfetto
+              - listitem [ref=e251]:
+                - paragraph [ref=e258]: Nené
+              - listitem [ref=e259]:
+                - paragraph [ref=e266]: Ciao
+              - listitem [ref=e267]:
+                - generic [ref=e268]:
+                  - paragraph [ref=e274]: Hello
+                  - time [ref=e276]: 03/23/2026
+              - listitem [ref=e277]:
+                - paragraph [ref=e284]: Hello
+              - listitem [ref=e285]:
+                - paragraph [ref=e292]: Hello
+              - listitem [ref=e293]:
+                - generic [ref=e294]:
+                  - button "M" [ref=e295]:
+                    - img "M" [ref=e296]
+                  - paragraph [ref=e302]: Yyyy
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: Marcello Di Pierro
+                    - time [ref=e305]: 03/23/2026
+              - listitem [ref=e306]:
+                - generic [ref=e307]:
+                  - separator [ref=e308]
+                  - generic [ref=e309]: 03/24/2026
+              - listitem [ref=e310]:
+                - paragraph [ref=e317]: Hello
+              - listitem [ref=e318]:
+                - generic [ref=e319]:
+                  - paragraph [ref=e325]: Helloooo
+                  - time [ref=e327]: 03/24/2026
+              - listitem [ref=e328]:
+                - generic [ref=e329]:
+                  - button "M" [ref=e330]:
+                    - img "M" [ref=e331]
+                  - paragraph [ref=e337]: Hello
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Marcello Di Pierro
+                    - time [ref=e340]: 03/24/2026
+              - listitem [ref=e341]:
+                - paragraph [ref=e348]: Hello
+              - listitem [ref=e349]:
+                - generic [ref=e350]:
+                  - paragraph [ref=e356]: Hello
+                  - time [ref=e358]: 03/24/2026
+              - listitem [ref=e359]:
+                - paragraph [ref=e366]: Tt
+              - listitem [ref=e367]:
+                - generic [ref=e368]:
+                  - button "M" [ref=e369]:
+                    - img "M" [ref=e370]
+                  - generic [ref=e375]: Q
+                  - generic [ref=e376]:
+                    - generic [ref=e377]: Marcello Di Pierro
+                    - time [ref=e378]: 03/24/2026
+              - listitem [ref=e379]:
+                - generic [ref=e380]:
+                  - separator [ref=e381]
+                  - generic [ref=e382]: 03/26/2026
+              - listitem [ref=e383]:
+                - generic [ref=e384]:
+                  - paragraph [ref=e390]: Ciao
+                  - time [ref=e392]: 03/26/2026
+              - listitem [ref=e393]:
+                - generic [ref=e394]:
+                  - separator [ref=e395]
+                  - generic [ref=e396]: 03/31/2026
+              - listitem [ref=e397]:
+                - generic [ref=e398]:
+                  - paragraph [ref=e404]: Helloo
+                  - time [ref=e406]: 03/31/2026
+              - listitem [ref=e407]:
+                - generic [ref=e408]:
+                  - separator [ref=e409]
+                  - generic [ref=e410]: 04/06/2026
+              - listitem [ref=e411]:
+                - generic [ref=e412]:
+                  - paragraph [ref=e418]: Ciao!
+                  - time [ref=e420]: 04/06/2026
+              - listitem [ref=e421]:
+                - generic [ref=e422]:
+                  - separator [ref=e423]
+                  - generic [ref=e424]: 04/15/2026
+              - listitem [ref=e425]:
+                - generic [ref=e426]:
+                  - paragraph [ref=e432]: Hello
+                  - time [ref=e434]: 04/15/2026
+              - listitem [ref=e435]:
+                - generic [ref=e436]:
+                  - separator [ref=e437]
+                  - generic [ref=e438]: 04/16/2026
+              - listitem [ref=e439]:
+                - generic [ref=e440]:
+                  - button "M" [ref=e441]:
+                    - img "M" [ref=e442]
+                  - generic [ref=e446]:
+                    - img "IOS ICON Final.png" [ref=e447]
+                    - link "Attachment" [ref=e448] [cursor=pointer]:
+                      - /url: https://ohio.stream-io-cdn.com/1558357/images/4dc28692-a324-494f-a4de-f2389f574820.IOS-ICON-Final.png?Key-Pair-Id=APKAIHG36VEWPDULE23Q&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9vaGlvLnN0cmVhbS1pby1jZG4uY29tLzE1NTgzNTcvaW1hZ2VzLzRkYzI4NjkyLWEzMjQtNDk0Zi1hNGRlLWYyMzg5ZjU3NDgyMC5JT1MtSUNPTi1GaW5hbC5wbmc%7EKm9oPTIwMDAqb3c9MjAwMCoiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3Nzc1MzkwNjV9fX1dfQ__&Signature=aGwuXGPykdVo8MhbQLN%7EeeDdCg8mOylRANZo8TpUJ9t7GdLIDRAJKbD74gdVFRHrCtinkX-nprXODXrZ0BfGXQqGjAQWStH5ZhuRnX9mPKDWOBEmXfp8WjgijyUQF9nGKi3pdN3%7EgXth1uBJywt14CF%7EI-e8QPOPInq2ZGxEYoNLmGEQCRpBBxIpbKvsekvmqUbBANTTupYrywaw2ehX%7E3ErtWqvmU0Id4QNUdHl-FQH1SAkO8qeNd30Vj4qpqRUqzdykhfoydTKAgcYA3CpmQIvPbFZJOnuLbrlwWIsOFU3p9eYNbKWceheuVIgYGWauPc3fwrykHhnB5D4N5vdUw__&oh=2000&ow=2000&h=592&w=592
+                      - img [ref=e449]
+                  - generic [ref=e451]:
+                    - generic [ref=e452]: Marcello Di Pierro
+                    - time [ref=e453]: 04/16/2026
+              - listitem [ref=e454]:
+                - generic [ref=e455]:
+                  - separator [ref=e456]
+                  - generic [ref=e457]: Last Sunday at 7:36 PM
+              - listitem [ref=e458]:
+                - generic [ref=e459]:
+                  - generic [ref=e464]:
+                    - img [ref=e465]
+                    - generic [ref=e471]:
+                      - generic [ref=e472]:
+                        - generic [ref=e473]: LNKD_INVOICE_781216608863.pdf
+                        - link "Attachment" [ref=e474] [cursor=pointer]:
+                          - /url: https://ohio.stream-io-cdn.com/1558357/attachments/31ab5d19-673e-4904-8b39-b95ac40c0922.messaging--members-MflIepwKyLPrnSQYvnv5.pdf?Key-Pair-Id=APKAIHG36VEWPDULE23Q&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9vaGlvLnN0cmVhbS1pby1jZG4uY29tLzE1NTgzNTcvYXR0YWNobWVudHMvMzFhYjVkMTktNjczZS00OTA0LThiMzktYjk1YWM0MGMwOTIyLm1lc3NhZ2luZy0tbWVtYmVycy1NZmxJZXB3S3lMUHJuU1FZdm52NS5wZGYqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzc3ODI5ODA5fX19XX0_&Signature=nXIDHjkwLj2oHlDPQgBPUb6mZvj6-ChJp5bk7c6CQhJFLm-6-qa3UxtpNoMC~6guDBA354o8oXhFDjBdoTdziUp~9zXBcCaQZ2WtSPCcXAXQNQUXNqkUoafSpZjCYduMcd5bX56cWA1VxEjY4XGKu2djoO6ZLT1014iC3qVt2qEs2KfDZJ8pJsKJaxFRpJ26gBwXboscCivHMOpJqnTbt8Fv-OnBoC6HjeNsxS-r-K5-u54Vh63slCyeSQEKZ2yDU41TtcLL8dUiC6DeF~c4dzFra9rYu~zNLkha-GpfwjzW1XkdcvYcWs8~QWNMv-TJ5BjGHRSIlMXBO3mlaFRnZw__
+                          - img [ref=e475]
+                      - generic [ref=e477]: 105 kB
+                  - generic [ref=e478]:
+                    - button "M" [ref=e480]:
+                      - img "M" [ref=e481]
+                    - time [ref=e482]: Last Sunday at 7:36 PM
+            - generic [ref=e484]:
+              - img "Attach files" [ref=e487] [cursor=pointer]
+              - textbox "Type your message" [ref=e493]
+              - button "Send" [disabled] [ref=e494] [cursor=pointer]:
+                - img "Send" [ref=e495]
+  - alert [ref=e65]

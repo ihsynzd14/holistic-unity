@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - img "Holistic Unity" [ref=e6]
+      - heading "Conferma Termini di Servizio" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Abbiamo aggiornato i nostri Termini di Servizio. Ti chiediamo di rileggerli e confermare.
+    - generic [ref=e9]:
+      - link "Leggi i Termini completi (apre in nuova scheda) versione client-v1.0-20260425" [ref=e10] [cursor=pointer]:
+        - /url: https://holisticunity.app/terms-clients.html
+        - generic [ref=e11]:
+          - img [ref=e12]
+          - generic [ref=e15]: Leggi i Termini completi (apre in nuova scheda)
+        - generic [ref=e16]: versione client-v1.0-20260425
+      - generic [ref=e17]:
+        - generic [ref=e18] [cursor=pointer]:
+          - checkbox "Ho letto e accetto l’Informativa Privacy (GDPR)." [ref=e19]
+          - generic [ref=e20]:
+            - text: Ho letto e accetto l’
+            - link "Informativa Privacy (GDPR)" [ref=e21]:
+              - /url: https://holisticunity.app/privacy-policy.html
+            - text: .
+        - generic [ref=e22] [cursor=pointer]:
+          - checkbox "Ho letto e accetto i Termini e Condizioni per i Clienti nella loro interezza." [ref=e23]
+          - generic [ref=e24]:
+            - text: Ho letto e accetto i
+            - link "Termini e Condizioni per i Clienti" [ref=e25]:
+              - /url: https://holisticunity.app/terms-clients.html
+            - text: nella loro interezza.
+        - generic [ref=e26] [cursor=pointer]:
+          - checkbox "Approvazione specifica ai sensi degli artt. 1341 e 1342 c.c. delle clausole onerose elencate nella Sezione 18 dei Termini. Confermo di aver letto ciascuna clausola e di averla compresa." [ref=e27]
+          - generic [ref=e28]:
+            - strong [ref=e29]: Approvazione specifica
+            - text: ai sensi degli artt. 1341 e 1342 c.c. delle clausole onerose elencate nella
+            - link "Sezione 18 dei Termini" [ref=e30]:
+              - /url: https://holisticunity.app/terms-clients.html#section-18
+            - text: . Confermo di aver letto ciascuna clausola e di averla compresa.
+        - generic [ref=e31] [cursor=pointer]:
+          - checkbox "Acconsento esplicitamente al trattamento dei dati relativi alla salute necessari per l’erogazione dei servizi olistici e la gestione delle prenotazioni." [ref=e32]
+          - generic [ref=e33]: Acconsento esplicitamente al trattamento dei dati relativi alla salute necessari per l’erogazione dei servizi olistici e la gestione delle prenotazioni.
+      - button "Conferma e accedi" [disabled] [ref=e34]:
+        - generic [ref=e35]:
+          - img [ref=e36]
+          - text: Conferma e accedi
+      - paragraph [ref=e39]: Questa accettazione viene registrata in modo permanente con data, IP e versione del documento per finalità di audit legale.
+  - alert [ref=e40]

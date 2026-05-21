@@ -1,0 +1,116 @@
+[    1860ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ https://app.holisticunity.app/dashboard/account:0
+[24315544ms] [ERROR] Failed to load resource: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_PACKET_WRITE_ERROR @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24315638ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25285
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25362
+    at new Promise (<anonymous>)
+    at rN._refreshAccessToken (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25216)
+    at rN._callRefreshToken (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:27965)
+    at rN.__loadSession (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:14186) @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24315902ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24315903ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24316313ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24316313ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24317125ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24317125ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24318741ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24318742ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24321953ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24321953ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24328363ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24328363ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24341172ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24341172ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24344535ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24344535ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25285
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25362
+    at new Promise (<anonymous>)
+    at rN._refreshAccessToken (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25216)
+    at rN._callRefreshToken (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:27965)
+    at rN.__loadSession (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:14186) @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24344749ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24344749ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24345162ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24345162ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24345975ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24345975ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24347585ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24347585ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24350794ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24350794ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24
+[24357203ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://bqyqkvkzkemiwyqjkbna.supabase.co/auth/v1/token?grant_type=refresh_token:0
+[24357205ms] [ERROR] TypeError: Failed to fetch
+    at https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:35228
+    at t4 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:40168)
+    at t3 (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:25:39696)
+    at r (https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25022)
+    at async https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:38:25279 @ https://app.holisticunity.app/_next/static/chunks/0dk0.i94nu~70.js?dpl=dpl_7KnSFVaEHyQqMDVgxxbeeErgbi58:24

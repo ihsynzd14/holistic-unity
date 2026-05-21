@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gem list:*)",
+      "Bash(sudo gem:*)",
+      "Bash(python3)",
+      "Bash(vercel env:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

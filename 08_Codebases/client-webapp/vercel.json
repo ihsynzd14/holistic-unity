@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/auto-cancel-reschedule",
+      "schedule": "15 * * * *"
+    },
+    {
+      "path": "/api/cron/cleanup-pending-payment",
+      "schedule": "30 * * * *"
+    }
+  ]
+}

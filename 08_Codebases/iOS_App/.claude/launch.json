@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Admin Dashboard (Next.js)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/marcello/Desktop/Holistic Unity/admin-dashboard"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}

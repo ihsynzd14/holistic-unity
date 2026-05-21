@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="2048" height="2048" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9B0064"/>
+      <stop offset="100%" stop-color="#6B0047"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Square, sharp 90deg corners -->
+  <rect x="0" y="0" width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- Lotus origin centered horizontally at x=512, vertically ~555. -->
+  <g fill="#FFFFFF" transform="translate(512 555)">
+
+    <!-- Outer-left petal -->
+    <g transform="rotate(-40)">
+      <path d="M 0 -290
+               C 90 -190, 96 -30, 0 70
+               C -96 -30, -90 -190, 0 -290 Z"/>
+    </g>
+
+    <!-- Outer-right petal -->
+    <g transform="rotate(40)">
+      <path d="M 0 -290
+               C 90 -190, 96 -30, 0 70
+               C -96 -30, -90 -190, 0 -290 Z"/>
+    </g>
+
+    <!-- Inner-left petal -->
+    <g transform="rotate(-20)">
+      <path d="M 0 -350
+               C 102 -240, 106 -40, 0 70
+               C -106 -40, -102 -240, 0 -350 Z"/>
+    </g>
+
+    <!-- Inner-right petal -->
+    <g transform="rotate(20)">
+      <path d="M 0 -350
+               C 102 -240, 106 -40, 0 70
+               C -106 -40, -102 -240, 0 -350 Z"/>
+    </g>
+
+    <!-- Center petal -->
+    <path d="M 0 -390
+             C 110 -270, 115 -50, 0 70
+             C -115 -50, -110 -270, 0 -390 Z"/>
+
+    <!-- Base bowl: horizontal leaf/crescent with pointed tips,
+         top edge gently concave (lifts at center),
+         bottom edge deeply convex (cup shape).
+         Positioned so its top-middle overlaps the petal bases at y~70. -->
+    <path d="M -420 85
+             C -340 55, -180 45, 0 45
+             C 180 45, 340 55, 420 85
+             C 380 200, 250 235, 100 240
+             C 30 243, -30 243, -100 240
+             C -250 235, -380 200, -420 85 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,57 @@
+- generic [ref=e1]:
+  - alert [ref=e31]
+  - generic [ref=e32]:
+    - complementary [ref=e33]:
+      - generic [ref=e34]:
+        - img "Holistic Unity" [ref=e35]
+        - generic [ref=e36]:
+          - heading "Holistic Unity" [level=2] [ref=e37]
+          - paragraph [ref=e38]: Find your wellbeing
+      - navigation [ref=e40]:
+        - link "Home" [ref=e41] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e42]
+          - text: Home
+        - link "Explore practices" [ref=e47] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e48]
+          - text: Explore practices
+        - link "Find therapist" [active] [ref=e51] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e52]
+          - text: Find therapist
+        - link "Bookings" [ref=e55] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e56]
+          - text: Bookings
+        - link "Messages" [ref=e58] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e59]
+          - text: Messages
+        - link "Video Sessions" [ref=e61] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e62]
+          - text: Video Sessions
+        - link "Notifications" [ref=e65] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e66]
+          - text: Notifications
+        - link "Account" [ref=e69] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e70]
+          - text: Account
+      - generic [ref=e75]:
+        - generic [ref=e76]: Marcello
+        - generic [ref=e77]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e78]:
+          - img [ref=e79]
+          - text: Sign out
+    - main [ref=e82]:
+      - generic [ref=e146]:
+        - generic [ref=e147]:
+          - heading "Find a therapist" [level=1] [ref=e148]
+          - paragraph [ref=e149]: 0 professionals available
+        - generic [ref=e151]:
+          - img
+          - searchbox "Search by name, specialty, city..." [ref=e152]
+        - paragraph [ref=e154]: No therapists found. Try changing your filters.

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Holistic Unity — Illustration Pilots Finali</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F3EDE0;
+      --cream-pure: #FFFCF4;
+      --ink: #1E1519;
+      --ink-mid: #4A3A44;
+      --ink-soft: #786573;
+      --magenta: #9B0064;
+      --ok: #2E7D5B;
+      --warn: #C58A2E;
+      --err: #B34242;
+      --rule: rgba(30, 21, 25, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      padding: 48px 32px 80px;
+      line-height: 1.45;
+    }
+    .container { max-width: 1320px; margin: 0 auto; }
+    header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 3px solid var(--ink); }
+    header h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    header p { color: var(--ink-mid); font-size: 16px; max-width: 720px; }
+    header a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; text-transform: uppercase; color: var(--magenta); text-decoration: underline; margin-top: 12px; display: inline-block; }
+
+    .hero-banner {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-banner h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .hero-banner h2 em { color: #F5B5D3; font-style: normal; }
+    .hero-banner .mono { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #c9bbc4; letter-spacing: 0.05em; }
+
+    .pass {
+      margin: 40px 0 20px;
+      padding: 12px 18px;
+      background: var(--cream-pure);
+      border: 1.5px solid var(--ink);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; justify-content: space-between;
+    }
+    .pass.archive {
+      background: transparent;
+      border: 1px dashed var(--ink-soft);
+      color: var(--ink-soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+    .card {
+      background: var(--cream-pure);
+      border: 1.5px solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .card.approved { border-color: var(--ok); border-width: 2.5px; }
+    .card-img {
+      aspect-ratio: 1;
+      background: #fafaf5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-img img { width: 100%; height: 100%; object-fit: contain; }
+    .card-body { padding: 22px; }
+    .card-body h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .card-body .subj {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+    .score {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+    .score.ok { background: var(--ok); color: white; }
+    .score.warn { background: rgba(197, 138, 46, 0.14); color: var(--warn); }
+    .score.err { background: rgba(179, 66, 66, 0.14); color: var(--err); }
+    .card-body ul { list-style: none; margin-top: 4px; }
+    .card-body li {
+      font-size: 13px; padding: 3px 0;
+      display: grid; grid-template-columns: 16px 1fr; gap: 8px;
+      color: var(--ink-mid);
+      line-height: 1.35;
+    }
+    .card-body li.good::before { content: '✓'; color: var(--ok); font-weight: 700; }
+    .card-body li.warn::before { content: '!'; color: var(--warn); font-weight: 700; }
+    .verdict {
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--ink);
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .arch-thumb {
+      aspect-ratio: 1;
+      background: #fafaf5;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      position: relative;
+    }
+    .arch-thumb img { width: 100%; height: 100%; object-fit: contain; opacity: 0.6; }
+    .arch-thumb .lbl {
+      position: absolute; bottom: 4px; left: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      background: rgba(30, 21, 25, 0.8);
+      color: var(--cream);
+      padding: 2px 5px;
+      border-radius: 2px;
+    }
+
+    .cta {
+      margin-top: 40px;
+      padding: 28px 32px;
+      background: var(--magenta);
+      color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .cta p { font-size: 14px; opacity: 0.92; margin-top: 4px; max-width: 480px; }
+    .cta .opts {
+      font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+      display: flex; flex-direction: column; gap: 6px;
+      text-align: right;
+    }
+
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+      .archive-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Illustration style — 3 pilot finali</h1>
+      <p>Dopo 3 iterazioni, ho i 3 pilot che rispettano palette + stile + concetto. Sotto lo stile di riferimento per il batch da 18.</p>
+      <a href="index.html">← Torna homepage</a>
+    </header>
+
+    <div class="hero-banner">
+      <h2>I 3 finali: <em>Reiki · Costellazioni · Manifesto</em></h2>
+      <span class="mono">Silkscreen / risograph · 3 colors only · cream+plum+magenta</span>
+    </div>
+
+    <!-- APPROVED FINALS -->
+    <div class="grid">
+      <div class="card approved">
+        <div class="card-img"><img src="images/ill-pilot-reiki-v3.jpg" alt="Reiki candela finale"></div>
+        <div class="card-body">
+          <span class="score ok">APPROVATO · 8/10</span>
+          <h2>Reiki · candela</h2>
+          <div class="subj">Candela accesa, fiamma magenta, piatto ottone</div>
+          <ul>
+            <li class="good">Cream background dominante ✓</li>
+            <li class="good">Fiamma + gocciolata magenta = accento brand</li>
+            <li class="good">Stile silkscreen consistente col timbro</li>
+            <li class="good">Oggetto autentico della pratica Reiki</li>
+          </ul>
+          <div class="verdict">Rituale di cura, zero misticismo forzato</div>
+        </div>
+      </div>
+
+      <div class="card approved">
+        <div class="card-img"><img src="images/ill-pilot-matrioska.jpg" alt="Costellazioni matrioska"></div>
+        <div class="card-body">
+          <span class="score ok">APPROVATO · 7/10</span>
+          <h2>Costellazioni · matrioska</h2>
+          <div class="subj">5 bambole, la più piccola in magenta</div>
+          <ul>
+            <li class="good">Sistema nidificato = metafora perfetta</li>
+            <li class="good">La piccola magenta = te al centro del sistema</li>
+            <li class="good">Zero cliché albero genealogico</li>
+            <li class="warn">Pattern decorativo ricco (inevitabile per l'oggetto)</li>
+          </ul>
+          <div class="verdict">"Cosa porti dentro del tuo sistema"</div>
+        </div>
+      </div>
+
+      <div class="card approved">
+        <div class="card-img"><img src="images/ill-pilot-timbro-v2.jpg" alt="Timbro ceralacca"></div>
+        <div class="card-body">
+          <span class="score ok">APPROVATO · 9/10</span>
+          <h2>Manifesto · timbro</h2>
+          <div class="subj">Lettera H su ceralacca magenta</div>
+          <ul>
+            <li class="good">Letter H invece di mandala</li>
+            <li class="good">Stile silkscreen pulitissimo</li>
+            <li class="good">Metafora "credenziali verificate" chiara</li>
+            <li class="good">Miglior score dei tre</li>
+          </ul>
+          <div class="verdict">Lo stile di riferimento. Tutte le altre dovranno matchare questo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHIVIO -->
+    <div class="pass archive">
+      <span>Archivio — tentativi scartati lungo la strada</span>
+      <span>6 iterazioni prima di arrivare ai finali</span>
+    </div>
+    <div class="archive-grid">
+      <div class="arch-thumb">
+        <img src="images/ill-pilot-reiki.jpg" alt="">
+        <span class="lbl">Reiki V1 — lampada</span>
+      </div>
+      <div class="arch-thumb">
+        <img src="images/ill-pilot-reiki-v2.jpg" alt="">
+        <span class="lbl">Reiki V2 — candela BG rotto</span>
+      </div>
+      <div class="arch-thumb">
+        <img src="images/ill-pilot-costellazioni.jpg" alt="">
+        <span class="lbl">Costell. V1 — tavolo</span>
+      </div>
+      <div class="arch-thumb">
+        <img src="images/ill-pilot-costellazioni-v2.jpg" alt="">
+        <span class="lbl">Costell. V2 — peggio</span>
+      </div>
+      <div class="arch-thumb">
+        <img src="images/ill-pilot-timbro.jpg" alt="">
+        <span class="lbl">Timbro V1 — mandala</span>
+      </div>
+      <div class="arch-thumb" style="opacity:0.3; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ink-soft);">
+        6°<br>tentativo<br>saltato
+      </div>
+    </div>
+
+    <!-- NEXT STEP -->
+    <div class="cta">
+      <div>
+        <h3>Prossimo passo: batch completo</h3>
+        <p>Con lo stile bloccato, genero le rimanenti 15 illustrazioni seguendo la stessa ricetta. Tempo: ~8-10 minuti. Costo FAL: ~€0.60.</p>
+      </div>
+      <div class="opts">
+        <span>Le 15 rimanenti:</span>
+        <span>7 discipline · 2 manifesto · 3 how-it-works · 3 pricing</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Terms & Conditions for Clients" data-it="Termini e Condizioni per i Clienti" data-pt="Termos e Condições para Clientes">Terms & Conditions for Clients</title>
+    <meta name="description" content="Terms and conditions for clients booking sessions on Holistic Unity. Bookings, cancellations, refunds, and platform usage rules.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://holisticunity.app/terms-clients.html">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --berry: #7B2252;
+            --gold: #C9A96E;
+            --cream: #FDF6F0;
+            --charcoal: #2D2D2D;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: #FAFAFA;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--cream);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-back {
+            color: var(--berry);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: var(--gold);
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--berry);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .lang-btn.active {
+            background-color: var(--berry);
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background-color: white;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--berry);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-info {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .meta-info strong {
+            color: var(--charcoal);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--berry);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--berry);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .section strong {
+            color: var(--berry);
+        }
+
+        .highlight-box {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-company {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #BBB;
+        }
+
+        /* Language Toggle Display */
+        [data-lang="it"] { display: none; }
+        [data-lang="pt"] { display: none; }
+        body.lang-it [data-lang="en"] { display: none; }
+        body.lang-it [data-lang="it"] { display: inline; }
+        body.lang-pt [data-lang="en"] { display: none; }
+        body.lang-pt [data-lang="pt"] { display: inline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .footer-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  <!-- Meta Pixel: gated behind marketing consent in shared.js -->
+
+  <!-- Google Analytics 4 -->
+  <script async src="/analytics.js"></script>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="nav-back">← <span data-en="Back to Home" data-it="Torna alla Home" data-pt="Voltar ao Início">Back to Home</span></a>
+            <h1 class="nav-title">Holistic Unity</h1>
+        </div>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+            <button class="lang-btn" onclick="setLanguage('pt')">PT</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 data-en="Terms & Conditions for Clients" data-it="Termini e Condizioni per i Clienti" data-pt="Termos e Condições para Clientes">Terms & Conditions for Clients</h1>
+            <div class="meta-info">
+                <p>
+                    <strong data-en="Effective Date:" data-it="Data di Entrata in Vigore:" data-pt="Data de Vigência:">Effective Date:</strong>
+                    <span data-en="May 1, 2026" data-it="1 Maggio 2026" data-pt="1º de maio de 2026">May 1, 2026</span>
+                </p>
+                <p>
+                    <strong data-en="Last Updated:" data-it="Ultimo Aggiornamento:" data-pt="Última Atualização:">Last Updated:</strong>
+                    <span data-en="April 25, 2026" data-it="25 Aprile 2026" data-pt="25 de abril de 2026">April 25, 2026</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 1: Acceptance of Terms -->
+        <div class="section">
+            <h2><span class="section-number">1</span><span data-en="Acceptance of Terms" data-it="Accettazione dei Termini" data-pt="Aceitação dos Termos">Acceptance of Terms</span></h2>
+            <p data-en="By accessing and using the Holistic Unity platform ('Platform'), including the website and mobile application, you agree to be legally bound by these Terms & Conditions ('Terms'). If you do not agree to any part of these Terms, you must not use the Platform. These Terms constitute the entire agreement between you and STORM X DIGITAL S.R.L. (hereinafter 'the Company') regarding your use of the Platform." data-it="Accedendo e utilizzando la piattaforma Holistic Unity ('Piattaforma'), inclusi il sito web e l'applicazione mobile, accetti di essere vincolato legalmente da questi Termini e Condizioni ('Termini'). Se non accetti alcuna parte di questi Termini, non devi utilizzare la Piattaforma. Questi Termini costituiscono l'intero accordo tra te e STORM X DIGITAL S.R.L. (di seguito 'la Società') riguardante il tuo utilizzo della Piattaforma." data-pt="Ao acessar e usar a plataforma Holistic Unity ('Plataforma'), incluindo o site e o aplicativo móvel, você concorda em estar legalmente vinculado por estes Termos e Condições ('Termos'). Se você não concordar com qualquer parte destes Termos, não deve usar a Plataforma. Estes Termos constituem o acordo completo entre você e STORM X DIGITAL S.R.L. (doravante 'a Empresa') em relação ao seu uso da Plataforma.">By accessing and using the Holistic Unity platform ('Platform'), including the website and mobile application, you agree to be legally bound by these Terms & Conditions ('Terms'). If you do not agree to any part of these Terms, you must not use the Platform. These Terms constitute the entire agreement between you and STORM X DIGITAL S.R.L. (hereinafter 'the Company') regarding your use of the Platform.</p>
+            <p data-en="Your continued use of the Platform following any changes to these Terms constitutes your acceptance of such modifications. We recommend reviewing these Terms periodically to ensure you remain aware of any updates." data-it="L'uso continuato della Piattaforma in seguito a qualsiasi modifica di questi Termini costituisce l'accettazione di tali modifiche. Ti consigliamo di rivedere questi Termini periodicamente per assicurarti di essere a conoscenza di eventuali aggiornamenti." data-pt="Seu uso contínuo da Plataforma após quaisquer alterações nestes Termos constitui sua aceitação de tais modificações. Recomendamos que você revise estes Termos periodicamente para garantir que você esteja ciente de quaisquer atualizações.">Your continued use of the Platform following any changes to these Terms constitutes your acceptance of such modifications. We recommend reviewing these Terms periodically to ensure you remain aware of any updates.</p>
+        </div>
+
+        <!-- Section 2: About the Platform -->
+        <div class="section">
+            <h2><span class="section-number">2</span><span data-en="Platform Description & Role" data-it="Descrizione della Piattaforma e Ruolo" data-pt="Descrição e Função da Plataforma">Platform Description & Role</span></h2>
+            <p data-en="Holistic Unity is a digital marketplace platform that connects clients seeking holistic therapies with verified independent therapists. The Platform is operated by STORM X DIGITAL S.R.L., a company incorporated and registered under Italian law." data-it="Holistic Unity è una piattaforma di mercato digitale che connette clienti che cercano discipline olistiche con operatori indipendenti verificati. La Piattaforma è gestita da STORM X DIGITAL S.R.L., una società costituita e registrata secondo la legge italiana." data-pt="Holistic Unity é uma plataforma de mercado digital que conecta clientes que procuram terapias holísticas com terapeutas independentes verificados. A Plataforma é operada pela STORM X DIGITAL S.R.L., uma empresa constituída e registrada de acordo com a lei italiana.">Holistic Unity is a digital marketplace platform that connects clients seeking holistic therapies with verified independent therapists. The Platform is operated by STORM X DIGITAL S.R.L., a company incorporated and registered under Italian law.</p>
+
+            <h3 data-en="2.1 Intermediary Role" data-it="2.1 Ruolo di Intermediario" data-pt="2.1 Função de Intermediária">2.1 Intermediary Role</h3>
+            <p data-en="The Company acts exclusively as an intermediary and marketplace platform. The Company is NOT the service provider. Therapists are independent contractors who provide holistic therapy services directly to clients. All therapy services are provided by individual therapists, not by the Company. The therapies offered include: ThetaHealing, Family Constellation, Systemic Constellation, Reiki a Distanza, Naturopathy, Astrology, Human Design, Numerology, and Ayurveda." data-it="La Società agisce esclusivamente come intermediario e piattaforma di mercato. La Società NON è il fornitore di servizi. Gli operatori sono appaltatori indipendenti che forniscono servizi di disciplina olistica direttamente ai clienti. Tutti i servizi sono forniti da singoli operatori, non dalla Società. Le discipline offerte includono: ThetaHealing, Family Constellation, Systemic Constellation, Reiki a Distanza, Naturopathy, Astrology, Human Design, Numerology e Ayurveda." data-pt="A Empresa atua exclusivamente como intermediária e plataforma de mercado. A Empresa NÃO é a provedora de serviços. Os terapeutas são contratados independentes que prestam serviços de terapia holística diretamente aos clientes. Todos os serviços terapêuticos são prestados por terapeutas individuais, não pela Empresa. As terapias oferecidas incluem: ThetaHealing, Family Constellation, Systemic Constellation, Reiki a Distanza, Naturopatia, Astrologia, Human Design, Numerologia e Ayurveda.">The Company acts exclusively as an intermediary and marketplace platform. The Company is NOT the service provider. Therapists are independent contractors who provide holistic therapy services directly to clients. All therapy services are provided by individual therapists, not by the Company. The therapies offered include: ThetaHealing, Family Constellation, Systemic Constellation, Reiki a Distanza, Naturopathy, Astrology, Human Design, Numerology, and Ayurveda.</p>
+
+            <h3 data-en="2.2 Payment Processing" data-it="2.2 Elaborazione dei Pagamenti" data-pt="2.2 Processamento de Pagamentos">2.2 Payment Processing</h3>
+            <p data-en="The Company operates as a custodial intermediary under Italian law (mandato con rappresentanza). The Company collects payments from clients on behalf of therapists through the secure Stripe payment processing system. The Company retains a 20% commission from each session payment. Therapists are paid bi-weekly for completed sessions, net of the Company's commission." data-it="La Società opera come intermediario fiduciario secondo la legge italiana (mandato con rappresentanza). La Società raccoglie i pagamenti dai clienti per conto degli operatori attraverso il sistema di elaborazione dei pagamenti Stripe sicuro. La Società trattiene una commissione del 20% da ogni pagamento di sessione. Gli operatori vengono pagati settimanalmente per le sessioni completate, al netto della commissione della Società." data-pt="A Empresa opera como intermediária custodiante sob a lei italiana (mandato com representação). A Empresa coleta pagamentos de clientes em nome de terapeutas através do sistema de processamento de pagamentos Stripe seguro. A Empresa retém uma comissão de 20% de cada pagamento de sessão. Os terapeutas são pagos quinzenalmente pelas sessões concluídas, líquido da comissão da Empresa.">The Company operates as a custodial intermediary under Italian law (mandato con rappresentanza). The Company collects payments from clients on behalf of therapists through the secure Stripe payment processing system. The Company retains a 20% commission from each session payment. Therapists are paid bi-weekly for completed sessions, net of the Company's commission.</p>
+
+            <h3 data-en="2.3 Online Video Sessions" data-it="2.3 Sessioni Video Online" data-pt="2.3 Sessões de Vídeo Online">2.3 Online Video Sessions</h3>
+            <p data-en="All therapy sessions are conducted via HD video call through the built-in video technology integrated into the Platform. Sessions are held remotely, and the client is responsible for ensuring a suitable, private environment and stable internet connection." data-it="Tutte le sessioni si svolgono tramite videochiamata HD attraverso la tecnologia video integrata incorporata nella Piattaforma. Le sessioni si svolgono in remoto e il cliente è responsabile di garantire un ambiente adatto e privato e una connessione internet stabile." data-pt="Todas as sessões terapêuticas são conduzidas via videoconferência HD através da tecnologia de vídeo integrada incorporada na Plataforma. As sessões são realizadas remotamente, e o cliente é responsável por garantir um ambiente adequado, privado e uma conexão de internet estável.">All therapy sessions are conducted via HD video call through the built-in video technology integrated into the Platform. Sessions are held remotely, and the client is responsible for ensuring a suitable, private environment and stable internet connection.</p>
+        </div>
+
+        <!-- Section 3: Account Registration & Eligibility -->
+        <div class="section">
+            <h2><span class="section-number">3</span><span data-en="Account Registration & Eligibility" data-it="Registrazione dell'Account e Idoneità" data-pt="Registro de Conta e Elegibilidade">Account Registration & Eligibility</span></h2>
+
+            <h3 data-en="3.1 Age Requirement" data-it="3.1 Requisito di Età" data-pt="3.1 Requisito de Idade">3.1 Age Requirement</h3>
+            <p data-en="You must be at least 18 years of age to create an account and use the Platform. By registering, you represent and warrant that you are at least 18 years old and possess the legal capacity to enter into binding agreements. Minors may not use the Platform." data-it="Devi avere almeno 18 anni per creare un account e utilizzare la Piattaforma. Registrandoti, dichiari e garantisci che hai almeno 18 anni e possiedi la capacità legale di stipulare accordi vincolanti. I minori non possono utilizzare la Piattaforma." data-pt="Você deve ter pelo menos 18 anos de idade para criar uma conta e usar a Plataforma. Ao se registrar, você declara e garante que tem pelo menos 18 anos e possui capacidade legal para celebrar acordos vinculantes. Menores não podem usar a Plataforma.">You must be at least 18 years of age to create an account and use the Platform. By registering, you represent and warrant that you are at least 18 years old and possess the legal capacity to enter into binding agreements. Minors may not use the Platform.</p>
+
+            <h3 data-en="3.2 Registration Information" data-it="3.2 Informazioni di Registrazione" data-pt="3.2 Informações de Registro">3.2 Registration Information</h3>
+            <p data-en="When registering for an account, you agree to provide accurate, complete, and truthful information. You are responsible for maintaining the confidentiality of your account credentials (username, password, email) and for all activities that occur under your account. You must immediately notify the Company of any unauthorized access or misuse of your account." data-it="Quando ti registri per un account, accetti di fornire informazioni accurate, complete e veritiere. Sei responsabile del mantenimento della riservatezza delle tue credenziali dell'account (nome utente, password, email) e di tutte le attività che si verificano nel tuo account. Devi notificare immediatamente alla Società qualsiasi accesso non autorizzato o uso improprio del tuo account." data-pt="Ao se registrar para uma conta, você concorda em fornecer informações precisas, completas e verdadeiras. Você é responsável por manter a confidencialidade de suas credenciais de conta (nome de usuário, senha, email) e por todas as atividades que ocorrem em sua conta. Você deve notificar imediatamente a Empresa de qualquer acesso não autorizado ou uso indevido de sua conta.">When registering for an account, you agree to provide accurate, complete, and truthful information. You are responsible for maintaining the confidentiality of your account credentials (username, password, email) and for all activities that occur under your account. You must immediately notify the Company of any unauthorized access or misuse of your account.</p>
+
+            <h3 data-en="3.3 Account Termination Rights" data-it="3.3 Diritti di Terminazione dell'Account" data-pt="3.3 Direitos de Encerramento de Conta">3.3 Account Termination Rights</h3>
+            <p data-en="The Company may suspend or terminate your account for cause, namely: (a) material violation of these Terms; (b) fraudulent activity or chargeback abuse; (c) abusive, harassing, or threatening behaviour toward Operators or staff; (d) non-payment of confirmed bookings; (e) provision of false information at registration; (f) use of the Platform for illegal purposes. For minor violations the Company will give written notice and a 14-day cure period before termination. For serious violations (fraud, harassment) termination may be immediate. In case of termination without your fault, you are entitled to a pro-rata refund of any pre-paid sessions not yet used." data-it="La Società può sospendere o terminare il tuo account per giusta causa, ovvero: (a) violazione materiale di questi Termini; (b) attività fraudolenta o abuso di chargeback; (c) comportamento abusivo, molesto o minaccioso verso Operatori o personale; (d) mancato pagamento di prenotazioni confermate; (e) informazioni false fornite al momento della registrazione; (f) uso illecito della Piattaforma. Per violazioni minori la Società invierà preavviso scritto con periodo di rimedio di 14 giorni prima della terminazione. Per violazioni gravi (frode, molestie) la terminazione può essere immediata. In caso di terminazione senza tua colpa, hai diritto al rimborso pro-rata di sessioni pre-pagate non ancora fruite." data-pt="A Empresa se reserva o direito de suspender ou encerrar sua conta a qualquer momento, por qualquer motivo, e sem aviso prévio ou responsabilidade, incluindo, mas não se limitando a: violação destes Termos, comportamento perturbador, atividade fraudulenta, falta de pagamento ou outro comportamento que a Empresa considere inadequado a seu exclusivo critério.">The Company may suspend or terminate your account for cause, namely: (a) material violation of these Terms; (b) fraudulent activity or chargeback abuse; (c) abusive, harassing, or threatening behaviour toward Operators or staff; (d) non-payment of confirmed bookings; (e) provision of false information at registration; (f) use of the Platform for illegal purposes. For minor violations the Company will give written notice and a 14-day cure period before termination. For serious violations (fraud, harassment) termination may be immediate. In case of termination without your fault, you are entitled to a pro-rata refund of any pre-paid sessions not yet used.</p>
+        </div>
+
+        <!-- Section 4: Booking & Payments -->
+        <div class="section">
+            <h2><span class="section-number">4</span><span data-en="Booking & Payment Terms" data-it="Termini di Prenotazione e Pagamento" data-pt="Termos de Reserva e Pagamento">Booking & Payment Terms</span></h2>
+
+            <h3 data-en="4.1 Booking Process" data-it="4.1 Processo di Prenotazione" data-pt="4.1 Processo de Reserva">4.1 Booking Process</h3>
+            <p data-en="To book a therapy session, you must select a therapist, choose an available time slot, and complete the payment process. By confirming a booking, you enter into a binding agreement to pay the full session fee. The Platform will provide you with a session confirmation including the therapist's name, session date, time, cost, and link to access the video call." data-it="Per prenotare una sessione, devi selezionare un operatore, scegliere una fascia oraria disponibile e completare il processo di pagamento. Confermando una prenotazione, stipuli un accordo vincolante per pagare l'intero costo della sessione. La Piattaforma ti fornirà una conferma della sessione incluso il nome dell'operatore, la data della sessione, l'ora, il costo e il collegamento per accedere alla videochiamata." data-pt="Para reservar uma sessão terapêutica, você deve selecionar um terapeuta, escolher um horário disponível e completar o processo de pagamento. Ao confirmar uma reserva, você celebra um acordo vinculante para pagar a taxa completa da sessão. A Plataforma fornecerá uma confirmação de sessão incluindo o nome do terapeuta, data da sessão, horário, custo e link para acessar a videoconferência.">To book a therapy session, you must select a therapist, choose an available time slot, and complete the payment process. By confirming a booking, you enter into a binding agreement to pay the full session fee. The Platform will provide you with a session confirmation including the therapist's name, session date, time, cost, and link to access the video call.</p>
+
+            <h3 data-en="4.2 Full Payment Upfront" data-it="4.2 Pagamento Completo in Anticipo" data-pt="4.2 Pagamento Completo Adiantado">4.2 Full Payment Upfront</h3>
+            <p data-en="You must pay the FULL session fee at the time of booking. No partial payments, installments, or deferred payment options are available. Payment is processed through Stripe and is non-refundable except as explicitly stated in Section 5 (Refund Policy). By completing your booking, you authorize the Company to charge the full amount to your registered payment method." data-it="Devi pagare l'INTERO costo della sessione al momento della prenotazione. Nessuna opzione di pagamento parziale, rateale o differito è disponibile. Il pagamento viene elaborato tramite Stripe e non è rimborsabile se non come esplicitamente indicato nella Sezione 5 (Politica di Rimborso). Completando la prenotazione, autorizzi la Società ad addebitare l'intero importo al tuo metodo di pagamento registrato." data-pt="Você deve pagar a taxa COMPLETA da sessão no momento da reserva. Nenhuma opção de pagamento parcial, parcelado ou diferido está disponível. O pagamento é processado através do Stripe e é não reembolsável, exceto conforme explicitamente declarado na Seção 5 (Política de Reembolso). Ao completar sua reserva, você autoriza a Empresa a cobrar o valor total de seu método de pagamento registrado.">You must pay the FULL session fee at the time of booking. No partial payments, installments, or deferred payment options are available. Payment is processed through Stripe and is non-refundable except as explicitly stated in Section 5 (Refund Policy). By completing your booking, you authorize the Company to charge the full amount to your registered payment method.</p>
+
+            <h3 data-en="4.3 Pricing & Currency" data-it="4.3 Prezzi e Valuta" data-pt="4.3 Preços e Moeda">4.3 Pricing & Currency</h3>
+            <p data-en="Session prices are set by individual therapists and displayed in EUR (Euros). Prices may vary based on therapist experience, session duration, and therapy type. All prices displayed on the Platform are final and include applicable VAT (Value Added Tax) where required by Italian law. The Company reserves the right to modify pricing at any time. Pricing changes apply only to FUTURE bookings; the price for any already-confirmed booking is final and cannot be increased." data-it="I prezzi delle sessioni sono stabiliti da singoli operatori e visualizzati in EUR (Euro). I prezzi possono variare in base all'esperienza dell'operatore, alla durata della sessione e al tipo di disciplina. Tutti i prezzi visualizzati sulla Piattaforma sono definitivi e includono l'IVA (Imposta sul Valore Aggiunto) applicabile come richiesto dalla legge italiana. La Società si riserva il diritto di modificare i prezzi in qualsiasi momento. Le modifiche di prezzo si applicano esclusivamente a prenotazioni FUTURE; il prezzo di una prenotazione già confermata è definitivo e non può essere aumentato." data-pt="Os preços das sessões são definidos por terapeutas individuais e exibidos em EUR (Euros). Os preços podem variar de acordo com a experiência do terapeuta, duração da sessão e tipo de terapia. Todos os preços exibidos na Plataforma são finais e incluem IVA (Imposto sobre Valor Agregado) aplicável conforme exigido pela lei italiana. A Empresa se reserva o direito de modificar os preços a qualquer momento sem aviso prévio.">Session prices are set by individual therapists and displayed in EUR (Euros). Prices may vary based on therapist experience, session duration, and therapy type. All prices displayed on the Platform are final and include applicable VAT (Value Added Tax) where required by Italian law. The Company reserves the right to modify pricing at any time. Pricing changes apply only to FUTURE bookings; the price for any already-confirmed booking is final and cannot be increased.</p>
+
+            <h3 data-en="4.4 Invoice & Payment Confirmation" data-it="4.4 Fattura e Conferma del Pagamento" data-pt="4.4 Fatura e Confirmação de Pagamento">4.4 Invoice & Payment Confirmation</h3>
+            <p data-en="A payment confirmation email will be sent to your registered email address upon successful transaction. An invoice will be provided in your account dashboard and may be downloaded for your records. For questions regarding invoices or payments, contact support@holisticunity.app." data-it="Un'email di conferma del pagamento verrà inviata al tuo indirizzo email registrato al completamento della transazione. Una fattura sarà fornita nella dashboard del tuo account e può essere scaricata per i tuoi registri. Per domande su fatture o pagamenti, contatta support@holisticunity.app." data-pt="Um email de confirmação de pagamento será enviado para seu endereço de email registrado após a transação bem-sucedida. Uma fatura será fornecida no painel de sua conta e pode ser baixada para seus registros. Para dúvidas sobre faturas ou pagamentos, entre em contato com support@holisticunity.app.">A payment confirmation email will be sent to your registered email address upon successful transaction. An invoice will be provided in your account dashboard and may be downloaded for your records. For questions regarding invoices or payments, contact support@holisticunity.app.</p>
+        </div>
+
+        <!-- Section 5: Cancellation & Refund Policy -->
+        <div class="section">
+            <h2><span class="section-number">5</span><span data-en="Cancellation & Refund Policy" data-it="Politica di Cancellazione e Rimborso" data-pt="Política de Cancelamento e Reembolso">Cancellation & Refund Policy</span></h2>
+
+            <div class="highlight-box">
+                <p data-en="This cancellation and refund policy is designed to protect both clients and therapists. Please read carefully, as refund eligibility is strictly limited." data-it="Questa politica di cancellazione e rimborso è progettata per proteggere sia i clienti che gli operatori. Si prega di leggere attentamente, poiché l'idoneità al rimborso è strettamente limitata." data-pt="Esta política de cancelamento e reembolso foi desenvolvida para proteger clientes e terapeutas. Leia com atenção, pois a elegibilidade para reembolso é estritamente limitada.">This cancellation and refund policy is designed to protect both clients and therapists. Please read carefully, as refund eligibility is strictly limited.</p>
+            </div>
+
+            <h3 data-en="5.1 Cancellation Eligibility" data-it="5.1 Idoneità alla Cancellazione" data-pt="5.1 Elegibilidade para Cancelamento">5.1 Cancellation Eligibility</h3>
+            <p data-en="Cancellations are permitted ONLY under the following conditions:" data-it="Le cancellazioni sono consentite SOLO nelle seguenti condizioni:" data-pt="Cancelamentos são permitidos APENAS sob as seguintes condições:">Cancellations are permitted ONLY under the following conditions:</p>
+            <ul>
+                <li data-en="FREE CANCELLATION: If you cancel MORE THAN 24 hours (24+ hours) before your scheduled session start time, you are entitled to a full refund of the session fee. Cancellation request must be submitted through the Platform." data-it="CANCELLAZIONE GRATUITA: Se cancelli PIÙ di 24 ore (24+ ore) prima dell'ora di inizio della tua sessione programmata, hai diritto a un rimborso completo del costo della sessione. La richiesta di cancellazione deve essere presentata tramite la Piattaforma." data-pt="CANCELAMENTO GRATUITO: Se você cancelar MAIS de 24 horas (24+ horas) antes da hora de início de sua sessão programada, você tem direito a um reembolso completo da taxa de sessão. A solicitação de cancelamento deve ser enviada através da Plataforma.">FREE CANCELLATION: If you cancel MORE THAN 24 hours (24+ hours) before your scheduled session start time, you are entitled to a full refund of the session fee. Cancellation request must be submitted through the Platform.</li>
+                <li data-en="PARTIAL CHARGE: If you cancel within 24 hours (less than 24 hours) before your scheduled session start time, a 50% charge is applied. You will receive a refund of 50% of the session fee. The remaining 50% is retained by the Company and therapist." data-it="ADDEBITO PARZIALE: Se cancelli entro 24 ore (meno di 24 ore) prima dell'ora di inizio della tua sessione programmata, viene applicato un addebito del 50%. Riceverai un rimborso del 50% del costo della sessione. Il restante 50% viene trattenuto dalla Società e dall'operatore." data-pt="COBRANÇA PARCIAL: Se você cancelar dentro de 24 horas (menos de 24 horas) antes da hora de início de sua sessão programada, uma cobrança de 50% é aplicada. Você receberá um reembolso de 50% da taxa de sessão. Os 50% restantes são retidos pela Empresa e pelo terapeuta.">PARTIAL CHARGE: If you cancel within 24 hours (less than 24 hours) before your scheduled session start time, a 50% charge is applied. You will receive a refund of 50% of the session fee. The remaining 50% is retained by the Company and therapist.</li>
+                <li data-en="NO-SHOW: If you do not appear for your scheduled session and do not cancel beforehand, the FULL session fee is forfeited. No refund will be issued." data-it="MANCATO ARRIVO: Se non ti presenti alla tua sessione programmata e non cancelli in anticipo, l'INTERO costo della sessione viene perso. Non sarà emesso alcun rimborso." data-pt="AUSÊNCIA: Se você não comparecer na sua sessão programada e não cancelar antecipadamente, a taxa COMPLETA da sessão é perdida. Nenhum reembolso será emitido.">NO-SHOW: If you do not appear for your scheduled session and do not cancel beforehand, the FULL session fee is forfeited. No refund will be issued.</li>
+            </ul>
+
+            <h3 data-en="5.2 Calculating Cancellation Time" data-it="5.2 Calcolo del Tempo di Cancellazione" data-pt="5.2 Calculando o Tempo de Cancelamento">5.2 Calculating Cancellation Time</h3>
+            <p data-en="The 24-hour window is calculated from the time your cancellation request is submitted through the Platform to the scheduled session start time. Weekend cancellations and public holidays do not extend the 24-hour window—the countdown is continuous. Cancellation requests submitted at 11:59 PM on the day before a session that begins at 12:00 PM the following day are within the 24-hour window and subject to the 50% charge." data-it="La finestra di 24 ore viene calcolata dal momento in cui la tua richiesta di cancellazione viene presentata tramite la Piattaforma all'ora di inizio della sessione programmata. Le cancellazioni nei fine settimana e i giorni festivi non estendono la finestra di 24 ore: il conto alla rovescia è continuo. Le richieste di cancellazione inviate alle 23:59 del giorno prima di una sessione che inizia alle 12:00 il giorno seguente rientrano nella finestra di 24 ore e sono soggette all'addebito del 50%." data-pt="A janela de 24 horas é calculada a partir do momento em que sua solicitação de cancelamento é enviada através da Plataforma até a hora de início da sessão programada. Cancelamentos de finais de semana e feriados públicos não estendem a janela de 24 horas – a contagem regressiva é contínua. Solicitações de cancelamento enviadas às 23h59 no dia anterior a uma sessão que começa às 12h00 no dia seguinte estão dentro da janela de 24 horas e estão sujeitas à cobrança de 50%.">The 24-hour window is calculated from the time your cancellation request is submitted through the Platform to the scheduled session start time. Weekend cancellations and public holidays do not extend the 24-hour window—the countdown is continuous. Cancellation requests submitted at 11:59 PM on the day before a session that begins at 12:00 PM the following day are within the 24-hour window and subject to the 50% charge.</p>
+
+            <h3 data-en="5.3 Refund Processing Time" data-it="5.3 Tempo di Elaborazione del Rimborso" data-pt="5.3 Tempo de Processamento de Reembolso">5.3 Refund Processing Time</h3>
+            <p data-en="Eligible refunds will be processed within 5-10 business days from the date of cancellation approval. Refunds are credited to the original payment method. Please allow additional time for your financial institution to process the refund credit. The Company is not responsible for delays caused by your bank or payment processor." data-it="I rimborsi idonei verranno elaborati entro 5-10 giorni lavorativi dalla data dell'approvazione della cancellazione. I rimborsi vengono accreditati al metodo di pagamento originale. Si prega di consentire tempo aggiuntivo alla tua istituzione finanziaria per elaborare il credito del rimborso. La Società non è responsabile per ritardi causati dalla tua banca o dal tuo processore di pagamento." data-pt="Reembolsos elegíveis serão processados dentro de 5-10 dias úteis a partir da data de aprovação do cancelamento. Os reembolsos são creditados no método de pagamento original. Por favor, permita tempo adicional para sua instituição financeira processar o crédito de reembolso. A Empresa não é responsável por atrasos causados pelo seu banco ou processador de pagamento.">Eligible refunds will be processed within 5-10 business days from the date of cancellation approval. Refunds are credited to the original payment method. Please allow additional time for your financial institution to process the refund credit. The Company is not responsible for delays caused by your bank or payment processor.</p>
+
+            <h3 data-en="5.4 No Refund for Completed Sessions" data-it="5.4 Nessun Rimborso per Sessioni Completate" data-pt="5.4 Sem Reembolso para Sessões Concluídas">5.4 No Refund for Completed Sessions</h3>
+            <p data-en="A session is "completed" when (i) the Operator has been online and ready, AND (ii) the client has joined the video call AND been present for at least 15 consecutive minutes (or 25% of the booked duration, whichever is lower). For sessions completed under this definition no refund is due, except as provided by EU consumer law. If you experience technical difficulties or the Operator does not appear, see Section 6.4 (Technical Issues) — you are entitled to rescheduling or a full refund." data-it="Una sessione si considera "completata" quando (i) l'Operatore è stato online e pronto, E (ii) il cliente si è connesso alla videochiamata ED è stato presente per almeno 15 minuti consecutivi (oppure il 25% della durata prenotata, se inferiore). Per sessioni completate ai sensi di questa definizione nessun rimborso è dovuto, salvo i diritti previsti dal diritto del consumatore UE. Se riscontri difficoltà tecniche o l'Operatore non si presenta, vedi Sezione 6.4 (Problemi Tecnici) — hai diritto a riprogrammazione o rimborso integrale." data-pt="Uma vez que uma sessão terapêutica começou e o cliente acessou o link da videoconferência, a sessão é considerada iniciada. Nenhum reembolso será emitido para sessões parcialmente frequentadas ou concluídas. Se você experienciar dificuldades técnicas durante a sessão, veja a Seção 6.4 (Problemas Técnicos).">A session is "completed" when (i) the Operator has been online and ready, AND (ii) the client has joined the video call AND been present for at least 15 consecutive minutes (or 25% of the booked duration, whichever is lower). For sessions completed under this definition no refund is due, except as provided by EU consumer law. If you experience technical difficulties or the Operator does not appear, see Section 6.4 (Technical Issues) — you are entitled to rescheduling or a full refund.</p>
+
+            <h3 data-en="5.5 Refund Exceptions" data-it="5.5 Eccezioni al Rimborso" data-pt="5.5 Exceções de Reembolso">5.5 Refund Exceptions</h3>
+            <p data-en="Refunds will NOT be issued in the following circumstances:" data-it="I rimborsi NON verranno emessi nelle seguenti circostanze:" data-pt="Reembolsos NÃO serão emitidos nas seguintes circunstâncias:">Refunds will NOT be issued in the following circumstances:</p>
+            <ul>
+                <li data-en="Client no-show (failure to appear at scheduled session time)" data-it="Mancato arrivo del cliente (mancato presentarsi all'ora della sessione programmata)" data-pt="Ausência do cliente (falha em comparecer na hora da sessão programada)">Client no-show (failure to appear at scheduled session time)</li>
+                <li data-en="Client changes mind or experiences buyer's remorse" data-it="Il cliente cambia idea o sperimenta pentimento dell'acquirente" data-pt="O cliente muda de ideia ou experimenta arrependimento do comprador">Client changes mind or experiences buyer's remorse</li>
+                <li data-en="Client dissatisfaction with therapy outcome (all therapies are personal and results vary)" data-it="Insoddisfazione del cliente per l'esito della disciplina (tutte le discipline sono personali e i risultati variano)" data-pt="Insatisfação do cliente com o resultado da terapia (todas as terapias são pessoais e os resultados variam)">Client dissatisfaction with therapy outcome (all therapies are personal and results vary)</li>
+                <li data-en="Refund requests submitted more than 30 days after session completion" data-it="Richieste di rimborso inviate più di 30 giorni dopo il completamento della sessione" data-pt="Solicitações de reembolso enviadas mais de 30 dias após a conclusão da sessão">Refund requests submitted more than 30 days after session completion</li>
+                <li data-en="Duplicate charges (contact support@holisticunity.app within 7 days)" data-it="Addebiti duplicati (contatta support@holisticunity.app entro 7 giorni)" data-pt="Cobranças duplicadas (entre em contato com support@holisticunity.app dentro de 7 dias)">Duplicate charges (contact support@holisticunity.app within 7 days)</li>
+            </ul>
+
+            <h3 data-en="5.6 Therapist-Initiated Cancellations" data-it="5.6 Cancellazioni Avviate dall'Operatore" data-pt="5.6 Cancelamentos Iniciados pelo Terapeuta">5.6 Therapist-Initiated Cancellations</h3>
+            <p data-en="If a therapist cancels a scheduled session, you will receive a full refund regardless of timing. In such cases, the Company will attempt to assist you in rescheduling with the same or another available therapist at no additional cost. If no alternative is available, a full refund will be issued." data-it="Se un operatore cancella una sessione programmata, riceverai un rimborso completo indipendentemente da quando. In tali casi, la Società cercherà di aiutarti a riprogrammare con lo stesso o un altro operatore disponibile senza costi aggiuntivi. Se nessuna alternativa è disponibile, verrà emesso un rimborso completo." data-pt="Se um terapeuta cancelar uma sessão programada, você receberá um reembolso completo, independentemente do horário. Nesses casos, a Empresa tentará ajudá-lo a reagendar com o mesmo ou outro terapeuta disponível sem custo adicional. Se nenhuma alternativa estiver disponível, um reembolso completo será emitido.">If a therapist cancels a scheduled session, you will receive a full refund regardless of timing. In such cases, the Company will attempt to assist you in rescheduling with the same or another available therapist at no additional cost. If no alternative is available, a full refund will be issued.</p>
+        </div>
+
+        <!-- Section 6: Limitation of Liability & Disclaimers -->
+        <div class="section">
+            <h2><span class="section-number">6</span><span data-en="Limitation of Liability & Disclaimers" data-it="Limitazione della Responsabilità e Esclusioni di Responsabilità" data-pt="Limitação de Responsabilidade e Isenções de Responsabilidade">Limitation of Liability & Disclaimers</span></h2>
+
+            <h3 data-en="6.1 Platform is Intermediary Only" data-it="6.1 La Piattaforma è Solo Intermediaria" data-pt="6.1 Plataforma é Apenas Intermediária">6.1 Platform is Intermediary Only</h3>
+            <p data-en="The Company provides a marketplace platform only. The Company does NOT provide, render, control, supervise, or guarantee any therapy services. The Company is not responsible for the quality, safety, effectiveness, or appropriateness of any therapy service provided by independent therapists. All therapists are independent contractors, and the Company does not employ them, direct their work, or supervise their professional practices." data-it="La Società fornisce solo una piattaforma di mercato. La Società NON fornisce, rende, controlla, supervisiona o garantisce alcun servizio di terapia. La Società non è responsabile della qualità, sicurezza, efficacia o appropriatezza di qualsiasi servizio fornito da operatori indipendenti. Tutti gli operatori sono appaltatori indipendenti e la Società non li impiega, non indirizza il loro lavoro e non supervisiona le loro pratiche professionali." data-pt="A Empresa fornece apenas uma plataforma de mercado. A Empresa NÃO fornece, realiza, controla, supervisiona ou garante nenhum serviço de terapia. A Empresa não é responsável pela qualidade, segurança, eficácia ou adequação de qualquer serviço terapêutico fornecido por terapeutas independentes. Todos os terapeutas são contratados independentes, e a Empresa não os emprega, não dirige seu trabalho e não supervisiona suas práticas profissionais.">The Company provides a marketplace platform only. The Company does NOT provide, render, control, supervise, or guarantee any therapy services. The Company is not responsible for the quality, safety, effectiveness, or appropriateness of any therapy service provided by independent therapists. All therapists are independent contractors, and the Company does not employ them, direct their work, or supervise their professional practices.</p>
+
+            <h3 data-en="6.2 Therapies Are Not Medical Services" data-it="6.2 Le Discipline Non Sono Servizi Medici" data-pt="6.2 Terapias Não São Serviços Médicos">6.2 Therapies Are Not Medical Services</h3>
+            <p data-en="IMPORTANT: The therapies offered on the Platform (ThetaHealing, Family Constellation, Systemic Constellation, Reiki, Naturopathy, Astrology, Human Design, Numerology, Ayurveda, and others) are complementary and alternative therapies. These services are NOT medical treatments, medical advice, or substitutes for professional medical care. The Platform and its therapists do not diagnose, treat, cure, or prevent medical conditions." data-it="IMPORTANTE: Le discipline offerte sulla Piattaforma (ThetaHealing, Family Constellation, Systemic Constellation, Reiki, Naturopatia, Astrologia, Human Design, Numerologia, Ayurveda e altre) sono discipline complementari e alternative. Questi servizi NON sono trattamenti medici, consigli medici o sostituti dell'assistenza medica professionale. La Piattaforma e i suoi operatori non diagnosticano, trattano, curano o prevengono condizioni mediche." data-pt="IMPORTANTE: As terapias oferecidas na Plataforma (ThetaHealing, Family Constellation, Systemic Constellation, Reiki, Naturopatia, Astrologia, Human Design, Numerologia, Ayurveda e outras) são terapias complementares e alternativas. Estes serviços NÃO são tratamentos médicos, aconselhamento médico ou substitutos do cuidado médico profissional. A Plataforma e seus terapeutas não diagnosticam, tratam, curam ou previnem condições médicas.">IMPORTANT: The therapies offered on the Platform (ThetaHealing, Family Constellation, Systemic Constellation, Reiki, Naturopathy, Astrology, Human Design, Numerology, Ayurveda, and others) are complementary and alternative therapies. These services are NOT medical treatments, medical advice, or substitutes for professional medical care. The Platform and its therapists do not diagnose, treat, cure, or prevent medical conditions.</p>
+            <p data-en="If you have a medical condition, are pregnant, taking medications, or have any health concerns, you must consult with a qualified healthcare professional (medical doctor) before booking or attending any session on the Platform." data-it="Se hai una condizione medica, sei incinta, stai assumendo farmaci o hai dubbi sulla salute, devi consultare un professionista sanitario qualificato (medico) prima di prenotare o frequentare qualsiasi sessione sulla Piattaforma." data-pt="Se você tem uma condição médica, está grávida, está tomando medicamentos ou tem qualquer preocupação com a saúde, você deve consultar um profissional de saúde qualificado (médico) antes de reservar ou participar de qualquer sessão na Plataforma.">If you have a medical condition, are pregnant, taking medications, or have any health concerns, you must consult with a qualified healthcare professional (medical doctor) before booking or attending any session on the Platform.</p>
+
+            <h3 data-en="6.3 No Liability for Therapy Outcomes" data-it="6.3 Nessuna Responsabilità per i Risultati della Disciplina" data-pt="6.3 Sem Responsabilidade pelos Resultados da Terapia">6.3 No Liability for Therapy Outcomes</h3>
+            <p data-en="The Company disclaims all liability for the results, effectiveness, or outcomes of any therapy session. Results are highly individual and depend on numerous factors beyond the Company's or therapist's control, including your personal circumstances, commitment, and individual response. The Company provides no guarantees, warranties, or representations regarding therapy outcomes." data-it="La Società declina qualsiasi responsabilità per i risultati, l'efficacia o gli esiti di qualsiasi sessione. I risultati sono altamente individuali e dipendono da numerosi fattori al di là del controllo della Società o dell'operatore, incluse le tue circostanze personali, l'impegno e la risposta individuale. La Società non fornisce garanzie, dichiarazioni o rappresentazioni riguardanti i risultati della terapia." data-pt="A Empresa se isenta de toda responsabilidade pelos resultados, eficácia ou resultados de qualquer sessão terapêutica. Os resultados são altamente individuais e dependem de numerosos fatores além do controle da Empresa ou do terapeuta, incluindo suas circunstâncias pessoais, comprometimento e resposta individual. A Empresa não fornece garantias, garantias ou representações com relação aos resultados da terapia.">The Company disclaims all liability for the results, effectiveness, or outcomes of any therapy session. Results are highly individual and depend on numerous factors beyond the Company's or therapist's control, including your personal circumstances, commitment, and individual response. The Company provides no guarantees, warranties, or representations regarding therapy outcomes.</p>
+
+            <h3 data-en="6.4 Technical Issues & Service Availability" data-it="6.4 Problemi Tecnici e Disponibilità del Servizio" data-pt="6.4 Problemas Técnicos e Disponibilidade do Serviço">6.4 Technical Issues & Service Availability</h3>
+            <p data-en="The Company provides the Platform 'as-is' and 'as-available' without warranties of any kind. While the Company endeavors to maintain reliable video technology and platform availability, the Company cannot guarantee uninterrupted service, error-free operation, or that all technical issues will be resolved." data-it="La Società fornisce la Piattaforma 'come è' e 'come disponibile' senza garanzie di alcun tipo. Sebbene la Società si adoperi per mantenere una tecnologia video affidabile e la disponibilità della piattaforma, la Società non può garantire un servizio ininterrotto, un'operazione senza errori o che tutti i problemi tecnici saranno risolti." data-pt="A Empresa fornece a Plataforma 'como está' e 'como disponível' sem garantias de nenhum tipo. Embora a Empresa se esforce para manter uma tecnologia de vídeo confiável e a disponibilidade da plataforma, a Empresa não pode garantir um serviço ininterrupto, operação sem erros ou que todos os problemas técnicos serão resolvidos.">The Company provides the Platform 'as-is' and 'as-available' without warranties of any kind. While the Company endeavors to maintain reliable video technology and platform availability, the Company cannot guarantee uninterrupted service, error-free operation, or that all technical issues will be resolved.</p>
+            <p data-en="If you experience technical difficulties (video connection failure, audio issues, platform crash) during a session:" data-it="Se riscontri difficoltà tecniche (guasto della connessione video, problemi audio, arresto anomalo della piattaforma) durante una sessione:" data-pt="Se você experienciar dificuldades técnicas (falha na conexão de vídeo, problemas de áudio, travamento da plataforma) durante uma sessão:">If you experience technical difficulties (video connection failure, audio issues, platform crash) during a session:</p>
+            <ul>
+                <li data-en="The Company will work with you and the therapist to resolve the issue or reschedule when possible" data-it="La Società lavorerà con te e l'operatore per risolvere il problema o riprogrammare quando possibile" data-pt="A Empresa trabalhará com você e o terapeuta para resolver o problema ou reagendar quando possível">The Company will work with you and the therapist to resolve the issue or reschedule when possible</li>
+                <li data-en="Rescheduling is at the sole discretion of the Company and therapist" data-it="La riprogrammazione è a esclusiva discrezione della Società e dell'operatore" data-pt="A remarcação é a exclusivo critério da Empresa e do terapeuta">Rescheduling is at the sole discretion of the Company and therapist</li>
+                <li data-en="Refunds for technical issues are not automatic and must be requested within 7 days with documentation" data-it="I rimborsi per problemi tecnici non sono automatici e devono essere richiesti entro 7 giorni con documentazione" data-pt="Reembolsos por problemas técnicos não são automáticos e devem ser solicitados dentro de 7 dias com documentação">Refunds for technical issues are not automatic and must be requested within 7 days with documentation</li>
+            </ul>
+
+            <h3 data-en="6.5 Exclusion of Consequential Damages" data-it="6.5 Esclusione dei Danni Consequenziali" data-pt="6.5 Exclusão de Danos Consequentes">6.5 Exclusion of Consequential Damages</h3>
+            <p data-en="TO THE MAXIMUM EXTENT PERMITTED BY ITALIAN AND EU LAW, THE COMPANY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES ARISING FROM YOUR USE OF THE PLATFORM, INCLUDING BUT NOT LIMITED TO: DAMAGES FOR LOSS OF PROFITS, LOSS OF BUSINESS OPPORTUNITY, LOSS OF DATA, EMOTIONAL DISTRESS, OR HEALTH DETERIORATION, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES." data-it="NELLA MASSIMA MISURA CONSENTITA DALLA LEGGE ITALIANA E DELL'UE, LA SOCIETÀ NON SARÀ RESPONSABILE PER DANNI INDIRETTI, INCIDENTALI, SPECIALI, CONSEGUENTI, PUNITIVI O ESEMPLARI DERIVANTI DAL TUO UTILIZZO DELLA PIATTAFORMA, INCLUSO MA NON LIMITATO A: DANNI PER PERDITA DI PROFITTI, PERDITA DI OPPORTUNITÀ COMMERCIALE, PERDITA DI DATI, ANGOSCIA EMOTIVA O DETERIORAMENTO DELLA SALUTE, ANCHE SE LA SOCIETÀ È STATA AVVISATA DELLA POSSIBILITÀ DI TALI DANNI." data-pt="NA MÁXIMA EXTENSÃO PERMITIDA PELA LEI ITALIANA E DA UE, A EMPRESA NÃO SERÁ RESPONSÁVEL POR QUALQUER DANO INDIRETO, INCIDENTAL, ESPECIAL, CONSEQUENCIAL, PUNITIVO OU EXEMPLAR DECORRENTE DE SEU USO DA PLATAFORMA, INCLUINDO MAS NÃO LIMITADO A: DANOS POR PERDA DE LUCROS, PERDA DE OPORTUNIDADE DE NEGÓCIOS, PERDA DE DADOS, ANGÚSTIA EMOCIONAL OU DETERIORAÇÃO DA SAÚDE, MESMO QUE A EMPRESA TENHA SIDO AVISADA DA POSSIBILIDADE DE TAIS DANOS.">TO THE MAXIMUM EXTENT PERMITTED BY ITALIAN AND EU LAW, THE COMPANY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES ARISING FROM YOUR USE OF THE PLATFORM, INCLUDING BUT NOT LIMITED TO: DAMAGES FOR LOSS OF PROFITS, LOSS OF BUSINESS OPPORTUNITY, LOSS OF DATA, EMOTIONAL DISTRESS, OR HEALTH DETERIORATION, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+
+            <h3 data-en="6.6 Limitation of Liability Cap" data-it="6.6 Limite di Responsabilità Massima" data-pt="6.6 Limite de Responsabilidade Máxima">6.6 Limitation of Liability Cap</h3>
+            <p data-en="EXCEPT WHERE PROHIBITED BY LAW, THE COMPANY'S TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATING TO THESE TERMS OR YOUR USE OF THE PLATFORM SHALL NOT EXCEED THE TOTAL AMOUNT YOU HAVE PAID THE COMPANY IN THE 12 MONTHS PRECEDING THE CLAIM. This limitation applies to all theories of liability, whether based on warranty, contract, statute, tort (including negligence), or any other legal basis." data-it="SALVO DOVE VIETATO DALLA LEGGE, LA RESPONSABILITÀ TOTALE DELLA SOCIETÀ NEI TUOI CONFRONTI PER QUALSIASI RECLAMO DERIVANTE DA O RELATIVO A QUESTI TERMINI O AL TUO UTILIZZO DELLA PIATTAFORMA NON SUPERERÀ L'IMPORTO TOTALE CHE HAI PAGATO ALLA SOCIETÀ NEI 12 MESI PRECEDENTI AL RECLAMO. Questa limitazione si applica a tutte le teorie di responsabilità, indipendentemente dal fatto che si basino su garanzia, contratto, statuto, responsabilità civile (inclusa negligenza) o qualsiasi altra base legale." data-pt="EXCETO ONDE PROIBIDO POR LEI, A RESPONSABILIDADE TOTAL DA EMPRESA PARA COM VOCÊ POR QUAISQUER RECLAMAÇÕES DECORRENTES DE OU RELACIONADAS A ESTES TERMOS OU SEU USO DA PLATAFORMA NÃO EXCEDERÁ O VALOR TOTAL QUE VOCÊ PAGOU À EMPRESA NOS 12 MESES ANTERIORES À RECLAMAÇÃO. Esta limitação se aplica a todas as teorias de responsabilidade, independentemente de se basearem em garantia, contrato, estatuto, responsabilidade civil (incluindo negligência) ou qualquer outra base legal.">EXCEPT WHERE PROHIBITED BY LAW, THE COMPANY'S TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATING TO THESE TERMS OR YOUR USE OF THE PLATFORM SHALL NOT EXCEED THE TOTAL AMOUNT YOU HAVE PAID THE COMPANY IN THE 12 MONTHS PRECEDING THE CLAIM. This limitation applies to all theories of liability, whether based on warranty, contract, statute, tort (including negligence), or any other legal basis.</p>
+
+            <h3 data-en="6.7 Your Acknowledgment" data-it="6.7 Tuo Riconoscimento" data-pt="6.7 Seu Reconhecimento">6.7 Your Acknowledgment</h3>
+            <p data-en="By using the Platform, you acknowledge that:" data-it="Utilizzando la Piattaforma, riconosci che:" data-pt="Ao usar a Plataforma, você reconhece que:">By using the Platform, you acknowledge that:</p>
+            <ul>
+                <li data-en="You understand and accept the risks associated with complementary/alternative therapies" data-it="Comprendi e accetti i rischi associati alle discipline complementari/alternative" data-pt="Você entende e aceita os riscos associados às terapias complementares/alternativas">You understand and accept the risks associated with complementary/alternative therapies</li>
+                <li data-en="You are responsible for your own health and medical decisions" data-it="Sei responsabile delle tue proprie decisioni sanitarie e mediche" data-pt="Você é responsável por suas próprias decisões de saúde e médicas">You are responsible for your own health and medical decisions</li>
+                <li data-en="You consult medical professionals for serious health concerns" data-it="Consulti professionisti medici per problemi di salute seri" data-pt="Você consulta profissionais médicos para preocupações sérias com a saúde">You consult medical professionals for serious health concerns</li>
+                <li data-en="The Company and therapists are not liable for adverse health outcomes" data-it="La Società e gli operatori non sono responsabili per esiti negativi sulla salute" data-pt="A Empresa e os terapeutas não são responsáveis por resultados adversos à saúde">The Company and therapists are not liable for adverse health outcomes</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: User Conduct -->
+        <div class="section">
+            <h2><span class="section-number">7</span><span data-en="User Conduct & Prohibited Behavior" data-it="Condotta dell'Utente e Comportamento Vietato" data-pt="Conduta do Usuário e Comportamento Proibido">User Conduct & Prohibited Behavior</span></h2>
+            <p data-en="You agree to use the Platform in a responsible, lawful, and ethical manner. You will NOT:" data-it="Accetti di utilizzare la Piattaforma in modo responsabile, legale ed etico. NON:" data-pt="Você concorda em usar a Plataforma de forma responsável, legal e ética. Você NÃO:">You agree to use the Platform in a responsible, lawful, and ethical manner. You will NOT:</p>
+            <ul>
+                <li data-en="Engage in harassing, abusive, discriminatory, or threatening behavior toward therapists, staff, or other users" data-it="Impegnarti in comportamenti molesti, offensivi, discriminatori o minacciosi nei confronti degli operatori, personale o altri utenti" data-pt="Envolver-se em comportamento assediador, abusivo, discriminatório ou ameaçador em relação a terapeutas, funcionários ou outros usuários">Engage in harassing, abusive, discriminatory, or threatening behavior toward therapists, staff, or other users</li>
+                <li data-en="Attempt to circumvent payments or fraudulently obtain services" data-it="Tentare di aggirare i pagamenti o ottenere fraudolentemente servizi" data-pt="Tentar contornar pagamentos ou obter serviços fraudulentamente">Attempt to circumvent payments or fraudulently obtain services</li>
+                <li data-en="Record, screenshot, or share therapy sessions without explicit written consent from the therapist and the Company" data-it="Registrare, fotografare o condividere sessioni senza consenso scritto esplicito dall'operatore e dalla Società" data-pt="Gravar, fazer screenshot ou compartilhar sessões de terapia sem consentimento escrito explícito do terapeuta e da Empresa">Record, screenshot, or share therapy sessions without explicit written consent from the therapist and the Company</li>
+                <li data-en="Share login credentials or allow unauthorized access to your account" data-it="Condividere credenziali di accesso o consentire accesso non autorizzato al tuo account" data-pt="Compartilhe credenciais de login ou permita acesso não autorizado à sua conta">Share login credentials or allow unauthorized access to your account</li>
+                <li data-en="Use the Platform for illegal activities or to solicit illegal services" data-it="Utilizzare la Piattaforma per attività illegittime o per sollecitare servizi illegali" data-pt="Usar a Plataforma para atividades ilegais ou solicitar serviços ilegais">Use the Platform for illegal activities or to solicit illegal services</li>
+                <li data-en="Attempt to access or hack the Platform's systems or breach security" data-it="Tentare di accedere o hackerare i sistemi della Piattaforma o violare la sicurezza" data-pt="Tentar acessar ou invadir os sistemas da Plataforma ou violar a segurança">Attempt to access or hack the Platform's systems or breach security</li>
+                <li data-en="Post spam, malware, or promotional content without authorization" data-it="Pubblicare spam, malware o contenuti promozionali senza autorizzazione" data-pt="Postar spam, malware ou conteúdo promocional sem autorização">Post spam, malware, or promotional content without authorization</li>
+                <li data-en="Impersonate therapists or Company staff or misrepresent your identity" data-it="Impersonare operatori o personale della Società o travisare la tua identità" data-pt="Se passar por terapeutas ou funcionários da Empresa ou se misrepresentar sua identidade">Impersonate therapists or Company staff or misrepresent your identity</li>
+            </ul>
+
+            <p data-en="Violations of this section may result in immediate account suspension or termination without refund." data-it="Le violazioni di questa sezione possono comportare la sospensione o la terminazione immediata dell'account senza rimborso." data-pt="Violações desta seção podem resultar em suspensão ou encerramento imediato da conta sem reembolso.">Violations of this section may result in immediate account suspension or termination without refund.</p>
+        </div>
+
+        <!-- Section 8: Intellectual Property & Content -->
+        <div class="section">
+            <h2><span class="section-number">8</span><span data-en="Intellectual Property & Content Rights" data-it="Proprietà Intellettuale e Diritti sui Contenuti" data-pt="Direitos de Propriedade Intelectual e Conteúdo">Intellectual Property & Content Rights</span></h2>
+
+            <h3 data-en="8.1 Company Intellectual Property" data-it="8.1 Proprietà Intellettuale della Società" data-pt="8.1 Propriedade Intelectual da Empresa">8.1 Company Intellectual Property</h3>
+            <p data-en="All content on the Platform, including text, graphics, logos, images, videos, software code, design elements, and audio, is the exclusive property of the Company or its licensors and is protected by copyright and intellectual property laws. You may not reproduce, distribute, modify, or use any Platform content for any purpose without explicit written permission from the Company." data-it="Tutto il contenuto sulla Piattaforma, incluso testo, grafici, loghi, immagini, video, codice software, elementi di design e audio, è proprietà esclusiva della Società o dei suoi licenziatari ed è protetto dalle leggi sul copyright e la proprietà intellettuale. Non puoi riprodurre, distribuire, modificare o utilizzare alcun contenuto della Piattaforma per alcuno scopo senza il permesso scritto esplicito della Società." data-pt="Todo o conteúdo da Plataforma, incluindo texto, gráficos, logos, imagens, vídeos, código de software, elementos de design e áudio, é propriedade exclusiva da Empresa ou de seus licenciadores e é protegido por leis de direitos autorais e propriedade intelectual. Você não pode reproduzir, distribuir, modificar ou usar qualquer conteúdo da Plataforma para qualquer fim sem permissão escrita explícita da Empresa.">All content on the Platform, including text, graphics, logos, images, videos, software code, design elements, and audio, is the exclusive property of the Company or its licensors and is protected by copyright and intellectual property laws. You may not reproduce, distribute, modify, or use any Platform content for any purpose without explicit written permission from the Company.</p>
+
+            <h3 data-en="8.2 User Submissions" data-it="8.2 Presentazioni dell'Utente" data-pt="8.2 Envios do Usuário">8.2 User Submissions</h3>
+            <p data-en="You retain ownership of any feedback, suggestions, reviews, or other content you submit to the Platform. By submitting such content you grant the Company a worldwide, royalty-free, perpetual, non-exclusive licence to use, reproduce, display and distribute it for purposes of operating, improving and marketing the Platform. You confirm that the content is yours to license and does not infringe third-party rights." data-it="Mantieni la titolarità di qualsiasi feedback, suggerimento, recensione o altro contenuto inviato alla Piattaforma. Inviando tali contenuti, concedi alla Società una licenza mondiale, gratuita, perpetua, non esclusiva per utilizzarli, riprodurli, esporli e distribuirli per finalità di gestione, miglioramento e marketing della Piattaforma. Confermi che i contenuti sono di tua titolarità e non violano diritti di terzi." data-pt="Qualquer feedback, sugestão, avaliação ou outras informações que você enviar à Empresa através da Plataforma são consideradas não confidenciais e se tornam propriedade da Empresa. A Empresa pode usar tais envios para qualquer fim sem compensação para você, incluindo melhorar a Plataforma e marketing.">You retain ownership of any feedback, suggestions, reviews, or other content you submit to the Platform. By submitting such content you grant the Company a worldwide, royalty-free, perpetual, non-exclusive licence to use, reproduce, display and distribute it for purposes of operating, improving and marketing the Platform. You confirm that the content is yours to license and does not infringe third-party rights.</p>
+
+            <h3 data-en="8.3 Session Recording Prohibition" data-it="8.3 Divieto di Registrazione della Sessione" data-pt="8.3 Proibição de Gravação de Sessão">8.3 Session Recording Prohibition</h3>
+            <p data-en="You may NOT record, screenshot, screen-capture, or otherwise preserve video, audio, or visual content from therapy sessions unless you have obtained explicit written consent from both the therapist and the Company. Unauthorized recording is a violation of these Terms and may violate privacy laws. All video session data is encrypted and handled in accordance with applicable data protection regulations." data-it="NON puoi registrare, fare screenshot, catture dello schermo o altrimenti preservare contenuti video, audio o visivi da sessioni a meno che non abbia ottenuto il consenso scritto esplicito sia dall'operatore che dalla Società. La registrazione non autorizzata è una violazione di questi Termini e può violare le leggi sulla privacy. Tutti i dati della sessione video sono crittografati e gestiti in conformità alle normative applicabili sulla protezione dei dati." data-pt="Você NÃO pode gravar, fazer screenshot, capturar tela ou de outra forma preservar conteúdo de vídeo, áudio ou visual de sessões de terapia a menos que tenha obtido consentimento escrito explícito do terapeuta e da Empresa. Gravação não autorizada é uma violação destes Termos e pode violar leis de privacidade. Todos os dados da sessão de vídeo são criptografados e tratados de acordo com regulamentações aplicáveis de proteção de dados.">You may NOT record, screenshot, screen-capture, or otherwise preserve video, audio, or visual content from therapy sessions unless you have obtained explicit written consent from both the therapist and the Company. Unauthorized recording is a violation of these Terms and may violate privacy laws. All video session data is encrypted and handled in accordance with applicable data protection regulations.</p>
+        </div>
+
+        <!-- Section 9: Dispute Resolution & Governing Law -->
+        <div class="section">
+            <h2><span class="section-number">9</span><span data-en="Dispute Resolution & Governing Law" data-it="Risoluzione delle Controversie e Legge Applicabile" data-pt="Resolução de Disputas e Lei Aplicável">Dispute Resolution & Governing Law</span></h2>
+
+            <h3 data-en="9.1 Governing Law" data-it="9.1 Legge Applicabile" data-pt="9.1 Lei Aplicável">9.1 Governing Law</h3>
+            <p data-en="These Terms & Conditions are governed by and construed in accordance with the laws of Italy, without regard to its conflict of laws principles. The United Nations Convention on Contracts for the International Sale of Goods shall not apply." data-it="Questi Termini e Condizioni sono regolati e interpretati in conformità alle leggi dell'Italia, senza riguardo ai suoi principi di conflitto di leggi. La Convenzione delle Nazioni Unite sui Contratti di Vendita Internazionale di Merci non si applicherà." data-pt="Estes Termos e Condições são regidos por e interpretados de acordo com as leis da Itália, sem considerar seus princípios de conflito de leis. A Convenção das Nações Unidas sobre Contratos para a Venda Internacional de Mercadorias não se aplicará.">These Terms & Conditions are governed by and construed in accordance with the laws of Italy, without regard to its conflict of laws principles. The United Nations Convention on Contracts for the International Sale of Goods shall not apply.</p>
+
+            <h3 data-en="9.2 Jurisdiction" data-it="9.2 Giurisdizione" data-pt="9.2 Jurisdição">9.2 Jurisdiction</h3>
+            <p data-en="For consumers domiciled in the European Union, the competent court is the court of the consumer's place of residence or domicile, in accordance with EU Regulation 1215/2012 (Brussels Ibis) and Article 33, paragraph 2, letter (u) of the Italian Consumer Code (D.Lgs. 206/2005). For non-consumer users (B2B operators) the competent court is the Court of Bari (Italy)." data-it="Per i consumatori domiciliati nell'Unione Europea, è competente il giudice del luogo di residenza o domicilio del consumatore, ai sensi del Regolamento UE 1215/2012 (Bruxelles I bis) e dell'art. 33, comma 2, lett. u) del Codice del Consumo italiano (D.Lgs. 206/2005). Per gli utenti non consumatori (Operatori B2B) è competente il Tribunale di Bari (Italia)." data-pt="Ambas as partes irrevogavelmente se submetem à jurisdição exclusiva dos Tribunais de Bari, Província de Bari, Região da Puglia, Itália. Você expressa e irrevogavelmente renuncia a qualquer objeção à jurisdição ou local de processo nos tribunais de Bari e concorda que todas as disputas serão levadas exclusivamente a esses tribunais.">For consumers domiciled in the European Union, the competent court is the court of the consumer's place of residence or domicile, in accordance with EU Regulation 1215/2012 (Brussels Ibis) and Article 33, paragraph 2, letter (u) of the Italian Consumer Code (D.Lgs. 206/2005). For non-consumer users (B2B operators) the competent court is the Court of Bari (Italy).</p>
+
+            <h3 data-en="9.3 Mediation Requirement" data-it="9.3 Requisito di Mediazione" data-pt="9.3 Requisito de Mediação">9.3 Mediation Requirement</h3>
+            <p data-en="Before initiating any legal action, you agree to attempt to resolve any dispute with the Company through good faith mediation. You must submit a written description of the dispute to support@holisticunity.app. Within 14 days, the Company will respond with a proposed resolution. If mediation does not resolve the dispute within 30 days, either party may proceed to litigation in the competent court (per Section 9.2). EU consumers may also use the European Online Dispute Resolution (ODR) platform: https://ec.europa.eu/consumers/odr (Regulation EU 524/2013)." data-it="Prima di avviare qualsiasi azione legale, accetti di tentare di risolvere qualsiasi controversia con la Società tramite mediazione in buona fede. Devi presentare una descrizione scritta della controversia a support@holisticunity.app. Entro 14 giorni, la Società risponderà con una risoluzione proposta. Se la mediazione non risolve la controversia entro 30 giorni, entrambe le parti possono procedere in giudizio davanti al giudice competente (vedi Sezione 9.2). I consumatori UE possono inoltre utilizzare la piattaforma europea ODR (Online Dispute Resolution): https://ec.europa.eu/consumers/odr (Regolamento UE 524/2013)." data-pt="Antes de iniciar qualquer ação legal, você concorda em tentar resolver qualquer disputa com a Empresa através de mediação de boa fé. Você deve enviar uma descrição escrita da disputa para support@holisticunity.app. Dentro de 14 dias, a Empresa responderá com uma resolução proposta. Se a mediação não resolver a disputa dentro de 30 dias de sua reclamação inicial, qualquer parte pode prosseguir com litígio nos Tribunais de Bari.">Before initiating any legal action, you agree to attempt to resolve any dispute with the Company through good faith mediation. You must submit a written description of the dispute to support@holisticunity.app. Within 14 days, the Company will respond with a proposed resolution. If mediation does not resolve the dispute within 30 days, either party may proceed to litigation in the competent court (per Section 9.2). EU consumers may also use the European Online Dispute Resolution (ODR) platform: https://ec.europa.eu/consumers/odr (Regulation EU 524/2013).</p>
+
+            <h3 data-en="9.4 Class Actions" data-it="9.4 Azioni di Classe" data-pt="9.4 Sem Ações em Classe">9.4 Class Actions</h3>
+            <p data-en="EU and Italian law (Articles 840-bis et seq. of the Italian Code of Civil Procedure, EU Directive 2020/1828) recognise the right to bring representative or class actions for consumer matters. These Terms do not waive that right." data-it="Il diritto italiano e dell'UE (artt. 840-bis e ss. c.p.c., Direttiva UE 2020/1828) riconoscono il diritto di promuovere azioni rappresentative o di classe nelle controversie con i consumatori. Questi Termini non rinunciano a tale diritto." data-pt="VOCÊ CONCORDA QUE TRARÁ QUALQUER RECLAMAÇÃO CONTRA A EMPRESA EM BASE INDIVIDUAL E NÃO COMO AUTOR OU MEMBRO DA CLASSE EM QUALQUER ALEGADA AÇÃO OU PROCEDIMENTO DE CLASSE OU REPRESENTATIVO. A Empresa não aceitará reclamações de ação coletiva.">EU and Italian law (Articles 840-bis et seq. of the Italian Code of Civil Procedure, EU Directive 2020/1828) recognise the right to bring representative or class actions for consumer matters. These Terms do not waive that right.</p>
+
+            <h3 data-en="9.5 Statute of Limitations" data-it="9.5 Termini di Prescrizione" data-pt="9.5 Prazo de Prescrição">9.5 Statute of Limitations</h3>
+            <p data-en="Statutory periods of limitation under Italian law apply (Articles 2946-2948 of the Italian Civil Code; Article 132 of the Italian Consumer Code for two-year warranty claims). The parties do not contractually shorten any statutory limitation period." data-it="Si applicano i termini di prescrizione di legge italiana (artt. 2946-2948 c.c.; art. 132 Codice del Consumo per la garanzia biennale). Le parti non riducono contrattualmente alcun termine di prescrizione di legge." data-pt="Você concorda que qualquer reclamação que você possa ter deve ser apresentada no prazo de UM (1) ANO a partir da data em que a reclamação surgiu. Reclamações apresentadas após este período são permanentemente proibidas.">Statutory periods of limitation under Italian law apply (Articles 2946-2948 of the Italian Civil Code; Article 132 of the Italian Consumer Code for two-year warranty claims). The parties do not contractually shorten any statutory limitation period.</p>
+        </div>
+
+        <!-- Section 10: Modifications & Amendments -->
+        <div class="section">
+            <h2><span class="section-number">10</span><span data-en="Modifications to Terms" data-it="Modifiche ai Termini" data-pt="Modificações dos Termos">Modifications to Terms</span></h2>
+            <p data-en="The Company may modify these Terms only with at least 30 days' written notice (sent to your registered email and shown in-app). Changes become effective on the notified date. If you do not accept the new Terms, you have the right to terminate your account before the effective date and obtain a pro-rata refund of any unused pre-paid services. Continued use of the Platform after the effective date constitutes acceptance of the amended Terms." data-it="La Società può modificare questi Termini solo con preavviso scritto di almeno 30 giorni (inviato all'email registrata e mostrato in-app). Le modifiche entrano in vigore alla data comunicata. Se non accetti i nuovi Termini, hai diritto di chiudere il tuo account prima della data di efficacia e ottenere il rimborso pro-rata di servizi pre-pagati non utilizzati. L'uso continuato della Piattaforma dopo la data di efficacia costituisce accettazione dei Termini modificati." data-pt="A Empresa pode modificar estes Termos a qualquer momento sem aviso prévio. As alterações entram em vigor imediatamente após a publicação na Plataforma. Seu uso contínuo da Plataforma após quaisquer modificações constitui sua aceitação dos Termos alterados. Encorajamos você a revisar estes Termos periodicamente para atualizações.">The Company may modify these Terms only with at least 30 days' written notice (sent to your registered email and shown in-app). Changes become effective on the notified date. If you do not accept the new Terms, you have the right to terminate your account before the effective date and obtain a pro-rata refund of any unused pre-paid services. Continued use of the Platform after the effective date constitutes acceptance of the amended Terms.</p>
+            <p data-en="" data-it="" data-pt="Se a Empresa fizer alterações materiais que afetem negativamente seus direitos, a Empresa fornecerá aviso razoável (pelo menos 30 dias) antes que a alteração entre em vigor. Continuar usando a Plataforma após tal aviso constitui aceitação."></p>
+        </div>
+
+        <!-- Section 11: Termination of Services -->
+        <div class="section">
+            <h2><span class="section-number">11</span><span data-en="Termination of Services" data-it="Cessazione dei Servizi" data-pt="Encerramento de Serviços">Termination of Services</span></h2>
+            <p data-en="The Company may suspend or terminate your account and access to the Platform at any time, for any reason or no reason, with or without notice and without liability. Termination may occur if you:" data-it="La Società può sospendere o terminare il tuo account e l'accesso alla Piattaforma in qualsiasi momento, per qualsiasi motivo o per nessun motivo, con o senza preavviso e senza responsabilità. La cessazione può verificarsi se:" data-pt="A Empresa pode suspender ou encerrar sua conta e acesso à Plataforma a qualquer momento, por qualquer motivo ou sem motivo, com ou sem aviso e sem responsabilidade. O encerramento pode ocorrer se você:">The Company may suspend or terminate your account and access to the Platform at any time, for any reason or no reason, with or without notice and without liability. Termination may occur if you:</p>
+            <ul>
+                <li data-en="Violate these Terms" data-it="Violi questi Termini" data-pt="Viole estes Termos">Violate these Terms</li>
+                <li data-en="Engage in fraudulent or illegal activity" data-it="Partecipi a attività fraudolente o illegali" data-pt="Envolver-se em atividades fraudulentas ou ilegais">Engage in fraudulent or illegal activity</li>
+                <li data-en="Fail to pay for services" data-it="Non paghi per i servizi" data-pt="Deixar de pagar por serviços">Fail to pay for services</li>
+                <li data-en="Behave abusively toward therapists or staff" data-it="Ti comporti in modo offensivo nei confronti degli operatori o personale" data-pt="Comportar-se abusivamente com terapeutas ou funcionários">Behave abusively toward therapists or staff</li>
+                <li data-en="The Company determines, in its sole discretion, that your account is harmful to the Platform or other users" data-it="La Società determina, a sua esclusiva discrezione, che il tuo account è nocivo alla Piattaforma o ad altri utenti" data-pt="A Empresa determina, a seu exclusivo critério, que sua conta é prejudicial à Plataforma ou a outros usuários">The Company determines, in its sole discretion, that your account is harmful to the Platform or other users</li>
+            </ul>
+            <p data-en="Upon termination, your right to access the Platform immediately ceases. No refunds will be issued except as required by law. The Company is not liable for any loss or damage resulting from account termination." data-it="Dopo la cessazione, il tuo diritto di accedere alla Piattaforma cessa immediatamente. Nessun rimborso sarà emesso se non richiesto dalla legge. La Società non è responsabile per alcuna perdita o danno derivante dalla terminazione dell'account." data-pt="Após o encerramento, seu direito de acessar a Plataforma cessa imediatamente. Nenhum reembolso será emitido exceto conforme exigido por lei. A Empresa não é responsável por qualquer perda ou dano resultante do encerramento da conta.">Upon termination, your right to access the Platform immediately ceases. No refunds will be issued except as required by law. The Company is not liable for any loss or damage resulting from account termination.</p>
+        </div>
+
+        <!-- Section 12: Force Majeure -->
+        <div class="section">
+            <h2><span class="section-number">12</span><span data-en="Force Majeure" data-it="Forza Maggiore" data-pt="Força Maior">Force Majeure</span></h2>
+            <p data-en="Neither party shall be held responsible for any failure or delay in performance under these Terms to the extent caused by events beyond the reasonable control of that party, including but not limited to: natural disasters, pandemic, war, terrorism, civil unrest, government action, internet outages, or third-party service provider failures." data-it="Nessuna delle parti sarà ritenuta responsabile per qualsiasi mancanza o ritardo nell'esecuzione di questi Termini nella misura causata da eventi al di là del controllo ragionevole di tale parte, incluso ma non limitato a: disastri naturali, pandemia, guerra, terrorismo, disordini civili, azione governativa, interruzioni di Internet o guasti del provider di terze parti." data-pt="Nenhuma das partes será responsabilizada por qualquer falha ou atraso no desempenho sob estes Termos na medida causada por eventos além do controle razoável dessa parte, incluindo, mas não se limitando a: desastres naturais, pandemia, guerra, terrorismo, agitação civil, ação governamental, interrupções de internet ou falhas do provedor de serviços de terceiros.">Neither party shall be held responsible for any failure or delay in performance under these Terms to the extent caused by events beyond the reasonable control of that party, including but not limited to: natural disasters, pandemic, war, terrorism, civil unrest, government action, internet outages, or third-party service provider failures.</p>
+            <p data-en="In the event of force majeure affecting Platform operations, the Company will use reasonable efforts to resume service and notify users of expected recovery times." data-it="In caso di forza maggiore che influisca sulle operazioni della Piattaforma, la Società farà sforzi ragionevoli per ripristinare il servizio e notificare agli utenti i tempi di recupero previsti." data-pt="No caso de força maior afetando as operações da Plataforma, a Empresa usará esforços razoáveis para retomar o serviço e notificar os usuários dos tempos de recuperação esperados.">In the event of force majeure affecting Platform operations, the Company will use reasonable efforts to resume service and notify users of expected recovery times.</p>
+        </div>
+
+        <!-- Section 13: Data Protection & Privacy -->
+        <div class="section">
+            <h2><span class="section-number">13</span><span data-en="Data Protection & Privacy" data-it="Protezione dei Dati e Privacy" data-pt="Proteção de Dados e Privacidade">Data Protection & Privacy</span></h2>
+            <p data-en="Your use of the Platform is also governed by our Privacy Policy. Please review the Privacy Policy for information on how we collect, use, store, and protect your personal data in compliance with the GDPR (General Data Protection Regulation) and Italian data protection laws." data-it="L'uso della Piattaforma è anche disciplinato dalla nostra Informativa sulla Privacy. Si prega di rivedere l'Informativa sulla Privacy per informazioni su come raccogliamo, utilizziamo, immagazziniamo e proteggiamo i tuoi dati personali in conformità al GDPR (Regolamento Generale sulla Protezione dei Dati) e alle leggi italiane sulla protezione dei dati." data-pt="Seu uso da Plataforma também é regido por nossa Política de Privacidade. Por favor, revise a Política de Privacidade para informações sobre como coletamos, usamos, armazenamos e protegemos seus dados pessoais em conformidade com o GDPR (Regulamento Geral de Proteção de Dados) e leis italianas de proteção de dados.">Your use of the Platform is also governed by our Privacy Policy. Please review the Privacy Policy for information on how we collect, use, store, and protect your personal data in compliance with the GDPR (General Data Protection Regulation) and Italian data protection laws.</p>
+            <p data-en="Session video recordings and personal health data are protected under GDPR and D.Lgs. 196/2003 as amended by D.Lgs. 101/2018. Data is encrypted during transmission and storage." data-it="Le registrazioni video delle sessioni e i dati sanitari personali sono protetti dal GDPR e dalla D.Lgs. 196/2003 come modificato dal D.Lgs. 101/2018. I dati sono crittografati durante la trasmissione e l'archiviazione." data-pt="Gravações de vídeo de sessão e dados de saúde pessoal são protegidos sob GDPR e D.Lgs. 196/2003 conforme alterado pelo D.Lgs. 101/2018. Os dados são criptografados durante transmissão e armazenamento.">Session video recordings and personal health data are protected under GDPR and D.Lgs. 196/2003 as amended by D.Lgs. 101/2018. Data is encrypted during transmission and storage.</p>
+        </div>
+
+        <!-- Section 14: Severability & Entire Agreement -->
+        <div class="section">
+            <h2><span class="section-number">14</span><span data-en="Severability & Entire Agreement" data-it="Clausola di Salvaguardia e Accordo Completo" data-pt="Divisibilidade e Acordo Completo">Severability & Entire Agreement</span></h2>
+
+            <h3 data-en="14.1 Severability" data-it="14.1 Clausola di Salvaguardia" data-pt="14.1 Divisibilidade">14.1 Severability</h3>
+            <p data-en="If any provision of these Terms is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, that provision shall be severed and removed from these Terms. The remaining provisions shall continue in full force and effect. The court shall modify the unenforceable provision to the minimum extent necessary to make it enforceable while preserving the intent of the parties." data-it="Se qualsiasi disposizione di questi Termini risulta invalida, illegale o inapplicabile da un tribunale competente, tale disposizione sarà separata e rimossa da questi Termini. Le disposizioni rimanenti continueranno a essere pienamente valide ed efficaci. Il tribunale modificherà la disposizione inapplicabile nella misura minima necessaria per renderla applicabile preservando l'intenzione delle parti." data-pt="Se qualquer disposição destes Termos for considerada inválida, ilegal ou inaplicável por um tribunal competente, essa disposição será removida destes Termos. As disposições restantes continuarão em pleno vigor e efeito. O tribunal modificará a disposição inaplicável na mínima extensão necessária para torná-la aplicável, preservando a intenção das partes.">If any provision of these Terms is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, that provision shall be severed and removed from these Terms. The remaining provisions shall continue in full force and effect. The court shall modify the unenforceable provision to the minimum extent necessary to make it enforceable while preserving the intent of the parties.</p>
+
+            <h3 data-en="14.2 Entire Agreement" data-it="14.2 Accordo Completo" data-pt="14.2 Acordo Completo">14.2 Entire Agreement</h3>
+            <p data-en="These Terms & Conditions, together with the Privacy Policy, constitute the entire agreement between you and the Company regarding your use of the Platform and supersede all prior negotiations, agreements, and understandings, whether oral or written. No other documents, emails, or communications create additional terms or obligations." data-it="Questi Termini e Condizioni, insieme all'Informativa sulla Privacy, costituiscono l'intero accordo tra te e la Società riguardante il tuo utilizzo della Piattaforma e sostituiscono tutti i negoziati, gli accordi e gli intendimenti precedenti, sia orali che scritti. Nessun altro documento, email o comunicazione crea termini aggiuntivi o obblighi." data-pt="Estes Termos e Condições, juntamente com a Política de Privacidade, constituem o acordo completo entre você e a Empresa em relação ao seu uso da Plataforma e substituem todas as negociações, acordos e entendimentos anteriores, sejam orais ou escritos. Nenhum outro documento, email ou comunicação cria termos ou obrigações adicionais.">These Terms & Conditions, together with the Privacy Policy, constitute the entire agreement between you and the Company regarding your use of the Platform and supersede all prior negotiations, agreements, and understandings, whether oral or written. No other documents, emails, or communications create additional terms or obligations.</p>
+
+            <h3 data-en="14.3 No Waiver" data-it="14.3 Nessuna Rinuncia" data-pt="14.3 Nenhuma Renúncia">14.3 No Waiver</h3>
+            <p data-en="The failure of the Company to enforce any provision of these Terms does not constitute a waiver of that provision or the right to enforce it at a later date. Partial exercise of any right does not preclude further exercise of that right or exercise of any other right." data-it="L'omissione della Società di far rispettare qualsiasi disposizione di questi Termini non costituisce una rinuncia a tale disposizione o al diritto di farla rispettare in una data successiva. L'esercizio parziale di qualsiasi diritto non preclude l'ulteriore esercizio di tale diritto o l'esercizio di qualsiasi altro diritto." data-pt="A falha da Empresa em aplicar qualquer disposição destes Termos não constitui uma renúncia a essa disposição ou ao direito de aplicá-la em data posterior. O exercício parcial de qualquer direito não impede o exercício adicional desse direito ou exercício de qualquer outro direito.">The failure of the Company to enforce any provision of these Terms does not constitute a waiver of that provision or the right to enforce it at a later date. Partial exercise of any right does not preclude further exercise of that right or exercise of any other right.</p>
+        </div>
+
+        <!-- Section 15: Consumer Rights & EU Law -->
+        <div class="section">
+            <h2><span class="section-number">15</span><span data-en="Consumer Rights & EU Law Compliance" data-it="Diritti dei Consumatori e Conformità alle Leggi UE" data-pt="Direitos do Consumidor e Conformidade com a Lei da UE">Consumer Rights & EU Law Compliance</span></h2>
+            <p data-en="To the extent you are a consumer under Italian law (D.Lgs. 206/2005 - Consumer Code), certain provisions of these Terms may be subject to mandatory consumer protection laws. This includes the right to cancel a service contract within 14 days under the Consumer Rights Directive (Directive 2011/83/EU)." data-it="Nella misura in cui sei un consumatore secondo la legge italiana (D.Lgs. 206/2005 - Codice del Consumo), alcune disposizioni di questi Termini possono essere soggette alle leggi obbligatorie sulla protezione dei consumatori. Ciò include il diritto di annullare un contratto di servizio entro 14 giorni secondo la Direttiva sui Diritti dei Consumatori (Direttiva 2011/83/UE)." data-pt="Na medida em que você é um consumidor sob a lei italiana (D.Lgs. 206/2005 - Código do Consumidor), certas disposições destes Termos podem estar sujeitas a leis obrigatórias de proteção do consumidor. Isso inclui o direito de cancelar um contrato de serviço dentro de 14 dias sob a Diretiva de Direitos do Consumidor (Diretiva 2011/83/EU).">To the extent you are a consumer under Italian law (D.Lgs. 206/2005 - Consumer Code), certain provisions of these Terms may be subject to mandatory consumer protection laws. This includes the right to cancel a service contract within 14 days under the Consumer Rights Directive (Directive 2011/83/EU).</p>
+
+            <h3 data-en="15.1 Right of Withdrawal" data-it="15.1 Diritto di Recesso" data-pt="15.1 Direito de Rescisão">15.1 Right of Withdrawal</h3>
+            <p data-en="EU consumer law grants you the right to withdraw from a distance service contract within 14 calendar days without stating reasons. This right applies to your booking on the Platform." data-it="La legge sui consumatori dell'UE ti concede il diritto di recedere da un contratto di servizio a distanza entro 14 giorni di calendario senza fornire motivi. Questo diritto si applica alla tua prenotazione sulla Piattaforma." data-pt="A lei do consumidor da UE concede a você o direito de rescindir um contrato de serviço à distância dentro de 14 dias de calendário sem declinar motivos. Este direito se aplica ao sua reserva na Plataforma.">EU consumer law grants you the right to withdraw from a distance service contract within 14 calendar days without stating reasons. This right applies to your booking on the Platform.</p>
+            <p data-en="However, you will forfeit the right of withdrawal if the service (therapy session) has begun (i.e., the session has started) with your express consent before the 14-day period expires." data-it="Tuttavia, perderai il diritto di recesso se il servizio (sessione) è iniziato (cioè la sessione è iniziata) con il tuo consenso esplicito prima della scadenza del periodo di 14 giorni." data-pt="No entanto, você perderá o direito de rescisão se o serviço (sessão de terapia) tiver começado (ou seja, a sessão começou) com seu consentimento expresso antes do período de 14 dias expirar.">However, you will forfeit the right of withdrawal if the service (therapy session) has begun (i.e., the session has started) with your express consent before the 14-day period expires.</p>
+            <p data-en="To exercise your right of withdrawal, contact support@holisticunity.app within 14 days of booking with a clear statement of your intention to withdraw." data-it="Per esercitare il tuo diritto di recesso, contatta support@holisticunity.app entro 14 giorni dalla prenotazione con una chiara dichiarazione della tua intenzione di recedere." data-pt="Para exercer seu direito de rescisão, entre em contato com support@holisticunity.app dentro de 14 dias da reserva com uma declaração clara de sua intenção de rescindir.">To exercise your right of withdrawal, contact support@holisticunity.app within 14 days of booking with a clear statement of your intention to withdraw.</p>
+
+            <h3 data-en="15.2 Compatibility with Cancellation Policy" data-it="15.2 Compatibilità con la Politica di Cancellazione" data-pt="15.2 Compatibilidade com Política de Cancelamento">15.2 Compatibility with Cancellation Policy</h3>
+            <p data-en="The withdrawal right under EU consumer law and the cancellation policy in Section 5 operate independently. Whichever policy is more favorable to you as the consumer shall apply." data-it="Il diritto di recesso secondo la legge sui consumatori dell'UE e la politica di cancellazione nella Sezione 5 operano indipendentemente. La politica più favorevole per te come consumatore si applicherà." data-pt="O direito de rescisão sob a lei do consumidor da UE e a política de cancelamento na Seção 5 operam independentemente. Qualquer que seja a política mais favorável para você como consumidor se aplicará.">The withdrawal right under EU consumer law and the cancellation policy in Section 5 operate independently. Whichever policy is more favorable to you as the consumer shall apply.</p>
+        </div>
+
+        <!-- Section 16: Contact Information -->
+        <div class="section">
+            <h2><span class="section-number">16</span><span data-en="Contact Information & Support" data-it="Informazioni di Contatto e Supporto" data-pt="Informações de Contato e Suporte">Contact Information & Support</span></h2>
+            <p data-en="For questions, disputes, complaints, or support regarding these Terms or the Platform, please contact:" data-it="Per domande, controversie, reclami o supporto riguardanti questi Termini o la Piattaforma, si prega di contattare:" data-pt="Para dúvidas, disputas, reclamações ou suporte sobre estes Termos ou a Plataforma, entre em contato:">For questions, disputes, complaints, or support regarding these Terms or the Platform, please contact:</p>
+            <ul>
+                <li data-en="Email: support@holisticunity.app" data-it="Email: support@holisticunity.app" data-pt="Email: support@holisticunity.app">Email: support@holisticunity.app</li>
+                <li data-en="Company: STORM X DIGITAL S.R.L." data-it="Società: STORM X DIGITAL S.R.L." data-pt="Empresa: STORM X DIGITAL S.R.L.">Company: STORM X DIGITAL S.R.L.</li>
+                <li data-en="Address: Via Strada del Carro 24, 76011 Bisceglie (BA), Italy" data-it="Indirizzo: Via Strada del Carro 24, 76011 Bisceglie (BA), Italia" data-pt="Endereço: Via Strada del Carro 24, 76011 Bisceglie (BA), Itália">Address: Via Strada del Carro 24, 76011 Bisceglie (BA), Italy</li>
+                <li data-en="VAT/P.Iva: 08789080721" data-it="VAT/P.Iva: 08789080721" data-pt="VAT/P.Iva: 08789080721">VAT/P.Iva: 08789080721</li>
+                <li data-en="PEC: stormxdigital@pec.it" data-it="PEC: stormxdigital@pec.it" data-pt="PEC: stormxdigital@pec.it">PEC: stormxdigital@pec.it</li>
+            </ul>
+            <p data-en="Response times for support inquiries: We aim to respond within 5-7 business days." data-it="Tempi di risposta per richieste di supporto: Miriamo a rispondere entro 5-7 giorni lavorativi." data-pt="Tempos de resposta para consultas de suporte: Nos esforçamos para responder dentro de 5-7 dias úteis.">Response times for support inquiries: We aim to respond within 5-7 business days.</p>
+        </div>
+
+        <!-- Section 17: Effective Date & Acknowledgment -->
+        <div class="section">
+            <h2><span class="section-number">17</span><span data-en="Acknowledgment & Acceptance" data-it="Riconoscimento e Accettazione" data-pt="Reconhecimento e Aceitação">Acknowledgment & Acceptance</span></h2>
+            <p data-en="By clicking 'I Agree' or 'Accetto' when registering for an account on the Platform, or by continuing to use the Platform after the Effective Date, you acknowledge that:" data-it="Facendo clic su 'I Agree' o 'Accetto' quando ti registri per un account sulla Piattaforma, o continuando a utilizzare la Piattaforma dopo la Data di Entrata in Vigore, riconosci che:" data-pt="Ao clicar em 'Concordo' ou 'Accetto' ao se registrar para uma conta na Plataforma, ou ao continuar usando a Plataforma após a Data de Vigência, você reconhece que:">By clicking 'I Agree' or 'Accetto' when registering for an account on the Platform, or by continuing to use the Platform after the Effective Date, you acknowledge that:</p>
+            <ul>
+                <li data-en="You have read and understand these Terms & Conditions in their entirety" data-it="Hai letto e comprendi questi Termini e Condizioni nella loro interezza" data-pt="Você leu e entendeu estes Termos e Condições em sua totalidade">You have read and understand these Terms & Conditions in their entirety</li>
+                <li data-en="You agree to be bound by all terms and conditions herein" data-it="Accetti di essere vincolato da tutti i termini e condizioni ivi contenuti" data-pt="Você concorda em estar vinculado por todos os termos e condições aqui">You agree to be bound by all terms and conditions herein</li>
+                <li data-en="You are at least 18 years of age and have legal capacity to enter into this agreement" data-it="Hai almeno 18 anni di età e hai la capacità legale di stipulare questo accordo" data-pt="Você tem pelo menos 18 anos de idade e tem capacidade legal para celebrar este acordo">You are at least 18 years of age and have legal capacity to enter into this agreement</li>
+                <li data-en="You understand the complementary nature of the therapies and assume all responsibility for your health decisions" data-it="Comprendi la natura complementare delle discipline e assumi la responsabilità completa per le tue decisioni sanitarie" data-pt="Você entende a natureza complementar das terapias e assume toda responsabilidade por suas decisões de saúde">You understand the complementary nature of the therapies and assume all responsibility for your health decisions</li>
+            </ul>
+        </div>
+
+        
+        <!-- Section 18: Specific Approval of Onerous Clauses (art. 1341/1342 c.c.) -->
+        <div class="section" style="border-top: 2px solid var(--gold); padding-top: 1.5rem;">
+            <h2><span class="section-number">18</span><span data-en="Specific Approval of Onerous Clauses (art. 1341 / 1342 of the Italian Civil Code)" data-it="Approvazione Specifica delle Clausole Vessatorie (artt. 1341 e 1342 c.c.)" data-pt="Aprovação Específica das Cláusulas Onerosas (arts. 1341 e 1342 c.c.)">Specific Approval of Onerous Clauses (art. 1341 / 1342 of the Italian Civil Code)</span></h2>
+            <p data-en="Pursuant to Articles 1341 and 1342 of the Italian Civil Code, by accepting these Terms (and by ticking the dedicated &quot;Specific Approval&quot; checkbox in the registration flow), you specifically and separately approve the following clauses, which require express written acceptance to be binding under Italian law:" data-it="Ai sensi e per gli effetti degli artt. 1341 e 1342 del Codice Civile italiano, accettando questi Termini (e spuntando l'apposita casella &quot;Approvazione Specifica&quot; nel flusso di registrazione), il Cliente approva specificamente e separatamente le seguenti clausole, che richiedono accettazione scritta espressa per essere vincolanti ai sensi della legge italiana:" data-pt="Nos termos dos artigos 1341 e 1342 do C&oacute;digo Civil italiano, ao aceitar estes Termos (e ao marcar a caixa de sele&ccedil;&atilde;o dedicada &quot;Aprova&ccedil;&atilde;o Espec&iacute;fica&quot; no fluxo de registo), o Cliente aprova especificamente e em separado as seguintes cl&aacute;usulas, que exigem aceita&ccedil;&atilde;o escrita expressa para serem vinculativas nos termos da lei italiana:">Pursuant to Articles 1341 and 1342 of the Italian Civil Code, by accepting these Terms (and by ticking the dedicated "Specific Approval" checkbox in the registration flow), you specifically and separately approve the following clauses, which require express written acceptance to be binding under Italian law:</p>
+            <ul>
+                <li><strong>Section 4.2</strong> &mdash; <span data-en="Full payment upfront at booking" data-it="Pagamento completo in anticipo alla prenotazione" data-pt="Pagamento completo no momento da reserva">Full payment upfront at booking</span></li>
+                <li><strong>Section 5</strong> &mdash; <span data-en="Cancellation and Refund Policy (24-hour rule, 50% partial charge, no-show forfeiture, no refund for completed sessions, exceptions list)" data-it="Politica di Cancellazione e Rimborso (regola 24 ore, addebito parziale 50%, perdita per mancato arrivo, no rimborso per sessioni completate, lista eccezioni)" data-pt="Pol&iacute;tica de Cancelamento e Reembolso (regra 24h, cobran&ccedil;a parcial 50%, perda por aus&ecirc;ncia, sem reembolso para sess&otilde;es conclu&iacute;das)">Cancellation and Refund Policy</span></li>
+                <li><strong>Sections 6.1, 6.2, 6.3</strong> &mdash; <span data-en="Platform as intermediary only / Therapies are not medical services / No liability for therapy outcomes" data-it="Piattaforma come solo intermediario / Le pratiche non sono servizi medici / Nessuna responsabilit&agrave; sui risultati" data-pt="Plataforma apenas como intermedi&aacute;ria / Pr&aacute;ticas n&atilde;o s&atilde;o servi&ccedil;os m&eacute;dicos / Sem responsabilidade pelos resultados">Platform as intermediary, no medical services, no outcome liability</span></li>
+                <li><strong>Section 6.5</strong> &mdash; <span data-en="Exclusion of consequential / indirect damages" data-it="Esclusione dei danni indiretti e consequenziali" data-pt="Exclus&atilde;o de danos indiretos e consequenciais">Exclusion of consequential damages</span></li>
+                <li><strong>Section 6.6</strong> &mdash; <span data-en="Liability cap (12 months of fees paid)" data-it="Limite di responsabilit&agrave; (12 mesi delle commissioni pagate)" data-pt="Limite de responsabilidade (12 meses de taxas pagas)">Liability cap</span></li>
+                <li><strong>Section 7</strong> &mdash; <span data-en="User conduct prohibitions and account suspension consequences" data-it="Divieti di condotta dell'utente e conseguenze sulla sospensione dell'account" data-pt="Proibi&ccedil;&otilde;es de conduta e suspens&atilde;o de conta">User conduct & suspension</span></li>
+                <li><strong>Section 9.2</strong> &mdash; <span data-en="Jurisdiction (consumer's place of domicile, or Court of Bari for non-consumers)" data-it="Foro competente (luogo di domicilio del consumatore, o Tribunale di Bari per non consumatori)" data-pt="Foro (domic&iacute;lio do consumidor, ou Tribunal de Bari para n&atilde;o consumidores)">Jurisdiction</span></li>
+                <li><strong>Section 11</strong> &mdash; <span data-en="Termination of services" data-it="Cessazione dei servizi" data-pt="Encerramento dos servi&ccedil;os">Termination</span></li>
+            </ul>
+            <p data-en="The above clauses are recognised as onerous under Italian law and become enforceable only with this specific separate approval. Notwithstanding such approval, mandatory consumer-protection rules under D.Lgs. 206/2005 (Italian Consumer Code) and EU consumer law remain fully applicable; nothing in these Terms reduces statutory consumer rights." data-it="Le clausole sopra elencate sono riconosciute come vessatorie ai sensi della legge italiana e diventano efficaci solo con questa specifica e separata approvazione. Nonostante tale approvazione, le norme imperative di tutela del consumatore di cui al D.Lgs. 206/2005 (Codice del Consumo) e al diritto UE rimangono pienamente applicabili; nulla in questi Termini riduce i diritti di legge del consumatore." data-pt="As cl&aacute;usulas acima s&atilde;o reconhecidas como onerosas nos termos da lei italiana e tornam-se exigíveis apenas com esta aprova&ccedil;&atilde;o espec&iacute;fica e em separado. N&atilde;o obstante tal aprova&ccedil;&atilde;o, as normas imperativas de proteção do consumidor do D.Lgs. 206/2005 e da lei da UE permanecem integralmente aplicáveis; nada nestes Termos reduz os direitos legais do consumidor.">The above clauses are recognised as onerous under Italian law and become enforceable only with this specific separate approval. Notwithstanding such approval, mandatory consumer-protection rules under D.Lgs. 206/2005 (Italian Consumer Code) and EU consumer law remain fully applicable; nothing in these Terms reduces statutory consumer rights.</p>
+        </div>
+
+        <!-- Final Statement -->
+        <div class="section" style="border-top: 2px solid var(--gold); padding-top: 2rem; margin-top: 3rem;">
+            <p style="text-align: center; font-style: italic; color: #666;">
+                <span data-en="These Terms & Conditions were last updated on April 25, 2026 and are effective as of May 1, 2026. Copyright © 2026 STORM X DIGITAL S.R.L. All rights reserved." data-it="Questi Termini e Condizioni sono stati aggiornati l'ultima volta il 24 marzo 2026 e sono in vigore a partire dal 1 maggio 2026. Copyright © 2026 STORM X DIGITAL S.R.L. Tutti i diritti riservati." data-pt="Estes Termos e Condições foram atualizados pela última vez em 25 de abril de 2026 e são efetivos a partir de 1º de maio de 2026. Copyright © 2026 STORM X DIGITAL S.R.L. Todos os direitos reservados.">These Terms & Conditions were last updated on April 25, 2026 and are effective as of May 1, 2026. Copyright © 2026 STORM X DIGITAL S.R.L. All rights reserved.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-company" data-en="STORM X DIGITAL S.R.L." data-it="STORM X DIGITAL S.R.L." data-pt="STORM X DIGITAL S.R.L.">STORM X DIGITAL S.R.L.</div>
+
+            <div class="footer-details">
+                <div class="footer-section">
+                    <h4 data-en="Legal Information" data-it="Informazioni Legali" data-pt="Informações Legais">Legal Information</h4>
+                    <p>
+                        <strong data-en="Company:" data-it="Società:" data-pt="Empresa:">Company:</strong>
+                        <span data-en="STORM X DIGITAL S.R.L." data-it="STORM X DIGITAL S.R.L." data-pt="STORM X DIGITAL S.R.L.">STORM X DIGITAL S.R.L.</span>
+                    </p>
+                    <p>
+                        <strong data-en="VAT/P.Iva:" data-it="VAT/P.Iva:" data-pt="VAT/P.Iva:">VAT/P.Iva:</strong> 08789080721
+                    </p>
+                    <p>
+                        <strong data-en="PEC:" data-it="PEC:" data-pt="PEC:">PEC:</strong> stormxdigital@pec.it
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-en="Address" data-it="Indirizzo" data-pt="Endereço">Address</h4>
+                    <p data-en="Via Strada del Carro 24<br>76011 Bisceglie (BA)<br>Italy" data-it="Via Strada del Carro 24<br>76011 Bisceglie (BA)<br>Italia" data-pt="Via Strada del Carro 24<br>76011 Bisceglie (BA)<br>Itália">Via Strada del Carro 24<br>76011 Bisceglie (BA)<br>Italy</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-en="Support" data-it="Supporto" data-pt="Suporte">Support</h4>
+                    <p>
+                        <strong data-en="Email:" data-it="Email:" data-pt="Email:">Email:</strong><br>
+                        <a href="mailto:support@holisticunity.app" style="color: var(--gold); text-decoration: none;">support@holisticunity.app</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-en="© 2026 STORM X DIGITAL S.R.L. All rights reserved. | Holistic Unity is a marketplace platform operated under Italian Law." data-it="© 2026 STORM X DIGITAL S.R.L. Tutti i diritti riservati. | Holistic Unity è una piattaforma di mercato gestita secondo la legge italiana." data-pt="© 2026 STORM X DIGITAL S.R.L. Todos os direitos reservados. | Holistic Unity é uma plataforma de mercado operada sob a Lei Italiana.">© 2026 STORM X DIGITAL S.R.L. All rights reserved. | Holistic Unity is a marketplace platform operated under Italian Law.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Language Toggle -->
+    <script>
+        function setLanguage(lang) {
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Remove all language classes
+            document.body.classList.remove('lang-it', 'lang-pt');
+
+            if (lang === 'it') {
+                document.body.classList.add('lang-it');
+                buttons[1].classList.add('active');
+            } else if (lang === 'pt') {
+                document.body.classList.add('lang-pt');
+                if (buttons[2]) buttons[2].classList.add('active');
+            } else {
+                buttons[0].classList.add('active');
+            }
+
+            // Swap text content from data attributes
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+
+            // Store preference
+            localStorage.setItem('holisticunity-lang', lang);
+        }
+
+        // Load stored language preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('holisticunity-lang') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

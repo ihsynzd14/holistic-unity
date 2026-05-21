@@ -1,0 +1,156 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Trova il tuo benessere
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Esplora pratiche" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Esplora pratiche
+        - link "Trova operatore" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Trova operatore
+        - link "Prenotazioni" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Prenotazioni
+        - link "Messaggi" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messaggi
+        - link "Sessioni Video" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Sessioni Video
+        - link "Notifiche" [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifiche
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Esci" [ref=e48]:
+          - img [ref=e49]
+          - text: Esci
+    - main [ref=e52]:
+      - generic [ref=e149]:
+        - link "Torna agli operatori" [ref=e150] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e151]
+          - text: Torna agli operatori
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e157]:
+                - img "Gabriele Vico" [ref=e159]
+                - generic [ref=e160]:
+                  - heading "Gabriele Vico" [level=1] [ref=e161]
+                  - paragraph [ref=e162]: Insegnante e Consulente Olistico
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - img [ref=e165]
+                      - text: Sommariva Perno
+                    - generic [ref=e168]: ·
+                    - generic [ref=e169]: 15 anni di esperienza
+                    - generic [ref=e170]: ·
+                    - generic [ref=e171]:
+                      - img [ref=e172]
+                      - text: English · Italian
+                  - generic [ref=e175]:
+                    - generic [ref=e176]:
+                      - img [ref=e177]
+                      - text: Nuovo operatore
+                    - 'generic "Annullamento gratuito ≥48h prima della sessione (rimborso 100%). Tra 24h e 48h: rimborso 50%. Meno di 24h: nessun rimborso." [ref=e179]':
+                      - img [ref=e180]
+                      - text: Annullabile
+                    - link "Prenota da €110.00" [ref=e185] [cursor=pointer]:
+                      - /url: "#prenota"
+                      - img [ref=e186]
+                      - text: Prenota da €110.00
+              - generic [ref=e188]:
+                - paragraph [ref=e189]: Specializzazioni
+                - generic [ref=e190]:
+                  - link "ThetaHealing" [ref=e191] [cursor=pointer]:
+                    - /url: /dashboard/pratiche/theta-healing
+                  - generic [ref=e192]: Numerology
+            - generic [ref=e193]:
+              - heading "Chi sono" [level=2] [ref=e194]
+              - paragraph [ref=e195]: Sono Gabriele Vico, ThetaHealer® e Dottore in Tecniche Psicologiche. La mia missione è offrirti un supporto sincero, fornendoti strumenti pratici per la tua crescita personale. Nel percorso olistico garantisco uno spazio sicuro grazie al mio background accademico. Sono orgoglioso di essere il traduttore italiano di Vianna Stibal nei corsi per Insegnanti. Ti guiderò con il ThetaHealing® nello sbloccare le convinzioni limitanti per ritrovare il tuo vero potenziale.
+            - generic [ref=e196]:
+              - heading "Media" [level=2] [ref=e197]
+              - button "Riproduci video di presentazione di Gabriele" [ref=e199]:
+                - generic [ref=e201]:
+                  - img [ref=e203]
+                  - generic [ref=e205]: Conosci Gabriele
+                  - generic [ref=e206]: Video di presentazione
+            - generic [ref=e207]:
+              - heading "Formazione" [level=2] [ref=e208]
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - img [ref=e212]
+                  - generic [ref=e215]:
+                    - paragraph [ref=e216]: Laurea in TECNICHE PSICOLOGICHE
+                    - paragraph [ref=e217]: Università · 2026
+                - generic [ref=e218]:
+                  - img [ref=e220]
+                  - generic [ref=e223]:
+                    - paragraph [ref=e224]: CERTIFICATE OF SCIENCE
+                    - paragraph [ref=e225]: ThinK ThetaHealing® · 2021
+            - generic [ref=e226]:
+              - heading "Recensioni" [level=2] [ref=e227]
+              - generic [ref=e228]:
+                - img [ref=e230]
+                - generic [ref=e232]:
+                  - paragraph [ref=e233]: Nessuna recensione ancora
+                  - paragraph [ref=e234]: Sii il primo a recensire Gabriele dopo la tua sessione.
+            - generic [ref=e235]:
+              - generic [ref=e236]:
+                - heading "Prenota una sessione" [level=2] [ref=e237]
+                - paragraph [ref=e238]: Scegli un servizio per vedere gli orari disponibili.
+              - button "Sessione di ThetaHealing® Seduta di ThetaHealing® della durata di 60 minuti 60 min €110.00" [ref=e240]:
+                - generic [ref=e241]:
+                  - generic [ref=e242]:
+                    - paragraph [ref=e244]: Sessione di ThetaHealing®
+                    - paragraph [ref=e245]: Seduta di ThetaHealing® della durata di 60 minuti
+                    - paragraph [ref=e246]:
+                      - img [ref=e247]
+                      - text: 60 min
+                  - generic [ref=e250]:
+                    - paragraph [ref=e251]: €110.00
+                    - img [ref=e252]
+            - generic [ref=e254]:
+              - paragraph [ref=e255]: Politica di cancellazione
+              - paragraph [ref=e256]: flexible
+          - complementary [ref=e257]:
+            - generic [ref=e259]:
+              - generic [ref=e262]:
+                - paragraph [ref=e263]: Prenota con Gabriele
+                - paragraph [ref=e264]: Da €110.00 · 60 min
+              - button "Sessione di ThetaHealing® 60 min €110" [ref=e266]:
+                - generic [ref=e267]:
+                  - generic [ref=e268]: Sessione di ThetaHealing®
+                  - generic [ref=e269]:
+                    - img [ref=e270]
+                    - text: 60 min
+                - generic [ref=e273]: €110
+              - link "Vedi disponibilità" [ref=e274] [cursor=pointer]:
+                - /url: "#prenota"
+                - img [ref=e275]
+                - text: Vedi disponibilità
+              - generic [ref=e278]:
+                - img [ref=e279]
+                - text: Annullabile · vedi politica
+  - alert [ref=e64]

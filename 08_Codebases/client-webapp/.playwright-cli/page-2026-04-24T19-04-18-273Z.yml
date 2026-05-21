@@ -1,0 +1,75 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "Holistic Unity" [ref=e5]
+        - generic [ref=e6]:
+          - heading "Holistic Unity" [level=2] [ref=e7]
+          - paragraph [ref=e8]: Find your wellbeing
+      - navigation [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - text: Home
+        - link "Explore practices" [ref=e17] [cursor=pointer]:
+          - /url: /dashboard/pratiche
+          - img [ref=e18]
+          - text: Explore practices
+        - link "Find therapist" [ref=e21] [cursor=pointer]:
+          - /url: /dashboard/therapists
+          - img [ref=e22]
+          - text: Find therapist
+        - link "Bookings" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/bookings
+          - img [ref=e26]
+          - text: Bookings
+        - link "Messages" [ref=e28] [cursor=pointer]:
+          - /url: /dashboard/messages
+          - img [ref=e29]
+          - text: Messages
+        - link "Video Sessions" [ref=e31] [cursor=pointer]:
+          - /url: /dashboard/sessions
+          - img [ref=e32]
+          - text: Video Sessions
+        - link "Notifications" [active] [ref=e35] [cursor=pointer]:
+          - /url: /dashboard/notifications
+          - img [ref=e36]
+          - text: Notifications
+        - link "Account" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard/account
+          - img [ref=e40]
+          - text: Account
+      - generic [ref=e45]:
+        - generic [ref=e46]: Marcello
+        - generic [ref=e47]: marcellodipierro@outlook.com
+        - button "Sign out" [ref=e48]:
+          - img [ref=e49]
+          - text: Sign out
+    - main [ref=e52]:
+      - generic [ref=e506]:
+        - generic [ref=e507]:
+          - generic [ref=e508]:
+            - heading "Notifications" [level=1] [ref=e509]
+            - paragraph [ref=e510]: 2 unread
+          - button "Mark all as read" [ref=e512]:
+            - img [ref=e513]
+            - text: Mark all as read
+        - generic [ref=e515]:
+          - button "All" [ref=e516]
+          - button "Unread 2" [ref=e517]:
+            - text: Unread
+            - generic [ref=e518]: "2"
+        - generic [ref=e519]:
+          - generic [ref=e520] [cursor=pointer]:
+            - img [ref=e522]
+            - generic [ref=e526]:
+              - paragraph [ref=e528]: Session Cancelled
+              - paragraph [ref=e530]: Your Costellazione Familiare has been cancelled. As the session was within 24 hours, no refund is available.
+            - generic [ref=e531]: 5 days ago
+          - generic [ref=e532] [cursor=pointer]:
+            - img [ref=e534]
+            - generic [ref=e538]:
+              - paragraph [ref=e540]: Session Cancelled
+              - paragraph [ref=e542]: Your ThetaHealing®️ has been cancelled. As the session was within 24 hours, no refund is available.
+            - generic [ref=e543]: Apr 16
+  - alert [ref=e65]

@@ -1,0 +1,33 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 5 di 10
+    - main [ref=e12]:
+      - generic [ref=e238]:
+        - heading "Quando senti di voler iniziare?" [level=1] [ref=e239]
+        - paragraph [ref=e240]: "Senza pressione: rispondi onestamente, ti aiuterà a trovare il momento giusto."
+        - generic [ref=e241]:
+          - button "Appena possibile" [ref=e242]:
+            - paragraph [ref=e246]: Appena possibile
+          - button "Questa settimana" [ref=e247]:
+            - paragraph [ref=e251]: Questa settimana
+          - button "Tra qualche settimana" [ref=e252]:
+            - paragraph [ref=e256]: Tra qualche settimana
+          - button "Sto solo esplorando, senza fretta" [ref=e257]:
+            - paragraph [ref=e261]: Sto solo esplorando, senza fretta
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [disabled] [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

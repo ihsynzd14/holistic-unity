@@ -1,0 +1,52 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 3 di 10
+    - main [ref=e12]:
+      - generic [ref=e126]:
+        - heading "Hai già esplorato qualcuna di queste pratiche?" [level=1] [ref=e127]
+        - paragraph [ref=e128]: "Se non le conosci, va benissimo: è il momento di scoprirle."
+        - generic [ref=e129]:
+          - button "ThetaHealing®" [active] [ref=e130]:
+            - generic [ref=e131]:
+              - img [ref=e187]
+              - paragraph [ref=e134]: ThetaHealing®
+          - button "Costellazioni Familiari" [ref=e135]:
+            - paragraph [ref=e139]: Costellazioni Familiari
+          - button "Costellazioni Sistemiche" [ref=e140]:
+            - paragraph [ref=e144]: Costellazioni Sistemiche
+          - button "Reiki" [ref=e145]:
+            - paragraph [ref=e149]: Reiki
+          - button "Naturopatia" [ref=e150]:
+            - paragraph [ref=e154]: Naturopatia
+          - button "Astrologia" [ref=e155]:
+            - paragraph [ref=e159]: Astrologia
+          - button "Human Design" [ref=e160]:
+            - paragraph [ref=e164]: Human Design
+          - button "Numerologia" [ref=e165]:
+            - paragraph [ref=e169]: Numerologia
+          - button "Ayurveda" [ref=e170]:
+            - paragraph [ref=e174]: Ayurveda
+          - button "Sciamanesimo" [ref=e175]:
+            - paragraph [ref=e179]: Sciamanesimo
+          - button "Non le conosco bene Va benissimo, ti guidiamo noi" [ref=e180]:
+            - generic [ref=e183]:
+              - paragraph [ref=e184]: Non le conosco bene
+              - paragraph [ref=e185]: Va benissimo, ti guidiamo noi
+        - paragraph [ref=e186]: Puoi selezionare più di una risposta
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

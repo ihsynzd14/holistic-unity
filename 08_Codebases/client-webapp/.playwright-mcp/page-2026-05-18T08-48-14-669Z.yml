@@ -1,0 +1,50 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Holistic Unity Holistic Unity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Holistic Unity" [ref=e7]
+          - generic [ref=e8]: Holistic Unity
+        - generic [ref=e9]: 4 di 10
+    - main [ref=e12]:
+      - generic [ref=e192]:
+        - heading "Quale approccio risuona di più con te?" [level=1] [ref=e193]
+        - paragraph [ref=e194]: Pensa a come preferisci entrare in contatto con te stesso/a.
+        - generic [ref=e195]:
+          - button "Lavoro energetico Riequilibrio sottile, channeling" [ref=e196]:
+            - generic [ref=e199]:
+              - paragraph [ref=e200]: Lavoro energetico
+              - paragraph [ref=e201]: Riequilibrio sottile, channeling
+          - button "Conoscenza di sé Mappe interpretative, simboli, archetipi" [ref=e202]:
+            - generic [ref=e205]:
+              - paragraph [ref=e206]: Conoscenza di sé
+              - paragraph [ref=e207]: Mappe interpretative, simboli, archetipi
+          - button "Riconnessione spirituale Senso del sacro, presenza, ascolto" [ref=e208]:
+            - generic [ref=e211]:
+              - paragraph [ref=e212]: Riconnessione spirituale
+              - paragraph [ref=e213]: Senso del sacro, presenza, ascolto
+          - button "Lettura simbolica Numeri, astri, lettere, sincronicità" [ref=e214]:
+            - generic [ref=e217]:
+              - paragraph [ref=e218]: Lettura simbolica
+              - paragraph [ref=e219]: Numeri, astri, lettere, sincronicità
+          - button "Cura del corpo Alimentazione, ritmi, fitoterapia" [ref=e220]:
+            - generic [ref=e223]:
+              - paragraph [ref=e224]: Cura del corpo
+              - paragraph [ref=e225]: Alimentazione, ritmi, fitoterapia
+          - button "Lasciamo decidere a te Suggeriscimi tu cosa fa per me" [ref=e226]:
+            - generic [ref=e229]:
+              - paragraph [ref=e230]: Lasciamo decidere a te
+              - paragraph [ref=e231]: Suggeriscimi tu cosa fa per me
+        - paragraph [ref=e232]: Puoi selezionare più di una risposta
+    - contentinfo [ref=e45]:
+      - generic [ref=e46]:
+        - button "Indietro" [ref=e47]:
+          - img [ref=e48]
+          - text: Indietro
+        - button "Avanti" [disabled] [ref=e50]:
+          - text: Avanti
+          - img [ref=e51]
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e62]

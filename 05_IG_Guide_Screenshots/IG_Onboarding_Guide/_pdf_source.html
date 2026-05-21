@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Holistic Unity — Guida onboarding & prenotazione iOS</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: -apple-system, "SF Pro Text", Helvetica, Arial, sans-serif; color: #1C1C1E; }
+  .page {
+    width: 210mm; height: 297mm;
+    padding: 14mm 14mm;
+    page-break-after: always;
+    display: flex; flex-direction: column;
+    background: #FFFFFF;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* COVER */
+  .cover {
+    background: linear-gradient(160deg, #FDF6F0 0%, #F0DFE5 70%, #FAE0EB 100%);
+    align-items: center; justify-content: center; text-align: center;
+    padding: 40mm 18mm;
+  }
+  .cover .eyebrow {
+    font-size: 11pt; font-weight: 700; letter-spacing: 0.25em; color: #C9A96E; text-transform: uppercase;
+  }
+  .cover .lotus {
+    width: 110px; height: 110px; border-radius: 24px; margin: 12mm 0 8mm;
+    background: #7B2252; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 56pt; line-height: 1;
+    box-shadow: 0 12px 40px rgba(123, 34, 82, 0.35);
+  }
+  .cover h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 44pt; font-weight: 500; line-height: 1.05;
+    letter-spacing: -0.02em; color: #1C1C1E;
+    margin: 6mm 0 4mm;
+  }
+  .cover h1 em { color: #7B2252; font-style: italic; font-weight: 500; }
+  .cover h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 20pt; font-weight: 400; color: #4A4A4A;
+    margin-bottom: 8mm;
+  }
+  .cover .meta {
+    margin-top: 14mm; font-size: 10pt; color: #8E8E93; line-height: 1.7;
+  }
+  .cover .meta strong { color: #1C1C1E; }
+
+  /* SECTION DIVIDER */
+  .divider {
+    background: linear-gradient(180deg, #7B2252 0%, #5C1A3E 100%);
+    color: #fff; align-items: flex-start; justify-content: center;
+    padding: 60mm 18mm;
+  }
+  .divider .num {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 96pt; font-weight: 500; line-height: 0.8;
+    color: rgba(212, 188, 142, 0.55);
+    letter-spacing: -0.04em;
+    margin-bottom: 8mm;
+  }
+  .divider .label {
+    font-size: 10pt; font-weight: 700; letter-spacing: 0.3em; color: #D4BC8E; text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+  .divider h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 36pt; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 6mm;
+  }
+  .divider h2 em { color: #D4BC8E; font-style: italic; }
+  .divider p {
+    font-size: 12pt; line-height: 1.55; max-width: 130mm; color: rgba(255,255,255,0.8);
+  }
+
+  /* CONTENT (text-heavy) */
+  .content {
+    padding: 18mm 16mm;
+  }
+  .content .eyebrow {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.25em; color: #C9A96E; text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+  .content h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 28pt; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 8mm; color: #1C1C1E;
+  }
+  .content h2 em { color: #7B2252; font-style: italic; }
+  .content h3 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 16pt; font-weight: 600; margin: 6mm 0 2mm; color: #7B2252;
+  }
+  .content p { font-size: 11pt; line-height: 1.55; margin-bottom: 3mm; color: #4A4A4A; }
+  .content ul { margin-left: 6mm; margin-bottom: 4mm; }
+  .content li { font-size: 11pt; line-height: 1.5; margin-bottom: 1.5mm; color: #4A4A4A; }
+  .content .footnote { font-size: 9pt; color: #8E8E93; margin-top: auto; }
+
+  /* IMAGE PAGE */
+  .imagepage {
+    padding: 12mm 14mm;
+    display: flex; flex-direction: column;
+  }
+  .imagepage .header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 4mm; padding-bottom: 3mm;
+    border-bottom: 0.5pt solid rgba(123, 34, 82, 0.15);
+  }
+  .imagepage .header .step {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.18em; color: #C9A96E; text-transform: uppercase;
+  }
+  .imagepage .header .num {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 13pt; color: #7B2252; font-weight: 600;
+  }
+  .imagepage h3 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 22pt; font-weight: 500; letter-spacing: -0.01em; line-height: 1.15;
+    color: #1C1C1E; margin-bottom: 6mm;
+  }
+  .imagepage h3 em { color: #7B2252; font-style: italic; }
+  .imagepage .screenshot-wrap {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, #FDF6F0 0%, #F5EFE2 100%);
+    border-radius: 12mm;
+    padding: 10mm 0;
+  }
+  .imagepage .screenshot {
+    max-height: 145mm;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 6mm;
+    box-shadow: 0 10mm 18mm rgba(0,0,0,0.18), 0 2mm 4mm rgba(0,0,0,0.08);
+  }
+  .imagepage .caption {
+    margin-top: 6mm;
+    font-size: 10.5pt; line-height: 1.5; color: #4A4A4A;
+    padding: 4mm 0; border-top: 0.5pt solid rgba(123, 34, 82, 0.1);
+  }
+  .imagepage .caption strong { color: #7B2252; font-family: "Cormorant Garamond", Georgia, serif; font-size: 11.5pt; font-style: italic; }
+  .imagepage .igcopy {
+    margin-top: 3mm; font-size: 9.5pt; line-height: 1.45; color: #8E8E93; font-style: italic;
+  }
+  .imagepage .igcopy::before { content: "📲 IG copy — "; font-style: normal; color: #C9A96E; font-weight: 600; }
+
+  /* BUG PAGE */
+  .bugpage { padding: 16mm 14mm; }
+  .bug { margin-bottom: 6mm; padding: 4mm; border-left: 3pt solid; border-radius: 0 4mm 4mm 0; background: #FAFAFA; }
+  .bug.fixed { border-color: #20B868; }
+  .bug.high { border-color: #D93636; }
+  .bug.medium { border-color: #E5A33F; }
+  .bug.low { border-color: #8E8E93; }
+  .bug .badge {
+    display: inline-block; font-size: 8pt; font-weight: 700; padding: 1mm 2.5mm; border-radius: 1.5mm;
+    color: #fff; margin-right: 2mm; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .bug.fixed .badge { background: #20B868; }
+  .bug.high .badge { background: #D93636; }
+  .bug.medium .badge { background: #E5A33F; }
+  .bug.low .badge { background: #8E8E93; }
+  .bug h4 { font-size: 12pt; font-weight: 600; color: #1C1C1E; display: inline; }
+  .bug p { font-size: 10pt; line-height: 1.5; color: #4A4A4A; margin-top: 2mm; }
+  .bug .code { font-family: "SF Mono", Menlo, monospace; font-size: 9pt; color: #7B2252; background: rgba(123,34,82,0.06); padding: 0.5mm 1.5mm; border-radius: 1mm; }
+</style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━━ COVER ━━━━━━━━━━━━━━━━━ -->
+<div class="page cover">
+  <div class="eyebrow">Holistic Unity · iOS App</div>
+  <div class="lotus">⚘</div>
+  <h1>Guida <em>onboarding</em><br>&amp; prenotazione</h1>
+  <h2>Screenshot &amp; documentazione completa</h2>
+  <div class="meta">
+    Test eseguito il <strong>18 maggio 2026</strong> · iPhone 17 Pro Simulator<br>
+    Build: <strong>Backup 6 Aprile</strong> (16 maggio 2026 + 2 bug fix)<br>
+    Account test: <strong>ig.guide.1779098515@holisticunity.app</strong><br>
+    Booking: <strong>Marcello Di Pierro · 19 maggio 09:00 · €0</strong>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ DIVIDER A ━━━━━━━━━━━━━━━━━ -->
+<div class="page divider">
+  <div class="num">01</div>
+  <div class="label">Capitolo uno</div>
+  <h2>Pre-<em>autenticazione</em></h2>
+  <p>Welcome carousel, sign-in/sign-up con email, password validation, verifica email. Il primo contatto con l'app.</p>
+</div>
+
+<!-- IMAGE PAGE TEMPLATE — repeated -->
+
+<!-- 01 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Welcome · Pagina 1</span><span class="num">01/28</span></div>
+  <h3>Discover your <em>practitioner</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="01_welcome.png"></div>
+  <div class="caption"><strong>"Inizia il tuo percorso."</strong> Carosello marketing 3 pagine al primo lancio. Logo Holistic Unity, illustrazione painted (sfera con cristallo), titolo + sottotitolo + CTA magenta "Get Started" + link "Already have an account? Sign in".</div>
+  <div class="igcopy">Inizia il tuo percorso. Trova l'operatore olistico che fa per te.</div>
+</div>
+
+<!-- 02 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Welcome · Pagina 2</span><span class="num">02/28</span></div>
+  <h3>Book in <em>seconds</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="02_welcome_carousel_2.png"></div>
+  <div class="caption"><strong>"Niente email avanti e indietro."</strong> Seconda pagina del carosello — scegli un orario, conferma, fatto. Il calendario verde con check riassume la promessa.</div>
+  <div class="igcopy">Pochi tap. Niente lunghe email. Bookings istantanei.</div>
+</div>
+
+<!-- 03 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Sign In</span><span class="num">03/28</span></div>
+  <h3>Welcome <em>Back</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="02_signin_screen.png"></div>
+  <div class="caption"><strong>"Bentornata."</strong> Login esistente: Apple, Google, oppure email + password. Link "Forgot Password?" per recupero. Back chevron in alto a sinistra per tornare al Welcome.</div>
+  <div class="igcopy">Tre modi per entrare. Tutti sicuri.</div>
+</div>
+
+<!-- 04 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Sign Up · Form vuoto</span><span class="num">04/28</span></div>
+  <h3>Create <em>Account</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="03_auth_signup_empty.png"></div>
+  <div class="caption"><strong>"Inizia il tuo viaggio di benessere olistico."</strong> Sign-up form: 3 campi (Full Name, Email, Password) + SSO Apple/Google. Layout serif Fraunces per il titolo, body in SF Pro.</div>
+  <div class="igcopy">Bastano pochi secondi. Apple, Google o email.</div>
+</div>
+
+<!-- 05 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Sign Up · Compilato</span><span class="num">05/28</span></div>
+  <h3>Password <em>Very Strong</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="04_auth_signup_filled.png"></div>
+  <div class="caption"><strong>"Sicurezza dei tuoi dati prima di tutto."</strong> Password strength indicator real-time: 4 segmenti verdi + label "Very Strong". CTA "Create Account" magenta attivo. Email con autosuggestion (vedi BUG #5).</div>
+  <div class="igcopy">La sicurezza dei tuoi dati prima di tutto.</div>
+</div>
+
+<!-- 06 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Verifica email</span><span class="num">06/28</span></div>
+  <h3>Verifica la tua <em>email</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="00_launch_state_correct.png"></div>
+  <div class="caption"><strong>"Apri la posta, clicca il link, torna qui."</strong> Schermata bloccante full-screen (interactiveDismissDisabled). Icona busta magenta, email evidenziata, CTA "Ho cliccato il link", "Reinvia email" con cooldown 30s, "Esci e usa un'altra email" come escape.</div>
+  <div class="igcopy">Controlla la posta (anche lo spam). Un click e sei dentro.</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ DIVIDER B ━━━━━━━━━━━━━━━━━ -->
+<div class="page divider">
+  <div class="num">02</div>
+  <div class="label">Capitolo due</div>
+  <h2>Termini &amp; <em>privacy</em></h2>
+  <p>Conformità GDPR Art. 9 (dati salute) e Art. 1341 c.c. (clausole vessatorie). Quattro consensi granulari richiesti prima di accedere ad altro.</p>
+</div>
+
+<!-- 07 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">TOS · Vuoto</span><span class="num">07/28</span></div>
+  <h3>Termini e <em>privacy</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="05_tos_acceptance.png"></div>
+  <div class="caption"><strong>"Trasparenza è la base."</strong> Quattro checkbox obbligatori: Termini di Servizio + Clausole vessatorie (Art. 1341 c.c.) + Privacy Policy + Trattamento dati salute (Art. 9 GDPR). Link "Leggi i Termini" / "Leggi la Privacy Policy" aprono Safari in-app. CTA disabled finché tutto checked.</div>
+  <div class="igcopy">Sappi cosa firmi prima di iniziare. Conformità GDPR.</div>
+</div>
+
+<!-- 08 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">TOS · Tutti accettati</span><span class="num">08/28</span></div>
+  <h3>Accetta e <em>continua</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="06_tos_all_checked.png"></div>
+  <div class="caption"><strong>"Quattro check, una protezione."</strong> Quando tutti i 4 checkbox sono magenta pieni con ✓, il CTA "Accetta e continua" diventa attivo (gradient magenta + shadow). La row viene scritta in <span class="code">tos_acceptances</span> con SHA-256 hash della versione per audit trail.</div>
+  <div class="igcopy">Compliance GDPR fatta bene. Audit trail su ogni acceptance.</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ DIVIDER C ━━━━━━━━━━━━━━━━━ -->
+<div class="page divider">
+  <div class="num">03</div>
+  <div class="label">Capitolo tre</div>
+  <h2>Onboarding <em>painted</em></h2>
+  <p>Nove domande gentili per personalizzare il percorso. Italiano-first, Fraunces serif, illustrazioni dipinte. Il cuore editoriale dell'esperienza.</p>
+</div>
+
+<!-- 09 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Onboarding · Welcome</span><span class="num">09/28</span></div>
+  <h3>Inizia <em>da dove sei.</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="07_onboarding_welcome.png"></div>
+  <div class="caption"><strong>"Poche domande gentili."</strong> Apertura editoriale: lotus orb + halo magenta + eyebrow oro "HOLISTIC UNITY" + serif Fraunces "Inizia" (SemiBold charcoal) + "da dove sei." (Italic berry). Sottotitolo + CTA "Inizia" + "Circa 90 secondi".</div>
+  <div class="igcopy">Inizia da dove sei. Non da dove pensi di dover essere.</div>
+</div>
+
+<!-- 10 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 1/9 · Intent</span><span class="num">10/28</span></div>
+  <h3>Cosa ti porta <em>qui, oggi?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="08_onb_intent.png"></div>
+  <div class="caption"><strong>"Non c'è una risposta giusta."</strong> Progress bar segmentata (1/9). Cinque option cards single-select: Ho bisogno di fermarmi · Voglio capire qualcosa di me · Sto attraversando un cambiamento · Sono curioso/a di esplorare · Cerco supporto per qualcuno. Salvato in <span class="code">client_preferences.intent</span>.</div>
+  <div class="igcopy">Cinque modi per iniziare. Tutti validi.</div>
+</div>
+
+<!-- 11 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 2/9 · Focus areas</span><span class="num">11/28</span></div>
+  <h3>Cosa vorresti <em>esplorare?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="09_onb_focus_areas.png"></div>
+  <div class="caption"><strong>"Tutte le aree che senti vive."</strong> Multi-select 8 opzioni con sottotitoli: Il corpo · La mente · L'energia · Le relazioni · La direzione di vita · Il rituale quotidiano · Le radici familiari · L'ascolto interiore. Feed il matchmaking algorithm (recommendPractices).</div>
+  <div class="igcopy">Otto aree di esplorazione. Scegli quelle vive ora.</div>
+</div>
+
+<!-- 12 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 3/9 · Familiar practices</span><span class="num">12/28</span></div>
+  <h3>Hai già esplorato <em>qualcuna?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="10_onb_familiar_practices.png"></div>
+  <div class="caption"><strong>"Painted tiles."</strong> Grid 3×3 con illustrazioni dipinte: ThetaHealing · Costellazioni Familiari · Costellazioni Sistemiche · Reiki · Naturopatia · Astrologia · Human Design · Numerologia · Ayurveda. Più tile selezionate = più boost per quelle pratiche nel matchmaking.</div>
+  <div class="igcopy">10 pratiche olistiche illustrate. Painted, non emoji.</div>
+</div>
+
+<!-- 13 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 3/9 · Tile selezionati</span><span class="num">13/28</span></div>
+  <h3>Avanti con <em>2</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="10b_onb_familiar_practices_selected.png"></div>
+  <div class="caption"><strong>"Ring magenta + checkmark."</strong> ThetaHealing + Costellazioni Familiari selezionati: tile scala a 0.97, ring 2.5pt magenta intorno, checkmark badge bianco in alto a destra. CTA cambia copy in "Avanti con 2".</div>
+  <div class="igcopy">Selezione visuale immediata. Feedback tattile + haptic.</div>
+</div>
+
+<!-- 14 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 4/9 · Approaches</span><span class="num">14/28</span></div>
+  <h3>Quale approccio <em>risuona?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="11_onb_approaches.png"></div>
+  <div class="caption"><strong>"Come preferisci entrare in contatto con te stesso/a."</strong> Sei multi-select cards con sottotitoli: Lavoro energetico · Conoscenza di sé · Riconnessione spirituale · Lettura simbolica · Cura del corpo · Lasciamo decidere a te. Determina lo stile del praticante consigliato.</div>
+  <div class="igcopy">L'approccio che senti tuo. Sei strade diverse.</div>
+</div>
+
+<!-- 15 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 5/9 · Timing</span><span class="num">15/28</span></div>
+  <h3>Quando senti <em>di voler iniziare?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="12_onb_timing.png"></div>
+  <div class="caption"><strong>"Senza pressione."</strong> Quattro single-select: Appena possibile · Questa settimana · Tra qualche settimana · Sto solo esplorando, senza fretta. Indica al sistema l'urgenza, utile per il ranking operatori con disponibilità immediata.</div>
+  <div class="igcopy">Non c'è fretta. Inizia quando senti tuo.</div>
+</div>
+
+<!-- 16 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 6/9 · Life season</span><span class="num">16/28</span></div>
+  <h3>In che fase <em>ti senti?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="13_onb_life_season.png"></div>
+  <div class="caption"><strong>"Ascolta cosa risuona ora."</strong> Sei single-select cards: In transizione · In una fase stabile · In crescita attiva · In riallineamento · Un po' disorientato/a · Non saprei dire. Psychographic segment per insights aggregati (GDPR Art. 6(1)(a) opt-in).</div>
+  <div class="igcopy">Sei stagioni della vita. Riconoscersi è il primo passo.</div>
+</div>
+
+<!-- 17 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 7/9 · Current practices</span><span class="num">17/28</span></div>
+  <h3>Cosa fa già parte <em>della tua routine?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="14_onb_current_practices.png"></div>
+  <div class="caption"><strong>"Tutto quello che pratichi."</strong> Chip cloud 9 opzioni multi-select: Yoga · Meditazione · Journaling · Respirazione · Alimentazione consapevole · Movimento · Tempo in natura · Pause dal digitale · Nessuna ancora. Indicatore di wellness sophistication tier.</div>
+  <div class="igcopy">Tutto quello che già fai conta. Anche solo a tratti.</div>
+</div>
+
+<!-- 18 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 8/9 · Cosmic marker</span><span class="num">18/28</span></div>
+  <h3>C'è un segno <em>che ti rappresenta?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="15_onb_cosmic_marker.png"></div>
+  <div class="caption"><strong>"Solo se ti riconosci. Opzionale."</strong> Dodici chip zodiacali (Ariete → Pesci) + link "Salta — non lo so / preferisco non dire". Step opzionale con CTA "Avanti" sempre attivo. Output salvato come <span class="code">zodiac:scorpio</span> per future extension (dosha Ayurveda, life-path numerology).</div>
+  <div class="igcopy">Se ti riconosci nel cosmo, raccontacelo. Altrimenti salta.</div>
+</div>
+
+<!-- 19 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Step 9/9 · Notes</span><span class="num">19/28</span></div>
+  <h3>C'è qualcosa che <em>vuoi farci sapere?</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="16_onb_notes.png"></div>
+  <div class="caption"><strong>"O passa oltre."</strong> Text editor opzionale 500 caratteri. Placeholder italian-soft. CTA "Continua senza note" se il campo è vuoto, "Continua" se compilato. Notes vengono lette dal team operatore prima della prima sessione.</div>
+  <div class="igcopy">Una nota libera. Solo se ti va.</div>
+</div>
+
+<!-- 20 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Reveal · Il tuo percorso</span><span class="num">20/28</span></div>
+  <h3>Abbiamo qualche <em>idea</em> per te</h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="17_onb_ritual_breathing.png"></div>
+  <div class="caption"><strong>"Personalized recommendations."</strong> Pill chip "IL TUO PERCORSO PERSONALIZZATO" + serif "Abbiamo qualche idea per te" (idea italic accent). Pratiche consigliate da <span class="code">recommendPractices()</span>: ThetaHealing · Reiki · Numerologia (basate su intent + focus_areas + approaches + familiar_practices).</div>
+  <div class="igcopy">Personalizzato in 9 domande. Niente algoritmo aggressivo.</div>
+</div>
+
+<!-- 21 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Reveal · Operatori per te</span><span class="num">21/28</span></div>
+  <h3>Operatori <em>per te</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="18_onb_reveal_operatori.png"></div>
+  <div class="caption"><strong>"E GDPR opt-in dopo."</strong> Lista 3 operatori consigliati (sara barbieri · Gioia &amp; Giorgio · Irene Alma Di Lelio). In fondo il toggle <em>"Aiuta l'ecosistema olistico (opzionale)"</em> — consenso esplicito GDPR Art. 7(2) per uso aggregato anonimo. Default OFF, audit trail.</div>
+  <div class="igcopy">3 operatori scelti per te. Privacy first.</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ DIVIDER D ━━━━━━━━━━━━━━━━━ -->
+<div class="page divider">
+  <div class="num">04</div>
+  <div class="label">Capitolo quattro</div>
+  <h2>Esplora &amp; <em>prenota</em></h2>
+  <p>Dalla Home dashboard alla conferma del booking. La sessione conoscitiva con Marcello — gratis, 15 minuti, virtuale.</p>
+</div>
+
+<!-- 22 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Home dashboard</span><span class="num">22/28</span></div>
+  <h3>Ciao, <em>Sofia.</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="19_home_post_onboarding.png"></div>
+  <div class="caption"><strong>"Personalized hero."</strong> Logo Holistic Unity top-left, bell + avatar "S" top-right. Eyebrow gold "BUON POMERIGGIO · LUN 18 MAG". Serif Fraunces "Ciao, Sofia." (italic accent berry). Subtitle dinamica "Hai una sessione tra 18 ore con Marcello." Hero session card berry gradient con countdown + CTA Messaggio/Sposta. PER TE — operatori consigliati.</div>
+  <div class="igcopy">La tua sessione, sempre in vista. Personalizzato per te.</div>
+</div>
+
+<!-- 23 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Esplora pratiche</span><span class="num">23/28</span></div>
+  <h3>Trova il tuo <em>guida.</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="16_explore.png"></div>
+  <div class="caption"><strong>"10+ painted practices."</strong> Header editoriale eyebrow ESPLORA + serif "Trova il tuo guida." Search bar bianca + bottone filtri magenta. "Per pratica" scroll painted tiles. Filter chips: Highest Rated · Lingua · Vicino a me · Prezzo. Lista 11 operatori certificati.</div>
+  <div class="igcopy">10+ pratiche olistiche. Verificate. Sicure.</div>
+</div>
+
+<!-- 24 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Profilo Marcello</span><span class="num">24/28</span></div>
+  <h3>Marcello Di <em>Pierro</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="17_marcello_profile_top.png"></div>
+  <div class="caption"><strong>"6 anni di esperienza."</strong> Foto rotonda + nome serif. Categorie: Costellazioni Familiari · ThetaHealing · Naturopatia. Milano · 6 anni esp. · ⭐ 5.0. Pull-quote serif italic delle specializzazioni. CTA magenta "Prenota sessione" + icona messaggio. Bio scrollabile sotto.</div>
+  <div class="igcopy">Marcello: 6 anni, 3 specializzazioni, Milano.</div>
+</div>
+
+<!-- 25 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Review &amp; Pay</span><span class="num">25/28</span></div>
+  <h3>Free <em>Introductory Call</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="19_booking_review_pay.png"></div>
+  <div class="caption"><strong>"15 minuti per capirsi."</strong> Header "Book Session". Review &amp; Pay con card terapista (MP avatar + nome + servizio) + dati booking (data, ora, durata, formato, timezone). Total <strong>€0.00</strong>. Promo Code optional. CTA "Confirm Booking" magenta.</div>
+  <div class="igcopy">Prima sessione conoscitiva gratis. Sempre.</div>
+</div>
+
+<!-- 26 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Conferma booking</span><span class="num">26/28</span></div>
+  <h3>Booking <em>Confirmed!</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="20_booking_confirmation.png"></div>
+  <div class="caption"><strong>"Tutto qui."</strong> Illustrazione calendario verde con sparkles. Title "Booking Confirmed!" + sub "Your session with Marcello Di Pierro has been booked successfully." Card riepilogo. CTA "Add to Calendar" (outline) + "Done" (magenta).</div>
+  <div class="igcopy">Confermato. Aggiungi al tuo calendario.</div>
+</div>
+
+<!-- 27 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Bookings tab</span><span class="num">27/28</span></div>
+  <h3>Le tue <em>sessioni.</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="21_bookings_tab.png"></div>
+  <div class="caption"><strong>"Il tuo cammino in un posto solo."</strong> Eyebrow IL TUO CAMMINO + serif "Le tue sessioni." Segmented "In arrivo (1)" / "Il cammino". Card sessione: MAG 19, 9:00 + "Free Introductor..." + con Marcello Di Pierro + 15 min · Virtuale + countdown "Tra 20 ore" + status pill "IN ATTESA" (vedi BUG #4).</div>
+  <div class="igcopy">Tutte le tue sessioni in un posto solo.</div>
+</div>
+
+<!-- 28 -->
+<div class="page imagepage">
+  <div class="header"><span class="step">Account · Profile</span><span class="num">28/28</span></div>
+  <h3>Membro dal <em>2026</em></h3>
+  <div class="screenshot-wrap"><img class="screenshot" src="22_profile_account.png"></div>
+  <div class="caption"><strong>"Il tuo spazio. I tuoi dati."</strong> Avatar gradient con iniziale "S" serif Fraunces berry. Eyebrow gold "MEMBRO DAL 2026" + serif "Sofia IG Test" + email. Stats ribbon: SESSIONI / OPERATORI / MESI. Menu ACCOUNT (profilo, pagamenti, storico) / ESPERIENZA (notifiche, lingua) / PRIVACY (sicurezza, termini, policy).</div>
+  <div class="igcopy">Il tuo spazio sicuro. Sotto controllo.</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ DIVIDER E — BUGS ━━━━━━━━━━━━━━━━━ -->
+<div class="page divider">
+  <div class="num">05</div>
+  <div class="label">Capitolo cinque</div>
+  <h2>Bug <em>trovati</em></h2>
+  <p>9 issue identificati durante il test. 2 fixati in sessione, 7 con fix proposto. Priorità decrescente.</p>
+</div>
+
+<!-- BUG PAGE 1 -->
+<div class="page bugpage">
+  <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22pt; color: #7B2252; margin-bottom: 6mm; font-weight: 500;">Bug critici fixati &amp; pending</h3>
+
+  <div class="bug fixed">
+    <span class="badge">Fixato</span><h4>BUG #1 — App Store blocker: "Auth session missing" su sign-up</h4>
+    <p>Sign-up email/password → errore "Auth session missing." sotto i form fields, account non creato. Causa: <span class="code">AuthManager.signUp</span> chiamava <span class="code">setUserRole</span> che apre <span class="code">client.auth.session</span> prima della verifica email. Fix: gate sulla presenza della session.</p>
+  </div>
+
+  <div class="bug fixed">
+    <span class="badge">Fixato</span><h4>BUG #3 — Onboarding skippato dopo TOS per utenti sign-IN</h4>
+    <p>Utenti che facevano sign-in (non sign-up) saltavano i 9 step di onboarding e andavano dritto in Home con <span class="code">client_preferences</span> vuoto. Causa: <span class="code">resolveAuthState</span> mancava il Gate 3 (onboarding completion). Fix: aggiunto check async <span class="code">hasCompletedClientOnboarding</span> dopo Gate 2.</p>
+  </div>
+
+  <div class="bug high">
+    <span class="badge">Alta</span><h4>BUG #2 — Sign-in landa in EmailVerificationView nonostante email_confirmed_at sia set</h4>
+    <p>La colonna <span class="code">public.users.is_email_verified</span> non si sincronizza con <span class="code">auth.users.email_confirmed_at</span>. Il trigger <span class="code">handle_new_user</span> crea row con default false e non viene mai aggiornato. Fix proposto: overriding in fetchUserProfile da <span class="code">client.auth.currentSession.user.emailConfirmedAt</span>.</p>
+  </div>
+
+  <div class="bug medium">
+    <span class="badge">Media</span><h4>BUG #4 — Free booking (€0) resta "IN ATTESA"</h4>
+    <p>Sessione gratuita appare con status "IN ATTESA" invece di "CONFERMATA". Causa: <span class="code">create-booking-with-payment</span> setta sempre <span class="code">pending_payment</span> indipendentemente dal prezzo. Fix proposto: branch su <span class="code">sessionPriceCents === 0</span> → skip PaymentIntent → INSERT con <span class="code">status='confirmed'</span>.</p>
+  </div>
+</div>
+
+<!-- BUG PAGE 2 -->
+<div class="page bugpage">
+  <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22pt; color: #7B2252; margin-bottom: 6mm; font-weight: 500;">Bug minor — quick wins</h3>
+
+  <div class="bug low">
+    <span class="badge">Bassa</span><h4>BUG #5 — Email autocorrect duplica .app</h4>
+    <p>iOS autocorrect/suggestion bar duplica <span class="code">.app</span> nei campi email. Fix: aggiungere <span class="code">.textInputAutocapitalization(.never)</span> + <span class="code">.autocorrectionDisabled(true)</span> ai TextField email in AuthView e EditProfileView.</p>
+  </div>
+
+  <div class="bug low">
+    <span class="badge">Bassa</span><h4>BUG #6 — Stats Account a 0 dopo aver prenotato</h4>
+    <p>Profile Account mostra "SESSIONI = 0" anche dopo aver prenotato. Counta solo <span class="code">status='completed'</span>. Decisione: cambiare label a "SESSIONI COMPLETATE" OR includere <span class="code">confirmed</span> nel count.</p>
+  </div>
+
+  <div class="bug low">
+    <span class="badge">Bassa</span><h4>BUG #7 — Marcello non emerge nei consigliati anche con Costellazioni selezionato</h4>
+    <p>Sebbene Marcello faccia Costellazioni Familiari + ThetaHealing + Naturopatia, non appare in "Operatori per te" Reveal. Da investigare: verificare il fix kebab-case del matchmaker in build, oppure boost ranking per operatori top-1 score.</p>
+  </div>
+
+  <div class="bug low">
+    <span class="badge">Bassa</span><h4>BUG #8 — Breathing ritual saltato (auto-advance 7.5s)</h4>
+    <p>Non un vero bug — la fase breathing dark berry con animazione respiro auto-avanza dopo 7.5s. Per documentare serve catturare screenshot al ms 2000-7000. Per il guide attuale: gap di una sola immagine.</p>
+  </div>
+
+  <div class="bug low">
+    <span class="badge">Bassa</span><h4>BUG #9 — Tap card terapista in Explore richiede coord precise</h4>
+    <p>Hit-test area dei filter chip troppo grande, sovrasta le card terapista sotto. Fix: aumentare <span class="code">padding(.vertical, HUSpacing.sm)</span> tra quickFilterRow e therapistsListSection in AllTherapistsView.</p>
+  </div>
+
+  <p style="margin-top: 8mm; font-size: 9pt; color: #8E8E93; line-height: 1.5;"><strong>Riepilogo</strong>: 2 fix applicati durante questa sessione (BUG #1 + #3), 1 workaround DB (BUG #2), 6 fix proposti documentati. Totale ~30 minuti per implementare tutti i remaining fix.</p>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━ CLOSING ━━━━━━━━━━━━━━━━━ -->
+<div class="page cover">
+  <div class="eyebrow">Holistic Unity · iOS</div>
+  <h1 style="font-size: 36pt; margin: 6mm 0;">Fine della <em>guida</em>.</h1>
+  <h2 style="font-size: 16pt;">28 schermate · 9 bug · 1 sessione conoscitiva prenotata</h2>
+  <div class="meta" style="margin-top: 12mm;">
+    Documentazione end-to-end del client onboarding flow<br>
+    Generata il <strong>18 maggio 2026</strong><br>
+    Account test: <strong>Sofia IG Test</strong><br>
+    Booking: <strong>Marcello Di Pierro · 19 maggio 09:00</strong>
+  </div>
+  <div style="margin-top: 20mm; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24pt; font-style: italic; color: #7B2252; line-height: 1.3;">
+    "Non sei in ritardo.<br>Sei esattamente <span style="font-weight: 600;">dove devi essere</span>."
+  </div>
+</div>
+
+</body>
+</html>

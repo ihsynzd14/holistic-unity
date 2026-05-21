@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Holistic Unity Blog</title>
+    <link>https://holisticunity.app/blog/</link>
+    <atom:link href="https://holisticunity.app/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Honest guides to holistic therapies — ThetaHealing®, Reiki, Astrology, Human Design, Numerology, Ayurveda, Naturopathy, Family Constellation, and Systemic Constellation. No fluff. Just clarity.</description>
+    <language>en</language>
+    <copyright>© 2026 Storm X Digital S.R.L.</copyright>
+    <lastBuildDate>Mon, 18 May 2026 00:00:00 +0000</lastBuildDate>
+    <generator>Holistic Unity Blog RSS Generator</generator>
+    <image>
+      <url>https://holisticunity.app/images/logo.png</url>
+      <title>Holistic Unity Blog</title>
+      <link>https://holisticunity.app/blog/</link>
+    </image>
+    <item>
+      <title>ThetaHealing® for Anxiety: What to Know</title>
+      <link>https://holisticunity.app/blog/theta-healing-for-anxiety.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/theta-healing-for-anxiety.html</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <description>ThetaHealing® for anxiety: what the practice involves, what the research actually supports, when it's a reasonable thing to try, and when clinical care is the right call — an honest, calm guide.</description>
+      <category>ThetaHealing</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/theta-healing-for-anxiety-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/theta-healing-for-anxiety-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Spiritualità: Significato, Pratiche e Come Iniziare Oggi</title>
+      <link>https://holisticunity.app/blog/spiritualita-significato.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/spiritualita-significato.html</guid>
+      <pubDate>Sat, 16 May 2026 00:00:00 +0000</pubDate>
+      <description>Spiritualità: significato, pratiche concrete e come iniziare oggi senza dogmi. Una guida onesta su cosa è la spiritualità, cosa non è e da dove cominciare.</description>
+      <category>Spiritualità</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/spiritualita-significato-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/spiritualita-significato-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Reiki vs Massage: How to Choose Between Energy Work and Bodywork</title>
+      <link>https://holisticunity.app/blog/reiki-vs-massage.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/reiki-vs-massage.html</guid>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <description>Reiki vs massage compared honestly — how they differ, what the research says, and how to choose between energy work and physical bodywork for your needs.</description>
+      <category>Energy Healing</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/reiki-vs-massage-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/reiki-vs-massage-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Consulto Astrologico Online: Come Scegliere e Cosa Aspettarsi</title>
+      <link>https://holisticunity.app/blog/consulto-astrologico-online.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/consulto-astrologico-online.html</guid>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <description>Consulto astrologico online: cos'è, come scegliere un astrologo serio, cosa preparare prima della sessione e quanto costa una lettura del tema natale via videochiamata.</description>
+      <category>Astrologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/consulto-astrologico-online-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/consulto-astrologico-online-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Costellazioni Familiari Online: Come Funzionano e Cosa Aspettarsi</title>
+      <link>https://holisticunity.app/blog/costellazioni-familiari-online.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/costellazioni-familiari-online.html</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <description>Costellazioni Familiari online: come funziona una sessione in videochiamata, cosa puoi affrontare, differenze con il setting in presenza e come prepararti.</description>
+      <category>Costellazioni Familiari</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/costellazioni-familiari-online-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/costellazioni-familiari-online-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>The 5 Human Design Types Explained: Manifestor, Generator, MG, Projector, Reflector</title>
+      <link>https://holisticunity.app/blog/human-design-types-explained.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/human-design-types-explained.html</guid>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <description>The 5 Human Design types explained clearly: Manifestor, Generator, Manifesting Generator, Projector, Reflector. Strategy, Authority, signature emotion and how to actually use your type.</description>
+      <category>Human Design</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/human-design-types-explained-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/human-design-types-explained-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Medicina Olistica: Cos'è, Discipline e Come Funziona</title>
+      <link>https://holisticunity.app/blog/medicina-olistica.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/medicina-olistica.html</guid>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>Cos'è la medicina olistica, quali discipline include e come funziona davvero in Italia. Una guida onesta alle pratiche complementari, ai limiti e alla differenza con la medicina convenzionale.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/medicina-olistica-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/medicina-olistica-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Vedic vs Western Astrology: What's the Difference?</title>
+      <link>https://holisticunity.app/blog/vedic-vs-western-astrology.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/vedic-vs-western-astrology.html</guid>
+      <pubDate>Thu, 07 May 2026 00:00:00 +0000</pubDate>
+      <description>Vedic vs Western astrology explained: how the two systems differ in zodiac, houses, planets and birth chart reading — and how to choose which one to consult.</description>
+      <category>Astrology</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/vedic-vs-western-astrology-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/vedic-vs-western-astrology-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Pranic Healing: Cos'è e Come Funziona la Guarigione Pranica</title>
+      <link>https://holisticunity.app/blog/pranic-healing.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/pranic-healing.html</guid>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <description>Pranic Healing: cos'è la guarigione pranica, come funziona una sessione, le differenze con il Reiki, i livelli di formazione e cosa dice la ricerca scientifica.</description>
+      <category>Guarigione Energetica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/pranic-healing-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/pranic-healing-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Is Ayurveda? A Beginner's Guide to the Three Doshas</title>
+      <link>https://holisticunity.app/blog/what-is-ayurveda.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/what-is-ayurveda.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 +0000</pubDate>
+      <description>What is Ayurveda? A clear, honest beginner's guide to the three doshas (vata, pitta, kapha), how Ayurveda works, what it can and cannot do, and how to start applying its principles to daily life.</description>
+      <category>Ayurveda</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/what-is-ayurveda-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/what-is-ayurveda-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Approccio Olistico: Cosa Significa nella Pratica</title>
+      <link>https://holisticunity.app/blog/approccio-olistico.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/approccio-olistico.html</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate>
+      <description>Approccio olistico: cosa significa nella pratica, come si applica al benessere e alla salute, le discipline che lo adottano e come distinguere un professionista serio.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/approccio-olistico-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/approccio-olistico-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>How to Read Your Human Design Chart: A Clear, Honest Guide</title>
+      <link>https://holisticunity.app/blog/how-to-read-human-design-chart.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/how-to-read-human-design-chart.html</guid>
+      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+      <description>How to read your Human Design chart: a clear, honest guide to the bodygraph — Type, Strategy, Authority, the 9 centers, channels, gates, and Profile. No mysticism, no hype.</description>
+      <category>Human Design</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/how-to-read-human-design-chart-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/how-to-read-human-design-chart-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>La Quarta Casa Astrologica: Radici, Famiglia e Sicurezza</title>
+      <link>https://holisticunity.app/blog/quarta-casa-astrologica.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/quarta-casa-astrologica.html</guid>
+      <pubDate>Sat, 02 May 2026 00:00:00 +0000</pubDate>
+      <description>La quarta casa astrologica: significato di radici, famiglia e sicurezza interiore. Cosa rappresenta, i pianeti che la abitano e come leggerla nel tuo tema natale.</description>
+      <category>Astrologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/quarta-casa-astrologica-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/quarta-casa-astrologica-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Reiki for Anxiety: What the Research Actually Says</title>
+      <link>https://holisticunity.app/blog/reiki-for-anxiety.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/reiki-for-anxiety.html</guid>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <description>Reiki for anxiety: what peer-reviewed research actually shows, how a session works, when it helps and when it doesn't — an honest, calm guide from Holistic Unity.</description>
+      <category>Reiki</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/reiki-for-anxiety-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/reiki-for-anxiety-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>L'Ottava Casa Astrologica: Significato, Pianeti e Trasformazione</title>
+      <link>https://holisticunity.app/blog/ottava-casa-astrologica.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/ottava-casa-astrologica.html</guid>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <description>L'ottava casa astrologica: cosa significa davvero, quali sono i suoi pianeti, come si manifesta nel tema natale. Una guida onesta a trasformazione, intimità e profondità psicologica.</description>
+      <category>Astrologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/ottava-casa-astrologica-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/ottava-casa-astrologica-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>La Tua Prima Sessione Olistica Online: Guida Pratica</title>
+      <link>https://holisticunity.app/blog/sessione-olistica-online.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/sessione-olistica-online.html</guid>
+      <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
+      <description>La tua prima sessione olistica online: come prepararsi, quali discipline funzionano in videocall, durata, costi, privacy e come scegliere l'operatore giusto.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/sessione-olistica-online-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/sessione-olistica-online-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Happens in a Family Constellation Session?</title>
+      <link>https://holisticunity.app/blog/what-happens-family-constellation.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/what-happens-family-constellation.html</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+      <description>What actually happens in a Family Constellation session? A clear, honest guide to group and individual formats, the role of representatives, and what to expect afterward.</description>
+      <category>Family Constellation</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/what-happens-family-constellation-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/what-happens-family-constellation-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Come Diventare Operatore Olistico Certificato: Guida Completa</title>
+      <link>https://holisticunity.app/blog/come-diventare-operatore-olistico.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/come-diventare-operatore-olistico.html</guid>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Come diventare operatore olistico certificato in Italia: percorsi formativi, certificazioni riconosciute, quanto si guadagna e come aprire la tua attività.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/come-diventare-operatore-olistico-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/come-diventare-operatore-olistico-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Is Numerology? A Beginner's Guide</title>
+      <link>https://holisticunity.app/blog/what-is-numerology.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/what-is-numerology.html</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <description>What is numerology? A clear, honest beginner's guide — how it works, what your core numbers reveal, what a reading actually involves, and who it's for.</description>
+      <category>Numerology</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/what-is-numerology-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/what-is-numerology-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Sound Healing: Cos'è la Terapia del Suono e Come Funziona</title>
+      <link>https://holisticunity.app/blog/sound-healing.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/sound-healing.html</guid>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Sound healing: cos'è la terapia del suono, come funziona, le principali tecniche (campane tibetane, gong, diapason) e cosa aspettarsi in una sessione. Guida completa, onesta, senza esagerazioni.</description>
+      <category>Sound Healing</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/sound-healing-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/sound-healing-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Reiki a Distanza: Come Funziona e Cosa Aspettarsi</title>
+      <link>https://holisticunity.app/blog/reiki-a-distanza.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/reiki-a-distanza.html</guid>
+      <pubDate>Fri, 24 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Reiki a distanza: come funziona una seduta online, cosa si percepisce, come prepararsi e come scegliere un praticante affidabile. Guida completa, onesta, senza esagerazioni.</description>
+      <category>Reiki</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/reiki-a-distanza-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/reiki-a-distanza-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Operatore Olistico Online: Come Trovare il Professionista Giusto</title>
+      <link>https://holisticunity.app/blog/terapista-olistico-online.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/terapista-olistico-online.html</guid>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Come trovare un operatore olistico online affidabile: cosa distingue un operatore serio, le discipline più diffuse, le domande da fare e i segnali d'allarme da riconoscere.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/terapista-olistico-online-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/terapista-olistico-online-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Reiki: Pericoli Reali o Falsi Miti? La Verità</title>
+      <link>https://holisticunity.app/blog/reiki-pericoli.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/reiki-pericoli.html</guid>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Il Reiki è pericoloso? Analisi onesta dei rischi reali, delle testimonianze negative e di chi dovrebbe consultare un medico prima. Nessun allarmismo, nessuna esagerazione.</description>
+      <category>Reiki</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/reiki-pericoli-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/reiki-pericoli-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Onde Theta: Cosa Sono, Effetti e Benefici per il Cervello</title>
+      <link>https://holisticunity.app/blog/onde-theta-benefici.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/onde-theta-benefici.html</guid>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Cosa sono le onde theta, a che frequenza operano, quali effetti producono sul cervello e come il ThetaHealing® le utilizza. Guida chiara, senza esagerazioni.</description>
+      <category>ThetaHealing</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/onde-theta-benefici-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/onde-theta-benefici-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Le 12 Case Astrologiche: Significato e Guida Completa</title>
+      <link>https://holisticunity.app/blog/case-astrologiche.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/case-astrologiche.html</guid>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Le 12 case astrologiche spiegate chiaramente: significato di ciascuna casa, quali pianeti le governano e come leggerle nel tuo tema natale. Guida completa, senza simbolismo esagerato.</description>
+      <category>Astrologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/case-astrologiche-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/case-astrologiche-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Il Significato dei Numeri dall'1 al 9 in Numerologia</title>
+      <link>https://holisticunity.app/blog/significato-numeri.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/significato-numeri.html</guid>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Il significato dei numeri dall'1 al 9 in numerologia: carattere, qualità e sfide di ogni numero. Guida chiara per interpretare il tuo numero numerologico.</description>
+      <category>Numerologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/significato-numeri-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/significato-numeri-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Numerologia della Data di Nascita: Calcola il Tuo Numero</title>
+      <link>https://holisticunity.app/blog/numerologia-data-di-nascita.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/numerologia-data-di-nascita.html</guid>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Come calcolare il tuo Numero del Percorso di Vita dalla data di nascita, il significato dei numeri dall'1 al 9 e dei numeri maestri 11, 22, 33. Guida completa alla numerologia.</description>
+      <category>Numerologia</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/numerologia-data-di-nascita-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/numerologia-data-di-nascita-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Cos'è il Reiki: Guida Completa a Benefici e Trattamenti</title>
+      <link>https://holisticunity.app/blog/cos-e-il-reiki.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/cos-e-il-reiki.html</guid>
+      <pubDate>Fri, 17 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Scopri cos'è il Reiki, come funziona, i benefici documentati e cosa aspettarsi da una sessione. Guida completa al Reiki per principianti — chiara, onesta, senza esagerazioni.</description>
+      <category>Reiki</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/cos-e-il-reiki-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/cos-e-il-reiki-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Cosa Significa Olistico: La Guida Completa</title>
+      <link>https://holisticunity.app/blog/significato-olistico.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/significato-olistico.html</guid>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Cosa significa olistico? La guida completa al significato di olistica, le discipline principali, la differenza con la medicina tradizionale e come scegliere un professionista serio.</description>
+      <category>Olistica</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/significato-olistico-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/significato-olistico-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Human Design vs Astrology: Which System Is Right for You?</title>
+      <link>https://holisticunity.app/blog/human-design-vs-astrology.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/human-design-vs-astrology.html</guid>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Human Design vs Astrology compared honestly — how they work, what each system reveals, and how to decide which one is right for you right now.</description>
+      <category>Comparison</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/human-design-vs-astrology-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/human-design-vs-astrology-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>ThetaHealing® vs Reiki: Which Energy Practice Is Right for You?</title>
+      <link>https://holisticunity.app/blog/theta-healing-vs-reiki.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/theta-healing-vs-reiki.html</guid>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate>
+      <description>ThetaHealing® and Reiki compared honestly — how they differ, what each one does best, and how to decide which is right for you. A side-by-side guide.</description>
+      <category>Energy Healing</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/theta-healing-vs-reiki-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/theta-healing-vs-reiki-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Is Reiki? A Beginner's Guide to Energy Healing</title>
+      <link>https://holisticunity.app/blog/what-is-reiki.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/what-is-reiki.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <description>Reiki explained clearly — what it is, how a distance session works, what it can and can't do, and how to tell if it's right for you. A no-nonsense beginner's guide.</description>
+      <category>Reiki</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/reiki-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/reiki-hero.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Is ThetaHealing®? A Beginner's Guide (And Who It's Really For)</title>
+      <link>https://holisticunity.app/blog/what-is-theta-healing.html</link>
+      <guid isPermaLink="true">https://holisticunity.app/blog/what-is-theta-healing.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <description>ThetaHealing® explained in plain words — what it is, how a session works, what it can and can't do, and how to know if it's for you. A beginner's guide by Holistic Unity.</description>
+      <category>ThetaHealing®</category>
+      <dc:creator>Holistic Unity</dc:creator>
+      <enclosure url="https://holisticunity.app/images/blog/theta-healing-hero.jpg" type="image/jpeg" length="0" />
+      <media:content url="https://holisticunity.app/images/blog/theta-healing-hero.jpg" medium="image" />
+    </item>
+  </channel>
+</rss>
