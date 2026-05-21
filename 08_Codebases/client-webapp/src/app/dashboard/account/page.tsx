@@ -36,6 +36,7 @@ export default function ClientAccountPage() {
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
 
   const [savingProfile, setSavingProfile] = useState(false);
@@ -68,10 +69,11 @@ export default function ClientAccountPage() {
       setEmail(user.email ?? "");
       const { data } = await supabase
         .from("users")
-        .select("display_name, phone_number")
+        .select("display_name, phone_number, gender")
         .eq("id", user.id)
         .maybeSingle();
       setDisplayName(data?.display_name ?? "");
+      setGender((data as { display_name: string | null; phone_number: string | null; gender: string | null } | null)?.gender ?? "");
       setPhone(data?.phone_number ?? "");
 
       // Recent logins for forensic visibility (RLS limits to current user)
@@ -110,6 +112,7 @@ export default function ClientAccountPage() {
       .update({
         display_name: displayName.trim(),
         phone_number: phone.trim(),
+        gender: gender || null,
       })
       .eq("id", user.id);
     setSavingProfile(false);
@@ -279,6 +282,33 @@ export default function ClientAccountPage() {
             onChange={(e) => setDisplayName(e.target.value)}
             className="w-full rounded-xl border border-berry-subtle bg-white px-4 py-2.5 text-sm text-charcoal outline-none focus:border-berry focus:ring-2 focus:ring-berry/10"
           />
+        </div>
+
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
+            {t.account.genderLabel}
+          </label>
+          <div className="flex gap-2">
+            {(
+              [
+                { value: "female", label: t.account.genderFemale },
+                { value: "male",   label: t.account.genderMale },
+              ] as Array<{ value: string; label: string }>
+            ).map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setGender(gender === opt.value ? "" : opt.value)}
+                className={`rounded-full border px-4 py-1.5 text-xs font-medium transition-all ${
+                  gender === opt.value
+                    ? "border-berry bg-berry text-white"
+                    : "border-berry-subtle bg-white text-charcoal-light hover:border-berry/50"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div>

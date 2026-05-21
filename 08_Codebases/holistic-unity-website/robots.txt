@@ -1,11 +1,13 @@
 # Robots.txt for Holistic Unity
-# Last Updated: 2026-04-03
+# Last Updated: 2026-05-21
 
 User-agent: *
 Allow: /
 
 Disallow: /admin/
 Disallow: /private/
+Disallow: /preview-live-style/
+Disallow: /preview-redesign/
 
 Sitemap: https://holisticunity.app/sitemap.xml
 

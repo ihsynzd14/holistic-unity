@@ -509,25 +509,8 @@
     <priority>0.5</priority>
   </url>
 
-  <url>
-    <loc>https://holisticunity.app/cookie-policy.html</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/terms-clients.html</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/terms-therapists.html</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
+  <!-- cookie-policy, terms-clients, terms-therapists are intentionally excluded:
+       those pages carry noindex meta tags so submitting them to the sitemap
+       would create a contradiction that GSC flags as "Excluded by noindex". -->
 
 </urlset>

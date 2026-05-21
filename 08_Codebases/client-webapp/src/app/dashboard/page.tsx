@@ -204,6 +204,7 @@ export default function ClientDashboardPage() {
   const { t, locale } = useI18n();
   const [loading, setLoading] = useState(true);
   const [firstName, setFirstName] = useState<string>("");
+  const [gender, setGender] = useState<string | null>(null);
   const [upcoming, setUpcoming] = useState<Booking[]>([]);
   const [pastCount, setPastCount] = useState(0);
   const [featuredPractices, setFeaturedPractices] = useState<FeaturedPractice[]>(
@@ -252,7 +253,7 @@ export default function ClientDashboardPage() {
       ] = await Promise.all([
         supabase
           .from("users")
-          .select("display_name")
+          .select("display_name, gender")
           .eq("id", user.id)
           .maybeSingle(),
         supabase
@@ -308,6 +309,7 @@ export default function ClientDashboardPage() {
       ]);
 
       setFirstName((userRes.data?.display_name || "").split(" ")[0]);
+      setGender((userRes.data as { display_name: string | null; gender: string | null } | null)?.gender ?? null);
       setUpcoming((upcomingRes.data as unknown as Booking[]) || []);
       setPastCount(pastRes.count || 0);
       setFeaturedPractices((practicesRes.data as FeaturedPractice[]) || []);
@@ -446,7 +448,11 @@ export default function ClientDashboardPage() {
                   ),
                 },
               )
-            : renderEditorial(t.clientHome.headlineNoUpcoming)}
+            : renderEditorial(
+                gender === "male"
+                  ? t.clientHome.headlineNoUpcomingMale
+                  : t.clientHome.headlineNoUpcoming
+              )}
         </h1>
       </header>
 
@@ -458,6 +464,7 @@ export default function ClientDashboardPage() {
           joinable={joinable}
           t={t}
           locale={locale}
+          gender={gender}
         />
       ) : (
         <FindTherapistFallback t={t} />
@@ -745,12 +752,14 @@ function NextSessionHero({
   joinable,
   t,
   locale,
+  gender,
 }: {
   booking: Booking;
   countdown: ReturnType<typeof getCountdown>;
   joinable: boolean;
   t: ReturnType<typeof useI18n>["t"];
   locale: ReturnType<typeof useI18n>["locale"];
+  gender: string | null;
 }) {
   const dateFmtLocale = locale === "it" ? "it-IT" : "en-US";
   const date = new Date(booking.scheduled_at);
@@ -906,7 +915,7 @@ function NextSessionHero({
               )
             ) : null}
             <div className="mt-4 rounded-xl bg-white/8 p-3 text-[12px] leading-relaxed text-white/75">
-              {t.clientHome.preparePrompt}
+              {gender === "male" ? t.clientHome.preparePromptMale : t.clientHome.preparePrompt}
             </div>
           </div>
 

@@ -32,6 +32,7 @@ function RegisterForm() {
   const router = useRouter();
 
   const [fullName, setFullName] = useState("");
+  const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -216,6 +217,7 @@ function RegisterForm() {
             email,
             display_name: fullName.trim(),
             phone_number: phone.trim(),
+            gender: gender || null,
             role: "client",
           },
           { onConflict: "id" },
@@ -320,6 +322,33 @@ function RegisterForm() {
           required
           className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
+      </div>
+
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
+          {t.register.genderLabel}
+        </label>
+        <div className="flex gap-3">
+          {(
+            [
+              { value: "female", label: t.register.genderFemale },
+              { value: "male",   label: t.register.genderMale },
+            ] as Array<{ value: string; label: string }>
+          ).map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => setGender(gender === opt.value ? "" : opt.value)}
+              className={`flex-1 rounded-[14px] border py-3 text-sm font-medium transition-all duration-200 ${
+                gender === opt.value
+                  ? "border-berry bg-berry text-white shadow-lg shadow-berry/20"
+                  : "border-berry-subtle bg-white text-charcoal-light hover:border-berry/50"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div>

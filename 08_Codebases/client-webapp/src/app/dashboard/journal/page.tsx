@@ -70,6 +70,7 @@ export default function JournalPage() {
   const [entries, setEntries] = useState<EntryRow[]>([]);
   const [bookingMetaById, setBookingMetaById] = useState<Map<string, BookingMeta>>(new Map());
   const [firstName, setFirstName] = useState("");
+  const [gender, setGender] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [body, setBody] = useState("");
   const [mood, setMood] = useState<Mood | null>(null);
@@ -87,7 +88,7 @@ export default function JournalPage() {
         return;
       }
       const [profileRes, entriesRes] = await Promise.all([
-        supabase.from("users").select("display_name").eq("id", user.id).maybeSingle(),
+        supabase.from("users").select("display_name, gender").eq("id", user.id).maybeSingle(),
         supabase
           .from("journal_entries")
           .select("id, body, mood, booking_id, created_at")
@@ -97,6 +98,7 @@ export default function JournalPage() {
       ]);
       if (cancelled) return;
       setFirstName((profileRes.data?.display_name ?? "").split(" ")[0] ?? "");
+      setGender((profileRes.data as { display_name: string | null; gender: string | null } | null)?.gender ?? null);
       const rows = (entriesRes.data ?? []) as EntryRow[];
       setEntries(rows);
 
@@ -154,7 +156,7 @@ export default function JournalPage() {
       setSavedFlash(true);
       setTimeout(() => setSavedFlash(false), 2000);
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : t.journal.saveError);
+      setSaveError(err instanceof Error ? err.message : (gender === "male" ? t.journal.saveErrorMale : t.journal.saveError));
     } finally {
       setSaving(false);
     }
@@ -223,11 +225,11 @@ export default function JournalPage() {
         <div className="mt-4 flex flex-wrap gap-2">
           {(
             [
-              { k: "stressed", label: t.journal.moodStressedLabel },
+              { k: "stressed", label: gender === "male" ? t.journal.moodStressedLabelMale : t.journal.moodStressedLabel },
               { k: "tender",   label: t.journal.moodTenderLabel },
-              { k: "lighter",  label: t.journal.moodLighterLabel },
-              { k: "empty",    label: t.journal.moodEmptyLabel },
-              { k: "curious",  label: t.journal.moodCuriousLabel },
+              { k: "lighter",  label: gender === "male" ? t.journal.moodLighterLabelMale  : t.journal.moodLighterLabel },
+              { k: "empty",    label: gender === "male" ? t.journal.moodEmptyLabelMale    : t.journal.moodEmptyLabel },
+              { k: "curious",  label: gender === "male" ? t.journal.moodCuriousLabelMale  : t.journal.moodCuriousLabel },
             ] as Array<{ k: Mood; label: string }>
           ).map((m) => {
             const active = mood === m.k;
