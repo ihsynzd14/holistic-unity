@@ -6,6 +6,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n/context";
+import { Input } from "@/components/ui/Input";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -73,27 +74,25 @@ function LoginForm() {
       <form onSubmit={handleLogin} className="space-y-5">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-charcoal-light">{t.login.email}</label>
-          <input
+          <Input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t.login.emailPlaceholder}
             autoComplete="email"
             required
-            className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
           />
         </div>
 
         <div>
           <label className="mb-1.5 block text-sm font-medium text-charcoal-light">{t.login.password}</label>
-          <input
+          <Input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder={t.login.passwordPlaceholder}
             autoComplete="current-password"
             required
-            className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
           />
         </div>
 

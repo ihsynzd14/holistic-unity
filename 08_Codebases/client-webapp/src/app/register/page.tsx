@@ -11,6 +11,7 @@ import {
   validatePasswordShape,
   isPasswordBreached,
 } from "@/lib/security/password";
+import { Input } from "@/components/ui/Input";
 
 // Cloudflare Turnstile was removed 2026-05-15: in production the
 // challenges.cloudflare.com script was getting blocked routinely by
@@ -313,14 +314,13 @@ function RegisterForm() {
         <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
           {t.register.fullName}
         </label>
-        <input
+        <Input
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           placeholder={t.register.fullNamePlaceholder}
           autoComplete="name"
           required
-          className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
       </div>
 
@@ -355,14 +355,13 @@ function RegisterForm() {
         <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
           {t.register.email}
         </label>
-        <input
+        <Input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t.register.emailPlaceholder}
           autoComplete="email"
           required
-          className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
       </div>
 
@@ -370,14 +369,13 @@ function RegisterForm() {
         <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
           {t.register.phone}
         </label>
-        <input
+        <Input
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder={t.register.phonePlaceholder}
           autoComplete="tel"
           required
-          className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
       </div>
 
@@ -385,13 +383,12 @@ function RegisterForm() {
         <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
           {t.register.password}
         </label>
-        <input
+        <Input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="new-password"
           required
-          className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
         <p className="mt-1 text-xs text-charcoal-muted/70">
           {t.register.passwordHint}
@@ -402,13 +399,12 @@ function RegisterForm() {
         <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
           {t.register.passwordConfirm}
         </label>
-        <input
+        <Input
           type="password"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
           autoComplete="new-password"
           required
-          className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
         />
       </div>
 

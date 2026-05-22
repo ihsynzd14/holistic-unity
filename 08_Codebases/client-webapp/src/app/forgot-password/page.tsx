@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { Input } from "@/components/ui/Input";
 
 /**
  * /forgot-password — Client-side password recovery entry point.
@@ -146,14 +147,13 @@ export default function ForgotPasswordPage() {
                 <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
                   Email
                 </label>
-                <input
+                <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tua@email.com"
                   autoComplete="email"
                   required
-                  className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
                 />
               </div>
 

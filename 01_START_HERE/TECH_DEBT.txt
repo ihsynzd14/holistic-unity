@@ -1,0 +1,149 @@
+# TECH DEBT — Holistic Unity webapp
+
+**Documento generato il 2026-05-22 da audit task list pre-lancio.**
+Tracciamento di debiti tecnici reali emersi durante gli audit di code review (Sezione 1 del task list), che NON sono stati risolti inline perché richiedono refactor strutturali non sicuri da fare in singola sessione.
+
+---
+
+## DEBT #1 — UI Tailwind primitives layer mancante
+
+**Stato attuale**: nessun layer `src/components/ui/` in nessuno dei 3 webapp. Tutte le styling sono inline come stringhe `className="..."` ripetute per copy-paste tra file.
+
+**Estensione misurata** (audit 2026-05-22, su 93 file `.tsx`, 3358 occorrenze di `className=`):
+
+| Stringa className                                                                                                                                       | Ripetizioni | Char count | Componente da estrarre        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------: | ---------: | ----------------------------- |
+| `w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10` |          22 |        207 | `<Input>`                     |
+| `mb-1.5 block text-sm font-medium text-charcoal-light`                                                                                                  |          25 |         51 | `<Label>`                     |
+| `font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal`                                                                               |          31 |         68 | `<DisplayHeading size="xl">`  |
+| `font-[family-name:var(--font-display)] text-xl font-bold text-charcoal`                                                                                |          18 |         68 | `<DisplayHeading size="md">`  |
+| `h-8 w-8 animate-spin text-berry`                                                                                                                       |          28 |         31 | `<Spinner>`                   |
+| `flex h-[60vh] items-center justify-center`                                                                                                             |          21 |         41 | `<LoadingContainer>`          |
+| `text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark`                                                                                      |          17 |         60 | `<Eyebrow>`                   |
+| `rounded-2xl border border-berry/5 bg-white/70 p-6 shadow-sm backdrop-blur-sm`                                                                          |          14 |         75 | `<Card>`                      |
+| `text-center text-sm text-error`                                                                                                                        |          14 |         30 | `<ErrorText>`                 |
+| `mb-1.5 block text-xs font-semibold text-charcoal-muted`                                                                                                |          15 |         53 | `<Label size="sm">`           |
+
+Totale: ~205 chiamate inline che potrebbero diventare ~10 primitive con prop variants.
+
+---
+
+### Perché va fatto (motivazione concreta)
+
+1. **Costo di un cambio di brand**. Se Marcello vuole cambiare il border-radius dell'input (es. da `rounded-[14px]` a `rounded-xl`) deve oggi fare find-replace su 22 occorrenze in 3 codebase separati. Un primitive `<Input>` sposterebbe la modifica a 1 file per webapp. Probabilità che serva durante l'anno post-lancio: alta (UI tuning continuo).
+
+2. **Drift visivo già presente**. Esempi misurati:
+   - `<Label>` esiste in due varianti (`text-sm` vs `text-xs`), apparentemente intercambiabili. Senza primitive, non c'è un meccanismo che impedisca a uno sviluppatore di introdurre una terza variante per sbaglio.
+   - L'input field ha 22 copie *esatte*, ma se anche una sola differisce di un carattere (es. `rounded-[12px]` invece di `[14px]`) nessuno se ne accorge.
+
+3. **Audit di accessibility complicato**. Se domani serve aggiungere `aria-invalid` agli input in errore, oggi serve toccare 22 punti. Con primitive, 1.
+
+4. **Onboarding nuovi sviluppatori**. Un nuovo dev oggi non ha un design system da leggere — deve dedurre i pattern dai file esistenti, con il rischio di introdurre variazioni.
+
+5. **Pulizia JSX**. Confronto su un input:
+   ```tsx
+   // Oggi (207 char di className inline)
+   <input
+     type="email"
+     value={email}
+     onChange={(e) => setEmail(e.target.value)}
+     required
+     className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
+   />
+
+   // Dopo
+   <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+   ```
+   Riduce ~150 caratteri di rumore a colpo d'occhio.
+
+---
+
+### Vantaggi (cosa otteniamo)
+
+| Beneficio                                                | Misurabile come                                                                                  |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Single source of truth visiva**                        | Stringa Tailwind in 1 posto, non 14-31                                                           |
+| **Refactor design system → atomic change**               | Un PR per cambiare lo stile dei pulsanti/input, invece di 22-25 punti                            |
+| **Drift impossibile**                                    | Il compilatore non lascia istanziare un primitive con prop fuori dai variants previsti           |
+| **Accessibility centralizzata**                          | `<Input>` può forzare `aria-*` correttamente, `<Spinner>` può avere `role="status"` di default   |
+| **Pattern di estensione chiaro**                         | Nuovo stato (loading, disabled, error) → aggiungi prop al primitive, propaga a 22 call site      |
+| **JSX più leggibile**                                    | Code review più veloce: si vede la struttura semantica, non il visual                            |
+| **Test unitari possibili**                               | I primitive sono testabili in isolamento (oggi lo styling è copy-paste, niente da testare)       |
+
+---
+
+### Piano di implementazione
+
+**Layout target**: per ogni webapp (`client-webapp`, `therapist-webapp`, `admin-dashboard`):
+```
+src/components/ui/
+├── Input.tsx
+├── Label.tsx
+├── Card.tsx
+├── DisplayHeading.tsx
+├── Spinner.tsx
+├── LoadingContainer.tsx
+├── Eyebrow.tsx
+├── ErrorText.tsx
+└── index.ts (re-export)
+```
+
+**Per-webapp, non shared monorepo package**: scelta consapevole. I 3 webapp hanno design language identico oggi, ma sono progetti separati senza workspace; introdurre un package shared significherebbe trasformare i 3 webapp in monorepo (Turborepo/pnpm workspaces) — refactor enorme. La duplicazione di 10 componenti × 3 webapp = 30 file piccoli, mantenibili. Se in futuro il design diverge tra portali (es. admin più denso), questa scelta diventa una feature.
+
+**Sequenza consigliata** (ordine per ROI decrescente):
+
+1. **`<Input>`** (22 occorrenze, 207 char) — refactor pages `login`, `register`, `forgot-password`, `reset-password` per primi (entry points pre-launch, alto traffico). Test: ogni form deve continuare a funzionare identico.
+
+2. **`<Label>` + `<ErrorText>`** (25 + 14 occorrenze) — naturalmente accoppiati a `<Input>`. Aggiungere `aria-describedby` automatico tra Label e Input.
+
+3. **`<Card>`** (14 occorrenze) — refactor dashboard pages dove sono usate come container di sezione.
+
+4. **`<DisplayHeading>`** (31 + 18 = 49 occorrenze totali) — un solo componente con prop `size: 'xl' | 'md'`. Rimpiazza entrambe le varianti.
+
+5. **`<Spinner>` + `<LoadingContainer>`** (28 + 21 occorrenze) — usate ovunque c'è un loading state. Refactor leggero perché di solito sono insieme.
+
+6. **`<Eyebrow>`** (17 occorrenze) — etichette categoria stile uppercase tracking.
+
+**Per ogni primitive**:
+1. Creare il componente con className verbatim copiato (zero modifiche visive)
+2. Esportare da `src/components/ui/index.ts`
+3. Find-and-replace mirato per webapp (NON `replace_all` globale: rischio di toccare className che differiscono di 1 carattere accidentalmente)
+4. `tsc --noEmit` + `eslint` clean per webapp
+5. Smoke test manuale: una page form (login) e una dashboard
+6. Commit per primitive
+
+**Ordine di webapp**: `client-webapp` prima (più traffico utenti, più ROI sul testing), poi `therapist-webapp`, infine `admin-dashboard`.
+
+---
+
+### Stima
+
+- **Per webapp**: ~3-5 ore (8 primitive × ~20 min setup + ~10-30 min find-replace per primitive, con verifica)
+- **Totale 3 webapp**: 1-2 giornate di lavoro concentrato
+- **Stretch (test E2E aggiunto)**: +0.5 giornate
+
+---
+
+### Rischi e mitigazioni
+
+| Rischio                                                                          | Mitigazione                                                                                                |
+| -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Regressione visiva su un form critico (login, register)                          | Test manuale post-refactor per ogni primitive; commit atomico per primitive; rollback semplice via revert  |
+| className quasi-identico ma non esatto (`[14px]` vs `[16px]`) che viene unificato | Find-replace mirato verbatim (NON regex su pattern), uno-a-uno con review                                  |
+| Prop interface che non copre un caso particolare (es. autofocus, ref)            | Usare `React.ComponentProps<'input'>` per `<Input>`, `forwardRef` dove serve                               |
+| Primitive che diventa "god component" con troppe prop                            | Tenere semplice: 1 primitive = 1 visual, niente prop di customizzazione oltre i variants identificati      |
+| Drift inverso (qualcuno aggiunge className inline duplicato dopo il refactor)    | Lint rule custom o documentazione in `AGENTS.md` di ogni webapp; review in PR                              |
+
+---
+
+### Quando farlo
+
+**Non blocca il lancio.** Il debito è di maintainability, non di funzionalità o sicurezza. La UI funziona oggi.
+
+**Finestra consigliata**: nella settimana 3 del task list pre-lancio (sezione "Performance + polish"), come parte del task #1 "Code review iOS + web". È un buon companion a quel task perché il refactor stesso costituisce una review (forza a leggere ogni form, ogni dashboard, ogni page).
+
+**Alternativa**: post-lancio, prima settimana di routine operativa. Marcello sarà occupato con marketing, ISKO può lavorare in autonomia su questa pulizia senza pressione di deadline.
+
+---
+
+## (Altri debt verranno aggiunti qui man mano che emergono dagli audit)

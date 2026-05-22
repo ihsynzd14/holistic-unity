@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { validatePasswordShape } from "@/lib/security/password";
+import { Input } from "@/components/ui/Input";
 
 /**
  * /reset-password — landed here from the recovery email after
@@ -175,13 +176,12 @@ export default function ResetPasswordPage() {
                 <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
                   Nuova password
                 </label>
-                <input
+                <Input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="new-password"
                   required
-                  className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
                 />
                 <p className="mt-1 text-xs text-charcoal-muted/70">
                   Almeno 8 caratteri, con numeri e lettere.
@@ -192,13 +192,12 @@ export default function ResetPasswordPage() {
                 <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
                   Conferma nuova password
                 </label>
-                <input
+                <Input
                   type="password"
                   value={confirm}
                   onChange={(e) => setConfirm(e.target.value)}
                   autoComplete="new-password"
                   required
-                  className="w-full rounded-[14px] border border-berry-subtle bg-white px-4 py-3 text-charcoal placeholder-charcoal-muted/40 outline-none transition-all duration-300 focus:border-berry focus:ring-2 focus:ring-berry/10"
                 />
               </div>
 
