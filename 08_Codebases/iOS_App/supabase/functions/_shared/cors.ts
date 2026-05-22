@@ -17,7 +17,14 @@
  */
 
 // Allowed origins. Update these when deploying to new domains.
+// NB. Position matters: ALLOWED_ORIGINS[0] is the fallback Access-Control-Allow-Origin
+// returned when the request has no Origin header (native iOS app, server-to-server)
+// or an unrecognized one. Keeping `app.holisticunity.app` first because it's the
+// most-called domain (client-webapp prod) and aligns semantically with the iOS
+// "client" surface that uses the null-Origin fallback.
 const ALLOWED_ORIGINS: string[] = [
+  "https://app.holisticunity.app",             // client-webapp prod
+  "https://admin.holisticunity.app",           // admin-dashboard prod (defense-in-depth)
   "https://therapistportal.holisticunity.app", // production therapist portal
   "https://therapist-webapp-tau.vercel.app",   // Vercel default domain
   "https://holisticunity.com",
