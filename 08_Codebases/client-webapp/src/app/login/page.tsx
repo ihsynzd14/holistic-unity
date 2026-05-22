@@ -9,6 +9,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { ErrorText } from "@/components/ui/ErrorText";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -178,9 +179,9 @@ export default function LoginPage() {
               priority
             />
           </div>
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal">
+          <DisplayHeading>
             {t.login.title}
-          </h1>
+          </DisplayHeading>
           <p className="mt-1 text-sm font-medium tracking-wide text-berry-muted">{t.login.subtitle}</p>
         </div>
 

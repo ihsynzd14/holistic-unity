@@ -7,6 +7,9 @@ import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { getJoinWindow } from "@/lib/booking/join-window";
 import { ErrorText } from "@/components/ui/ErrorText";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import {
   Calendar,
   Clock,
@@ -265,21 +268,18 @@ export default function ClientBookingsPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
   return (
     <div className="space-y-8">
       <div className="animate-reveal">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal">
+        <DisplayHeading>
           {t.clientBookings.title}
-        </h1>
+        </DisplayHeading>
         {actionError && (
           <p className="mt-2 flex items-center gap-1 text-sm text-error">
             <XCircle className="h-4 w-4" /> {actionError}
@@ -751,9 +751,9 @@ function ReviewModal({
       >
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+            <DisplayHeading as="h2" size="md">
               {t.clientBookings.reviewTitle ?? "Come è andata la sessione?"}
-            </h2>
+            </DisplayHeading>
             <p className="mt-1 text-xs text-charcoal-muted">
               {t.clientBookings.reviewWithTherapist?.replace(
                 "{name}",

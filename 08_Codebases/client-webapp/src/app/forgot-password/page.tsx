@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { ErrorText } from "@/components/ui/ErrorText";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 /**
  * /forgot-password — Client-side password recovery entry point.
@@ -128,9 +129,9 @@ export default function ForgotPasswordPage() {
                   />
                 </svg>
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+              <DisplayHeading as="h2" size="md">
                 Controlla la tua email
-              </h2>
+              </DisplayHeading>
               <p className="text-sm text-charcoal-light">
                 Se <span className="font-medium">{email}</span> è
                 registrato, abbiamo inviato un link per reimpostare la

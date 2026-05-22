@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { isRateLimited, rateLimitResponse } from "../_shared/rate-limit.ts";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { RefundSchema, parseJson } from "../_shared/validate.ts";
+import { redactStripeId } from "../_shared/redact.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 
@@ -291,7 +292,7 @@ serve(async (req) => {
     const refund = await stripeRequest("POST", "/refunds", refundParams);
 
     console.log(
-      `Refund created: ${refund.id} for payment_intent ${transaction.stripe_payment_intent_id}, amount: ${refund.amount / 100} ${refund.currency}`
+      `Refund created: ${redactStripeId(refund.id)} for payment_intent ${redactStripeId(transaction.stripe_payment_intent_id)}, amount: ${refund.amount / 100} ${refund.currency}`
     );
 
     // The stripe-webhook handler will update the transaction status

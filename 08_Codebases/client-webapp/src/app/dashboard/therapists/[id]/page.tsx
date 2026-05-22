@@ -5,6 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
 import {
   ArrowLeft,
   Star,
@@ -425,12 +428,9 @@ export default function TherapistDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
@@ -580,9 +580,7 @@ export default function TherapistDetailPage() {
           {/* Content column */}
           <div className="min-w-0">
             {/* Gold eyebrow — primary category or generic role */}
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-              {roleLabel}
-            </p>
+            <Eyebrow>{roleLabel}</Eyebrow>
             {/* Cormorant 48px display name */}
             <h1 className="mt-2.5 font-[family-name:var(--font-display)] text-[40px] font-medium leading-[1.05] tracking-tight text-charcoal sm:text-5xl">
               {profile.display_name?.trim() || "—"}
@@ -831,9 +829,7 @@ export default function TherapistDetailPage() {
             was pulled.
           */}
           <section className="animate-reveal" style={{ animationDelay: "40ms" }}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-              Conoscimi
-            </p>
+            <Eyebrow>Conoscimi</Eyebrow>
             <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-[28px]">
               Chi sono{" "}
               <em
@@ -936,9 +932,7 @@ export default function TherapistDetailPage() {
             const photoSlots = embed ? 4 : 5;
             return (
               <section className="animate-reveal" style={{ animationDelay: "60ms" }}>
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                  Galleria
-                </p>
+                <Eyebrow>Galleria</Eyebrow>
                 <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-[28px]">
                   Foto e video{" "}
                   <em
@@ -1007,9 +1001,7 @@ export default function TherapistDetailPage() {
           <section className="animate-reveal" style={{ animationDelay: "80ms" }}>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                  Cosa dicono
-                </p>
+                <Eyebrow>Cosa dicono</Eyebrow>
                 <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-[28px]">
                   Recensioni{" "}
                   <em
@@ -1125,9 +1117,7 @@ export default function TherapistDetailPage() {
           */}
           {certifications.length > 0 && (
             <section className="animate-reveal" style={{ animationDelay: "100ms" }}>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                Credenziali
-              </p>
+              <Eyebrow>Credenziali</Eyebrow>
               <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-[28px]">
                 Verificate{" "}
                 <em
@@ -1172,9 +1162,7 @@ export default function TherapistDetailPage() {
             style={{ animationDelay: "120ms" }}
           >
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                Prenota
-              </p>
+              <Eyebrow>Prenota</Eyebrow>
               <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-[28px]">
                 Scegli il{" "}
                 <em
@@ -1408,9 +1396,7 @@ export default function TherapistDetailPage() {
             {/* 1. Services list */}
             <div className="overflow-hidden rounded-2xl border border-berry/10 bg-white/90 shadow-md backdrop-blur-sm">
               <div className="px-5 pt-5">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                  Sessioni
-                </p>
+                <Eyebrow>Sessioni</Eyebrow>
                 <h3 className="mt-1.5 font-[family-name:var(--font-display)] text-xl font-medium tracking-tight text-charcoal">
                   Servizi e{" "}
                   <em
@@ -1491,9 +1477,7 @@ export default function TherapistDetailPage() {
 
             {/* 2. Mini-availability */}
             <div className="rounded-2xl border border-berry/10 bg-white/90 p-4 shadow-sm backdrop-blur-sm">
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-                Disponibilità
-              </p>
+              <Eyebrow>Disponibilità</Eyebrow>
               <h3 className="mt-1.5 font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-charcoal">
                 Prossimi{" "}
                 <em

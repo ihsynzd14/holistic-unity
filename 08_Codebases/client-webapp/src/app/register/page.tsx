@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { ErrorText } from "@/components/ui/ErrorText";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 // Cloudflare Turnstile was removed 2026-05-15: in production the
 // challenges.cloudflare.com script was getting blocked routinely by
@@ -262,9 +263,9 @@ function RegisterForm() {
             />
           </svg>
         </div>
-        <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+        <DisplayHeading as="h2" size="md">
           {t.register.checkEmailTitle}
-        </h2>
+        </DisplayHeading>
         <p className="text-sm text-charcoal-light">
           {t.register.checkEmailBody.replace("{email}", submittedEmail)}
         </p>

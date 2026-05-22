@@ -5,6 +5,8 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { Search, Star, MapPin, ShieldCheck, Globe, Sparkles } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 type Therapist = {
   id: string;
@@ -139,9 +141,9 @@ export default function BrowseTherapistsPage() {
           conversion for ad traffic). Show a soft loading shimmer
           instead and only render the real count once data arrives. */}
       <div className="animate-reveal">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal">
+        <DisplayHeading>
           {t.browse.title}
-        </h1>
+        </DisplayHeading>
         {loading ? (
           <p className="mt-1 inline-block h-4 w-40 animate-pulse rounded bg-berry-subtle/50" aria-hidden="true" />
         ) : (
@@ -200,10 +202,7 @@ export default function BrowseTherapistsPage() {
       {/* Results */}
       {loading ? (
         <div className="flex h-[40vh] items-center justify-center">
-          <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
+          <Spinner />
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-2xl border border-berry/5 bg-white/60 p-12 text-center">

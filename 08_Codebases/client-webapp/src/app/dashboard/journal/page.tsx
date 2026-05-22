@@ -3,6 +3,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
 
 /**
  * Journal — private per-session reflections written by the client.
@@ -167,12 +170,9 @@ export default function JournalPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
@@ -180,9 +180,7 @@ export default function JournalPage() {
     <div className="space-y-8">
       {/* ─── Header ─── */}
       <header className="animate-reveal">
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-          {t.journal.eyebrow}
-        </p>
+        <Eyebrow>{t.journal.eyebrow}</Eyebrow>
         <h1 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-3xl font-medium leading-tight tracking-tight text-charcoal sm:text-4xl">
           {renderEditorial(t.journal.headline, {
             italicOpen: "{italicOpen}",
@@ -279,9 +277,7 @@ export default function JournalPage() {
 
       {/* ─── Past entries ─── */}
       <section className="animate-reveal" style={{ animationDelay: "80ms" }}>
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-          {t.journal.pastEyebrow}
-        </p>
+        <Eyebrow>{t.journal.pastEyebrow}</Eyebrow>
         {entries.length === 0 ? (
           <div className="mt-4 rounded-2xl border border-berry/5 bg-white/60 p-8 text-center">
             <p className="font-[family-name:var(--font-display)] text-lg text-charcoal">

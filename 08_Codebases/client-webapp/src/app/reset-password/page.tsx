@@ -9,6 +9,7 @@ import { validatePasswordShape } from "@/lib/security/password";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { ErrorText } from "@/components/ui/ErrorText";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 /**
  * /reset-password — landed here from the recovery email after
@@ -165,9 +166,9 @@ export default function ResetPasswordPage() {
                   />
                 </svg>
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+              <DisplayHeading as="h2" size="md">
                 Password aggiornata
-              </h2>
+              </DisplayHeading>
               <p className="text-sm text-charcoal-light">
                 Ti stiamo riportando al login…
               </p>

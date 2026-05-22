@@ -17,6 +17,9 @@ import {
   ArrowRight,
   Mail,
 } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 type Practice = {
   id: string;
@@ -123,12 +126,9 @@ export default function PracticeDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
@@ -182,9 +182,9 @@ export default function PracticeDetailPage() {
 
         <div className="relative -mt-14 px-6 pb-6 pt-0 sm:-mt-16 sm:px-8">
           <div className="rounded-2xl bg-white/85 p-5 shadow-sm backdrop-blur-md sm:p-6">
-            <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal sm:text-[34px]">
+            <DisplayHeading className="sm:text-[34px]">
               {practice.title}
-            </h1>
+            </DisplayHeading>
             <p className="mt-2 text-base text-charcoal-light">{practice.tagline}</p>
             <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-charcoal-muted">
               {practice.duration_typical_min && (
@@ -366,9 +366,9 @@ function Section({
 }) {
   return (
     <section className="animate-reveal" id={anchor}>
-      <h2 className="mb-3 font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+      <DisplayHeading as="h2" size="md" className="mb-3">
         {heading}
-      </h2>
+      </DisplayHeading>
       {children}
     </section>
   );

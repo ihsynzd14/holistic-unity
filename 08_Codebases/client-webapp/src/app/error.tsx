@@ -7,6 +7,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 export default function GlobalError({
   error,
@@ -33,9 +34,9 @@ export default function GlobalError({
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-error/10">
           <span className="text-2xl text-error">!</span>
         </div>
-        <h1 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+        <DisplayHeading size="md">
           Qualcosa è andato storto
-        </h1>
+        </DisplayHeading>
         <p className="mt-2 text-sm text-charcoal-light">
           Ci scusiamo per l&apos;inconveniente. Puoi riprovare o tornare alla dashboard.
         </p>

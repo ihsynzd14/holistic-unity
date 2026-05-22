@@ -6,6 +6,10 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { Sparkles, Search } from "lucide-react";
+import { Card } from "@/components/ui/Card";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
 
 /**
  * Cammino — editorial timeline of the client's completed sessions.
@@ -186,12 +190,9 @@ export default function CamminoPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
@@ -204,9 +205,7 @@ export default function CamminoPage() {
     <div className="space-y-10">
       {/* ─── Header ─── */}
       <header className="animate-reveal">
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-          {t.cammino.eyebrow}
-        </p>
+        <Eyebrow>{t.cammino.eyebrow}</Eyebrow>
         <h1 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-3xl font-medium leading-tight tracking-tight text-charcoal sm:text-4xl">
           {hasSessions
             ? renderEditorial(t.cammino.headlineDays, {
@@ -277,9 +276,7 @@ export default function CamminoPage() {
       {/* ─── Timeline (or empty CTA if no completed sessions yet) ─── */}
       {hasSessions ? (
         <section className="animate-reveal" style={{ animationDelay: "180ms" }}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-            {t.cammino.storyEyebrow}
-          </p>
+          <Eyebrow>{t.cammino.storyEyebrow}</Eyebrow>
           <h2 className="mt-2 mb-7 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-3xl">
             {renderEditorial(t.cammino.storyHeadline, {
               italicOpen: "{italicOpen}",
@@ -346,13 +343,11 @@ function KpiCard({
   delay: number;
 }) {
   return (
-    <div
-      className="animate-reveal relative overflow-hidden rounded-2xl border border-berry/5 bg-white/70 p-6 shadow-sm backdrop-blur-sm"
+    <Card
+      className="animate-reveal relative overflow-hidden"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-        {label}
-      </p>
+      <Eyebrow>{label}</Eyebrow>
       <p
         className="mt-3 font-[family-name:var(--font-display)] text-[56px] font-medium leading-none tracking-tight text-berry"
         style={{ letterSpacing: "-0.025em" }}
@@ -370,7 +365,7 @@ function KpiCard({
           className="pointer-events-none absolute -right-3 -bottom-3 h-24 w-24 object-cover opacity-35 mix-blend-multiply"
         />
       )}
-    </div>
+    </Card>
   );
 }
 

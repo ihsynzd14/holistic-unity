@@ -7,6 +7,8 @@ import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { CheckCircle2, Calendar, MessageCircle, CalendarPlus, Download, ChevronRight } from "lucide-react";
 import { buildCalendarLinks } from "@/lib/booking/calendar-links";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
 
 function SuccessInner() {
   const { t } = useI18n();
@@ -308,12 +310,9 @@ export default function CheckoutSuccessPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex h-[60vh] items-center justify-center">
-          <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-        </div>
+        <LoadingContainer>
+          <Spinner />
+        </LoadingContainer>
       }
     >
       <SuccessInner />

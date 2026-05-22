@@ -8,6 +8,9 @@ import {
   CheckCircle, XCircle, AlertTriangle, ArrowRightLeft, Megaphone,
   Shield, Check,
 } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
+import { LoadingContainer } from "@/components/ui/LoadingContainer";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 type AppNotification = {
   id: string;
@@ -123,12 +126,9 @@ export default function NotificationsPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
-      </div>
+      <LoadingContainer>
+        <Spinner />
+      </LoadingContainer>
     );
   }
 
@@ -136,7 +136,7 @@ export default function NotificationsPage() {
     <div className="space-y-6">
       <div className="animate-reveal flex items-center justify-between">
         <div>
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal">{t.notifications.title}</h1>
+          <DisplayHeading>{t.notifications.title}</DisplayHeading>
           <p className="mt-1 text-sm text-charcoal-muted">
             {unreadCount > 0 ? `${unreadCount} ${unreadCount === 1 ? t.notifications.unreadOne : t.notifications.unreadMany}` : t.notifications.allRead}
           </p>

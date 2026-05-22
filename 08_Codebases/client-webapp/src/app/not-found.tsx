@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 export default function NotFound() {
   return (
@@ -13,9 +14,9 @@ export default function NotFound() {
         <p className="font-[family-name:var(--font-display)] text-5xl font-bold text-berry">
           404
         </p>
-        <h1 className="mt-3 font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+        <DisplayHeading size="md" className="mt-3">
           Pagina non trovata
-        </h1>
+        </DisplayHeading>
         <p className="mt-2 text-sm text-charcoal-light">
           La pagina che cerchi non esiste o è stata spostata.
         </p>

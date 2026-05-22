@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
+import { redactStripeId, redactUuid } from "../_shared/redact.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 const STRIPE_WEBHOOK_SECRET = Deno.env.get("STRIPE_WEBHOOK_SECRET")!;
@@ -133,7 +134,7 @@ async function syncBookingToCalendar(bookingId: string, therapistId: string, sup
           );
 
           if (res.ok) {
-            console.log(`Google Calendar event created for booking ${bookingId}`);
+            console.log(`Google Calendar event created for booking ${redactUuid(bookingId)}`);
           } else {
             const err = await res.text();
             console.error(`Google Calendar event creation failed: ${err}`);
@@ -162,7 +163,7 @@ async function syncBookingToCalendar(bookingId: string, therapistId: string, sup
           );
 
           if (res.ok) {
-            console.log(`Microsoft Calendar event created for booking ${bookingId}`);
+            console.log(`Microsoft Calendar event created for booking ${redactUuid(bookingId)}`);
           } else {
             const err = await res.text();
             console.error(`Microsoft Calendar event creation failed: ${err}`);
@@ -347,7 +348,7 @@ serve(async (req) => {
         if (!clientId || !therapistId) {
           console.error(
             "Missing metadata on payment_intent:",
-            paymentIntent.id
+            redactStripeId(paymentIntent.id)
           );
           break;
         }
@@ -434,13 +435,13 @@ serve(async (req) => {
               if (updateError) {
                 console.error("Failed to update existing transaction:", updateError);
               } else {
-                console.log(`Updated existing transaction to completed for ${paymentIntent.id}`);
+                console.log(`Updated existing transaction to completed for ${redactStripeId(paymentIntent.id)}`);
               }
             } else {
               console.error("Failed to insert transaction:", txError);
             }
           } else if (!bookingId) {
-            console.warn(`Ghost payment recorded: no booking found for ${paymentIntent.id}. Transaction saved for manual review.`);
+            console.warn(`Ghost payment recorded: no booking found for ${redactStripeId(paymentIntent.id)}. Transaction saved for manual review.`);
           }
         }
 
@@ -466,7 +467,7 @@ serve(async (req) => {
               await syncBookingToCalendar(bookingId, therapistId, supabaseAdmin);
             } catch (calErr) {
               console.error(
-                `[stripe-webhook] Calendar sync failed for booking ${bookingId} (non-blocking):`,
+                `[stripe-webhook] Calendar sync failed for booking ${redactUuid(bookingId)} (non-blocking):`,
                 calErr instanceof Error ? calErr.message : String(calErr)
               );
             }
@@ -533,7 +534,7 @@ serve(async (req) => {
         }
 
         console.log(
-          `Payment succeeded for intent ${paymentIntent.id}: $${amount}`
+          `Payment succeeded for intent ${redactStripeId(paymentIntent.id)}: $${amount}`
         );
         break;
       }
@@ -574,7 +575,7 @@ serve(async (req) => {
           }
         }
 
-        console.log(`Payment failed for intent ${paymentIntent.id}`);
+        console.log(`Payment failed for intent ${redactStripeId(paymentIntent.id)}`);
         break;
       }
 
@@ -617,7 +618,7 @@ serve(async (req) => {
           }
 
           console.log(
-            `Refund processed: $${refundedAmount} for ${paymentIntentId}`
+            `Refund processed: $${refundedAmount} for ${redactStripeId(paymentIntentId)}`
           );
         }
         break;
@@ -648,7 +649,7 @@ serve(async (req) => {
           if (error) {
             console.error("Failed to update therapist stripe status (by profile id):", error);
           } else {
-            console.log(`Connect account ${account.id} status updated to: ${status}`);
+            console.log(`Connect account ${redactStripeId(account.id)} status updated to: ${status}`);
           }
         } else {
           // Fallback: look up by the Stripe account ID stored on the profile
@@ -660,7 +661,7 @@ serve(async (req) => {
           if (error) {
             console.error("Failed to update therapist stripe status (by account id):", error);
           } else {
-            console.log(`Connect account ${account.id} status updated to: ${status} (matched by account id)`);
+            console.log(`Connect account ${redactStripeId(account.id)} status updated to: ${status} (matched by account id)`);
           }
         }
         break;

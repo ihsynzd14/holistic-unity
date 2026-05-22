@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { isRateLimited, rateLimitResponse } from "../_shared/rate-limit.ts";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { DetachPaymentMethodSchema, parseJson } from "../_shared/validate.ts";
+import { redactStripeId, redactUuid } from "../_shared/redact.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 
@@ -139,7 +140,7 @@ serve(async (req) => {
           `/payment_methods/${pmRow.stripe_payment_method_id}/detach`
         );
         console.log(
-          `Detached Stripe payment method ${pmRow.stripe_payment_method_id} for user ${user.id}`
+          `Detached Stripe payment method ${redactStripeId(pmRow.stripe_payment_method_id)} for user ${redactUuid(user.id)}`
         );
       } catch (stripeErr) {
         // If Stripe says the PM is already detached or not found, proceed with DB cleanup
@@ -149,7 +150,7 @@ serve(async (req) => {
           msg.includes("has already been detached")
         ) {
           console.warn(
-            `Stripe PM ${pmRow.stripe_payment_method_id} already detached or not found, proceeding with DB cleanup`
+            `Stripe PM ${redactStripeId(pmRow.stripe_payment_method_id)} already detached or not found, proceeding with DB cleanup`
           );
         } else {
           throw stripeErr;

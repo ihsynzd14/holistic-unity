@@ -18,6 +18,9 @@ import {
 } from "lucide-react";
 import { isJoinWindowOpen } from "@/lib/booking/join-window";
 import { recommendPractices, type AnswerSet } from "@/lib/onboarding/steps";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Spinner } from "@/components/ui/Spinner";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 /**
  * Client home dashboard — editorial redesign (May 2026).
@@ -409,10 +412,7 @@ export default function ClientDashboardPage() {
   if (loading) {
     return (
       <div className="flex h-full items-center justify-center py-20">
-        <svg className="h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-        </svg>
+        <Spinner />
       </div>
     );
   }
@@ -421,9 +421,7 @@ export default function ClientDashboardPage() {
     <div className="space-y-10">
       {/* ─── Header: gold eyebrow + serif Cormorant headline ─────── */}
       <header className="animate-reveal">
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-          {eyebrowDate}
-        </p>
+        <Eyebrow>{eyebrowDate}</Eyebrow>
         <h1 className="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-3xl font-medium leading-tight tracking-tight text-charcoal sm:text-4xl">
           {firstName ? (
             <>
@@ -492,9 +490,9 @@ export default function ClientDashboardPage() {
       {featuredPractices.length > 0 && (
         <section className="animate-reveal" style={{ animationDelay: "60ms" }}>
           <div className="mb-3 flex items-end justify-between">
-            <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+            <DisplayHeading as="h2" size="md">
               {t.clientHome.exploreTitle}
-            </h2>
+            </DisplayHeading>
             <Link
               href="/dashboard/pratiche"
               className="text-xs font-medium text-berry hover:text-berry-dark"
@@ -543,9 +541,7 @@ export default function ClientDashboardPage() {
       {suggested.length > 0 && (
         <section className="animate-reveal" style={{ animationDelay: "100ms" }}>
           <div className="mb-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-              {t.clientHome.personalizedEyebrow}
-            </p>
+            <Eyebrow>{t.clientHome.personalizedEyebrow}</Eyebrow>
             <div className="mt-2 flex items-baseline justify-between gap-4">
               <h2 className="font-[family-name:var(--font-display)] text-2xl font-medium leading-tight tracking-tight text-charcoal sm:text-3xl">
                 {focusLabel
@@ -652,9 +648,9 @@ export default function ClientDashboardPage() {
       {upcoming.length > 1 && (
         <section className="animate-reveal" style={{ animationDelay: "180ms" }}>
           <div className="flex items-end justify-between">
-            <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-charcoal">
+            <DisplayHeading as="h2" size="md">
               {t.clientHome.upcomingSessions}
-            </h2>
+            </DisplayHeading>
             <Link
               href="/dashboard/bookings"
               className="text-xs font-medium text-berry hover:text-berry-dark"
@@ -1001,9 +997,7 @@ function PendingReviewCard({
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-            {t.clientHome.pendingReviewEyebrow}
-          </p>
+          <Eyebrow>{t.clientHome.pendingReviewEyebrow}</Eyebrow>
           <h2 className="mt-1.5 font-[family-name:var(--font-display)] text-xl font-medium leading-tight tracking-tight text-charcoal sm:text-2xl">
             {renderEditorial(t.clientHome.pendingReviewHeadline, {
               italicOpen: "{italicOpen}",
@@ -1086,9 +1080,7 @@ function PullQuote({ t }: { t: ReturnType<typeof useI18n>["t"] }) {
       >
         “
       </div>
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-dark">
-        {t.clientHome.pullQuoteEyebrow}
-      </p>
+      <Eyebrow>{t.clientHome.pullQuoteEyebrow}</Eyebrow>
       <p className="mx-auto mt-4 max-w-xl font-[family-name:var(--font-display)] text-2xl leading-snug tracking-tight text-berry sm:text-[28px]">
         {renderEditorial(t.clientHome.pullQuote)}
       </p>

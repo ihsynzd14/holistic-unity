@@ -17,6 +17,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { isRateLimited, rateLimitResponse } from "../_shared/rate-limit.ts";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { BookingPaymentSchema, parseJson } from "../_shared/validate.ts";
+import { redactStripeId } from "../_shared/redact.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 
@@ -390,7 +391,7 @@ serve(async (req) => {
           await stripeRequest("GET", `/customers/${customerId}`);
         } catch {
           console.warn(
-            `Stored Stripe customer ${customerId} not found — creating new one.`
+            `Stored Stripe customer ${redactStripeId(customerId)} not found — creating new one.`
           );
           customerId = null;
         }

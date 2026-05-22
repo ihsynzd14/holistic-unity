@@ -19,6 +19,8 @@ import {
 import "stream-chat-react/dist/css/v2/index.css";
 import { ArrowLeft, MessageCircle, CalendarPlus, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
+import { Spinner } from "@/components/ui/Spinner";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
 
 const STREAM_API_KEY = process.env.NEXT_PUBLIC_STREAM_API_KEY || "";
 
@@ -150,10 +152,7 @@ export default function MessagesPage() {
     return (
       <div className="flex h-full items-center justify-center">
         <div className="text-center">
-          <svg className="mx-auto h-8 w-8 animate-spin text-berry" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
+          <Spinner className="mx-auto" />
           <p className="mt-3 text-sm text-charcoal-muted">{t.dashboard.loadingMessages}</p>
         </div>
       </div>
@@ -184,7 +183,7 @@ export default function MessagesPage() {
   return (
     <div className="space-y-4">
       <div className="animate-reveal">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold text-charcoal">{t.messages.title}</h1>
+        <DisplayHeading>{t.messages.title}</DisplayHeading>
         <p className="mt-1 text-sm text-charcoal-muted">{t.messages.subtitle}</p>
       </div>
 
