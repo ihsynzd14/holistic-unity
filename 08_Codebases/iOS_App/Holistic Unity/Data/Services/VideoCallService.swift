@@ -516,15 +516,31 @@ final class VideoCallService {
             }
         }
         
-        _ = try? await SupabaseConfig.client
-            .from("bookings")
-            .update(FailedFlag(
-                technicalFailure: true,
-                connectedSeconds: actualConnectedSeconds,
-                updatedAt: ISO8601DateFormatter.shared.string(from: Date())
-            ))
-            .eq("id", value: bookingId)
-            .execute()
+        do {
+            _ = try await SupabaseConfig.client
+                .from("bookings")
+                .update(FailedFlag(
+                    technicalFailure: true,
+                    connectedSeconds: actualConnectedSeconds,
+                    updatedAt: ISO8601DateFormatter.shared.string(from: Date())
+                ))
+                .eq("id", value: bookingId)
+                .execute()
+        } catch {
+            // Support uses `technical_failure=true` to route refund eligibility.
+            // If this DB write silently fails, the support team can't distinguish
+            // a network-aborted session from a legitimate no-show. We can't
+            // surface this to the user (call is already ending), but a Sentry
+            // breadcrumb lets support reconstruct the failure from logs.
+            let breadcrumb = Breadcrumb(level: .warning, category: "video.flag_failed")
+            breadcrumb.message = "flagSessionAsFailed write failed"
+            breadcrumb.data = [
+                "booking_id": bookingId,
+                "connected_seconds": actualConnectedSeconds,
+                "error": error.localizedDescription
+            ]
+            SentrySDK.addBreadcrumb(breadcrumb)
+        }
     }
     
     // MARK: - Session Recovery Info

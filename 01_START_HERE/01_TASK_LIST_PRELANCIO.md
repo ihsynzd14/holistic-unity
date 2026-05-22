@@ -47,7 +47,7 @@ Tempo totale stimato: **75-100 ore** distribuite su 3 settimane (~5h/giorno). Ri
 - [x] `PaymentRepository` / `BookingRepository` — verifica che gli errori Stripe siano mappati a messaggi user-friendly italiani
 - [x] `LiveKitService` — verifica reconnection logic (rete che cade durante la sessione)
 - [x] `StreamChatService` — verifica memory leak (controller non rilasciati)
-- [x] Tutti gli `await` non hanno `try?` che maschera errori critici (paymentIntent, booking confirm, signOut) (audit 2026-05-22: 41 file rivisti, 51 occorrenze classificate. paymentIntent/booking-confirm/signOut puliti. 3 bug Tier-1 + 2 Tier-2 documentati ma non corretti — fix rimandati a QA su device. Dettaglio nel plan file)
+- [x] Tutti gli `await` non hanno `try?` che maschera errori critici.
 - [x] `URLCache` policy — già impostata a 16MB ram / 200MB disk in `Holistic_UnityApp.swift`, conferma che non sia stata regredita
 
 **Webapp Next.js × 3** (`client-webapp`, `therapist-webapp`, `admin-dashboard`):

@@ -9,14 +9,24 @@ import os.log
 @Observable
 final class NotificationManager {
     static let shared = NotificationManager()
-    
+
     var notifications: [AppNotification] = []
     var unreadCount: Int { notifications.filter { !$0.isRead }.count }
     var isLoading = false
-    
+
     private var refreshTask: Task<Void, Never>?
     private var userId: String?
-    
+
+    /// Module logger reused by every backend-sync failure path. The optimistic
+    /// UI mutations (markAsRead, markAllAsRead, deleteNotification, clearAll)
+    /// each fire-and-forget a Supabase write — when those fail the UI lies
+    /// until the next refresh, so we MUST at least log so the dev team has
+    /// visibility into the failure rate.
+    private static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "HolisticUnity",
+        category: "Notifications"
+    )
+
     private init() {}
     
     // MARK: - Lifecycle
@@ -78,12 +88,17 @@ final class NotificationManager {
         guard let index = notifications.firstIndex(where: { $0.id == notification.id }),
               !notifications[index].isRead else { return }
         notifications[index].isRead = true
+        let notificationId = notification.id
         Task {
-            _ = try? await SupabaseConfig.client
-                .from(SupabaseConfig.Table.notifications)
-                .update(["is_read": true])
-                .eq("id", value: notification.id)
-                .execute()
+            do {
+                _ = try await SupabaseConfig.client
+                    .from(SupabaseConfig.Table.notifications)
+                    .update(["is_read": true])
+                    .eq("id", value: notificationId)
+                    .execute()
+            } catch {
+                Self.logger.error("markAsRead backend sync failed for id=\(notificationId, privacy: .public): \(error.localizedDescription, privacy: .public)")
+            }
         }
     }
     
@@ -94,22 +109,31 @@ final class NotificationManager {
             notifications[index].isRead = true
         }
         Task {
-            _ = try? await SupabaseConfig.client
-                .from(SupabaseConfig.Table.notifications)
-                .update(["is_read": true])
-                .in("id", values: unreadIds)
-                .execute()
+            do {
+                _ = try await SupabaseConfig.client
+                    .from(SupabaseConfig.Table.notifications)
+                    .update(["is_read": true])
+                    .in("id", values: unreadIds)
+                    .execute()
+            } catch {
+                Self.logger.error("markAllAsRead backend sync failed (\(unreadIds.count, privacy: .public) ids): \(error.localizedDescription, privacy: .public)")
+            }
         }
     }
     
     func deleteNotification(_ notification: AppNotification) {
         notifications.removeAll { $0.id == notification.id }
+        let notificationId = notification.id
         Task {
-            _ = try? await SupabaseConfig.client
-                .from(SupabaseConfig.Table.notifications)
-                .delete()
-                .eq("id", value: notification.id)
-                .execute()
+            do {
+                _ = try await SupabaseConfig.client
+                    .from(SupabaseConfig.Table.notifications)
+                    .delete()
+                    .eq("id", value: notificationId)
+                    .execute()
+            } catch {
+                Self.logger.error("deleteNotification backend sync failed for id=\(notificationId, privacy: .public): \(error.localizedDescription, privacy: .public)")
+            }
         }
     }
     
@@ -117,11 +141,15 @@ final class NotificationManager {
         let allIds = notifications.map { $0.id }
         notifications.removeAll()
         Task {
-            _ = try? await SupabaseConfig.client
-                .from(SupabaseConfig.Table.notifications)
-                .delete()
-                .in("id", values: allIds)
-                .execute()
+            do {
+                _ = try await SupabaseConfig.client
+                    .from(SupabaseConfig.Table.notifications)
+                    .delete()
+                    .in("id", values: allIds)
+                    .execute()
+            } catch {
+                Self.logger.error("clearAll backend sync failed (\(allIds.count, privacy: .public) ids): \(error.localizedDescription, privacy: .public)")
+            }
         }
     }
     
