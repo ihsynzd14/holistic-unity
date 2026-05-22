@@ -12,6 +12,8 @@ import {
   isPasswordBreached,
 } from "@/lib/security/password";
 import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { ErrorText } from "@/components/ui/ErrorText";
 
 // Cloudflare Turnstile was removed 2026-05-15: in production the
 // challenges.cloudflare.com script was getting blocked routinely by
@@ -311,9 +313,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.fullName}
-        </label>
+        <Label>{t.register.fullName}</Label>
         <Input
           type="text"
           value={fullName}
@@ -325,9 +325,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.genderLabel}
-        </label>
+        <Label>{t.register.genderLabel}</Label>
         <div className="flex gap-3">
           {(
             [
@@ -352,9 +350,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.email}
-        </label>
+        <Label>{t.register.email}</Label>
         <Input
           type="email"
           value={email}
@@ -366,9 +362,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.phone}
-        </label>
+        <Label>{t.register.phone}</Label>
         <Input
           type="tel"
           value={phone}
@@ -380,9 +374,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.password}
-        </label>
+        <Label>{t.register.password}</Label>
         <Input
           type="password"
           value={password}
@@ -396,9 +388,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-          {t.register.passwordConfirm}
-        </label>
+        <Label>{t.register.passwordConfirm}</Label>
         <Input
           type="password"
           value={passwordConfirm}
@@ -505,9 +495,7 @@ function RegisterForm() {
       </div>
 
       {error && (
-        <p className="text-center text-sm text-error" role="alert">
-          {error}
-        </p>
+        <ErrorText role="alert">{error}</ErrorText>
       )}
 
       <button

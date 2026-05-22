@@ -51,7 +51,7 @@ Tempo totale stimato: **75-100 ore** distribuite su 3 settimane (~5h/giorno). Ri
 - [x] `URLCache` policy — già impostata a 16MB ram / 200MB disk in `Holistic_UnityApp.swift`, conferma che non sia stata regredita
 
 **Webapp Next.js × 3** (`client-webapp`, `therapist-webapp`, `admin-dashboard`):
-- [ ] `'use client'` solo dove davvero serve (ogni componente client trasferisce JS al browser)
+- [POST LAUNCH NON PRIORITY!] `'use client'` solo dove davvero serve (ogni componente client trasferisce JS al browser)
 - [x] Server Actions hanno `requireAuth()` o equivalente come prima riga
        Audit 2026-05-22 (ISKO): Nessuna delle 3 webapp usa `'use server'` Server Actions — tutte le mutazioni sono Route Handler (`route.ts`). Pattern auth uniforme: `createClient()` → `getUser()` (JWT-verified, mai `getSession()`) → 401 se null. client-webapp: 16/16 ✅. therapist-webapp: 37/37 ✅. admin-dashboard: 12/13 con 1 violazione trovata e fixata — `POST /api/stream/token` usava solo Gate 1 (email whitelist env) invece di `requireAdmin()` (doppio gate: email + RPC `is_admin` DB). Fix applicato 2026-05-22: [src/app/api/stream/token/route.ts](../08_Codebases/admin-dashboard/src/app/api/stream/token/route.ts). Build `next build` clean post-fix.
 - [x] Nessun `process.env.SUPABASE_SERVICE_ROLE_KEY` referenziato in codice client

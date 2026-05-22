@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { ErrorText } from "@/components/ui/ErrorText";
 
 /**
  * /forgot-password — Client-side password recovery entry point.
@@ -144,9 +146,7 @@ export default function ForgotPasswordPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-                  Email
-                </label>
+                <Label>Email</Label>
                 <Input
                   type="email"
                   value={email}
@@ -158,12 +158,7 @@ export default function ForgotPasswordPage() {
               </div>
 
               {error && (
-                <p
-                  className="text-center text-sm text-error"
-                  role="alert"
-                >
-                  {error}
-                </p>
+                <ErrorText role="alert">{error}</ErrorText>
               )}
 
               <button

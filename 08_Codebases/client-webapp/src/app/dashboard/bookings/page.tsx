@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { getJoinWindow } from "@/lib/booking/join-window";
+import { ErrorText } from "@/components/ui/ErrorText";
 import {
   Calendar,
   Clock,
@@ -806,9 +807,7 @@ function ReviewModal({
         <p className="mt-1 text-[11px] text-charcoal-muted/70">{text.length}/1000</p>
 
         {error && (
-          <p className="mt-3 text-center text-sm text-error" role="alert">
-            {error}
-          </p>
+          <ErrorText className="mt-3" role="alert">{error}</ErrorText>
         )}
 
         <div className="mt-5 flex gap-2">

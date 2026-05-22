@@ -10,6 +10,7 @@ import {
   TOS_URLS,
 } from "@/lib/tos/version";
 import { Loader2, ShieldCheck, ScrollText } from "lucide-react";
+import { ErrorText } from "@/components/ui/ErrorText";
 
 /**
  * Mandatory re-acceptance page — entered when:
@@ -304,9 +305,7 @@ export default function AcceptTermsPage() {
           )}
 
           {error && (
-            <p className="text-center text-sm text-error" role="alert">
-              {error}
-            </p>
+            <ErrorText role="alert">{error}</ErrorText>
           )}
 
           <button

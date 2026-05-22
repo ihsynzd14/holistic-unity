@@ -7,6 +7,8 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { validatePasswordShape } from "@/lib/security/password";
 import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { ErrorText } from "@/components/ui/ErrorText";
 
 /**
  * /reset-password — landed here from the recovery email after
@@ -173,9 +175,7 @@ export default function ResetPasswordPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-                  Nuova password
-                </label>
+                <Label>Nuova password</Label>
                 <Input
                   type="password"
                   value={password}
@@ -189,9 +189,7 @@ export default function ResetPasswordPage() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-                  Conferma nuova password
-                </label>
+                <Label>Conferma nuova password</Label>
                 <Input
                   type="password"
                   value={confirm}
@@ -202,9 +200,7 @@ export default function ResetPasswordPage() {
               </div>
 
               {error && (
-                <p className="text-center text-sm text-error" role="alert">
-                  {error}
-                </p>
+                <ErrorText role="alert">{error}</ErrorText>
               )}
 
               <button

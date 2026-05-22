@@ -7,6 +7,8 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n/context";
 import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { ErrorText } from "@/components/ui/ErrorText";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -73,7 +75,7 @@ function LoginForm() {
 
       <form onSubmit={handleLogin} className="space-y-5">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-charcoal-light">{t.login.email}</label>
+          <Label>{t.login.email}</Label>
           <Input
             type="email"
             value={email}
@@ -85,7 +87,7 @@ function LoginForm() {
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-charcoal-light">{t.login.password}</label>
+          <Label>{t.login.password}</Label>
           <Input
             type="password"
             value={password}
@@ -96,7 +98,7 @@ function LoginForm() {
           />
         </div>
 
-        {error && <p className="text-center text-sm text-error">{error}</p>}
+        {error && <ErrorText>{error}</ErrorText>}
 
         <button
           type="submit"

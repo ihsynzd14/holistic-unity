@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { validatePasswordShape, isPasswordBreached } from "@/lib/security/password";
 import { User, Phone, Mail, Lock, Globe, LogOut, CheckCircle2, Monitor, Trash2, AlertTriangle, Sparkles } from "lucide-react";
+import { Label } from "@/components/ui/Label";
 
 type LoginEvent = {
   id: string;
@@ -285,9 +286,7 @@ export default function ClientAccountPage() {
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-charcoal-light">
-            {t.account.genderLabel}
-          </label>
+          <Label>{t.account.genderLabel}</Label>
           <div className="flex gap-2">
             {(
               [
