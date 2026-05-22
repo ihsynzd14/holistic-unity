@@ -27,9 +27,20 @@ struct AppCoordinator: View {
                     EmailVerificationView()
 
                 case .needsRole:
-                    // Auto-assign client role — therapists use the web portal
+                    // Auto-assign client role — therapists use the web portal.
+                    // The error MUST surface: if selectRole silently fails the user
+                    // is stuck in .needsRole forever on every cold launch (see the
+                    // explicit warning in AuthManager.selectRole). Surface to the
+                    // toast so the user can retry by backgrounding/foregrounding,
+                    // which re-fires this .task closure.
                     LaunchLoadingView()
-                        .task { try? await authManager.selectRole(.client) }
+                        .task {
+                            do {
+                                try await authManager.selectRole(.client)
+                            } catch {
+                                appState.showToast(.error, message: "Configurazione account fallita. Controlla la connessione e riapri l'app.")
+                            }
+                        }
 
                 case .needsOnboarding(let role):
                     switch role {
@@ -53,9 +64,17 @@ struct AppCoordinator: View {
                     } else if authManager.currentUser?.role == .client {
                         ClientTabView()
                     } else {
-                        // Auto-assign client role for users without a role
+                        // Auto-assign client role for users without a role.
+                        // Same rationale as the .needsRole case above — silent
+                        // failure leaves the user stuck on LaunchLoadingView.
                         LaunchLoadingView()
-                            .task { try? await authManager.selectRole(.client) }
+                            .task {
+                                do {
+                                    try await authManager.selectRole(.client)
+                                } catch {
+                                    appState.showToast(.error, message: "Configurazione account fallita. Controlla la connessione e riapri l'app.")
+                                }
+                            }
                     }
                 }
             }

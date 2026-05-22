@@ -1328,6 +1328,7 @@ struct LanguageSettingsView: View {
     @Environment(AuthManager.self) private var authManager
     @State private var selectedLanguages: Set<String> = []
     @State private var isSaving = false
+    @State private var saveErrorMessage: String?
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -1371,6 +1372,14 @@ struct LanguageSettingsView: View {
                 .disabled(isSaving)
             }
         }
+        .alert("Errore", isPresented: Binding(
+            get: { saveErrorMessage != nil },
+            set: { if !$0 { saveErrorMessage = nil } }
+        )) {
+            Button("OK") { saveErrorMessage = nil }
+        } message: {
+            Text(saveErrorMessage ?? "")
+        }
     }
     
     private func saveLanguages() async {
@@ -1389,18 +1398,26 @@ struct LanguageSettingsView: View {
             }
         }
         
-        _ = try? await SupabaseConfig.client
-            .from("users")
-            .update(LanguageUpdate(
-                preferredLanguages: languagesArray,
-                updatedAt: ISO8601DateFormatter.shared.string(from: Date())
-            ))
-            .eq("id", value: userId)
-            .execute()
-        
-        authManager.currentUser?.preferredLanguages = languagesArray
-        isSaving = false
-        dismiss()
+        // Save MUST surface errors — silent failure means the user sees the
+        // sheet dismiss "as if successful" but the DB never changed, and the
+        // language reverts on next session. Generates support tickets and
+        // erodes trust in the settings screen.
+        do {
+            try await SupabaseConfig.client
+                .from("users")
+                .update(LanguageUpdate(
+                    preferredLanguages: languagesArray,
+                    updatedAt: ISO8601DateFormatter.shared.string(from: Date())
+                ))
+                .eq("id", value: userId)
+                .execute()
+            authManager.currentUser?.preferredLanguages = languagesArray
+            isSaving = false
+            dismiss()
+        } catch {
+            isSaving = false
+            saveErrorMessage = "Impossibile salvare. Controlla la connessione e riprova."
+        }
     }
 }
 

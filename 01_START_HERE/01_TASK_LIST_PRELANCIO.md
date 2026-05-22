@@ -42,12 +42,12 @@ Tempo totale stimato: **75-100 ore** distribuite su 3 settimane (~5h/giorno). Ri
 **iOS app** (`08_Codebases/iOS_App/`):
 - [x] Tutti i `Repository` Swift hanno gestione errore consistente (`Result<T, Error>` o throwing)
 - [x] Nessun forced unwrap (`!`) o `as!` non documentato
-- [ ] `@MainActor` correttamente applicato a tutto ciò che tocca UI
+- [x] `@MainActor` correttamente applicato a tutto ciò che tocca UI (audit 2026-05-21: 31 file rivisti, nessuna correzione necessaria — vedi note)
 - [x] `AuthManager.swift` — verifica che i Gate 1/2/3 nel `resolveAuthState()` siano logicamente esaustivi
 - [x] `PaymentRepository` / `BookingRepository` — verifica che gli errori Stripe siano mappati a messaggi user-friendly italiani
 - [x] `LiveKitService` — verifica reconnection logic (rete che cade durante la sessione)
 - [x] `StreamChatService` — verifica memory leak (controller non rilasciati)
-- [ ] Tutti gli `await` non hanno `try?` che maschera errori critici (paymentIntent, booking confirm, signOut)
+- [x] Tutti gli `await` non hanno `try?` che maschera errori critici (paymentIntent, booking confirm, signOut) (audit 2026-05-22: 41 file rivisti, 51 occorrenze classificate. paymentIntent/booking-confirm/signOut puliti. 3 bug Tier-1 + 2 Tier-2 documentati ma non corretti — fix rimandati a QA su device. Dettaglio nel plan file)
 - [x] `URLCache` policy — già impostata a 16MB ram / 200MB disk in `Holistic_UnityApp.swift`, conferma che non sia stata regredita
 
 **Webapp Next.js × 3** (`client-webapp`, `therapist-webapp`, `admin-dashboard`):
