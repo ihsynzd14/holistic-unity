@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
@@ -360,11 +361,12 @@ function KpiCard({
       </p>
       {sub && <p className="mt-2 text-xs text-charcoal-muted">{sub}</p>}
       {image && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={image}
           alt=""
           aria-hidden="true"
+          width={96}
+          height={96}
           className="pointer-events-none absolute -right-3 -bottom-3 h-24 w-24 object-cover opacity-35 mix-blend-multiply"
         />
       )}
@@ -529,11 +531,12 @@ function Portrait({ image, tint }: { image: string; tint: string }) {
       }}
     >
       {image && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={image}
           alt=""
           aria-hidden="true"
+          width={56}
+          height={56}
           className="absolute inset-0 h-full w-full object-cover opacity-85 mix-blend-multiply"
         />
       )}

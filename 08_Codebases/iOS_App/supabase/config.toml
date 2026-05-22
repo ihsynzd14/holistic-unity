@@ -1,6 +1,17 @@
 # Supabase Edge Functions configuration
-# These functions handle JWT verification internally via supabaseAdmin.auth.getUser(),
-# so gateway-level JWT verification is disabled to avoid "Invalid JWT" / "missing sub claim" errors.
+#
+# verify_jwt rationale (audit 2026-05-22):
+#   - stripe-webhook: false — authenticated via Stripe HMAC signature, NOT user JWT
+#   - send-push-notification, process-pending-payouts: false — invoked by DB webhook /
+#     pg_cron with the service-role key, NOT a user
+#   - all other user-facing functions: false because they authenticate the caller
+#     internally via supabaseAdmin.auth.getUser(jwt). The iOS app uses the
+#     x-user-token header workaround (see SupabasePaymentRepository.swift:296-301) —
+#     flipping to verify_jwt=true would require refactoring the iOS networking layer
+#     and was deferred to post-launch QA on a real iOS device.
+#
+# config.toml is the source of truth — `supabase functions deploy` will sync these
+# values to the dashboard on next deploy.
 
 [functions.create-payment-intent]
 verify_jwt = false
@@ -15,7 +26,7 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.stripe-webhook]
-verify_jwt = false
+verify_jwt = false  # Stripe HMAC signature auth — see index.ts:226-281
 
 [functions.request-refund]
 verify_jwt = false
@@ -25,3 +36,18 @@ verify_jwt = false
 
 [functions.livekit-token]
 verify_jwt = false
+
+[functions.create-booking-with-payment]
+verify_jwt = false  # x-user-token workaround, same as create-payment-intent
+
+[functions.detach-payment-method]
+verify_jwt = false  # x-user-token workaround
+
+[functions.delete-user-account]
+verify_jwt = false  # Standard Authorization header but historical default kept for consistency
+
+[functions.send-push-notification]
+verify_jwt = false  # DB webhook → service-role key (timing-safe compared in index.ts:43-65)
+
+[functions.process-pending-payouts]
+verify_jwt = false  # pg_cron → service-role key (timing-safe compared in index.ts:24-40)

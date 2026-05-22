@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ihsynzd\\\\Documents\\\\Dev\\\\Github\\\\holistic\\\\08_Codebases\\\\therapist-webapp\\\\public\" -Recurse)",
+      "Bash(Select-Object Name)",
+      "Read(//c/Users/ihsynzd/Documents/Dev/Github/holistic/03_Security_and_Audits/**)",
+      "Read(//c/Users/ihsynzd/Documents/Dev/Github/holistic/02_Documentation/**)",
+      "Bash(npx tsc *)",
+      "Bash(npx eslint *)",
+      "Bash(grep -E '\"\\(server-only|client-only\\)\"' C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/__TRACKED_VAR__/package.json)",
+      "Bash(grep -iE 'server-only|^lib$')",
+      "Bash(awk '/server-only/{c++; if\\(c<=3\\){ print NR\": \"$0; for\\(i=1;i<=8;i++\\){ getline l; print NR\": \"l } }}' \"C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/client-webapp/node_modules/next/dist/docs/01-app/02-guides/data-security.md\")"
+    ]
+  }
+}
