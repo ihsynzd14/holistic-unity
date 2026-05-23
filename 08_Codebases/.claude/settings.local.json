@@ -12,7 +12,20 @@
       "Bash(awk '/server-only/{c++; if\\(c<=3\\){ print NR\": \"$0; for\\(i=1;i<=8;i++\\){ getline l; print NR\": \"l } }}' \"C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/client-webapp/node_modules/next/dist/docs/01-app/02-guides/data-security.md\")",
       "Bash(node -p \"require\\('./client-webapp/package.json'\\).dependencies.react + ' / next ' + require\\('./client-webapp/package.json'\\).dependencies.next\")",
       "Bash(node -e \"const p = require\\('./therapist-webapp/package.json'\\); console.log\\('typescript:', p.devDependencies?.typescript || p.dependencies?.typescript || 'NOT LISTED'\\)\")",
-      "Bash(echo \"EXIT=$?\")"
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(git -C C:/Users/ihsynzd/Documents/Dev/Github/holistic ls-files --error-unmatch 08_Codebases/client-webapp/.env.local)",
+      "Bash(git -C C:/Users/ihsynzd/Documents/Dev/Github/holistic ls-files --error-unmatch 02_Documentation/03_CREDENTIALS.md)",
+      "Bash(git -C C:/Users/ihsynzd/Documents/Dev/Github/holistic log --all --oneline -- 02_Documentation/03_CREDENTIALS.md)",
+      "Bash(git -C C:/Users/ihsynzd/Documents/Dev/Github/holistic ls-files 02_Documentation/)",
+      "Bash(git -C C:/Users/ihsynzd/Documents/Dev/Github/holistic remote -v)",
+      "Bash(xargs wc -l)",
+      "Bash(supabase --version)",
+      "Bash(supabase projects *)",
+      "Bash(supabase status *)",
+      "Bash(ls -la ~/.supabase 2>&1 | head -10 && echo \"---\" && find ~/.supabase -maxdepth 3 -type f 2>&1 | head -10 && echo \"---\" && cat ~/AppData/Roaming/supabase/access-token 2>&1 | head -1 | sed 's/./*/g')",
+      "Bash(find /c/Users/ihsynzd -name \"access-token\" 2>/dev/null | head -5)",
+      "Bash(curl -s -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxeXFrdmt6a2VtaXd5cWprYm5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5ODU3NjksImV4cCI6MjA4ODU2MTc2OX0.q6c0KgCzoQFSXjsi26TCkjB-pLlxLcItXnQbRLubL7M' https://bqyqkvkzkemiwyqjkbna.supabase.co/rest/v1/therapist_profiles_public?limit=1)",
+      "Bash(ls -la ~/AppData/Roaming/supabase/ 2>&1 | head -10 && echo \"---\" && find /c/Users/ihsynzd/AppData -path \"*supabase*\" -type f 2>/dev/null | head -10 && echo \"---\" && find / -name \"access-token\" -type f 2>/dev/null | head -5)"
     ]
   }
 }

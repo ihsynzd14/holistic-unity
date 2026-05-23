@@ -1,0 +1,35 @@
+-- ════════════════════════════════════════════════════════════
+-- SECURITY FIX 2026-05-23 — Stage 2: lock down user_display_info
+--
+-- LEAK #1 from anon-access audit 2026-05-22 (live curl tests):
+--   user_display_info view exposed display_name + UUID + city
+--   + country of ALL users (clients AND therapists) to any
+--   holder of the anon key (i.e. anyone who reads the iOS
+--   bundle, which is public).
+--
+--   Example leak:
+--     curl -H "apikey: $ANON" /rest/v1/user_display_info?role=eq.client&limit=2
+--     → [{"display_name":"Serena Milani","role":"client",...},
+--        {"display_name":"Armand Ohoungnon","role":"client",...}]
+--
+--   GDPR violation Art. 5(1)(c) — data minimization. Anon has
+--   no legitimate need to enumerate registered clients.
+--
+-- Consumer audit (verified before fix):
+--   • iOS app:               0 references to user_display_info
+--   • client-webapp:         1 reference at /call/[bookingId]
+--                            — authenticated context (page behind login)
+--   • therapist-webapp:      2 references at /call/[bookingId] and
+--                            /dashboard/sessions — both authenticated
+--
+--   Result: NO anon consumer of this view. The grant to anon was
+--   incidental, not intentional. Revoking it has zero functional
+--   impact on production app/web flows.
+--
+-- Approach: non-destructive grant change. View definition stays
+-- intact (security_invoker = true is preserved). Only the role
+-- granted SELECT on the view changes.
+-- ════════════════════════════════════════════════════════════
+
+REVOKE SELECT ON public.user_display_info FROM anon;
+GRANT SELECT ON public.user_display_info TO authenticated;

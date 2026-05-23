@@ -1,0 +1,32 @@
+-- ════════════════════════════════════════════════════════════
+-- SECURITY ROLLBACK 2026-05-23 — restore anon SELECT on reviews
+--
+-- Why: the column-level GRANT applied in
+-- 2026-05-23_anon_access_lockdown_stage1.sql works in PostgREST
+-- ONLY when the client requests specific columns explicitly via
+-- `?select=col1,col2`. The default `SELECT *` (used by the iOS
+-- SupabaseReviewRepository.swift:33 `client.from("reviews").select()`)
+-- fails with 42501 permission denied because anon lacks SELECT
+-- on the full table.
+--
+-- Result: marketplace review listing broke on iOS.
+--
+-- Decision: rollback this part. Keep the stripe_webhook_events
+-- revoke (LEAK #2 fix) — that one had no consumer-side breakage.
+--
+-- Tracked as tech debt: Leak #3 (reviews.client_id exposure)
+-- to be fixed post-launch via a `reviews_public` view +
+-- coordinated iOS/webapp client code update + next App Store
+-- submission. Mitigation in the meantime: Leak #1
+-- (user_display_info) keeps client_id un-correlatable with
+-- a name until that view is also locked down — without the
+-- UUID→name mapping, an exposed client_id is largely useless.
+-- ════════════════════════════════════════════════════════════
+
+-- Restore full anon SELECT on reviews (drops the column-level
+-- grant from the Stage 1 fix and reverts to the pre-2026-05-23
+-- baseline).
+GRANT SELECT ON public.reviews TO anon;
+
+-- NB. stripe_webhook_events REVOKE from Stage 1 is intentionally
+-- LEFT IN PLACE — that fix had no consumer impact.
