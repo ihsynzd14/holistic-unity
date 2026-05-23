@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { cookies, headers } from "next/headers";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import Providers from "./providers";
@@ -7,6 +8,30 @@ import CookieBanner from "@/components/CookieBanner";
 import MetaPixel from "@/components/MetaPixel";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import type { Locale } from "@/lib/i18n/context";
+
+// Self-hosted via next/font: woff2 files are downloaded at build time and
+// served from /_next/static/media. Replaces an @import url(fonts.googleapis.com)
+// in globals.css that was being CSP-blocked at runtime (style-src 'self' only),
+// so users were silently falling back to Georgia / system-ui.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+// Cormorant Garamond is a static (non-variable) family on Google Fonts, so
+// explicit weights + styles are required. We mirror exactly what the previous
+// @import requested: weights 400/500/600/700 normal + 400 italic. preload:false
+// because this is the display/heading face — Inter is the LCP-critical body
+// font and gets the preload budget instead.
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
+  preload: false,
+});
 
 export const metadata: Metadata = {
   title: "Holistic Unity",
@@ -55,7 +80,10 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={initialLocale} className="h-full">
+    <html
+      lang={initialLocale}
+      className={`h-full ${inter.variable} ${cormorantGaramond.variable}`}
+    >
       <body className="h-full antialiased grain">
         <Providers initialLocale={initialLocale}>{children}</Providers>
         <CookieBanner />

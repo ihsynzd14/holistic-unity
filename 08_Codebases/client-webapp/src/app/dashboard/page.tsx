@@ -574,10 +574,12 @@ export default function ClientDashboardPage() {
                 <div className="flex items-start gap-3">
                   <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle/60 to-cream-dark">
                     {th.photo_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={th.photo_url}
                         alt={th.display_name ?? ""}
+                        width={56}
+                        height={56}
+                        unoptimized
                         className="h-full w-full object-cover"
                       />
                     ) : (
@@ -918,10 +920,12 @@ function NextSessionHero({
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 bg-berry-subtle">
               {booking.therapist?.photo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={booking.therapist.photo_url}
                   alt={therapistName}
+                  width={48}
+                  height={48}
+                  unoptimized
                   className="h-full w-full object-cover"
                 />
               ) : (
@@ -984,10 +988,12 @@ function PendingReviewCard({
       <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-white bg-gradient-to-br from-berry-subtle/60 to-cream-dark shadow-sm">
           {pending.therapist?.photo_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={pending.therapist.photo_url}
               alt={therapistName}
+              width={64}
+              height={64}
+              unoptimized
               className="h-full w-full object-cover"
             />
           ) : (

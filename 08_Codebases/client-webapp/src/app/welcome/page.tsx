@@ -564,13 +564,13 @@ function Hero({ step }: { step: { id: string; heroSrc?: string } }) {
       className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-xl shadow-berry/10"
       style={{ background: `linear-gradient(160deg, ${c1} 0%, ${c2} 100%)` }}
     >
-      {/* TODO: replace with FAL-generated image from /onboarding/heroes/* once uploaded */}
       {step.heroSrc && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={step.heroSrc}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
           onError={(e) => {
             // hide broken image so we fall back to the gradient
             (e.currentTarget as HTMLImageElement).style.display = "none";
@@ -752,8 +752,14 @@ function SummaryStep({
                     <div className="flex items-start gap-3">
                       <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-base font-bold text-berry-dark">
                         {t.photo_url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={t.photo_url} alt={t.display_name ?? ""} className="h-full w-full object-cover" />
+                          <Image
+                            src={t.photo_url}
+                            alt={t.display_name ?? ""}
+                            width={48}
+                            height={48}
+                            unoptimized
+                            className="h-full w-full object-cover"
+                          />
                         ) : (
                           (t.display_name?.[0] || "?").toUpperCase()
                         )}

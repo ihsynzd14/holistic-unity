@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -532,11 +533,14 @@ export default function TherapistDetailPage() {
           <div className="relative mx-auto mb-7 w-full max-w-[320px] lg:mx-0 lg:mb-0">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-gradient-to-br from-berry-subtle via-cream-dark to-gold/30 shadow-[0_30px_60px_-15px_rgba(229,193,233,0.55)] ring-1 ring-berry/5">
               {profile.photo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={profile.photo_url}
                   alt={profile.display_name ?? ""}
-                  className="absolute inset-0 h-full w-full object-cover object-[center_25%]"
+                  fill
+                  sizes="(max-width: 1024px) 320px, 320px"
+                  unoptimized
+                  priority
+                  className="object-cover object-[center_25%]"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-end justify-center pb-6 font-[family-name:var(--font-display)] text-[110px] font-medium leading-none tracking-tight text-berry-dark">
@@ -952,12 +956,13 @@ export default function TherapistDetailPage() {
                       aria-label={`Riproduci video di presentazione di ${firstName}`}
                     >
                       {videoPoster && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={videoPoster}
                           alt=""
-                          loading="lazy"
-                          className="absolute inset-0 h-full w-full object-cover"
+                          fill
+                          sizes="240px"
+                          unoptimized
+                          className="object-cover"
                         />
                       )}
                       <span className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/55" />
@@ -983,12 +988,13 @@ export default function TherapistDetailPage() {
                       rel="noopener noreferrer"
                       className="group relative h-[200px] w-[170px] flex-shrink-0 overflow-hidden rounded-2xl border border-berry/10 bg-berry-subtle/20"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={src}
                         alt={`${profile.display_name ?? "Operatore"} — foto ${i + 1}`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="170px"
+                        unoptimized
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </a>
                   ))}
@@ -1050,10 +1056,12 @@ export default function TherapistDetailPage() {
                     <div className="flex items-start gap-3">
                       <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-berry-subtle/40 text-xs font-semibold text-berry">
                         {r.client_photo_url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
+                          <Image
                             src={r.client_photo_url}
                             alt=""
+                            width={36}
+                            height={36}
+                            unoptimized
                             className="h-full w-full object-cover"
                           />
                         ) : (

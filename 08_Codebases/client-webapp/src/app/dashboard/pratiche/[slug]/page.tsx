@@ -293,8 +293,14 @@ export default function PracticeDetailPage() {
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-base font-bold text-berry-dark">
                   {th.photo_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={th.photo_url} alt={th.display_name ?? ""} className="h-full w-full object-cover" />
+                    <Image
+                      src={th.photo_url}
+                      alt={th.display_name ?? ""}
+                      width={48}
+                      height={48}
+                      unoptimized
+                      className="h-full w-full object-cover"
+                    />
                   ) : (
                     (th.display_name?.[0] || "?").toUpperCase()
                   )}

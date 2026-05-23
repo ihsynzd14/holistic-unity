@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { Search, Star, MapPin, ShieldCheck, Globe, Sparkles } from "lucide-react";
@@ -221,8 +222,14 @@ export default function BrowseTherapistsPage() {
               <div className="flex items-start gap-3">
                 <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-lg font-bold text-berry-dark">
                   {th.photo_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={th.photo_url} alt={th.display_name ?? ""} className="h-full w-full object-cover" />
+                    <Image
+                      src={th.photo_url}
+                      alt={th.display_name ?? ""}
+                      width={56}
+                      height={56}
+                      unoptimized
+                      className="h-full w-full object-cover"
+                    />
                   ) : (
                     initials(th.display_name)
                   )}

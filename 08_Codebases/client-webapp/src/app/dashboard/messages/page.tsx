@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { StreamChat } from "stream-chat";
@@ -334,10 +335,12 @@ function CustomChannelHeader() {
     <div className="flex items-center gap-3 border-b border-berry/5 bg-white/85 px-4 py-3 backdrop-blur-md">
       <div className="relative h-10 w-10 flex-shrink-0">
         {otherUser.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={otherUser.image as string}
             alt={name}
+            width={40}
+            height={40}
+            unoptimized
             className="h-10 w-10 rounded-full object-cover ring-2 ring-white"
           />
         ) : (
