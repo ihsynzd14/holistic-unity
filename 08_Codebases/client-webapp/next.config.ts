@@ -126,6 +126,44 @@ export default withBundleAnalyzer(
     org: "storm-x-digital-srl",
     project: "holistic-unity-client-web",
     widenClientFileUpload: true,
-    hideSourceMaps: true,
+    // Sentry Release name resolution. Precedence (most → least specific):
+    //   1. SENTRY_RELEASE — explicit override (set by the caller when
+    //      deploying, e.g. `SENTRY_RELEASE=$(git rev-parse HEAD) vercel
+    //      deploy --prod` to get commit-SHA naming with CLI deploys).
+    //   2. VERCEL_GIT_COMMIT_SHA — set automatically when a Vercel project
+    //      is git-connected AND the "Automatically expose System Env
+    //      Variables" toggle is on. Our projects are CLI-deployed today,
+    //      so this is normally absent — kept here for the day we wire git.
+    //   3. VERCEL_DEPLOYMENT_ID — always set by Vercel for any deploy
+    //      (CLI, dashboard redeploy, or git-triggered). Opaque (`dpl_...`)
+    //      but uniquely identifies a deploy, which is enough to make
+    //      Sentry's regression-tracking work.
+    //
+    // The whole `release` block is conditionally spread: passing
+    // `release: { name: undefined }` would let sentry-cli receive
+    // `--release ''` and abort the upload with a non-zero exit code,
+    // failing the entire Vercel build. Omitting the block when name is
+    // empty makes a missing identifier a clean no-op (no release created)
+    // instead of a build crash.
+    ...((process.env.SENTRY_RELEASE
+      || process.env.VERCEL_GIT_COMMIT_SHA
+      || process.env.VERCEL_DEPLOYMENT_ID)
+      ? {
+          release: {
+            name:
+              process.env.SENTRY_RELEASE
+              || process.env.VERCEL_GIT_COMMIT_SHA
+              || process.env.VERCEL_DEPLOYMENT_ID,
+          },
+        }
+      : {}),
+    sourcemaps: {
+      // v10 replacement for the old `hideSourceMaps`. The plugin still
+      // uploads maps to Sentry for symbolication, but removes the *.map
+      // artifacts from the build output afterwards so they never ship
+      // to users. Belt-and-braces with `productionBrowserSourceMaps:
+      // false` above.
+      deleteSourcemapsAfterUpload: true,
+    },
   }),
 );
