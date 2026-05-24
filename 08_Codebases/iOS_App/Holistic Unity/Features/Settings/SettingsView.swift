@@ -7,6 +7,9 @@ import UserNotifications
 import StreamChat
 import StreamChatSwiftUI
 import os.log
+#if DEBUG
+import Sentry
+#endif
 
 private let settingsLogger = Logger(subsystem: AppConstants.appBundleId, category: "SettingsView")
 
@@ -80,6 +83,34 @@ struct SettingsView: View {
                     privacyGroup
                     supportGroup
                     dangerZone
+                    #if DEBUG
+                    // Sentry verification panel — DEBUG builds only.
+                    // Stripped from release builds via #if DEBUG so it
+                    // can never ship to App Store. Two buttons:
+                    //   1. Non-fatal capture: sends a test event,
+                    //      keeps the app alive. Use this for routine
+                    //      "is the wire still hot" verification.
+                    //   2. fatalError: deliberately crashes the app
+                    //      so we can confirm the crash reporter and
+                    //      dSYM symbolication are working end-to-end.
+                    VStack(alignment: .leading, spacing: HUSpacing.md) {
+                        Text("Sentry test (DEBUG only)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Button("Capture non-fatal test event") {
+                            SentrySDK.capture(message: "Sentry test event — non-fatal from SettingsView")
+                        }
+                        .buttonStyle(.bordered)
+                        Button("Crash app (fatalError)") {
+                            fatalError("Sentry test event — fatalError from SettingsView")
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(.red)
+                    }
+                    .padding(HUSpacing.lg)
+                    .background(Color.yellow.opacity(0.08))
+                    .cornerRadius(12)
+                    #endif
                     versionFooter
                 }
                 .padding(.horizontal, HUSpacing.xl)

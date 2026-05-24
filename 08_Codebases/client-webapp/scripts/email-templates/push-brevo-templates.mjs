@@ -256,6 +256,22 @@ ${detailsCard([
 <p style="margin:18px 0 0 0;font-size:12px;color:${BRAND.muted};text-align:center;">La stanza video si apre 15 minuti prima dell'orario.</p>`;
 }
 
+function bodySessionReminder1h() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.charcoal};">Manca 1 ora alla tua sessione</h2>
+<p style="margin:0 0 8px 0;">Ciao {{ params.name }}, la tua sessione su Holistic Unity sta per iniziare. Preparati e accedi qualche minuto prima.</p>
+
+${detailsCard([
+  ["Servizio", "{{ params.service_name }}"],
+  ["Ora", "{{ params.session_time }}"],
+])}
+
+<div style="text-align:center;margin:24px 0 8px 0;">
+  ${ctaButton({ url: "https://app.holisticunity.app/dashboard/bookings/{{ params.booking_id }}/join", label: "Entra nella sessione" })}
+</div>
+<p style="margin:18px 0 0 0;font-size:12px;color:${BRAND.muted};text-align:center;">La stanza video si apre 15 minuti prima. Se hai problemi tecnici, contatta il supporto: support@holisticunity.app</p>`;
+}
+
 function bodyPaymentReceipt() {
   return `
 <h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.charcoal};">Ricevuta di pagamento</h2>
@@ -347,6 +363,7 @@ const TEMPLATES = [
   { id: 8, preheader: "Modifiche richieste al tuo profilo", heroLabel: "Aggiornamento richiesto", body: bodyTherapistChangesRequested },
   { id: 9, preheader: "Prenotazione annullata", heroLabel: "Prenotazione annullata", body: bodyCancellationConfirmation },
   { id: 10, preheader: "Rimborso elaborato", heroLabel: "Rimborso confermato", body: bodyRefundConfirmation },
+  { id: 11, preheader: "La tua sessione sta per iniziare", heroLabel: "1 ora alla sessione", body: bodySessionReminder1h },
 ];
 
 // ─── Push ────────────────────────────────────────────────────────

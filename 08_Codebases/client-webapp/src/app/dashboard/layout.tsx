@@ -76,6 +76,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex h-full">
       <Sidebar
+        userId={user.id}
         userName={displayName || "Cliente"}
         userEmail={user.email || ""}
       />

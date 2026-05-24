@@ -307,19 +307,19 @@ Sentry è **referenziato nel codice iOS** (vedi `Holistic_UnityApp.swift`) ma il
   options.attachViewHierarchy = true
   options.enableAutoPerformanceTracing = true
   ```
-- [ ] Next.js: `npm install @sentry/nextjs && npx @sentry/wizard@latest -i nextjs`. Configura:
+- [x] Next.js: `npm install @sentry/nextjs && npx @sentry/wizard@latest -i nextjs`. Configura:
   - `tracesSampleRate: 0.2`
   - `replaysSessionSampleRate: 0.1`
   - `replaysOnErrorSampleRate: 1.0`
-- [ ] **Source maps upload**: configura `sentry.properties` + build hook per upload automatico ad ogni deploy (Vercel: `sentry-cli releases new`, iOS: Run Script Phase con sentry-cli)
-- [ ] **Release tagging**: ogni deploy/build deve creare una Release in Sentry con version = commit SHA (così sai quale versione ha causato l'errore)
+- [x] **Source maps upload**: configura `sentry.properties` + build hook per upload automatico ad ogni deploy (Vercel: `sentry-cli releases new`, iOS: Run Script Phase con sentry-cli)
+- [x] **Release tagging**: ogni deploy/build deve creare una Release in Sentry con version = commit SHA (così sai quale versione ha causato l'errore)
 - [ ] **Alert rules**:
   - Email Marcello quando `new issue` con severity ≥ Error
-  - Email quando `error frequency > 50 / hour` (potenziale incident)
-  - Slack webhook (se Marcello usa Slack) per high-severity issue
-- [ ] **PII scrubbing**: configura `beforeSend` per rimuovere email, payment intent IDs, JWT tokens dagli errori. Mai inviare dati sensibili a Sentry
-- [ ] **User context**: dopo login, chiama `Sentry.setUser({ id: user.id })` (solo ID, no email). In iOS: `SentrySDK.setUser(...)`
-- [ ] Test: trigger errori volutamente (un bottone nascosto in debug build che chiama `fatalError("test sentry")`) → verifica che arrivino in dashboard
+  - Email quando `error frequency > 50 / hour` (potenziale incident) (post-launch)
+  - Slack webhook (se Marcello usa Slack) per high-severity issue (post-launch)
+- [x] **PII scrubbing**: configura `beforeSend` per rimuovere email, payment intent IDs, JWT tokens dagli errori. Mai inviare dati sensibili a Sentry
+- [x] **User context**: dopo login, chiama `Sentry.setUser({ id: user.id })` (solo ID, no email). In iOS: `SentrySDK.setUser(...)`
+- [x] Test: trigger errori volutamente (un bottone nascosto in debug build che chiama `fatalError("test sentry")`) → verifica che arrivino in dashboard
 - [ ] **Performance budget**: imposta soglie in Sentry Performance — alert se p95 di una transaction > 2s
 
 ## Deliverable

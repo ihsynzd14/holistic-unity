@@ -57,6 +57,17 @@ struct Holistic_UnityApp: App {
                 // attachments would actually add.
                 options.attachScreenshot = false
                 options.attachViewHierarchy = false
+
+                // Last-mile PII scrub. See Core/Security/SentryScrub.swift
+                // for the regex patterns (Stripe IDs, JWTs, Bearer
+                // tokens, emails). Companion to the webapp helper at
+                // src/lib/sentry/scrub.ts — same threat model, different
+                // runtime. Returning `event` (never nil) keeps the
+                // redacted payload flowing through to Sentry; returning
+                // nil would drop the whole event.
+                options.beforeSend = { event in
+                    return SentryScrub.beforeSend(event)
+                }
             }
         }
 

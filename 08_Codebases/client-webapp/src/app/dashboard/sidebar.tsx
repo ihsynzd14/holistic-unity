@@ -19,7 +19,8 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as Sentry from "@sentry/nextjs";
 
 // Client-side navigation. Intentionally narrower than the therapist
 // sidebar — clients don't manage services, availability, or earnings.
@@ -36,17 +37,30 @@ const navKeys = [
 ];
 
 interface SidebarProps {
+  userId: string;
   userName: string;
   userEmail: string;
 }
 
-export default function Sidebar({ userName, userEmail }: SidebarProps) {
+export default function Sidebar({ userId, userName, userEmail }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useI18n();
 
+  // Bind Sentry user context to this opaque UUID for the duration of
+  // the dashboard session. The PII scrub in src/lib/sentry/scrub.ts
+  // also reduces user objects to `{ id }` — this just sets the id
+  // early so events captured BEFORE the scrub still carry it. Cleared
+  // on unmount so logout doesn't leak the id into the next user's
+  // session on the same device.
+  useEffect(() => {
+    Sentry.setUser({ id: userId });
+    return () => { Sentry.setUser(null); };
+  }, [userId]);
+
   async function handleSignOut() {
+    Sentry.setUser(null);
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/login");

@@ -12,7 +12,11 @@
       "Bash(grep -E '\"@sentry' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/client-webapp/package.json' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/therapist-webapp/package.json' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/admin-dashboard/package.json')",
       "Bash(ls 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/client-webapp/src/app/global-error.tsx' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/therapist-webapp/src/app/global-error.tsx' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/admin-dashboard/src/app/global-error.tsx' 2>&1; echo \"---\"; head -30 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/client-webapp/src/instrumentation.ts')",
       "mcp__fc30494c-0630-44c1-bcb5-2469b9a73a0d__list_deployments",
-      "mcp__fc30494c-0630-44c1-bcb5-2469b9a73a0d__list_teams"
+      "mcp__fc30494c-0630-44c1-bcb5-2469b9a73a0d__list_teams",
+      "WebFetch(domain:docs.sentry.io)",
+      "WebFetch(domain:www.sentry.help)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")",
+      "Bash(xargs grep -l \"signOut\")"
     ]
   }
 }

@@ -1,0 +1,19 @@
+# Sentry Cocoa CLI configuration.
+#
+# Copy this file to "sentry.properties" (same directory) and replace
+# YOUR_SENTRY_AUTH_TOKEN_HERE below with the real token. The real
+# sentry.properties is gitignored (see .gitignore) — never commit it.
+#
+# The Run Script Phase wired into the "Holistic Unity" target reads
+# this file via the SENTRY_PROPERTIES env var to authenticate dSYM
+# uploads on every build.
+#
+# Get a fresh token (or reuse the one you created for the Vercel
+# webapps) at:
+#   https://storm-x-digital-srl.sentry.io/settings/auth-tokens/
+# Required scopes: org:read + project:read + project:releases.
+
+defaults.url=https://sentry.io/
+defaults.org=storm-x-digital-srl
+defaults.project=apple-ios
+auth.token=YOUR_SENTRY_AUTH_TOKEN_HERE

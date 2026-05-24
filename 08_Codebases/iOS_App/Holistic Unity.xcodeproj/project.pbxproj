@@ -248,6 +248,7 @@
 				AD2F3A9A2F5D6DFB00C62BFF /* Sources */,
 				AD2F3A9B2F5D6DFB00C62BFF /* Frameworks */,
 				AD2F3A9C2F5D6DFB00C62BFF /* Resources */,
+				5E51E1234ABCDEF000000001 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -342,6 +343,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E51E1234ABCDEF000000001 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which sentry-cli >/dev/null; then\n    export SENTRY_PROPERTIES=\"$SRCROOT/Holistic Unity/sentry.properties\"\n    ERROR=$(sentry-cli debug-files upload --include-sources \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\n    if [ ! $? -eq 0 ]; then\n        echo \"warning: sentry-cli - $ERROR\"\n    fi\nelse\n    echo \"warning: sentry-cli not installed, install via: brew install getsentry/tools/sentry-cli\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8F1B09FB294927680E219D01 /* Sources */ = {

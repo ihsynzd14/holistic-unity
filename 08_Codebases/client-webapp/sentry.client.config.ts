@@ -14,6 +14,8 @@
 
 import * as Sentry from "@sentry/nextjs";
 
+import { scrubSentryEvent } from "./src/lib/sentry/scrub";
+
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
@@ -45,20 +47,12 @@ Sentry.init({
     }),
   ],
 
-  // Last-chance scrub before events leave the browser. Removes PII
-  // that may have slipped into breadcrumb URLs, form data, or
-  // user-context from the auth layer.
+  // Last-chance PII scrub before events leave the browser. Strips
+  // cookies + auth headers, reduces user to `{ id }`, then deep-regex
+  // scrubs Stripe IDs, JWTs, Bearer tokens, and emails out of every
+  // string in the payload. See src/lib/sentry/scrub.ts for the
+  // threat model and pattern list.
   beforeSend(event) {
-    // Strip cookies + auth headers
-    if (event.request?.headers) {
-      delete (event.request.headers as Record<string, string>).cookie;
-      delete (event.request.headers as Record<string, string>).authorization;
-    }
-    // Don't send the user's email/phone from Supabase session — only
-    // the opaque UUID (for cross-referencing with Supabase logs).
-    if (event.user) {
-      event.user = { id: event.user.id };
-    }
-    return event;
+    return scrubSentryEvent(event);
   },
 });

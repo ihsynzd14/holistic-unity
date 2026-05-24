@@ -23,6 +23,7 @@ Pods/
 # Secrets — NEVER commit these
 Holistic Unity/Config/Secrets.xcconfig
 Holistic Unity/Config/SupabaseSecrets.swift
+Holistic Unity/sentry.properties
 
 # Supabase local
 supabase/.temp/
