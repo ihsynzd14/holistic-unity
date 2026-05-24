@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 //
 // Gated by a one-off token (`SENTRY_TEST_TOKEN` env var on Vercel) so
 // this can ship to production without being a public DoS vector. Set
-// the env var to a random string, hit `GET /api/__sentry-test?token=…`
+// the env var to a random string, hit `GET /api/sentry-test?token=…`
 // once, then look for the event in the Sentry inbox. The event
 // deliberately embeds three PII-shaped canaries so we can confirm the
 // scrub regex in `src/lib/sentry/scrub.ts` is firing — in the Sentry

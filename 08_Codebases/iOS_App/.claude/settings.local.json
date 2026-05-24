@@ -16,7 +16,15 @@
       "WebFetch(domain:docs.sentry.io)",
       "WebFetch(domain:www.sentry.help)",
       "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")",
-      "Bash(xargs grep -l \"signOut\")"
+      "Bash(xargs grep -l \"signOut\")",
+      "WebFetch(domain:admin.holisticunity.app)",
+      "WebFetch(domain:app.holisticunity.app)",
+      "WebFetch(domain:therapistportal.holisticunity.app)",
+      "Bash(curl -i -s 'https://admin.holisticunity.app/api/__sentry-test?token=holistic-test-2026-05-24-abc123')",
+      "Bash(curl -i -s 'https://app.holisticunity.app/api/__sentry-test?token=holistic-test-2026-05-24-abc123')",
+      "Bash(curl -i -s 'https://therapistportal.holisticunity.app/api/__sentry-test?token=holistic-test-2026-05-24-abc123')",
+      "Bash(mv 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/therapist-webapp/src/app/api/__sentry-test' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/therapist-webapp/src/app/api/sentry-test')",
+      "Bash(mv 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/admin-dashboard/src/app/api/__sentry-test' 'C:/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases/admin-dashboard/src/app/api/sentry-test')"
     ]
   }
 }
