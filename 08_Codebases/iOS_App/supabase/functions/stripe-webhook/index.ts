@@ -601,7 +601,23 @@ serve(async (req) => {
             console.error("Failed to update transaction refund:", error);
           }
 
-          // If full refund, cancel the booking
+          // If full refund, cancel the booking + clear the manual-refund flag.
+          // `bookings.requires_manual_refund` is set to true by
+          // therapist-webapp/api/bookings/[id]/cancel/route.ts when the refund
+          // Stripe-side might need human verification: (a) refund issued > 14d
+          // after charge (post-payout window — connected account balance may go
+          // negative), (b) refund.status !== "succeeded" at create time
+          // (pending), or (c) refund.amount < expected (short refund).
+          //
+          // When charge.refunded fires here it means Stripe HAS completed the
+          // refund. Case (b) "verify completion" is fully resolved → safe to
+          // clear. Cases (a) and (c) admin should ALSO verify via Stripe
+          // Dashboard for connected-account balance / amount delta — not
+          // perfectly mirrored to our DB, so we accept the trade-off of
+          // potentially clearing the flag while admin still has things to
+          // check. The view `admin_pending_manual_refunds` rebuilds from the
+          // flag, so this matches the task spec
+          // (01_TASK_LIST_PRELANCIO.md F37 "requires_manual_refund=false").
           if (isFullRefund) {
             const { data: tx } = await supabaseAdmin
               .from("transactions")
@@ -612,7 +628,10 @@ serve(async (req) => {
             if (tx?.booking_id) {
               await supabaseAdmin
                 .from("bookings")
-                .update({ status: "cancelled" })
+                .update({
+                  status: "cancelled",
+                  requires_manual_refund: false,
+                })
                 .eq("id", tx.booking_id);
             }
           }

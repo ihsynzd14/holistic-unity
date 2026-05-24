@@ -102,16 +102,30 @@ const nextConfig: NextConfig = {
 // Wrap with Sentry's Next.js plugin so:
 //   - the client SDK gets injected into the browser bundle
 //   - the server SDK is initialised via instrumentation.ts
-//   - source maps upload in CI when SENTRY_AUTH_TOKEN is present
-//     (the upload step just warns + skips if the token is missing,
-//     so local builds and PR previews don't fail for lack of it).
+//   - source maps upload + Release tagging happen automatically when
+//     SENTRY_AUTH_TOKEN is present in the build env (Vercel). The
+//     plugin needs org + project slugs (below) to know where to upload;
+//     without the token it silently skips, so local builds and PR
+//     previews don't fail for lack of it.
+//   - Release name is auto-detected from VERCEL_GIT_COMMIT_SHA at
+//     build time, so every deploy creates a Sentry Release tagged with
+//     the exact commit. No manual `sentry-cli releases new` step.
 //
-// Kept minimal: no tunnelRoute (we don't need it at launch volume),
-// no release tracking (inferred from Vercel deployment), no custom
-// errorHandler (Sentry's default is "warn, don't fail").
+// `hideSourceMaps: true` complements `productionBrowserSourceMaps: false`
+// — the plugin still uploads source maps to Sentry for symbolication,
+// but strips the public *.map files from the build output so source
+// code can't be reconstructed from a downloaded bundle.
+//
+// `widenClientFileUpload: true` lets the plugin pick up source maps
+// from a wider glob (e.g. dynamic imports) so post-deploy stack traces
+// are fully symbolicated instead of partial.
 export default withBundleAnalyzer(
   withSentryConfig(nextConfig, {
     silent: !process.env.CI,
     disableLogger: true,
+    org: "storm-x-digital-srl",
+    project: "holistic-unity-client-web",
+    widenClientFileUpload: true,
+    hideSourceMaps: true,
   }),
 );

@@ -20,6 +20,46 @@ struct Holistic_UnityApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
+        // Sentry must initialize FIRST so it captures any crashes during the
+        // rest of init (URLCache sizing, Stream Chat bootstrap, Stripe, the
+        // jailbreak detector, analytics). DSN loaded from Secrets.xcconfig
+        // via Info.plist.
+        //
+        // The task spec asks for SentrySDK.start() as the first statement of
+        // `applicationDidFinishLaunchingWithOptions` (the UIKit hook). In a
+        // SwiftUI app with @UIApplicationDelegateAdaptor, `App.init()` runs
+        // BEFORE the AppDelegate's didFinishLaunching, so initializing here
+        // is strictly earlier and catches more pre-UI crashes.
+        if let sentryDSN = Bundle.main.infoDictionary?["SENTRY_DSN"] as? String, !sentryDSN.isEmpty {
+            SentrySDK.start { options in
+                options.dsn = sentryDSN
+                // 10% APM sampling — matches the three webapp configs which
+                // document the same conservative starting point ("don't blow
+                // past Sentry plan quota on launch"). Raise post-launch once
+                // we see steady-state volume.
+                options.tracesSampleRate = 0.1
+                // 10% of sampled transactions get CPU profiling. Tiny extra
+                // cost, big win when chasing main-thread stalls.
+                options.profilesSampleRate = 0.1
+                options.enableAutoSessionTracking = true
+                // enableAutoPerformanceTracing defaults to true in
+                // sentry-cocoa 9.x, so we leave it implicit.
+                //
+                // ATTACHMENTS — intentionally OFF for pre-launch.
+                // Holistic handles GDPR Article 9 data (mental-health
+                // disclosures, therapist chat, symptoms, payment forms).
+                // A crash screenshot is a literal photo of whatever screen
+                // the user is on; view-hierarchy serialization captures
+                // SwiftUI accessibility labels which routinely embed user
+                // text. Stack traces + breadcrumbs cover the vast majority
+                // of iOS crash triage without the PII surface. Revisit
+                // post-launch once we have a DPIA on what richer
+                // attachments would actually add.
+                options.attachScreenshot = false
+                options.attachViewHierarchy = false
+            }
+        }
+
         // Wipe any cached HTTP responses left over from earlier launches.
         //
         // ─────────────────────────────────────────────────────
@@ -49,16 +89,6 @@ struct Holistic_UnityApp: App {
             diskCapacity:   200 * 1024 * 1024,   // 200 MB disk
             diskPath: "holistic-unity-images"
         )
-
-        // Initialize Sentry crash reporting (DSN loaded from Secrets.xcconfig via Info.plist)
-        if let sentryDSN = Bundle.main.infoDictionary?["SENTRY_DSN"] as? String, !sentryDSN.isEmpty {
-            SentrySDK.start { options in
-                options.dsn = sentryDSN
-                options.tracesSampleRate = 0.1  // 10% sample rate — 1.0 has heavy performance cost in production
-                options.enableAutoSessionTracking = true
-                options.attachScreenshot = false  // disabled: app handles sensitive health/therapy data
-            }
-        }
         
         let container = DIContainer.shared
         _appState = State(initialValue: container.appState)
