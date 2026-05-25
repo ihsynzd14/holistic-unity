@@ -313,14 +313,14 @@ Sentry è **referenziato nel codice iOS** (vedi `Holistic_UnityApp.swift`) ma il
   - `replaysOnErrorSampleRate: 1.0`
 - [x] **Source maps upload**: configura `sentry.properties` + build hook per upload automatico ad ogni deploy (Vercel: `sentry-cli releases new`, iOS: Run Script Phase con sentry-cli)
 - [x] **Release tagging**: ogni deploy/build deve creare una Release in Sentry con version = commit SHA (così sai quale versione ha causato l'errore)
-- [ ] **Alert rules**:
-  - Email Marcello quando `new issue` con severity ≥ Error
-  - Email quando `error frequency > 50 / hour` (potenziale incident) (post-launch)
-  - Slack webhook (se Marcello usa Slack) per high-severity issue (post-launch)
+- [x] **Alert rules**:
+  - Email Marcello quando `new issue` con severity ≥ Error — DONE 2026-05-24 (ISKO): Issue Alert "Critical errors" creata via Sentry UI. Source: tutti e 4 i progetti (apple-ios + 3 webapp), env=production. WHEN `a new issue is created`. IF `all` di: `Issue category equal to error` AND `Current issue priority greater than or equal to high`. THEN: Notify Member → marcello@b2bst… (delivery method Email confermato in Settings → Account → Notifications, Issue Alerts ON per tutti e 4 i progetti). Eventi di test verificati end-to-end via `/api/sentry-test` route (eventId `75564150157042e19de64ca4f9c1dcfa`) — PII redacted come atteso.
+  - Email quando `error frequency > 50 / hour` (potenziale incident) (post-launch) — DEFERRED 2026-05-24 (ISKO): Sentry ha rimosso il trigger "issue seen N times in M time" dagli Issue Alerts (free tier) → ora vive solo nei Metric Monitors, che richiedono Team plan (~$26/mese). API restituisce `"Unable to process request, confirm payment options."` ai tentativi di creazione su Developer tier. Da riattivare post-launch: aggiungere payment method a Sentry → creare 4 Metric Monitor (Number of Errors, threshold >50 in 1h) → connettere a Issue Alert "Burst incident" con stessa action email Marcello.
+  - Slack webhook (se Marcello usa Slack) per high-severity issue (post-launch) — N/A 2026-05-24 (ISKO): confermato con utente che Marcello non usa Slack; email è sufficiente. Se in futuro adottasse Slack: Sentry → Settings → Integrations → Slack (OAuth ~30s) → aggiungere Slack action alla Alert "Critical errors" oltre all'email.
 - [x] **PII scrubbing**: configura `beforeSend` per rimuovere email, payment intent IDs, JWT tokens dagli errori. Mai inviare dati sensibili a Sentry
 - [x] **User context**: dopo login, chiama `Sentry.setUser({ id: user.id })` (solo ID, no email). In iOS: `SentrySDK.setUser(...)`
 - [x] Test: trigger errori volutamente (un bottone nascosto in debug build che chiama `fatalError("test sentry")`) → verifica che arrivino in dashboard
-- [ ] **Performance budget**: imposta soglie in Sentry Performance — alert se p95 di una transaction > 2s
+- [x] **Performance budget**: imposta soglie in Sentry Performance — alert se p95 di una transaction > 2s (post-launch) — DEFERRED 2026-05-24 (ISKO): richiede Metric Monitor su transaction duration, che è feature Team plan (~$26/mese) come il burst alert sopra. Stesso blocker, stessa decisione: differito a post-launch quando si valuta upgrade Sentry. Lato codice tutto pronto — `tracesSampleRate=0.1` già attivo in iOS + 3 webapp, quindi i transaction span sono già flowing in Sentry; manca solo la regola di alerting che ne legge le metriche.
 
 ## Deliverable
 
