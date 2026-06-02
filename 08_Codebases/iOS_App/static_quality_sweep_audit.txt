@@ -1,0 +1,390 @@
+Static Quality Sweep Audit (print / TODO / retain-cycle / secrets / crash / silent-error)
+================================================================================
+Date:    2026-05-30
+Scope:   08_Codebases/iOS_App/Holistic Unity/**/*.swift  (production source)
+         + Config, Info.plist, Secrets template, supabase/migrations (secret scan)
+Method:  Pure static analysis (grep-based) — no compilation required.
+         Runnable entirely on Windows; no Mac / simulator needed.
+
+Goal checked:
+- No stray debug logging (print/debugPrint/dump/NSLog) in production code.
+- No unresolved TODO/FIXME/HACK/XXX markers.
+- No retain cycles in long-lived closures (Combine .sink, Task, observers, timers).
+- No hardcoded secrets / API keys committed.
+- No unguarded crash points (fatalError/precondition/assert) on user paths.
+- No silent error swallowing (`try?`) that hides failures from the user or logs.
+
+How the scan was done:
+- Grep over all production Swift files (Tests excluded unless noted).
+- Each raw hit inspected in context; SwiftUI value-type Views distinguished
+  from reference types (only reference types can form retain cycles).
+- `try?` hits classified: idiomatic (sleep/optional-decode/best-effort cleanup)
+  vs. genuine error-swallowing that loses a user-facing or diagnostic signal.
+
+================================================================================
+SUMMARY
+================================================================================
+  1. Debug logging (print/debugPrint/dump/NSLog) ........ PASS  (0 executable)
+  2. TODO / FIXME / HACK / XXX markers ................... PASS  (0)
+  3. Retain cycles (.sink / Task / observers / timers) .. PASS  (see notes)
+  4. Hardcoded secrets / API keys ....................... PASS  (0)
+  5. Crash points (fatalError / assert) ................. PASS  (by-design only)
+  6. Silent error swallowing (`try?`) ................... 4 FINDINGS + 3 advisories
+
+Overall: the codebase is clean on the headline patterns (consistent with the
+prior forced-unwrap and repository-error-handling audits). The only actionable
+defects are in category 6 — failures that are swallowed and never surface to the
+user or the log.
+
+================================================================================
+FINDINGS (category 6 — silent error swallowing)
+================================================================================
+
+--------------------------------------------------------------------------------
+F1 [MEDIUM] — List loads collapse a network error into an empty list
+--------------------------------------------------------------------------------
+Locations:
+  - Features/ClientDashboard/ClientTabView.swift:2235   (upcomingBookings)
+  - Features/ClientDashboard/ClientTabView.swift:2236   (pastBookings)
+  - Features/ClientDashboard/ClientTabView.swift:2258   (loadMorePastBookings)
+  - Features/Settings/SettingsView.swift:1604           (transaction history)
+  - Features/Settings/SettingsView.swift:1609-1610      (past + upcoming bookings)
+  - Features/TherapistProfile/TherapistProfileView.swift:252  (reviews)
+
+Current (representative):
+    upcomingBookings = (try? await upcoming) ?? []
+    let loadedPast   = (try? await past) ?? []
+    ...
+    isLoading = false
+
+Issue:
+- A thrown error (no network, 500, decode failure) is silently turned into an
+  empty array. The UI then shows the exact same "you have no bookings / no
+  reviews" state as a user who genuinely has none.
+- The user cannot tell "failed to load — retry" from "nothing here", and there
+  is no log line either, so the failure is invisible in diagnostics too.
+- Highest-impact case: bookings list (a paying user with sessions sees an empty
+  dashboard on a transient network blip).
+
+Suggested fix (surface load failure as a distinct state):
+    do {
+        upcomingBookings = try await upcoming
+        let loadedPast = try await past
+        pastBookings = loadedPast
+        hasMorePast = loadedPast.count >= pageSize
+        loadError = nil
+    } catch {
+        dashboardLogger.error("Failed to load bookings: \(error.localizedDescription)")
+        loadError = error          // drive an inline "Couldn't load — Retry" view
+    }
+    isLoading = false
+- Keep an explicit `loadError`/empty-vs-failed distinction so the view can show
+  a retry affordance instead of a false-empty state.
+
+--------------------------------------------------------------------------------
+F2 [MEDIUM] — Payment-method removal error swallowed
+--------------------------------------------------------------------------------
+Location:
+  - Features/Settings/SettingsView.swift:1004
+
+Current:
+    try? await DIContainer.shared.paymentRepository.removePaymentMethod(methodId: method.id)
+
+Issue:
+- If detach fails (network / Stripe error), the call is swallowed. The user is
+  led to believe the card was removed; on next load it reappears with no
+  explanation. Financial-surface action — should never fail silently.
+
+Suggested fix:
+    do {
+        try await DIContainer.shared.paymentRepository.removePaymentMethod(methodId: method.id)
+        await reloadPaymentMethods()           // reflect source-of-truth
+    } catch {
+        settingsLogger.error("Remove payment method failed: \(error.localizedDescription)")
+        showError = "Couldn't remove this card. Please try again."
+    }
+
+--------------------------------------------------------------------------------
+F3 [LOW-MEDIUM] — Keychain save failures for active-session recovery swallowed
+--------------------------------------------------------------------------------
+Locations:
+  - Core/Storage/UserDefaultsManager.swift:60   (activeSessionRoomName)
+  - Core/Storage/UserDefaultsManager.swift:68   (activeSessionParticipantName)
+  - Core/Storage/UserDefaultsManager.swift:76   (activeSessionBookingId)
+  - Core/Storage/UserDefaultsManager.swift:88   (activeSessionStartTime)
+
+Current:
+    if let newValue { try? keychain.save(newValue, for: .activeSessionRoomName) }
+
+Issue:
+- These persist the in-progress video-session so a user can rejoin after a crash
+  or backgrounding. A swallowed keychain write means rejoin silently breaks, and
+  there is no log to explain why. Keychain writes rarely fail, but when they do
+  (device locked at write time, entitlement issue) you want to know.
+
+Suggested fix (log; optionally signal):
+    if let newValue {
+        do { try keychain.save(newValue, for: .activeSessionRoomName) }
+        catch { sessionLogger.error("Keychain save failed (roomName): \(error.localizedDescription)") }
+    }
+
+--------------------------------------------------------------------------------
+F4 [LOW-MEDIUM] — Secondary refreshes swallowed without a diagnostic log
+--------------------------------------------------------------------------------
+Locations:
+  - Data/Repositories/SupabaseAuthRepository.swift:224  (auth.refreshSession)
+  - Data/Repositories/SupabaseReviewRepository.swift:98 (refreshTherapistRatingStats)
+
+Current:
+    _ = try? await client.auth.refreshSession()
+    try? await refreshTherapistRatingStats(therapistId: review.therapistId)
+
+Issue:
+- These are intentionally best-effort, which is reasonable — but a totally silent
+  swallow means a persistently failing session refresh (or stale rating after a
+  review) is undiagnosable. Degrade gracefully, but leave a breadcrumb.
+
+Suggested fix:
+    do { _ = try await client.auth.refreshSession() }
+    catch { authLogger.debug("Background session refresh failed: \(error.localizedDescription)") }
+
+================================================================================
+ADVISORIES (acceptable as-is; listed for awareness, no fix required)
+================================================================================
+
+A1 — Therapist-profile enrichment falls back to "Therapist" on failure
+     (ClientTabView.swift:2245, 2268, 2491, 2509, 2788; TherapistProfileView)
+     `try? await ...getProfile(...)` → name shows as generic "Therapist".
+     This is acceptable graceful degradation. Recommendation: a single
+     `.debug` log on the nil branch so silent enrichment gaps are traceable.
+
+A2 — Config fail-fast on missing secret (by design)
+     SupabaseSecrets.swift:8/15, LiveKitConfig.swift:9, StripeConfig.swift:9,
+     StreamConfig.swift:9 call `fatalError(...)` if a key is absent from
+     Info.plist. Correct for catching a broken xcconfig in development.
+     Consideration only: if a RELEASE build ever ships with a broken
+     Secrets.xcconfig, every launch crash-loops for all users. Optional
+     hardening: a controlled "configuration error" screen for release builds.
+
+A3 — One-shot `Task {}` without [weak self] in reference types
+     (AuthManager.swift:82/95/274; NotificationManager.swift:36/92/111/127/143;
+     StreamChatService.swift:64). NOT leaks: a one-shot Task releases its
+     captured `self` when it completes. Listed only to document that these were
+     reviewed and are intentional. No action.
+
+================================================================================
+PASS DETAIL (what was verified clean)
+================================================================================
+- Debug logging: 0 executable print/debugPrint/dump/NSLog. The single textual
+  hit (ClientTabView.swift:7) is a doc comment noting prior prints were already
+  migrated to unified os.Logger.
+- Markers: 0 TODO/FIXME/HACK/XXX in production source.
+- Combine: the one `.sink` (StreamChatService.swift:186) already uses
+  `[weak controller]`.
+- Long-lived Tasks (stored/looping) already capture weakly:
+  VideoCallService (timerTask/heartbeatTask/qualityMonitorTask + MainActor
+  hops, 398/414/443/606-636), AuthManager auth-state stream (138),
+  StreamChatService unread observer (180), NotificationManager refresh (76),
+  NetworkMonitor (36), LocationManager, ScreenCaptureProtection (36).
+- Block-based NotificationCenter observer (ScreenCaptureProtection.swift:29)
+  is balanced by removeObserver in deinit-path (44).
+- ClientOnboardingFlow phraseTask/breathTask (1727/1741): host is a
+  `struct ... View` (value type → no cycle) and both tasks are cancelled in
+  `.onDisappear` (1297-1298) and `advanceToReveal()` (1749-1750).
+- Secrets: no live keys committed. Only Secrets.xcconfig.template placeholder
+  (pk_test_YOUR_STRIPE_KEY) and `service_role` references inside SQL RLS
+  policies. Real secrets are read from Info.plist via a gitignored xcconfig.
+- Crash points: the only `fatalError` on a user-reachable button
+  (SettingsView.swift:105, "Crash app") is inside `#if DEBUG ... #endif`
+  (87-113) and is stripped from release builds.
+- `try? await Task.sleep`, `try? container.decode` (optional fields with
+  defaults), and `try? FileManager.removeItem` (temp cleanup) are all idiomatic
+  and intentionally excluded from findings.
+
+================================================================================
+RECOMMENDED ORDER OF FIX
+================================================================================
+1. F1 (bookings/reviews false-empty)  — highest user impact.
+2. F2 (payment method removal)        — financial surface, misleading success.
+3. F3 (keychain logging)              — trivial, aids call-rejoin diagnostics.
+4. F4 / A1 (diagnostic breadcrumbs)   — trivial logging, batch together.
+A2 left to product decision.  A3 no action.
+
+Note: every suggested fix above is logic/diagnostic only — none requires a
+visual/SwiftUI change, so all are reviewable without a simulator. Final compile
+to be confirmed on CI (GitHub Actions macOS runner) or a Mac.
+
+================================================================================
+FIX APPLICATION LOG (2026-05-30)
+================================================================================
+Applied F3 + F4 (trivial, diagnostic-only — `try?` → `do/catch` + os.Logger).
+Logger convention matched: Logger(subsystem: AppConstants.appBundleId, category:).
+F1 + F2 deferred (need a small view-state change; to be done with review).
+
+[FIX APPLIED] F3 — Core/Storage/UserDefaultsManager.swift
+  + import os.log
+  + private let logger = Logger(subsystem: AppConstants.appBundleId, category: "SessionRecovery")
+  All 4 active-session keychain setters converted:
+    Before: if let newValue { try? keychain.save(newValue, for: .activeSessionRoomName) }
+    After:  if let newValue {
+                do { try keychain.save(newValue, for: .activeSessionRoomName) }
+                catch { logger.error("Keychain save failed (roomName): \(error.localizedDescription)") }
+            } else { keychain.delete(key: .activeSessionRoomName) }
+  Setters: activeSessionRoomName (67), activeSessionParticipantName (79),
+           activeSessionBookingId (91), activeSessionStartTime (107).
+
+[FIX APPLIED] F4a — Data/Repositories/SupabaseAuthRepository.swift
+  + import os.log
+  + private let logger = Logger(subsystem: AppConstants.appBundleId, category: "AuthRepository")
+  setUserRole(...):
+    Before: _ = try? await client.auth.refreshSession()
+    After:  do { _ = try await client.auth.refreshSession() }
+            catch { logger.debug("Session refresh before role write failed: \(error.localizedDescription)") }
+
+[FIX APPLIED] F4b — Data/Repositories/SupabaseReviewRepository.swift
+  + import os.log
+  + private let logger = Logger(subsystem: AppConstants.appBundleId, category: "ReviewRepository")
+  submitReview(...):
+    Before: try? await refreshTherapistRatingStats(therapistId: review.therapistId)
+    After:  do { try await refreshTherapistRatingStats(therapistId: review.therapistId) }
+            catch { logger.debug("Best-effort rating stats refresh failed: \(error.localizedDescription)") }
+
+Post-fix verification grep:
+  Pattern: try\?\s+(await\s+)?(keychain\.save|client\.auth\.refreshSession|refreshTherapistRatingStats)
+  Result: 0 hits. PASS.
+
+Behavior preserved: all three remain best-effort (no new throw propagates to
+callers) — the only change is that failures are now logged instead of silent.
+
+--------------------------------------------------------------------------------
+FIX APPLICATION LOG — F1 (2026-05-30)
+--------------------------------------------------------------------------------
+Approach: reused the existing HUErrorView component (DesignSystem/Components/
+HULoadingView.swift:163) — "Something went wrong" + Try Again — for the two list
+screens, and a compact inline retry block for the reviews sub-section (where
+HUErrorView's full-frame layout doesn't fit). Each load now distinguishes
+"failed" from "empty": a new `@State loadError` flag drives a retry view ONLY
+when the list is genuinely empty; stale data is preserved on a failed refresh.
+
+[FIX APPLIED] F1a — Features/ClientDashboard/ClientTabView.swift (ClientBookingsView)
+  + @State private var loadError = false
+  loadBookings(): async-let loads wrapped in do/catch; on throw → logs via
+    clientHomeLogger, sets loadError = true, isLoading = false, returns (no
+    longer collapses to []). Therapist-name enrichment left as best-effort (A1).
+  loadMorePastBookings(): try? → do/catch; logs + resets isLoadingMore on throw
+    (keeps hasMorePast so a later scroll can retry).
+  body: new branch `else if loadError && upcomingBookings.isEmpty &&
+    pastBookings.isEmpty { HUErrorView(retryAction:) }` before the tab switch.
+
+[FIX APPLIED] F1b — Features/Settings/SettingsView.swift (PaymentHistoryView)
+  + @State private var loadError = false
+  loadPayments(): getTransactionHistory() wrapped in do/catch (typed
+    [Transaction]); logs via settingsLogger, sets loadError, isLoading=false,
+    returns on throw. The past/upcoming booking lookups stay try? — they only
+    enrich service names/dates (best-effort, A1), not the primary payment list.
+  body: new branch `else if loadError && payments.isEmpty { Section {
+    HUErrorView(retryAction:) } }` before the No-Payments empty state.
+
+[FIX APPLIED] F1c — Features/TherapistProfile/TherapistProfileView.swift
+  + @State private var reviewsLoadError = false
+  loadReviews(): try? → do/catch; sets reviewsLoadError (state-only, matching
+    this file's local convention — blockError/chatError also use no logger).
+  reviewsSection: new branch `if reviewsLoadError && reviews.isEmpty { inline
+    "Couldn't load reviews" + Retry }` before the "No reviews yet" empty block.
+    Aggregate ratingBreakdown still renders (it comes from the profile, not the
+    reviews list).
+
+Post-fix verification:
+  - ClientTabView: remaining `try? await` are all getProfile(...) name
+    enrichment (A1) — the primary booking loads are now do/catch.
+  - SettingsView: remaining `try? await` are the secondary booking lookups (A1)
+    + removePaymentMethod (F2) + JSON parse — transaction load is now do/catch.
+  - TherapistProfileView: getReviews try? removed.
+  - All four changed UI branches + both functions re-read: braces balanced,
+    control flow correct, APIs (HUErrorView/HUEmptyState/HUHaptic/HUFont) exist.
+  Final compile to be confirmed on CI (GitHub Actions macOS) or a Mac.
+
+Behavior change: a network failure on first load now shows an error + Retry
+instead of a false-empty list. A failed pull-to-refresh keeps existing data.
+
+--------------------------------------------------------------------------------
+FIX APPLICATION LOG — F2 (2026-05-30)
+--------------------------------------------------------------------------------
+[FIX APPLIED] F2 — Features/Settings/SettingsView.swift (PaymentMethodsView)
+  + @State private var deleteError: String?
+  + .alert("Couldn't remove card", ...) bound to deleteError (mirrors the
+    file's existing saveError/saveErrorMessage alert idiom).
+  deleteMethod(at:): the optimistic local removal is kept, but the server
+    delete is no longer swallowed:
+    Before: Task { for m in methods { try? await ...removePaymentMethod(...) } }
+    After:  Task {
+                do { for m in methods { try await ...removePaymentMethod(...) } }
+                catch {
+                    settingsLogger.error("Failed to remove payment method: ...")
+                    deleteError = "We couldn't remove your card. Please try again."
+                    await loadPaymentMethods()   // reload from source of truth
+                }
+            }
+  Result: a failed removal now (a) shows an alert and (b) reloads from Stripe,
+  so an optimistically-hidden card reappears instead of looking deleted.
+
+Post-fix verification:
+  - grep `try? await ...removePaymentMethod` → 0 hits.
+  - Re-read region: alert + do/catch braces balanced, settingsLogger in scope.
+  Final compile to be confirmed on CI (GitHub Actions macOS) or a Mac.
+
+================================================================================
+AUDIT STATUS: ALL FINDINGS RESOLVED (F1, F2, F3, F4) — 2026-05-30
+  Advisories A1 (enrichment fallbacks) and A2 (Config fail-fast) left as-is by
+  design; A3 (one-shot Tasks) requires no action. Pending: a real compile on
+  CI/Mac to confirm the Swift changes build.
+================================================================================
+
+
+================================================================================
+PERFORMANCE PASS — P1: DateFormatter caching (2026-05-30)
+================================================================================
+Issue: `DateFormatter()` (and `ISO8601DateFormatter()`) were allocated inline on
+every call — including inside per-row card builders (upcomingDayStripCard,
+pastTimelineRow) and the PaymentHistoryItem.formattedDate computed property, so
+formatters were rebuilt on every list-row redraw. DateFormatter init is
+expensive (builds an ICU formatter each time) → avoidable scroll-time cost.
+
+[FIX APPLIED] New file: Core/Extensions/DateFormatter+Shared.swift
+  Cached, reusable display formatters (mirrors the existing
+  ISO8601DateFormatter+Shared pattern; `nonisolated(unsafe)` per project
+  convention; it_IT locale preserved exactly):
+    italianWeekdayDayMonth  "EEE d MMM"
+    italianDayMonth         "d MMM"
+    italianMonthAbbrev      "MMM"
+    italianDayOfMonth       "d"
+    italianDayFullMonthYear "d MMMM yyyy"
+    paymentTimestamp        "d MMM yyyy 'at' HH:mm"  (device locale, as before)
+  (Auto-compiled — the Xcode project uses PBXFileSystemSynchronizedRootGroup,
+   so no project.pbxproj edit is needed for the new file.)
+
+[FIX APPLIED] Call sites switched to the cached formatters:
+  ClientTabView.swift — 5 sites: greeting date, next-session eyebrow,
+    next-session short date, upcomingDayStripCard (month+day), pastTimelineRow.
+  SettingsView.swift — intention date + PaymentHistoryItem.formattedDate.
+
+[FIX APPLIED] ISO8601 parsing de-duplicated via the existing helper:
+  SettingsView.swift (loadMonthsInJourney / loadIntention / loadMemberSince):
+    `let f = ISO8601DateFormatter(); f.formatOptions = [...]; f.date(from:) ??
+     ISO8601DateFormatter().date(from:)`  →  ISO8601DateFormatter.parseSupabaseDate(_:)
+  SupabaseAuthRepository.swift:245:
+    ISO8601DateFormatter().string(from: Date())  →  ISO8601DateFormatter.shared...
+
+Behavior preserved: identical formats/locales; parseSupabaseDate(withFractional
+?? default) is exactly the prior fallback. Only nuance: the device-locale
+paymentTimestamp now freezes its locale at first use (standard cached-formatter
+trade-off; the it_IT formatters are unaffected as their locale is explicit).
+
+Post-fix verification:
+  - `\bDateFormatter\(\)`     → only the 2 already-cached `}()` in Availability
+    + the 2 definitions in DateFormatter+Shared. No inline per-call creations.
+  - `ISO8601DateFormatter\(\)` → only the 2 definitions in the shared file.
+  - `\bformatter\b` in SettingsView → 0 (no dangling locals after removal).
+  - Re-read changed regions: braces balanced, aliases (monthDF/dayDF) still used.
+  Final compile to be confirmed on CI (GitHub Actions macOS) or a Mac.
+================================================================================

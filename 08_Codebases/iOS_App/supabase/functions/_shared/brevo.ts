@@ -39,6 +39,12 @@ export const BREVO_TEMPLATES = {
   THERAPIST_CHANGES_REQUESTED: 8,
   CANCELLATION_CONFIRMATION: 9,
   REFUND_CONFIRMATION: 10,
+  // Payouts (transactional) — fired by stripe-webhook on Stripe Connect
+  // payout.paid / payout.failed events. T13/T14 go to the therapist,
+  // ADMIN_PAYOUT_FAILED (A4) alerts the platform admin on any failure.
+  PAYOUT_SENT: 12,
+  PAYOUT_FAILED: 13,
+  ADMIN_PAYOUT_FAILED: 14,
   RESCHEDULE_PROPOSED: 26,
   RESCHEDULE_RESPONDED: 27,
   // Marketing (requires marketing_consent = true)

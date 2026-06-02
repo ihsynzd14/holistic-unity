@@ -38,9 +38,6 @@ struct Holistic_UnityApp: App {
                 // past Sentry plan quota on launch"). Raise post-launch once
                 // we see steady-state volume.
                 options.tracesSampleRate = 0.1
-                // 10% of sampled transactions get CPU profiling. Tiny extra
-                // cost, big win when chasing main-thread stalls.
-                options.profilesSampleRate = 0.1
                 options.enableAutoSessionTracking = true
                 // enableAutoPerformanceTracing defaults to true in
                 // sentry-cocoa 9.x, so we leave it implicit.
@@ -70,6 +67,13 @@ struct Holistic_UnityApp: App {
                 }
             }
         }
+
+        // Cold-start stopwatch (task #167): begin the os_signpost interval here
+        // — right after Sentry, so the heavy init below (URLCache, Stream Chat,
+        // Stripe, DIContainer, analytics) is included in the measurement while
+        // Sentry-first crash capture is preserved. Ends at the home's first
+        // render (ClientTabView.onAppear → LaunchMetrics.markHomeRendered()).
+        LaunchMetrics.begin()
 
         // Wipe any cached HTTP responses left over from earlier launches.
         //

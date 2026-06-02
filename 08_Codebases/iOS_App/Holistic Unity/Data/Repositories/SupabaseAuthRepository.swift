@@ -1,12 +1,19 @@
 import Foundation
 import Supabase
+import os.log
 
 /// Real Supabase implementation of AuthRepositoryProtocol.
 /// Handles user sign-up, sign-in, sign-out, and profile management via Supabase Auth + database.
 final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable {
-    
+
+    // Select only the columns mapped by UserDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let userColumns = "id,email,display_name,photo_url,phone_number,role,city,country,latitude,longitude,auth_provider,is_email_verified,preferred_languages,experience_level,intention,fcm_token,stripe_customer_id,marketing_consent,marketing_consent_date,created_at,updated_at"
+
     private let client: SupabaseClient
-    
+
+    private let logger = Logger(subsystem: AppConstants.appBundleId, category: "AuthRepository")
+
     /// Thread-safe cached user storage
     private let _cachedUserLock = NSLock()
     private var _cachedUser: User?
@@ -221,7 +228,12 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
     
     func setUserRole(_ role: UserRole, for userId: String) async throws {
         // Refresh the session token so the JWT is current before the RLS-protected write.
-        _ = try? await client.auth.refreshSession()
+        // Best-effort: the UPSERT below still runs with the existing token if refresh fails.
+        do {
+            _ = try await client.auth.refreshSession()
+        } catch {
+            logger.debug("Session refresh before role write failed: \(error.localizedDescription)")
+        }
 
         // The handle_new_user DB trigger should create the public.users row after the
         // auth.users INSERT. However, the trigger may not have fired (race condition,
@@ -234,7 +246,7 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
             ?? authUser.userMetadata["name"]?.stringValue
             ?? authUser.email?.components(separatedBy: "@").first
             ?? "User"
-        let now = ISO8601DateFormatter().string(from: Date())
+        let now = ISO8601DateFormatter.shared.string(from: Date())
 
         struct UserRow: Encodable {
             let id: String
@@ -274,7 +286,7 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
     /// Fetch user profile from our users table
     private func fetchUserProfile(userId: String) async throws -> User {
         let response: UserDTO = try await client.from(SupabaseConfig.Table.users)
-            .select()
+            .select(Self.userColumns)
             .eq("id", value: userId)
             .single()
             .execute()

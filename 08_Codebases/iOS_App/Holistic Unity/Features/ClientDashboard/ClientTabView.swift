@@ -72,6 +72,11 @@ struct ClientTabView: View {
                 .tag(ClientTab.profile)
         }
         .tint(HUColor.primary)
+        .onAppear {
+            // Cold-start measurement end (task #167): the home is on screen.
+            // Idempotent — only the first launch's render is recorded.
+            LaunchMetrics.markHomeRendered()
+        }
         .onChange(of: selectedTab) { _, newTab in
             HUHaptic.selection()
             if newTab != .explore {
@@ -352,10 +357,7 @@ struct ClientHomeView: View {
         } else {
             timeKey = String(localized: "Buonasera", comment: "Evening greeting")
         }
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "it_IT")
-        df.dateFormat = "EEE d MMM"
-        return "\(timeKey) · \(df.string(from: now))"
+        return "\(timeKey) · \(DateFormatter.italianWeekdayDayMonth.string(from: now))"
     }
 
     private var headerSection: some View {
@@ -650,10 +652,7 @@ struct ClientHomeView: View {
         if cal.isDateInTomorrow(scheduled) {
             return String(localized: "Domani · \(booking.formattedTime)", comment: "Next session eyebrow: tomorrow")
         }
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "it_IT")
-        df.dateFormat = "EEE d MMM"
-        return df.string(from: scheduled)
+        return DateFormatter.italianWeekdayDayMonth.string(from: scheduled)
     }
 
     /// Right-side stamp: "OGGI", "DOM", or "14 MAG".
@@ -665,10 +664,7 @@ struct ClientHomeView: View {
         if cal.isDateInTomorrow(booking.scheduledAt) {
             return String(localized: "Domani", comment: "Date stamp: tomorrow")
         }
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "it_IT")
-        df.dateFormat = "d MMM"
-        return df.string(from: booking.scheduledAt)
+        return DateFormatter.italianDayMonth.string(from: booking.scheduledAt)
     }
 
     /// One-line context above the gradient card. Returns nil for
@@ -1142,9 +1138,18 @@ struct EditorialTherapistCard: View {
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: HUSpacing.md) {
-                HUAvatar(url: therapist.photoURL, name: therapist.displayName, size: 54)
+                ZStack(alignment: .bottomTrailing) {
+                    HUAvatar(url: therapist.photoURL, name: therapist.displayName, size: 54)
+                    if let tier = therapist.tier {
+                        TierBadge(tier: tier, size: 22)
+                            .offset(x: 4, y: 4)
+                    }
+                }
 
                 VStack(alignment: .leading, spacing: 3) {
+                    if let tier = therapist.tier {
+                        TierPill(tier: tier, compact: true)
+                    }
                     HStack(spacing: 5) {
                         Text(therapist.displayName)
                             .font(.system(size: 14, weight: .semibold))
@@ -2147,6 +2152,9 @@ struct ClientBookingsView: View {
     @State private var isLoading = true
     @State private var isLoadingMore = false
     @State private var hasMorePast = true
+    /// True when the initial bookings load fails, so the view shows a retry
+    /// affordance instead of a false "no sessions" empty state (F1, 2026-05-30).
+    @State private var loadError = false
     private let pageSize = 20
     @State private var manageTarget: Booking?
     @State private var manageTherapist: TherapistProfile?
@@ -2185,6 +2193,15 @@ struct ClientBookingsView: View {
                     if isLoading {
                         SkeletonList(count: 3)
                             .padding(.horizontal, HUSpacing.xl)
+                    } else if loadError && upcomingBookings.isEmpty && pastBookings.isEmpty {
+                        HUErrorView(
+                            message: "Couldn't load your sessions. Check your connection.",
+                            retryAction: {
+                                HUHaptic.impact(.light)
+                                Task { await loadBookings() }
+                            }
+                        )
+                        .padding(.horizontal, HUSpacing.xl)
                     } else {
                         switch selectedTab {
                         case .upcoming:
@@ -2232,10 +2249,18 @@ struct ClientBookingsView: View {
         async let upcoming = DIContainer.shared.bookingRepository.getUpcomingBookings(userId: userId, role: .client)
         async let past = DIContainer.shared.bookingRepository.getPastBookings(userId: userId, role: .client, limit: pageSize, offset: 0)
 
-        upcomingBookings = (try? await upcoming) ?? []
-        let loadedPast = (try? await past) ?? []
-        pastBookings = loadedPast
-        hasMorePast = loadedPast.count >= pageSize
+        do {
+            upcomingBookings = try await upcoming
+            let loadedPast = try await past
+            pastBookings = loadedPast
+            hasMorePast = loadedPast.count >= pageSize
+            loadError = false
+        } catch {
+            clientHomeLogger.error("Failed to load bookings: \(error.localizedDescription)")
+            loadError = true
+            isLoading = false
+            return
+        }
 
         // Fetch therapist names for all bookings
         let allBookings = upcomingBookings + pastBookings
@@ -2255,9 +2280,16 @@ struct ClientBookingsView: View {
         let userId = authManager.currentUser?.id ?? ""
         let offset = pastBookings.count
 
-        let morePast = (try? await DIContainer.shared.bookingRepository.getPastBookings(
-            userId: userId, role: .client, limit: pageSize, offset: offset
-        )) ?? []
+        let morePast: [Booking]
+        do {
+            morePast = try await DIContainer.shared.bookingRepository.getPastBookings(
+                userId: userId, role: .client, limit: pageSize, offset: offset
+            )
+        } catch {
+            clientHomeLogger.error("Failed to load more past bookings: \(error.localizedDescription)")
+            isLoadingMore = false
+            return
+        }
 
         pastBookings.append(contentsOf: morePast)
         hasMorePast = morePast.count >= pageSize
@@ -2387,12 +2419,8 @@ struct ClientBookingsView: View {
     /// caption, duration · mode, status badge, and action buttons.
     private func upcomingDayStripCard(_ booking: Booking) -> some View {
         let therapistName = therapistNames[booking.therapistId] ?? String(localized: "Operatore", comment: "Booking therapist fallback")
-        let monthDF = DateFormatter()
-        monthDF.locale = Locale(identifier: "it_IT")
-        monthDF.dateFormat = "MMM"
-        let dayDF = DateFormatter()
-        dayDF.locale = Locale(identifier: "it_IT")
-        dayDF.dateFormat = "d"
+        let monthDF = DateFormatter.italianMonthAbbrev
+        let dayDF = DateFormatter.italianDayOfMonth
 
         let interval = booking.scheduledAt.timeIntervalSinceNow
         let daysAway = max(0, Int(interval / 86400))
@@ -2665,9 +2693,7 @@ struct ClientBookingsView: View {
 
     private func pastTimelineRow(_ booking: Booking) -> some View {
         let therapistName = therapistNames[booking.therapistId] ?? String(localized: "Operatore", comment: "Booking therapist fallback")
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "it_IT")
-        df.dateFormat = "d MMM"
+        let df = DateFormatter.italianDayMonth
 
         // Try to map the service name to a known category so we can
         // surface its painted illustration. Best-effort — falls back

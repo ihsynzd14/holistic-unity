@@ -173,7 +173,7 @@ struct SettingsView: View {
                     .frame(width: 80, height: 80)
                     .shadow(color: HUColor.primary.opacity(0.15), radius: 16, y: 6)
                 if let imageURL = authManager.currentUser?.photoURL {
-                    AsyncImage(url: imageURL) { image in
+                    AsyncImage(url: imageURL.supabaseThumbnail(size: 80)) { image in
                         image.resizable().scaledToFill()
                     } placeholder: {
                         initialMark
@@ -549,11 +549,9 @@ final class AccountViewModel {
             // "Mesi in cammino" — months between the FIRST booking
             // (any status, since it marks when the user joined the
             // path) and now. Floor at 0, cap at 999 for display.
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
             let dates = rows.compactMap { row -> Date? in
                 guard let s = row.scheduled_at else { return nil }
-                return formatter.date(from: s) ?? ISO8601DateFormatter().date(from: s)
+                return ISO8601DateFormatter.parseSupabaseDate(s)
             }
             if let earliest = dates.min() {
                 let comps = Calendar.current.dateComponents([.month], from: earliest, to: Date())
@@ -581,13 +579,8 @@ final class AccountViewModel {
                   let intent = OnboardingIntent(rawValue: raw) else { return }
             intentionLabel = intent.label
             if let completedAt = row.completed_at {
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-                if let date = formatter.date(from: completedAt) ?? ISO8601DateFormatter().date(from: completedAt) {
-                    let df = DateFormatter()
-                    df.locale = Locale(identifier: "it_IT")
-                    df.dateFormat = "d MMMM yyyy"
-                    intentionSetOn = df.string(from: date)
+                if let date = ISO8601DateFormatter.parseSupabaseDate(completedAt) {
+                    intentionSetOn = DateFormatter.italianDayFullMonthYear.string(from: date)
                 }
             }
         } catch {
@@ -606,9 +599,7 @@ final class AccountViewModel {
                 .execute()
                 .value
             guard let raw = rows.first?.created_at else { return }
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            guard let date = formatter.date(from: raw) ?? ISO8601DateFormatter().date(from: raw) else { return }
+            guard let date = ISO8601DateFormatter.parseSupabaseDate(raw) else { return }
             memberSinceYear = Calendar.current.component(.year, from: date)
         } catch {
             // Hero just shows "MEMBRO" with no year.
@@ -895,7 +886,10 @@ struct PaymentMethodsView: View {
     @State private var paymentMethods: [SavedPaymentMethod] = []
     @State private var isLoading = true
     @State private var errorMessage: String?
-    
+    /// Surfaced as an alert when a card removal fails, so the user isn't misled
+    /// by the optimistic row removal (F2, 2026-05-30).
+    @State private var deleteError: String?
+
     var body: some View {
         List {
             if isLoading {
@@ -980,8 +974,16 @@ struct PaymentMethodsView: View {
         }
         .navigationTitle("Payment Methods")
         .task { await loadPaymentMethods() }
+        .alert("Couldn't remove card", isPresented: Binding(
+            get: { deleteError != nil },
+            set: { if !$0 { deleteError = nil } }
+        )) {
+            Button("OK") { deleteError = nil }
+        } message: {
+            Text(deleteError ?? "")
+        }
     }
-    
+
     private func loadPaymentMethods() async {
         guard let userId = authManager.currentUser?.id else {
             isLoading = false
@@ -997,11 +999,19 @@ struct PaymentMethodsView: View {
     
     private func deleteMethod(at offsets: IndexSet) {
         let methodsToDelete = offsets.map { paymentMethods[$0] }
-        paymentMethods.remove(atOffsets: offsets)
-        
+        paymentMethods.remove(atOffsets: offsets)   // optimistic; restored below if the server delete fails
+
         Task {
-            for method in methodsToDelete {
-                try? await DIContainer.shared.paymentRepository.removePaymentMethod(methodId: method.id)
+            do {
+                for method in methodsToDelete {
+                    try await DIContainer.shared.paymentRepository.removePaymentMethod(methodId: method.id)
+                }
+            } catch {
+                settingsLogger.error("Failed to remove payment method: \(error.localizedDescription)")
+                deleteError = "We couldn't remove your card. Please try again."
+                // Reload from source of truth so an optimistically-removed card
+                // reappears if it still exists on Stripe.
+                await loadPaymentMethods()
             }
         }
     }
@@ -1479,6 +1489,9 @@ struct PaymentHistoryView: View {
     @Environment(AuthManager.self) private var authManager
     @State private var payments: [PaymentHistoryItem] = []
     @State private var isLoading = true
+    /// True when the transaction load fails, so the view shows a retry affordance
+    /// instead of a false "No Payments Yet" empty state (F1, 2026-05-30).
+    @State private var loadError = false
 
     /// Combines transaction amounts with booking service details.
     struct PaymentHistoryItem: Identifiable {
@@ -1492,9 +1505,7 @@ struct PaymentHistoryView: View {
         let status: TransactionStatus
 
         var formattedDate: String {
-            let fmt = DateFormatter()
-            fmt.dateFormat = "d MMM yyyy 'at' HH:mm"
-            return fmt.string(from: dateTime)
+            return DateFormatter.paymentTimestamp.string(from: dateTime)
         }
 
         var currencySymbol: String {
@@ -1514,6 +1525,13 @@ struct PaymentHistoryView: View {
                     ProgressView("Loading payment history...")
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, HUSpacing.xl)
+                }
+            } else if loadError && payments.isEmpty {
+                Section {
+                    HUErrorView(
+                        message: "Couldn't load your payment history. Check your connection.",
+                        retryAction: { Task { await loadPayments() } }
+                    )
                 }
             } else if payments.isEmpty {
                 Section {
@@ -1601,9 +1619,18 @@ struct PaymentHistoryView: View {
         isLoading = true
 
         // Load transactions (has actual payment amounts)
-        let transactions = (try? await DIContainer.shared.paymentRepository.getTransactionHistory(
-            userId: userId, role: .client
-        )) ?? []
+        let transactions: [Transaction]
+        do {
+            transactions = try await DIContainer.shared.paymentRepository.getTransactionHistory(
+                userId: userId, role: .client
+            )
+            loadError = false
+        } catch {
+            settingsLogger.error("Failed to load payment history: \(error.localizedDescription)")
+            loadError = true
+            isLoading = false
+            return
+        }
 
         // Load bookings to map service names and dates
         let past = (try? await DIContainer.shared.bookingRepository.getPastBookings(userId: userId, role: .client)) ?? []

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holistic Unity — Accesso anticipato · 7 giugno 2026</title>
+<meta name="description" content="Apriamo il 7 giugno. Entra in accesso anticipato e ricevi 3 operatori olistici verificati scelti per te.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Holistic Unity">
+<meta name="theme-color" content="#7B2252">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="canonical" href="https://holisticunity.app/early_access">
+
+<!-- Open Graph / Twitter -->
+<!-- PLACEHOLDER OG IMAGE: og:image/twitter:image point to the square logo for now.
+     TODO: replace with a generated 1200x630 social card ("Accesso anticipato · 7 giugno 2026"
+     + brand illustration). Can be built as an HTML/SVG card and exported to PNG (no FAL needed),
+     or generated via images/blog/_generate_pro.py with the locked STYLE. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://holisticunity.app/early_access">
+<meta property="og:title" content="Holistic Unity — Accesso anticipato · 7 giugno 2026">
+<meta property="og:description" content="Apriamo il 7 giugno. Entra in accesso anticipato e ricevi 3 operatori olistici verificati scelti per te.">
+<meta property="og:image" content="https://holisticunity.app/images/logo-square-1024.png">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Holistic Unity — Accesso anticipato">
+<meta name="twitter:description" content="Apriamo il 7 giugno. Entra in accesso anticipato e ricevi 3 operatori verificati scelti per te.">
+<meta name="twitter:image" content="https://holisticunity.app/images/logo-square-1024.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ═══════════════ TOKENS (aligned to index.html / shared.css) ═══════════════ */
+  :root {
+    --berry: #7B2252;
+    --berry-dark: #5C1A3E;
+    --berry-light: #9A3A65;
+    --berry-pale: #F3EBF6;
+    --gold: #C9A96E;
+    --gold-light: #D4BC8E;
+    --gold-deep: #B08947;          /* darker gold, used only where text sits on light */
+    --cream: #FDF6F0;
+    --cream-dark: #F5E7DE;
+    --soft-pink: #F0DFE5;
+    --charcoal: #2D2D2D;
+    --charcoal-light: #4A4A4A;
+    --ink-soft: #8a7280;
+    --green: #2E7D5B;
+    --white: #FFFFFF;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  /* Accessibility: visually-hidden but available to screen readers */
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  a { color: var(--berry); }
+
+  /* Universal focus-visible ring (keyboard nav) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* ═══════════════ ANNOUNCEMENT BAR ═══════════════ */
+  .bar {
+    background: var(--berry);
+    color: #fff;
+    text-align: center;
+    padding: 11px 20px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+  }
+  .bar strong { font-weight: 600; }
+  .bar-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(201,169,110,0.6);
+    animation: barPulse 2.2s ease-out infinite;
+  }
+  @keyframes barPulse {
+    0% { box-shadow: 0 0 0 0 rgba(201,169,110,0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(201,169,110,0); }
+    100% { box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+  }
+
+  /* ═══════════════ NAV ═══════════════ */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1140px; margin: 0 auto;
+    padding: 18px 24px;
+  }
+  .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--berry); }
+  .logo img { width: 38px; height: 38px; border-radius: 9px; }
+  .logo-name { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.01em; }
+  .nav-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600; color: var(--berry);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(123,34,82,0.15);
+    border-radius: 100px; padding: 7px 16px; letter-spacing: 0.02em;
+  }
+  .nav-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(201,169,110,0.55);
+    animation: barPulse 2.2s ease-out infinite;
+  }
+
+  /* ═══════════════ BUTTONS ═══════════════ */
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--berry); color: #fff;
+    border: none; border-radius: 100px;
+    padding: 14px 28px;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; white-space: nowrap; letter-spacing: 0.01em;
+    box-shadow: 0 8px 26px rgba(123,34,82,0.28);
+    transition: background 0.3s, transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
+  }
+  .btn-primary:hover { background: var(--berry-dark); transform: translateY(-2px); box-shadow: 0 12px 34px rgba(123,34,82,0.38); }
+  .btn-primary:active { transform: translateY(0) scale(0.985); }
+  .btn-primary svg { width: 15px; height: 15px; }
+
+  /* ═══════════════ HERO ═══════════════ */
+  .hero-wrap {
+    position: relative;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--soft-pink) 45%, #E8D0D9 78%, #DEC2CE 100%);
+    overflow: hidden;
+  }
+  .hero-wrap::before {
+    content: ''; position: absolute; top: -38%; right: -14%;
+    width: 680px; height: 680px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.20) 0%, transparent 70%);
+    animation: floatOrb 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero-wrap::after {
+    content: ''; position: absolute; bottom: -34%; left: -12%;
+    width: 540px; height: 540px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,34,82,0.10) 0%, transparent 70%);
+    animation: floatOrb 16s ease-in-out infinite reverse;
+    pointer-events: none;
+  }
+  @keyframes floatOrb {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(34px,-42px) scale(1.05); }
+    66% { transform: translate(-22px,22px) scale(0.95); }
+  }
+
+  .hero {
+    position: relative; z-index: 2;
+    max-width: 1140px; margin: 0 auto;
+    padding: 64px 24px 72px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 0.92fr;
+    gap: 56px; align-items: center;
+  }
+  .hero-copy { text-align: left; }
+
+  /* Hero visual: session photo + floating trust chips */
+  .hero-visual { position: relative; opacity: 0; animation: fadeUp 0.8s ease 0.45s forwards; }
+  .hero-photo {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 30px 70px rgba(123,34,82,0.22);
+    aspect-ratio: 4/5;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-chip {
+    position: absolute;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(123,34,82,0.08);
+    box-shadow: 0 14px 36px rgba(123,34,82,0.16);
+    border-radius: 100px; padding: 10px 16px;
+    font-size: 0.82rem; font-weight: 600; color: var(--charcoal);
+  }
+  .hero-chip svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .hero-chip-verify { top: 22px; left: -16px; }
+  .hero-chip-verify svg { color: var(--green); }
+  .hero-chip-free { bottom: 26px; right: -14px; }
+  .hero-chip-free svg { color: var(--gold-deep); }
+  .hero-chip-free strong { color: var(--berry); font-weight: 700; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(123,34,82,0.12);
+    border-radius: 100px; padding: 8px 16px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--charcoal-light); margin-bottom: 26px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+  .hero-eyebrow strong { color: var(--berry); font-weight: 700; }
+  .hero-eyebrow svg { width: 14px; height: 14px; color: var(--gold); }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 600; line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--berry); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); position: relative; display: inline-block; }
+  /* Gold hand-drawn underline (ported from index.html .h1-underline) */
+  .h1-underline::after {
+    content: '';
+    position: absolute; left: 1%; right: 1%; bottom: 0.02em;
+    height: 0.14em;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'><path d='M2 8 Q 50 2, 100 6 T 198 7' stroke='%23C9A96E' stroke-width='3' fill='none' stroke-linecap='round' opacity='0.9'/></svg>") no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--charcoal-light);
+    max-width: 520px; margin: 0 0 32px;
+    line-height: 1.7;
+    opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+  .hero-sub strong { color: var(--charcoal); font-weight: 600; }
+
+  /* ── COUNTDOWN ── */
+  .countdown {
+    display: flex; align-items: stretch; justify-content: flex-start;
+    gap: 10px; margin: 0 0 32px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+  /* Hero form/copy left-aligned in the split layout */
+  .hero-copy .form-wrap { margin: 0 0 12px; max-width: 520px; }
+  .hero-copy .form-error, .hero-copy .form-note { text-align: left; max-width: 520px; margin-left: 0; margin-right: 0; }
+  .cd-block {
+    background: rgba(255,255,255,0.62);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(123,34,82,0.1);
+    border-radius: 16px;
+    padding: 16px 8px 12px;
+    min-width: 80px;
+    box-shadow: 0 6px 20px rgba(123,34,82,0.06);
+  }
+  .cd-num {
+    font-family: var(--font-display);
+    font-size: 2.6rem; font-weight: 600;
+    color: var(--berry); line-height: 1; display: block;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-label {
+    font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-soft);
+    margin-top: 8px; display: block;
+  }
+  .cd-sep {
+    display: flex; align-items: center;
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 400;
+    color: rgba(123,34,82,0.3);
+  }
+
+  /* ── EMAIL FORM ── */
+  .form-wrap {
+    display: flex; align-items: center; gap: 0;
+    max-width: 540px; margin: 0 auto 14px;
+    background: var(--white);
+    border: 1px solid rgba(123,34,82,0.16);
+    border-radius: 100px;
+    padding: 6px 6px 6px 22px;
+    box-shadow: 0 6px 30px rgba(123,34,82,0.1);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-wrap:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 6px 30px rgba(123,34,82,0.14), 0 0 0 4px rgba(201,169,110,0.18);
+  }
+  .form-wrap.error { border-color: #D84A4A; box-shadow: 0 0 0 4px rgba(216,74,74,0.14); }
+  .form-wrap input {
+    flex: 1; min-width: 0; border: none; outline: none; background: transparent;
+    font-family: var(--font-body); font-size: 0.98rem; font-weight: 400;
+    color: var(--charcoal); padding: 9px 0;
+  }
+  .form-wrap input::placeholder { color: var(--ink-soft); }
+  .hero-form-anim { opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards; }
+
+  .form-error {
+    font-size: 0.82rem; color: #C0392B; font-weight: 500;
+    margin: 0 auto 6px; max-width: 540px; text-align: center;
+    min-height: 1.1em;
+  }
+  .form-note {
+    font-size: 0.85rem; color: var(--ink-soft); text-align: center;
+    opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+  .form-note strong { color: var(--berry); font-weight: 600; }
+
+  /* ═══════════════ PROOF STRIP ═══════════════ */
+  .proof-strip {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px 32px; flex-wrap: wrap;
+    max-width: 1140px; margin: 0 auto;
+    padding: 26px 24px;
+    border-top: 1px solid rgba(123,34,82,0.1);
+    border-bottom: 1px solid rgba(123,34,82,0.1);
+    background: var(--white);
+  }
+  .proof-item { display: flex; align-items: center; gap: 9px; font-size: 0.85rem; color: var(--charcoal-light); }
+  .proof-item svg { width: 16px; height: 16px; color: var(--berry); flex-shrink: 0; }
+
+  /* ═══════════════ SECTION SHELL ═══════════════ */
+  .section { max-width: 1140px; margin: 0 auto; padding: 92px 24px; }
+  .section-label {
+    display: block; text-align: center;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--berry);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600; line-height: 1.15; text-align: center;
+    color: var(--berry); letter-spacing: -0.02em;
+    margin-bottom: 56px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ═══════════════ VALUE PROPOSITIONS ═══════════════ */
+  .vp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .vp-card {
+    background: var(--white);
+    border: 1px solid rgba(123,34,82,0.08);
+    border-radius: 20px;
+    padding: 40px 32px;
+    display: flex; flex-direction: column; gap: 18px;
+    position: relative; overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s;
+  }
+  .vp-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--berry), var(--gold));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  }
+  .vp-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(123,34,82,0.12); }
+  .vp-card:hover::before { transform: scaleX(1); }
+  .vp-number {
+    font-family: var(--font-display); font-size: 3.4rem; font-weight: 500;
+    color: rgba(123,34,82,0.12); line-height: 1;
+    position: absolute; top: 24px; right: 28px;
+  }
+  .vp-icon-wrap {
+    width: 46px; height: 46px; border-radius: 13px;
+    background: var(--berry-pale);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .vp-icon-wrap svg { width: 23px; height: 23px; stroke: var(--berry); fill: none; stroke-width: 1.6; }
+  .vp-headline {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+    line-height: 1.25; color: var(--berry); letter-spacing: -0.01em;
+  }
+  .vp-body { font-size: 0.94rem; color: var(--charcoal-light); line-height: 1.7; }
+  .vp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
+  .vp-tag {
+    font-size: 0.76rem; font-weight: 500; color: var(--berry);
+    background: var(--berry-pale); border-radius: 100px; padding: 5px 13px;
+  }
+
+  /* ═══════════════ HOW IT WORKS (berry band) ═══════════════ */
+  .how-section {
+    background: linear-gradient(160deg, var(--berry) 0%, var(--berry-dark) 100%);
+    padding: 92px 0; position: relative; overflow: hidden;
+  }
+  .how-section::before {
+    content: ''; position: absolute; top: -30%; left: -8%;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.16) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .how-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .how-section .section-label { color: var(--gold-light); }
+  .how-section .section-title { color: #fff; margin-bottom: 56px; }
+  .how-section .section-title em { color: var(--gold-light); }
+
+  .steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: start; gap: 0; }
+  .step { text-align: center; padding: 0 18px; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: #fff;
+    box-shadow: 0 10px 26px rgba(201,169,110,0.4);
+  }
+  .step-title { font-size: 1.02rem; font-weight: 600; color: #fff; margin-bottom: 10px; }
+  .step-body { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.72); line-height: 1.65; }
+  .step-arrow { color: rgba(255,255,255,0.28); font-size: 1.5rem; padding-top: 14px; }
+
+  /* ═══════════════ DISCIPLINES (illustrated grid) ═══════════════ */
+  .disc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .disc-card {
+    position: relative;
+    background: var(--white);
+    border: 1px solid rgba(123,34,82,0.08);
+    border-radius: 18px; overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s;
+  }
+  .disc-card:hover { transform: translateY(-6px); box-shadow: 0 22px 46px rgba(123,34,82,0.14); }
+  .disc-illo { aspect-ratio: 4/3; overflow: hidden; background: var(--cream); }
+  .disc-illo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .disc-card:hover .disc-illo img { transform: scale(1.05); }
+  .disc-name {
+    padding: 16px 14px 18px; text-align: center;
+    font-family: var(--font-display); font-size: 1.18rem; font-weight: 600;
+    color: var(--berry); letter-spacing: -0.01em;
+  }
+  .disc-flag {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #fff; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 100px;
+    box-shadow: 0 6px 16px rgba(201,169,110,0.4);
+  }
+  .disc-note { margin-top: 30px; text-align: center; font-size: 0.9rem; color: var(--ink-soft); font-style: italic; }
+
+  /* ═══════════════ OPERATORS STRIP ═══════════════ */
+  .ops-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+  .op-card {
+    background: var(--white); border: 1px solid rgba(123,34,82,0.08);
+    border-radius: 20px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+  .op-card:hover { transform: translateY(-5px); box-shadow: 0 22px 46px rgba(123,34,82,0.12); }
+  .op-photo { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--cream); }
+  .op-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .op-badge {
+    position: absolute; top: 12px; left: 12px;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.94); color: var(--green);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 5px 10px; border-radius: 100px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .op-badge svg { width: 11px; height: 11px; }
+  .op-info { padding: 16px 18px 18px; }
+  .op-info strong { display: block; font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--berry); }
+  .op-info span { font-size: 0.84rem; color: var(--gold-deep); font-weight: 600; }
+  /* "How we verify" card (no photo) to complete the row honestly */
+  .op-verify {
+    background: var(--berry-pale); border-color: rgba(123,34,82,0.1);
+    padding: 30px 28px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .op-verify h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--berry); margin-bottom: 16px; }
+  .op-verify ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .op-verify li { position: relative; padding-left: 26px; font-size: 0.9rem; color: var(--charcoal-light); line-height: 1.4; }
+  .op-verify li svg { position: absolute; left: 0; top: 2px; width: 16px; height: 16px; color: var(--berry); }
+  .ops-disclaimer { margin-top: 22px; text-align: center; font-size: 0.8rem; color: var(--ink-soft); font-style: italic; }
+
+  /* ═══════════════ REASSURANCE ═══════════════ */
+  .re-section { background: var(--cream-dark); padding: 88px 0; }
+  .re-inner { max-width: 780px; margin: 0 auto; padding: 0 24px; text-align: center; }
+  .re-lotus { width: 60px; height: 60px; margin: 0 auto 22px; display: block; opacity: 0.85; }
+  .re-title {
+    font-family: var(--font-display); font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    font-weight: 600; line-height: 1.2; color: var(--berry); letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .re-title em { font-style: italic; color: var(--gold); }
+  .re-body { font-size: 1.05rem; font-weight: 400; color: var(--charcoal-light); line-height: 1.8; margin-bottom: 38px; }
+  .re-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+  .re-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.86rem; font-weight: 500; color: var(--charcoal-light);
+    border: 1px solid rgba(123,34,82,0.14); border-radius: 100px;
+    padding: 9px 18px; background: var(--white);
+  }
+  .re-badge svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; }
+
+  /* ═══════════════ FINAL CTA (dark band + photo + live card) ═══════════════ */
+  .final-cta {
+    background: linear-gradient(160deg, var(--berry) 0%, var(--berry-dark) 58%, var(--charcoal) 100%);
+    color: #fff; padding: 96px 0; position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: ''; position: absolute; top: -36%; right: -10%;
+    width: 620px; height: 620px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-grid {
+    max-width: 1140px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .final-eyebrow {
+    display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px;
+  }
+  .final-title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    font-weight: 600; line-height: 1.12; color: #fff; letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .final-title em { font-style: italic; color: var(--gold-light); }
+  .final-sub { font-size: 1.05rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+  .final-cta .form-wrap { margin: 0 0 14px; max-width: 100%; }
+  .final-cta .form-error { text-align: left; margin-left: 4px; }
+  .final-cta .form-note { text-align: left; color: rgba(255,255,255,0.7); animation: none; opacity: 1; }
+  .final-cta .form-note strong { color: var(--gold-light); }
+  .final-checks { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 18px; }
+  .final-checks span { display: inline-flex; align-items: center; gap: 7px; font-size: 0.84rem; color: rgba(255,255,255,0.8); }
+  .final-checks svg { width: 14px; height: 14px; color: var(--gold-light); flex-shrink: 0; }
+
+  /* Final visual: photo + floating live-call card (ported from index hero-callcard) */
+  .final-visual { position: relative; }
+  .final-photo {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.42);
+    aspect-ratio: 4/5;
+  }
+  .final-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .live-card {
+    position: absolute; left: -16px; bottom: 26px;
+    background: var(--white); color: var(--charcoal);
+    padding: 12px 14px 12px 12px; border-radius: 18px;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.3);
+    display: flex; align-items: center; gap: 12px;
+    min-width: 250px; border: 1px solid rgba(123,34,82,0.06);
+  }
+  .live-card-photo { width: 56px; height: 56px; border-radius: 12px; overflow: hidden; flex-shrink: 0; position: relative; }
+  .live-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .live-dot {
+    position: absolute; bottom: 3px; right: 3px;
+    width: 12px; height: 12px; background: #4CAF50;
+    border: 2px solid #fff; border-radius: 50%; z-index: 2;
+    box-shadow: 0 0 0 0 rgba(76,175,80,0.55);
+    animation: barPulse 2s ease-out infinite;
+  }
+  .live-card-body { display: flex; flex-direction: column; gap: 3px; line-height: 1.2; }
+  .live-card-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--berry); }
+  .live-card-meta { font-size: 0.72rem; color: var(--gold-deep); font-weight: 600; }
+  .live-mark { color: var(--green); font-weight: 700; }
+
+  /* ═══════════════ FOOTER ═══════════════ */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.6); padding: 64px 0 36px; }
+  .footer-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 36px; }
+  .footer-brand { max-width: 360px; }
+  .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 14px; }
+  .footer-logo img { width: 40px; height: 40px; border-radius: 9px; }
+  .footer-logo span { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--gold); }
+  .footer-brand p { font-size: 0.86rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 14px 24px; }
+  .footer-links a { font-size: 0.86rem; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.25s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.08); margin: 0 0 22px; }
+  .footer-disclaimer { font-size: 0.72rem; line-height: 1.6; color: rgba(255,255,255,0.38); font-style: italic; max-width: 920px; margin-bottom: 22px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  /* ═══════════════ SUCCESS OVERLAY ═══════════════ */
+  .success-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(28,20,16,0.55);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    z-index: 200; align-items: center; justify-content: center; padding: 24px;
+  }
+  .success-overlay.active { display: flex; }
+  .success-card {
+    background: var(--cream); border-radius: 24px;
+    padding: 52px 44px; max-width: 460px; width: 100%; text-align: center;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.35);
+    animation: popIn 0.45s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  .success-icon {
+    width: 68px; height: 68px; border-radius: 50%;
+    background: var(--berry-pale);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 26px;
+  }
+  .success-icon svg { width: 30px; height: 30px; stroke: var(--berry); fill: none; stroke-width: 2; }
+  .success-title { font-family: var(--font-display); font-size: 2.1rem; font-weight: 600; color: var(--berry); margin-bottom: 14px; line-height: 1.2; }
+  .success-title em { font-style: italic; color: var(--gold); }
+  .success-body { font-size: 0.98rem; font-weight: 400; color: var(--charcoal-light); line-height: 1.7; margin-bottom: 30px; }
+  .success-body strong { color: var(--charcoal); font-weight: 600; }
+  .btn-close {
+    font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; color: var(--ink-soft);
+    background: none; border: none; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .btn-close:hover { color: var(--berry); }
+
+  /* ═══════════════ STICKY MOBILE BAR ═══════════════ */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+    background: var(--white); border-top: 1px solid rgba(123,34,82,0.1);
+    box-shadow: 0 -10px 30px rgba(30,21,25,0.1);
+    padding: 12px 16px; display: none; align-items: center; gap: 12px;
+    transform: translateY(100%); transition: transform 0.35s ease;
+  }
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-bar-body { flex-grow: 1; min-width: 0; line-height: 1.25; }
+  .sticky-bar-body strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--berry); }
+  .sticky-bar-body span { font-size: 0.72rem; color: var(--charcoal-light); }
+  .sticky-bar .btn-primary { padding: 12px 22px; font-size: 0.9rem; flex-shrink: 0; box-shadow: 0 6px 16px rgba(123,34,82,0.3); }
+
+  /* ═══════════════ SCROLL REVEAL ═══════════════ */
+  .reveal { opacity: 0; transform: translateY(38px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-52px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(52px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+
+  /* ═══════════════ RESPONSIVE ═══════════════ */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { max-width: 400px; margin: 0 auto; }
+    .vp-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    .disc-grid { grid-template-columns: repeat(3, 1fr); }
+    .final-grid { grid-template-columns: 1fr; gap: 48px; }
+    .final-visual { max-width: 420px; margin: 0 auto; order: -1; }
+    .final-sub { max-width: 100%; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 48px 20px 56px; }
+    .section { padding: 64px 20px; }
+    .re-section, .how-section, .final-cta { padding: 64px 0; }
+    /* Recenter the hero on mobile for a focused single-column feel */
+    .hero-copy { text-align: center; }
+    .countdown { justify-content: center; gap: 8px; }
+    .hero-copy .form-wrap { margin: 0 auto 12px; }
+    .hero-copy .form-error, .hero-copy .form-note { text-align: center; margin-left: auto; margin-right: auto; }
+    .hero-chip-verify { left: 8px; }
+    .hero-chip-free { right: 8px; }
+    .steps { grid-template-columns: 1fr; gap: 36px; }
+    .step-arrow { display: none; }
+    .step { padding: 0; }
+    .disc-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .ops-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .form-wrap { flex-direction: column; border-radius: 20px; padding: 14px; gap: 10px; }
+    .form-wrap input { text-align: center; width: 100%; padding: 10px 0; }
+    .form-wrap .btn-primary { width: 100%; }
+    .final-cta .form-wrap { border-radius: 20px; }
+    .proof-strip { gap: 12px 22px; padding: 22px 20px; }
+    .cd-block { min-width: 66px; padding: 13px 6px 10px; }
+    .cd-num { font-size: 2.1rem; }
+    .live-card { left: 8px; bottom: 12px; min-width: 0; }
+    .sticky-bar { display: flex; }
+    footer { padding-bottom: 96px; }
+    .footer-top { flex-direction: column; gap: 24px; }
+  }
+  @media (max-width: 400px) {
+    .countdown { gap: 6px; }
+    .cd-block { min-width: 58px; }
+    .cd-num { font-size: 1.8rem; }
+    .cd-sep { font-size: 1.3rem; }
+  }
+
+  /* ═══════════════ REDUCED MOTION ═══════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero-eyebrow, .hero h1, .hero-sub, .countdown, .hero-form-anim, .form-note, .hero-visual { opacity: 1 !important; }
+    .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+    .hero-wrap::before, .hero-wrap::after, .live-dot, .bar-dot, .nav-badge .dot { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ ANNOUNCEMENT BAR ═══════════════ -->
+<div class="bar">
+  <span class="bar-dot" aria-hidden="true"></span>
+  Apriamo le prenotazioni il <strong>7 giugno 2026</strong> · oggi sei in accesso anticipato
+</div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <a href="/" class="logo">
+    <img src="images/logo.png" alt="Holistic Unity">
+    <span class="logo-name">Holistic Unity</span>
+  </a>
+  <span class="nav-badge"><span class="dot" aria-hidden="true"></span>Pre-lancio · 7 giugno</span>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero-wrap">
+  <section class="hero" id="top">
+   <div class="hero-grid">
+    <div class="hero-copy">
+    <span class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      Accesso anticipato · <strong>Lancio 7 giugno 2026</strong>
+    </span>
+    <h1>
+      Uno spazio per ritrovare<br>
+      il tuo <em class="h1-underline">equilibrio</em>.
+    </h1>
+    <p class="hero-sub">
+      Stress, cambiamenti interiori, momenti di confusione.<br>
+      Holistic Unity ti connette con <strong>professionisti olistici verificati</strong>.
+    </p>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown" id="countdown" aria-label="Conto alla rovescia al lancio">
+      <div class="cd-block"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Giorni</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Ore</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Minuti</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Secondi</span></div>
+    </div>
+
+    <!-- FORM -->
+    <div class="hero-form-anim">
+      <label for="email-input" class="visually-hidden">Indirizzo email</label>
+      <div class="form-wrap" id="form-wrap-1">
+        <input type="email" id="email-input" inputmode="email" placeholder="la-tua@email.it" autocomplete="email" aria-describedby="err-1">
+        <button class="btn-primary" id="cta-btn">Entra in accesso anticipato
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <p class="form-error" id="err-1" role="alert" aria-live="polite"></p>
+      <p class="form-note">Solo l'email. <strong>Nessuna carta</strong>, nessun account da configurare adesso.</p>
+    </div>
+    </div><!-- /.hero-copy -->
+
+    <!-- HERO VISUAL: existing session photo (stands in for a future bespoke launch illustration) + floating trust chips -->
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <img src="preview-redesign/images/hero-v4-session.jpg" alt="Persona in una sessione olistica online, dal divano di casa con una tazza di tè" fetchpriority="high">
+      </div>
+      <span class="hero-chip hero-chip-verify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 11l2 2 4-4"/></svg>
+        Credenziali verificate
+      </span>
+      <span class="hero-chip hero-chip-free">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        <span><strong>Call gratuita</strong> ~15 min</span>
+      </span>
+    </div>
+   </div><!-- /.hero-grid -->
+  </section>
+</div>
+
+<!-- ═══════════════ PROOF STRIP ═══════════════ -->
+<div class="proof-strip">
+  <div class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Credenziali verificate (L. 4/2013)</div>
+  <div class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Call conoscitiva gratuita ~15 min</div>
+  <div class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Senza carta di credito per iniziare</div>
+  <div class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Prezzi chiari, IVA inclusa</div>
+  <div class="proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Operatori reali, non bot</div>
+</div>
+
+<!-- ═══════════════ VALUE PROPOSITIONS ═══════════════ -->
+<section class="section">
+  <p class="section-label reveal">Perché Holistic Unity</p>
+  <h2 class="section-title reveal">I benefici che ottieni <em>dal primo giorno</em></h2>
+
+  <div class="vp-grid">
+
+    <div class="vp-card reveal-left">
+      <span class="vp-number">01</span>
+      <div class="vp-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3 class="vp-headline">Capisci dove nasce lo stress — non solo come gestirlo</h3>
+      <p class="vp-body">Le discipline olistiche lavorano sulle radici: schemi emotivi, dinamiche familiari, transizioni di vita. Non ti danno tecniche di coping — ti aiutano a capire cosa sta succedendo davvero.</p>
+      <div class="vp-tags">
+        <span class="vp-tag">Stress cronico</span>
+        <span class="vp-tag">Burnout</span>
+        <span class="vp-tag">Ansia diffusa</span>
+      </div>
+    </div>
+
+    <div class="vp-card reveal reveal-delay-1">
+      <span class="vp-number">02</span>
+      <div class="vp-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3 class="vp-headline">Un supporto complementare, non alternativo alla medicina</h3>
+      <p class="vp-body">Non sostituiamo medici o psicologi — lavoriamo su quello che loro non trattano: il benessere quotidiano, le transizioni di vita, la ricerca di consapevolezza. Lo diciamo chiaramente, senza iperpromesse.</p>
+      <div class="vp-tags">
+        <span class="vp-tag">Transizioni di vita</span>
+        <span class="vp-tag">Scelte difficili</span>
+        <span class="vp-tag">Consapevolezza</span>
+      </div>
+    </div>
+
+    <div class="vp-card reveal-right reveal-delay-2">
+      <span class="vp-number">03</span>
+      <div class="vp-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/></svg>
+      </div>
+      <h3 class="vp-headline">Operatori verificati, prezzi trasparenti, zero sorprese</h3>
+      <p class="vp-body">Ogni operatore presenta documento, attestato di formazione e minimo 2 anni di pratica. Il prezzo è visibile prima di prenotare. La prima call conoscitiva è gratuita — senza carta.</p>
+      <div class="vp-tags">
+        <span class="vp-tag">Credenziali L.4/2013</span>
+        <span class="vp-tag">Prezzi IVA inclusa</span>
+        <span class="vp-tag">Call gratuita</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="how-section">
+  <div class="how-inner">
+    <h2 class="section-title reveal">Tre passaggi. <em>Niente telefonate.</em></h2>
+
+    <div class="steps">
+      <div class="step reveal-left">
+        <div class="step-num">1</div>
+        <div class="step-title">Lascia l'email oggi</div>
+        <div class="step-body">Rispondi a 6 brevi domande su cosa stai attraversando. ~3 minuti, senza carta.</div>
+      </div>
+      <div class="step-arrow reveal" aria-hidden="true">→</div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-title">Il 7 giugno ti scriviamo</div>
+        <div class="step-body">Ti mandiamo 3 operatori verificati scelti in base alle tue risposte, con profilo e prezzi chiari.</div>
+      </div>
+      <div class="step-arrow reveal" aria-hidden="true">→</div>
+      <div class="step reveal-right reveal-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-title">Prenoti e inizi</div>
+        <div class="step-body">Prima call conoscitiva gratuita (~15 min). Se c'è sintonia, prenoti la sessione. Se no, nessun problema.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ DISCIPLINES ═══════════════ -->
+<section class="section">
+  <h2 class="section-title reveal">Trova <em>l'approccio</em> che risuona con te</h2>
+  <div class="disc-grid">
+    <div class="disc-card reveal">
+      <span class="disc-flag">Inizia da qui</span>
+      <div class="disc-illo"><img src="preview-redesign/images/hu-theta.jpg" alt="Illustrazione ThetaHealing®" loading="lazy"></div>
+      <div class="disc-name">ThetaHealing®</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-reiki.jpg" alt="Illustrazione Reiki" loading="lazy"></div>
+      <div class="disc-name">Reiki</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-hd.jpg" alt="Illustrazione Human Design" loading="lazy"></div>
+      <div class="disc-name">Human Design</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-num.jpg" alt="Illustrazione Numerologia" loading="lazy"></div>
+      <div class="disc-name">Numerologia</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-natu.jpg" alt="Illustrazione Naturopatia" loading="lazy"></div>
+      <div class="disc-name">Naturopatia</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-cf.jpg" alt="Illustrazione Costellazioni Familiari" loading="lazy"></div>
+      <div class="disc-name">Costellazioni Familiari</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-cs.jpg" alt="Illustrazione Costellazioni Sistemiche" loading="lazy"></div>
+      <div class="disc-name">Costellazioni Sistemiche</div>
+    </div>
+    <div class="disc-card reveal">
+      <div class="disc-illo"><img src="preview-redesign/images/hu-sciam.jpg" alt="Illustrazione Sciamanesimo" loading="lazy"></div>
+      <div class="disc-name">Sciamanesimo</div>
+    </div>
+  </div>
+  <p class="disc-note reveal">8 discipline verificate. Per ognuna spieghiamo cosa fa e cosa non fa. Nessuna iperpromessa.</p>
+</section>
+
+<!-- ═══════════════ OPERATORS STRIP ═══════════════ -->
+<section class="section" style="padding-top: 0;">
+  <p class="section-label reveal">Le persone, non i bot</p>
+  <h2 class="section-title reveal">Operatori veri, <em>verificati uno a uno</em></h2>
+  <div class="ops-grid">
+    <div class="op-card reveal-left">
+      <div class="op-photo">
+        <img src="preview-redesign/images/therapist-chiara.jpg" alt="Ritratto di un'operatrice olistica verificata" loading="lazy">
+        <span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Verificata</span>
+      </div>
+      <div class="op-info"><strong>Chiara</strong><span>Reiki</span></div>
+    </div>
+    <div class="op-card reveal">
+      <div class="op-photo">
+        <img src="preview-redesign/images/therapist-marco.jpg" alt="Ritratto di un operatore olistico verificato" loading="lazy">
+        <span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Verificato</span>
+      </div>
+      <div class="op-info"><strong>Marco</strong><span>Costellazioni</span></div>
+    </div>
+    <div class="op-card op-verify reveal-right">
+      <h3>Come li verifichiamo</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Documento d'identità</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Attestato di formazione</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Minimo 2 anni di pratica</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Intervista video con il team</li>
+      </ul>
+    </div>
+  </div>
+  <p class="ops-disclaimer reveal">Profili di esempio. Ogni operatore è verificato prima della pubblicazione.</p>
+</section>
+
+<!-- ═══════════════ REASSURANCE ═══════════════ -->
+<section class="re-section">
+  <div class="re-inner">
+    <img class="re-lotus reveal" src="preview-redesign/images/ill-loto-mono.jpg" alt="" aria-hidden="true" loading="lazy">
+    <h2 class="re-title reveal">Non per chi cerca <em>miracoli</em>.<br>Per chi cerca chiarezza.</h2>
+    <p class="re-body reveal">
+      Le discipline olistiche non guariscono patologie, non sostituiscono lo psicologo e non fanno profezie. Quello che fanno bene — creare spazio per capire, rallentare schemi automatici, accompagnare transizioni — lo facciamo con operatori seri, in un contesto trasparente.
+    </p>
+    <div class="re-badges reveal">
+      <span class="re-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Non è psicoterapia</span>
+      <span class="re-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Non sostituisce il medico</span>
+      <span class="re-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Zero promesse impossibili</span>
+      <span class="re-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Credenziali sempre verificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final-cta" id="final-cta">
+  <div class="final-grid">
+    <div class="reveal-left">
+      <span class="final-eyebrow">Lancio 7 giugno 2026</span>
+      <h2 class="final-title">Entra adesso,<br><em>inizia il 7 giugno.</em></h2>
+      <p class="final-sub">
+        Lascia la tua email e rispondi a 6 domande. Ti scriviamo il 7 giugno con i 3 operatori più adatti a quello che stai attraversando.
+      </p>
+      <label for="email-input-2" class="visually-hidden">Indirizzo email</label>
+      <div class="form-wrap" id="form-wrap-2">
+        <input type="email" id="email-input-2" inputmode="email" placeholder="la-tua@email.it" autocomplete="email" aria-describedby="err-2">
+        <button class="btn-primary" id="cta-btn-2">Entra in accesso anticipato
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <p class="form-error" id="err-2" role="alert" aria-live="polite"></p>
+      <p class="form-note">Solo l'email. <strong>Nessuna carta</strong>, nessun account da configurare adesso.</p>
+      <div class="final-checks">
+        <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>~3 minuti</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Senza carta di credito</span>
+        <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>Una sola email, niente spam</span>
+      </div>
+    </div>
+
+    <div class="final-visual reveal-right">
+      <div class="final-photo">
+        <img src="preview-redesign/images/hero-v3-client-laptop-calendar.jpg" alt="Cliente che inizia il suo percorso olistico dal salotto di casa" loading="lazy">
+      </div>
+      <div class="live-card">
+        <div class="live-card-photo">
+          <img src="images/therapist-callcard.png" alt="">
+          <span class="live-dot" aria-hidden="true"></span>
+        </div>
+        <div class="live-card-body">
+          <span class="live-card-name">Sara Conti</span>
+          <span class="live-card-meta"><span class="live-mark">In linea</span> · ThetaHealing® · 4.9★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="images/logo.png" alt="Holistic Unity">
+          <span>Holistic Unity</span>
+        </a>
+        <p>Marketplace di operatori olistici verificati (L. 4/2013). Sessioni online, prezzi chiari, credenziali sempre verificate.</p>
+      </div>
+      <nav class="footer-links" aria-label="Link legali">
+        <a href="privacy-policy">Privacy</a>
+        <a href="cookie-policy">Cookie</a>
+        <a href="terms-clients">Termini clienti</a>
+        <a href="terms-therapists">Termini operatori</a>
+      </nav>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-disclaimer">
+      Le pratiche olistiche offerte dagli operatori ex Legge 4/2013 sono pratiche bionaturali di benessere — non sono prestazioni sanitarie e non sostituiscono parere, diagnosi o trattamento medico, psicologico o nutrizionale. Per sintomi clinici consulta un professionista sanitario iscritto all'albo.
+    </p>
+    <div class="footer-bottom">
+      <span>© 2026 Storm X Digital S.R.L. · Holistic Unity</span>
+      <a href="https://www.instagram.com/holisticunityapp/" target="_blank" rel="noopener noreferrer">@holisticunityapp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ STICKY MOBILE BAR ═══════════════ -->
+<div id="stickyBar" class="sticky-bar">
+  <div class="sticky-bar-body">
+    <strong>Apriamo il 7 giugno</strong>
+    <span>Accesso anticipato · senza carta</span>
+  </div>
+  <button class="btn-primary" id="stickyCta">Entra</button>
+</div>
+
+<!-- ═══════════════ SUCCESS OVERLAY ═══════════════ -->
+<div class="success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
+  <div class="success-card">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h3 class="success-title" id="success-title">Sei <em>dentro</em>.</h3>
+    <p class="success-body">
+      Il <strong>7 giugno</strong> ti scriviamo con i tuoi tre operatori pronti.<br>
+      Niente spam, una sola email.
+    </p>
+    <button class="btn-close" id="success-close">Chiudi</button>
+  </div>
+</div>
+
+<script>
+  /* ════════ Countdown to June 7, 2026 ════════ */
+  function updateCountdown() {
+    const target = new Date('2026-06-07T00:00:00');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      const cd = document.getElementById('countdown');
+      if (cd) cd.style.display = 'none';
+      return;
+    }
+    const days  = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs  = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ════════ Persist the lead to Supabase (fire-and-forget) ════════
+     Any network/DB failure is logged and swallowed so it never blocks the
+     success state. Upserts on email into early_access_leads via edge function. */
+  const LEAD_ENDPOINT = 'https://bqyqkvkzkemiwyqjkbna.supabase.co/functions/v1/save-early-access-lead';
+
+  function saveLead(email, source) {
+    if (!email) return;
+    try {
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source }),
+        keepalive: true, // complete the request even if the page navigates away
+      }).catch(err => console.warn('[Lead] save failed', err));
+    } catch (err) {
+      console.warn('[Lead] save threw', err);
+    }
+  }
+
+  /* ════════ Success overlay open / close + focus management ════════ */
+  const overlay = document.getElementById('success-overlay');
+  const overlayClose = document.getElementById('success-close');
+  let lastFocused = null;
+
+  function openSuccess() {
+    lastFocused = document.activeElement;
+    overlay.classList.add('active');
+    overlayClose.focus();
+  }
+  function closeSuccess() {
+    overlay.classList.remove('active');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+  overlayClose.addEventListener('click', closeSuccess);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSuccess(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) closeSuccess();
+  });
+
+  /* ════════ Form validation + submit ════════ */
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setError(wrapId, errId, msg) {
+    document.getElementById(wrapId).classList.add('error');
+    document.getElementById(errId).textContent = msg;
+  }
+  function clearError(wrapId, errId) {
+    document.getElementById(wrapId).classList.remove('error');
+    document.getElementById(errId).textContent = '';
+  }
+
+  function handleSubmit(emailId, wrapId, errId, source) {
+    const input = document.getElementById(emailId);
+    const email = input.value.trim();
+    if (!EMAIL_RE.test(email)) {
+      setError(wrapId, errId, 'Inserisci un indirizzo email valido.');
+      input.focus();
+      return;
+    }
+    clearError(wrapId, errId);
+    saveLead(email, source);
+    openSuccess();
+    input.value = '';
+  }
+
+  function wireForm(emailId, btnId, wrapId, errId, source) {
+    const input = document.getElementById(emailId);
+    document.getElementById(btnId).addEventListener('click', () => handleSubmit(emailId, wrapId, errId, source));
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSubmit(emailId, wrapId, errId, source); });
+    input.addEventListener('input', () => clearError(wrapId, errId));
+  }
+  wireForm('email-input',   'cta-btn',   'form-wrap-1', 'err-1', 'hero');
+  wireForm('email-input-2', 'cta-btn-2', 'form-wrap-2', 'err-2', 'final-cta');
+
+  /* ════════ Sticky mobile bar: scroll to final CTA + focus ════════ */
+  document.getElementById('stickyCta').addEventListener('click', () => {
+    document.getElementById('final-cta').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => document.getElementById('email-input-2').focus({ preventScroll: true }), 600);
+  });
+
+  /* ════════ Scroll reveal (IntersectionObserver) ════════ */
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+  // Fallback to guarantee visibility after 900ms (slow connections / no IO)
+  setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 900);
+
+  /* ════════ Sticky bar visibility (IO-driven, no scroll handler) ════════ */
+  const stickyBar = document.getElementById('stickyBar');
+  const heroEl = document.getElementById('top');
+  const finalEl = document.getElementById('final-cta');
+  let heroVisible = true, finalVisible = false;
+  const syncSticky = () => stickyBar.classList.toggle('visible', !heroVisible && !finalVisible);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((e) => { heroVisible = e[0].isIntersecting; syncSticky(); }, { threshold: 0 }).observe(heroEl);
+    new IntersectionObserver((e) => { finalVisible = e[0].isIntersecting; syncSticky(); }, { threshold: 0.2 }).observe(finalEl);
+  }
+</script>
+
+</body>
+</html>

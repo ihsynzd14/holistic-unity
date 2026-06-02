@@ -409,7 +409,17 @@ final class BookingFlowViewModel {
                 configuration: config
             )
         } catch {
-            errorMessage = String(localized: "Could not prepare payment: \(error.localizedDescription)", comment: "Stripe PaymentSheet preparation error")
+            let msg = error.localizedDescription
+            // Booking-overlap errors need special treatment: the slot is gone,
+            // so send the user back to date selection and show a clear message
+            // instead of the generic "Could not prepare payment" prefix.
+            if msg == StripeErrorMapper.bookingOverlap {
+                errorMessage = msg
+                selectedTimeSlot = nil
+                withAnimation(HUAnimation.standard) { currentStep = 1 }
+            } else {
+                errorMessage = String(localized: "Could not prepare payment: \(msg)", comment: "Stripe PaymentSheet preparation error")
+            }
             // No need to cancel pending booking — the edge function handles rollback server-side
         }
 

@@ -1,11 +1,17 @@
 import Foundation
+import os.log
 
 /// Non-sensitive local preferences stored in UserDefaults
 final class UserDefaultsManager {
     static let shared = UserDefaultsManager()
     
     private let defaults = UserDefaults.standard
-    
+
+    /// Logs Keychain write failures for active-session recovery so a broken
+    /// rejoin is diagnosable instead of failing silently. See F3 of the
+    /// static quality sweep audit (2026-05-30).
+    private let logger = Logger(subsystem: AppConstants.appBundleId, category: "SessionRecovery")
+
     private init() {}
     
     // MARK: - Keys
@@ -57,24 +63,36 @@ final class UserDefaultsManager {
     var activeSessionRoomName: String? {
         get { keychain.loadString(for: .activeSessionRoomName) }
         set {
-            if let newValue { try? keychain.save(newValue, for: .activeSessionRoomName) }
-            else { keychain.delete(key: .activeSessionRoomName) }
+            if let newValue {
+                do { try keychain.save(newValue, for: .activeSessionRoomName) }
+                catch { logger.error("Keychain save failed (roomName): \(error.localizedDescription)") }
+            } else {
+                keychain.delete(key: .activeSessionRoomName)
+            }
         }
     }
 
     var activeSessionParticipantName: String? {
         get { keychain.loadString(for: .activeSessionParticipantName) }
         set {
-            if let newValue { try? keychain.save(newValue, for: .activeSessionParticipantName) }
-            else { keychain.delete(key: .activeSessionParticipantName) }
+            if let newValue {
+                do { try keychain.save(newValue, for: .activeSessionParticipantName) }
+                catch { logger.error("Keychain save failed (participantName): \(error.localizedDescription)") }
+            } else {
+                keychain.delete(key: .activeSessionParticipantName)
+            }
         }
     }
 
     var activeSessionBookingId: String? {
         get { keychain.loadString(for: .activeSessionBookingId) }
         set {
-            if let newValue { try? keychain.save(newValue, for: .activeSessionBookingId) }
-            else { keychain.delete(key: .activeSessionBookingId) }
+            if let newValue {
+                do { try keychain.save(newValue, for: .activeSessionBookingId) }
+                catch { logger.error("Keychain save failed (bookingId): \(error.localizedDescription)") }
+            } else {
+                keychain.delete(key: .activeSessionBookingId)
+            }
         }
     }
 
@@ -85,8 +103,12 @@ final class UserDefaultsManager {
             return Date(timeIntervalSince1970: interval)
         }
         set {
-            if let newValue { try? keychain.save(String(newValue.timeIntervalSince1970), for: .activeSessionStartTime) }
-            else { keychain.delete(key: .activeSessionStartTime) }
+            if let newValue {
+                do { try keychain.save(String(newValue.timeIntervalSince1970), for: .activeSessionStartTime) }
+                catch { logger.error("Keychain save failed (startTime): \(error.localizedDescription)") }
+            } else {
+                keychain.delete(key: .activeSessionStartTime)
+            }
         }
     }
 

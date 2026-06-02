@@ -13,7 +13,15 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
     
     // MARK: - Profile CRUD
     
-    private static let profileColumns = "id,display_name,tagline,bio,photo_url,years_experience,categories,languages,video_intro_url,gallery_image_urls,availability,cancellation_policy,currency,city,country,latitude,longitude,average_rating,total_reviews,profile_completeness,is_verified,is_approved,approval_status,stripe_connected_account_id,stripe_account_status,created_at,updated_at"
+    private static let profileColumns = "id,display_name,tagline,bio,photo_url,years_experience,categories,languages,video_intro_url,gallery_image_urls,availability,cancellation_policy,currency,city,country,latitude,longitude,average_rating,total_reviews,profile_completeness,is_verified,is_approved,approval_status,stripe_connected_account_id,stripe_account_status,tier,created_at,updated_at"
+
+    // Select only the columns mapped by TherapistServiceDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let serviceColumns = "id,therapist_id,name,description,duration,price,category,is_intro_call,pack_size,pack_price"
+
+    // Select only the columns mapped by CertificateDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let certColumns = "id,therapist_id,name,issuing_organization,year_obtained,document_url,is_verified"
 
     func getProfile(therapistId: String) async throws -> TherapistProfile {
         // Fetch profile — select only DTO columns to avoid decoding failures from extra DB columns
@@ -29,7 +37,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         // Therapists can disable services without deleting them via dashboard toggle.
         let servicesDTO: [TherapistServiceDTO] = try await client
             .from(SupabaseConfig.Table.therapistServices)
-            .select()
+            .select(Self.serviceColumns)
             .eq("therapist_id", value: therapistId)
             .eq("is_active", value: true)
             .execute()
@@ -38,7 +46,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         // Fetch certifications
         let certsDTO: [CertificateDTO] = try await client
             .from(SupabaseConfig.Table.certifications)
-            .select()
+            .select(Self.certColumns)
             .eq("therapist_id", value: therapistId)
             .execute()
             .value
@@ -284,7 +292,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         
         let allServices: [TherapistServiceDTO] = therapistIds.isEmpty ? [] : try await client
             .from(SupabaseConfig.Table.therapistServices)
-            .select()
+            .select(Self.serviceColumns)
             .in("therapist_id", values: therapistIds)
             .eq("is_active", value: true)
             .execute()
@@ -292,7 +300,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         
         let allCerts: [CertificateDTO] = therapistIds.isEmpty ? [] : try await client
             .from(SupabaseConfig.Table.certifications)
-            .select()
+            .select(Self.certColumns)
             .in("therapist_id", values: therapistIds)
             .execute()
             .value
@@ -375,7 +383,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         
         let nearbyServices: [TherapistServiceDTO] = nearbyIds.isEmpty ? [] : try await client
             .from(SupabaseConfig.Table.therapistServices)
-            .select()
+            .select(Self.serviceColumns)
             .in("therapist_id", values: nearbyIds)
             .eq("is_active", value: true)
             .execute()
@@ -383,7 +391,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
         
         let nearbyCerts: [CertificateDTO] = nearbyIds.isEmpty ? [] : try await client
             .from(SupabaseConfig.Table.certifications)
-            .select()
+            .select(Self.certColumns)
             .in("therapist_id", values: nearbyIds)
             .execute()
             .value
@@ -525,6 +533,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
             approvalStatus: TherapistProfile.ApprovalStatus(rawValue: dto.approvalStatus) ?? .draft,
             stripeConnectedAccountId: dto.stripeConnectedAccountId,
             stripeAccountStatus: dto.stripeAccountStatus.flatMap { TherapistProfile.StripeAccountStatus(rawValue: $0) } ?? .notConnected,
+            tier: dto.tier.flatMap { TherapistTier(rawValue: $0) },
             createdAt: formatter.date(from: dto.createdAt) ?? Date(),
             updatedAt: formatter.date(from: dto.updatedAt) ?? Date()
         )
@@ -561,6 +570,7 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
             approvalStatus: profile.approvalStatus.rawValue,
             stripeConnectedAccountId: profile.stripeConnectedAccountId,
             stripeAccountStatus: profile.stripeAccountStatus.rawValue,
+            tier: profile.tier?.rawValue,
             createdAt: now,
             updatedAt: now
         )

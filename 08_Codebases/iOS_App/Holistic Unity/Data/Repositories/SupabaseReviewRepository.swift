@@ -1,5 +1,6 @@
 import Foundation
 import Supabase
+import os.log
 
 enum ReviewError: LocalizedError {
     case duplicateReview
@@ -15,9 +16,15 @@ enum ReviewError: LocalizedError {
 /// Supabase implementation of ReviewRepositoryProtocol.
 /// Handles review submission, retrieval, replies, and flagging.
 final class SupabaseReviewRepository: ReviewRepositoryProtocol, @unchecked Sendable {
-    
+
+    // Select only the columns mapped by ReviewDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let reviewColumns = "id,booking_id,client_id,therapist_id,client_name,client_photo_url,rating,text,therapist_reply,therapist_reply_date,is_flagged,created_at"
+
     private let client: SupabaseClient
-    
+
+    private let logger = Logger(subsystem: AppConstants.appBundleId, category: "ReviewRepository")
+
     init(client: SupabaseClient = SupabaseConfig.client) {
         self.client = client
     }
@@ -30,7 +37,7 @@ final class SupabaseReviewRepository: ReviewRepositoryProtocol, @unchecked Senda
         let to = from + pageSize - 1
         
         let baseQuery = client.from(SupabaseConfig.Table.reviews)
-            .select()
+            .select(Self.reviewColumns)
             .eq("therapist_id", value: therapistId)
             .eq("is_flagged", value: false)
         
@@ -95,7 +102,11 @@ final class SupabaseReviewRepository: ReviewRepositoryProtocol, @unchecked Senda
         
         // Rating stats are maintained by a database trigger. Keep a best-effort
         // RPC refresh for databases that have the function but not the trigger yet.
-        try? await refreshTherapistRatingStats(therapistId: review.therapistId)
+        do {
+            try await refreshTherapistRatingStats(therapistId: review.therapistId)
+        } catch {
+            logger.debug("Best-effort rating stats refresh failed: \(error.localizedDescription)")
+        }
     }
     
     func replyToReview(reviewId: String, reply: String) async throws {

@@ -25,7 +25,29 @@
       "Bash(ls -la ~/.supabase 2>&1 | head -10 && echo \"---\" && find ~/.supabase -maxdepth 3 -type f 2>&1 | head -10 && echo \"---\" && cat ~/AppData/Roaming/supabase/access-token 2>&1 | head -1 | sed 's/./*/g')",
       "Bash(find /c/Users/ihsynzd -name \"access-token\" 2>/dev/null | head -5)",
       "Bash(curl -s -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxeXFrdmt6a2VtaXd5cWprYm5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5ODU3NjksImV4cCI6MjA4ODU2MTc2OX0.q6c0KgCzoQFSXjsi26TCkjB-pLlxLcItXnQbRLubL7M' https://bqyqkvkzkemiwyqjkbna.supabase.co/rest/v1/therapist_profiles_public?limit=1)",
-      "Bash(ls -la ~/AppData/Roaming/supabase/ 2>&1 | head -10 && echo \"---\" && find /c/Users/ihsynzd/AppData -path \"*supabase*\" -type f 2>/dev/null | head -10 && echo \"---\" && find / -name \"access-token\" -type f 2>/dev/null | head -5)"
+      "Bash(ls -la ~/AppData/Roaming/supabase/ 2>&1 | head -10 && echo \"---\" && find /c/Users/ihsynzd/AppData -path \"*supabase*\" -type f 2>/dev/null | head -10 && echo \"---\" && find / -name \"access-token\" -type f 2>/dev/null | head -5)",
+      "Bash(xargs grep -l \"therapist\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ihsynzd\\\\Documents\\\\Dev\\\\Github\\\\holistic\\\\08_Codebases\" -Directory)",
+      "Bash(xargs grep -l \"enum.*Tier\\\\|TherapistTier\\\\|PRACTITIONER\")",
+      "Bash(xargs grep -l \"TherapistTier\\\\|therapistTier\")",
+      "PowerShell($apps = @\\('therapist-webapp','client-webapp','admin-dashboard'\\); $tiers = @\\('practitioner','trainer','supervisor'\\); foreach \\($a in $apps\\) { foreach \\($t in $tiers\\) { $p = \"$a\\\\public\\\\tier-$t.svg\"; $size = \\(Get-Item $p\\).Length; $hash = \\(Get-FileHash $p -Algorithm SHA256\\).Hash.Substring\\(0,12\\); \"{0,-40} {1,5} bytes  {2}\" -f $p, $size, $hash } })",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python -)",
+      "Bash(grep -vE \"http|#$|mailto|^href=\\\\\"#\")",
+      "Bash(grep -vE \"http|mailto|shared|\\\\.css|\\\\.js|#$\")",
+      "Bash(ls -la \"C:/Users/ihsynzd/Documents/Dev/Github/holistic\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ihsynzd\\\\Documents\\\\Dev\\\\Github\\\\holistic\\\\08_Codebases\\\\\" -Directory | Select-Object Name)",
+      "Bash(cd /c/Users/ihsynzd/Documents/Dev/Github/holistic/08_Codebases && ls -la)",
+      "Bash(ls src/lib)",
+      "Bash(ls -R src/lib/integrations)",
+      "Bash(ls src/app/api)",
+      "Bash(ls src/app/api/cron)",
+      "Bash(ls -R src/app/api/integrations)",
+      "Bash(ls -R src/app/api/cron)",
+      "Bash(ls -R src/app/api/billing)",
+      "Bash(grep -rl \"monthly-invoices\\\\|issued_documents\\\\|api-v2.fattureincloud\\\\|getFicClient\\\\|ficClient\" src)",
+      "Bash(ls \"src/app/dashboard/admin/integrations\")",
+      "Bash(cat vercel.json)"
     ]
   }
 }

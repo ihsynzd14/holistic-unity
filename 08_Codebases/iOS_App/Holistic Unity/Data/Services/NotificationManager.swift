@@ -10,6 +10,10 @@ import os.log
 final class NotificationManager {
     static let shared = NotificationManager()
 
+    // Select only the columns mapped by NotificationDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let notificationColumns = "id,user_id,type,title,body,booking_id,conversation_id,therapist_id,client_id,is_read,created_at"
+
     var notifications: [AppNotification] = []
     var unreadCount: Int { notifications.filter { !$0.isRead }.count }
     var isLoading = false
@@ -56,7 +60,7 @@ final class NotificationManager {
             guard let userId else { return }
             let dtos: [NotificationDTO] = try await SupabaseConfig.client
                 .from(SupabaseConfig.Table.notifications)
-                .select()
+                .select(Self.notificationColumns)
                 .eq("user_id", value: userId)
                 .order("created_at", ascending: false)
                 .limit(100)

@@ -131,6 +131,7 @@ struct TherapistProfileDTO: Codable, Sendable {
     var approvalStatus: String
     var stripeConnectedAccountId: String?
     var stripeAccountStatus: String?
+    var tier: String?
     var createdAt: String
     var updatedAt: String
     
@@ -155,6 +156,7 @@ struct TherapistProfileDTO: Codable, Sendable {
         case approvalStatus = "approval_status"
         case stripeConnectedAccountId = "stripe_connected_account_id"
         case stripeAccountStatus = "stripe_account_status"
+        case tier
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }

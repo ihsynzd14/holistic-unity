@@ -9,6 +9,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Spinner } from "@/components/ui/Spinner";
 import { LoadingContainer } from "@/components/ui/LoadingContainer";
+import { TierIcon, type TierKey } from "@/components/ui/TierIcon";
+import { TierLabel } from "@/components/ui/TierLabel";
 import {
   ArrowLeft,
   Star,
@@ -85,6 +87,7 @@ type Profile = {
   // `country` for display fee logic — the actual checkout uses
   // stripe_country admin-side, which is fine.
   accepts_bookings: boolean | null;
+  tier: TierKey | null;
 };
 
 /**
@@ -548,6 +551,12 @@ export default function TherapistDetailPage() {
                 </div>
               )}
             </div>
+            {/* Tier icon — overhangs the top-left corner, mirrors the verified pill */}
+            {profile.tier && (
+              <div className="absolute -left-2 -top-2 rounded-full bg-white p-1 shadow-md ring-1 ring-berry/5">
+                <TierIcon tier={profile.tier} size={56} />
+              </div>
+            )}
             {/* Verified pill — overhangs the top-right corner */}
             {profile.is_verified && (
               <div
@@ -583,6 +592,12 @@ export default function TherapistDetailPage() {
 
           {/* Content column */}
           <div className="min-w-0">
+            {/* Tier label — chevron pill above the name (Section A of the design system) */}
+            {profile.tier && (
+              <div className="mb-3">
+                <TierLabel tier={profile.tier} />
+              </div>
+            )}
             {/* Gold eyebrow — primary category or generic role */}
             <Eyebrow>{roleLabel}</Eyebrow>
             {/* Cormorant 48px display name */}

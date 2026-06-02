@@ -85,6 +85,17 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 }
 .nav-links a:hover { color: var(--berry); }
 .nav-links a:hover::after { width: 100%; }
+/* Pre-launch early-access highlight: berry text + softly pulsing gold dot */
+.nav-early { color: var(--berry) !important; font-weight: 600 !important; display: inline-flex; align-items: center; gap: 7px; }
+.nav-early::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(201,169,110,0.55); animation: navEarlyPulse 2.2s ease-out infinite;
+}
+@keyframes navEarlyPulse {
+  0% { box-shadow: 0 0 0 0 rgba(201,169,110,0.55); }
+  70% { box-shadow: 0 0 0 7px rgba(201,169,110,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+}
 /* ==================== NAV DROPDOWN ==================== */
 .nav-dropdown { position: relative; padding-bottom: 12px; margin-bottom: -12px; }
 .nav-dropdown > a { cursor: pointer; }
@@ -382,11 +393,17 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links { display: none; }
+  /* The navbar uses backdrop-filter, which makes it the containing block for
+     position:fixed descendants. So this panel is positioned relative to the
+     navbar (not the viewport): top:100% drops it just below the bar, and
+     max-height uses vh (viewport-relative) so it can't collapse to the bar's
+     own height. */
   .nav-links.open {
     display: flex; flex-direction: column; position: fixed;
-    top: 64px; left: 0; right: 0; bottom: 0; background: var(--cream);
+    top: 100%; left: 0; right: 0; background: var(--cream);
     padding: 16px 24px 24px; gap: 0; z-index: 999;
-    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    box-shadow: 0 16px 40px rgba(139,34,82,0.12);
   }
   .nav-links.open li { width: 100%; }
   .nav-links.open > li > a { display: block; padding: 14px 16px; font-size: 1.05rem; font-weight: 500; border-radius: 10px; }

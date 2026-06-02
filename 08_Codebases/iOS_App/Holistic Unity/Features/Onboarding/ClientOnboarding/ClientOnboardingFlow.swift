@@ -74,6 +74,7 @@ struct RecommendedTherapist: Identifiable, Equatable {
     let isVerified: Bool?
     let hasMFA: Bool?
     let categories: [String]?
+    let tier: TherapistTier?
 }
 
 // MARK: - View Model
@@ -269,7 +270,7 @@ final class ClientOnboardingViewModel {
         do {
             let therapistRows: [TherapistRow] = try await SupabaseConfig.client
                 .from("therapist_profiles_public")
-                .select("id,display_name,tagline,photo_url,city,average_rating,total_reviews,is_verified,has_mfa,categories")
+                .select("id,display_name,tagline,photo_url,city,average_rating,total_reviews,is_verified,has_mfa,categories,tier")
                 .overlaps("categories", value: therapistKeys)
                 .order("average_rating", ascending: false, nullsFirst: false)
                 .limit(3)
@@ -287,7 +288,8 @@ final class ClientOnboardingViewModel {
                     totalReviews: $0.total_reviews,
                     isVerified: $0.is_verified,
                     hasMFA: $0.has_mfa,
-                    categories: $0.categories
+                    categories: $0.categories,
+                    tier: $0.tier.flatMap { TherapistTier(rawValue: $0) }
                 )
             }
         } catch {
@@ -390,6 +392,7 @@ final class ClientOnboardingViewModel {
         let is_verified: Bool?
         let has_mfa: Bool?
         let categories: [String]?
+        let tier: String?
     }
 }
 
@@ -1587,28 +1590,37 @@ private struct RitualAndRevealView: View {
 
     private func therapistCard(_ t: RecommendedTherapist) -> some View {
         HStack(spacing: HUSpacing.md) {
-            ZStack {
-                Circle()
-                    .fill(HUColor.primaryLight)
-                    .frame(width: 48, height: 48)
-                if let urlStr = t.photoURL, let url = URL(string: urlStr) {
-                    AsyncImage(url: url) { image in
-                        image.resizable().scaledToFill()
-                    } placeholder: {
+            ZStack(alignment: .bottomTrailing) {
+                ZStack {
+                    Circle()
+                        .fill(HUColor.primaryLight)
+                        .frame(width: 48, height: 48)
+                    if let urlStr = t.photoURL, let url = URL(string: urlStr) {
+                        AsyncImage(url: url.supabaseThumbnail(size: 48)) { image in
+                            image.resizable().scaledToFill()
+                        } placeholder: {
+                            Text(String((t.displayName?.prefix(1) ?? "?")).uppercased())
+                                .font(HUFont.subheadline(weight: .semibold))
+                                .foregroundStyle(HUColor.primary)
+                        }
+                        .frame(width: 48, height: 48)
+                        .clipShape(Circle())
+                    } else {
                         Text(String((t.displayName?.prefix(1) ?? "?")).uppercased())
                             .font(HUFont.subheadline(weight: .semibold))
                             .foregroundStyle(HUColor.primary)
                     }
-                    .frame(width: 48, height: 48)
-                    .clipShape(Circle())
-                } else {
-                    Text(String((t.displayName?.prefix(1) ?? "?")).uppercased())
-                        .font(HUFont.subheadline(weight: .semibold))
-                        .foregroundStyle(HUColor.primary)
+                }
+                if let tier = t.tier {
+                    TierBadge(tier: tier, size: 22)
+                        .offset(x: 4, y: 4)
                 }
             }
 
             VStack(alignment: .leading, spacing: 2) {
+                if let tier = t.tier {
+                    TierPill(tier: tier, compact: true)
+                }
                 HStack(spacing: 4) {
                     Text(t.displayName ?? "—")
                         .font(HUFont.subheadline(weight: .semibold))

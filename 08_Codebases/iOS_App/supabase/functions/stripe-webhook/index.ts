@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { redactStripeId, redactUuid } from "../_shared/redact.ts";
+import { BREVO_TEMPLATES } from "../_shared/brevo.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 const STRIPE_WEBHOOK_SECRET = Deno.env.get("STRIPE_WEBHOOK_SECRET")!;
@@ -221,6 +222,59 @@ function encodeStripeParams(
     }
   }
   return parts.join("&");
+}
+
+// Fire a transactional email through the send-brevo-email Edge Function.
+// Non-blocking by design: a Brevo/SMTP hiccup must never make us return a
+// non-2xx to Stripe (which would trigger webhook retries + double-processing
+// of the payout). Pass EITHER user_id (recipient resolved from `users`) OR
+// a raw `email` (used for the admin alert).
+async function sendBrevoEmail(
+  supabaseUrl: string,
+  serviceKey: string,
+  payload: {
+    template_id: number;
+    user_id?: string;
+    email?: string;
+    params?: Record<string, unknown>;
+    tags?: string[];
+  }
+): Promise<void> {
+  try {
+    const res = await fetch(`${supabaseUrl}/functions/v1/send-brevo-email`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${serviceKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      console.error(
+        `send-brevo-email (template ${payload.template_id}) failed: ${res.status} ${text}`
+      );
+    }
+  } catch (err) {
+    console.warn(
+      "send-brevo-email call failed (non-blocking):",
+      err instanceof Error ? err.message : String(err)
+    );
+  }
+}
+
+// Format a Stripe minor-unit amount (cents) as a localized currency string.
+// Falls back to a plain "12.34 EUR" form if the currency code is unknown.
+function formatMoney(amountCents: number, currency: string): string {
+  const code = (currency || "eur").toUpperCase();
+  try {
+    return new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: code,
+    }).format((amountCents || 0) / 100);
+  } catch {
+    return `${((amountCents || 0) / 100).toFixed(2)} ${code}`;
+  }
 }
 
 // Verify Stripe webhook signature using Web Crypto API
@@ -682,6 +736,135 @@ serve(async (req) => {
           } else {
             console.log(`Connect account ${redactStripeId(account.id)} status updated to: ${status} (matched by account id)`);
           }
+        }
+        break;
+      }
+
+      // ─── Connect payout paid / failed ────────────────────────────────
+      // Destination-charge model: therapist funds live in their connected
+      // account, and Stripe pays them out on the connected account's
+      // schedule. `payout.paid` / `payout.failed` are Connect events —
+      // `event.account` is the connected account id. These are delivered
+      // ONLY to this Edge Function endpoint (enable "Listen to Connect
+      // events" on it in the Stripe Dashboard), so they never reach the
+      // Next.js webhook.
+      case "payout.paid":
+      case "payout.failed": {
+        const payout = event.data.object;
+        const connectedAccountId: string | null = event.account ?? null;
+
+        // Idempotency (payout path only). Stripe redelivers on transient
+        // failures / our 5xx; without dedup the therapist gets duplicate
+        // payout emails. Claim event.id in the shared stripe_webhook_events
+        // table (PRIMARY KEY → 23505 on the second insert). Plain event.id
+        // is safe here because Connect/payout events only ever hit this
+        // endpoint, so it can't collide with the Next.js webhook's claims.
+        {
+          const { error: claimErr } = await supabaseAdmin
+            .from("stripe_webhook_events")
+            .insert({ event_id: event.id, event_type: event.type });
+          if (claimErr) {
+            if (claimErr.code === "23505") {
+              console.log(
+                `Duplicate payout event ${event.id} (${event.type}) — already processed, skipping`
+              );
+              break;
+            }
+            // Any other error: log but still process — better a possible
+            // duplicate email than a silently dropped payout notification.
+            console.error("payout idempotency claim failed:", claimErr);
+          }
+        }
+
+        if (!connectedAccountId) {
+          // Payout on the platform's own balance, not a therapist. Nothing
+          // to notify.
+          console.log(
+            `Payout ${redactStripeId(payout.id)} has no connected account — skipping (platform payout)`
+          );
+          break;
+        }
+
+        // Resolve the therapist behind this connected account.
+        // therapist_profiles.id === users.id, so profile.id doubles as the
+        // user_id send-brevo-email needs.
+        const { data: profile } = await supabaseAdmin
+          .from("therapist_profiles")
+          .select("id, display_name")
+          .eq("stripe_connected_account_id", connectedAccountId)
+          .maybeSingle();
+
+        const amountStr = formatMoney(payout.amount ?? 0, payout.currency ?? "eur");
+        const TZ_ROME = "Europe/Rome";
+
+        if (event.type === "payout.paid") {
+          if (!profile?.id) {
+            console.warn(
+              `payout.paid: no therapist for connected account ${redactStripeId(connectedAccountId)} — skipping email`
+            );
+            break;
+          }
+          // `arrival_date` is a unix timestamp (seconds) in UTC; render the
+          // wall-clock in Europe/Rome to match the rest of the product.
+          const arrivalDate = payout.arrival_date
+            ? new Date(payout.arrival_date * 1000).toLocaleDateString("it-IT", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: TZ_ROME,
+              })
+            : "a breve";
+
+          await sendBrevoEmail(supabaseUrl, supabaseServiceKey, {
+            template_id: BREVO_TEMPLATES.PAYOUT_SENT,
+            user_id: profile.id,
+            params: { amount: amountStr, arrival_date: arrivalDate },
+            tags: ["payout", "payout_paid"],
+          });
+          console.log(
+            `payout.paid → therapist ${redactUuid(profile.id)} (${redactStripeId(connectedAccountId)}): ${amountStr}`
+          );
+        } else {
+          // payout.failed
+          const failureReason =
+            payout.failure_message ||
+            payout.failure_code ||
+            "Motivo non specificato";
+
+          // T14 → therapist (only if we can identify them).
+          if (profile?.id) {
+            await sendBrevoEmail(supabaseUrl, supabaseServiceKey, {
+              template_id: BREVO_TEMPLATES.PAYOUT_FAILED,
+              user_id: profile.id,
+              params: { amount: amountStr, failure_reason: failureReason },
+              tags: ["payout", "payout_failed"],
+            });
+          } else {
+            console.warn(
+              `payout.failed: no therapist for connected account ${redactStripeId(connectedAccountId)}`
+            );
+          }
+
+          // A4 → admin, always (the alert matters most when we can't even
+          // map the therapist). Configurable recipient, support@ fallback.
+          const adminEmail =
+            Deno.env.get("ADMIN_ALERT_EMAIL") || "support@holisticunity.app";
+          await sendBrevoEmail(supabaseUrl, supabaseServiceKey, {
+            template_id: BREVO_TEMPLATES.ADMIN_PAYOUT_FAILED,
+            email: adminEmail,
+            params: {
+              therapist_name: profile?.display_name || "(sconosciuto)",
+              connected_account: connectedAccountId,
+              amount: amountStr,
+              failure_reason: failureReason,
+              payout_id: payout.id,
+            },
+            tags: ["payout", "payout_failed", "admin"],
+          });
+          console.error(
+            `payout.failed for ${redactStripeId(connectedAccountId)}: ${failureReason}`
+          );
         }
         break;
       }

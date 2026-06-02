@@ -48,6 +48,7 @@ const SAFE_COLUMNS = [
   "cancellation_policy",
   "currency",
   "availability",
+  "tier",
 ] as const;
 
 export async function GET(

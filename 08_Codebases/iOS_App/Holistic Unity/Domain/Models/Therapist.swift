@@ -74,6 +74,14 @@ enum CancellationPolicy: String, Codable, CaseIterable {
     }
 }
 
+// MARK: - Therapist Tier
+
+enum TherapistTier: String, Codable, CaseIterable {
+    case practitioner
+    case trainer
+    case supervisor
+}
+
 // MARK: - Therapist Service
 
 struct TherapistService: Identifiable, Codable, Equatable {
@@ -126,6 +134,7 @@ struct TherapistProfile: Identifiable, Codable, Equatable, Hashable {
     var approvalStatus: ApprovalStatus
     var stripeConnectedAccountId: String?
     var stripeAccountStatus: StripeAccountStatus
+    var tier: TherapistTier?
     var createdAt: Date
     var updatedAt: Date
     

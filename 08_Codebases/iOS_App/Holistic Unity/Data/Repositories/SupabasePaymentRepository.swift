@@ -10,6 +10,10 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
     // when the DB table has extra columns not present in the DTO.
     private static let transactionColumns = "id,booking_id,client_id,therapist_id,amount,platform_fee,therapist_payout,currency,status,stripe_payment_intent_id,refund_amount,created_at,updated_at,payout_status,payout_after,total_charged,commission_base,iva_amount,iva_applied,service_fee,therapist_country"
 
+    // Select only the columns mapped by PaymentMethodDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let paymentMethodColumns = "id,user_id,stripe_payment_method_id,brand,last4,expiry_month,expiry_year,is_default,created_at"
+
     private let client: SupabaseClient
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "HolisticUnity", category: "Payment")
 
@@ -208,7 +212,7 @@ final class SupabasePaymentRepository: PaymentRepositoryProtocol, @unchecked Sen
     func getSavedPaymentMethods(clientId: String) async throws -> [SavedPaymentMethod] {
         let dtos: [PaymentMethodDTO] = try await client
             .from(SupabaseConfig.Table.paymentMethods)
-            .select()
+            .select(Self.paymentMethodColumns)
             .eq("user_id", value: clientId)
             .order("created_at", ascending: false)
             .execute()

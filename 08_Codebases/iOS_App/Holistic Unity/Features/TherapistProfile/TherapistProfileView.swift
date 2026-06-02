@@ -4,14 +4,25 @@ import StreamChatSwiftUI
 import WebKit
 import AVKit
 
+/// Drives the booking sheet via `.sheet(item:)`.
+/// Wrapping the optional service in an Identifiable container ensures
+/// SwiftUI always rebuilds `BookingFlowView` with the current service
+/// at first presentation — avoiding the race where `State(initialValue:)`
+/// captures a stale `nil` when the sheet is opened with a preselected service.
+struct BookingContext: Identifiable {
+    let id = UUID()
+    let service: TherapistService?
+}
+
 struct TherapistProfileView: View {
     let therapist: TherapistProfile
     var isPreview: Bool = false
     @Environment(AuthManager.self) private var authManager
-    @State private var showBookingFlow = false
-    // Set when the user taps "Book" on a specific service card; the booking
-    // flow then skips the "Choose a Service" step and lands on date & time.
-    @State private var preselectedBookingService: TherapistService?
+    // Drives the booking sheet via .sheet(item:) so the view is always
+    // built with the correct preselected service on first presentation,
+    // avoiding the .sheet(isPresented:) + State(initialValue:) timing race
+    // where SwiftUI captures the stale (nil) preselectedService on first build.
+    @State private var bookingContext: BookingContext?
     @State private var shortsPlayerURL: URL? = nil
     /// Direct video URL (mp4/mov) to play in a full-screen AVKit
     /// sheet. Replaces the previously dead "generic play button"
@@ -24,6 +35,9 @@ struct TherapistProfileView: View {
     @State private var chatError: String?
     @State private var selectedReviewSort: ReviewSortOption = .mostRecent
     @State private var reviews: [Review] = []
+    /// True when the reviews load fails, so the section shows a retry affordance
+    /// instead of a false "No reviews yet" empty state (F1, 2026-05-30).
+    @State private var reviewsLoadError = false
     @State private var isFavorited = false
     @State private var showReportSheet = false
     @State private var reportSubmitted = false
@@ -152,8 +166,8 @@ struct TherapistProfileView: View {
                 }
             }
         }
-        .sheet(isPresented: $showBookingFlow, onDismiss: { preselectedBookingService = nil }) {
-            BookingFlowView(therapist: therapist, preselectedService: preselectedBookingService)
+        .sheet(item: $bookingContext) { ctx in
+            BookingFlowView(therapist: therapist, preselectedService: ctx.service)
         }
         .sheet(isPresented: Binding(
             get: { shortsPlayerURL != nil },
@@ -249,11 +263,16 @@ struct TherapistProfileView: View {
     }
 
     private func loadReviews() async {
-        reviews = (try? await DIContainer.shared.reviewRepository.getReviews(
-            therapistId: therapist.id,
-            sortBy: selectedReviewSort,
-            page: 0
-        )) ?? []
+        do {
+            reviews = try await DIContainer.shared.reviewRepository.getReviews(
+                therapistId: therapist.id,
+                sortBy: selectedReviewSort,
+                page: 0
+            )
+            reviewsLoadError = false
+        } catch {
+            reviewsLoadError = true
+        }
     }
     
     // MARK: - Hero
@@ -299,7 +318,7 @@ struct TherapistProfileView: View {
                 ZStack(alignment: .bottomTrailing) {
                     Group {
                         if let photoURL = therapist.photoURL {
-                            AsyncImage(url: photoURL) { phase in
+                            AsyncImage(url: photoURL.supabaseThumbnail(size: 140)) { phase in
                                 switch phase {
                                 case .success(let image):
                                     image.resizable().scaledToFill()
@@ -338,11 +357,21 @@ struct TherapistProfileView: View {
                         .offset(x: -4, y: -4)
                     }
                 }
+                .overlay(alignment: .topLeading) {
+                    if let tier = therapist.tier {
+                        TierBadge(tier: tier, size: 56)
+                            .offset(x: -8, y: -8)
+                    }
+                }
                 .offset(y: -56)
                 .padding(.bottom, -56)
 
                 // Serif name (Fraunces) + role caption + meta.
                 VStack(spacing: 8) {
+                    if let tier = therapist.tier {
+                        TierPill(tier: tier)
+                    }
+
                     Text(therapist.displayName)
                         .font(HUFont.displayHeadline(size: 26, weight: .semiBold))
                         .foregroundStyle(HUColor.textPrimary)
@@ -449,7 +478,7 @@ struct TherapistProfileView: View {
         HStack(spacing: 10) {
             Button {
                 HUHaptic.impact(.light)
-                showBookingFlow = true
+                bookingContext = BookingContext(service: nil)
             } label: {
                 HStack(spacing: 8) {
                     Image(systemName: "calendar.badge.plus")
@@ -637,8 +666,10 @@ struct TherapistProfileView: View {
                             Button {
                                 // Pre-select this specific service so the flow
                                 // skips the redundant "Choose a Service" step.
-                                preselectedBookingService = service
-                                showBookingFlow = true
+                                // BookingContext is Identifiable, so .sheet(item:)
+                                // always builds BookingFlowView with the correct
+                                // service on first presentation.
+                                bookingContext = BookingContext(service: service)
                             } label: {
                                 Text(service.isIntroCall ? "Schedule" : "Book")
                                     .font(.system(size: 11, weight: .semibold))
@@ -758,7 +789,7 @@ struct TherapistProfileView: View {
         } label: {
             ZStack {
                 if let thumb {
-                    AsyncImage(url: thumb) { phase in
+                    AsyncImage(url: thumb.supabaseThumbnail(size: 400)) { phase in
                         switch phase {
                         case .success(let image):
                             image.resizable().scaledToFill()
@@ -922,7 +953,7 @@ struct TherapistProfileView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(therapist.galleryImageURLs, id: \.absoluteString) { url in
-                        AsyncImage(url: url) { phase in
+                        AsyncImage(url: url.supabaseThumbnail(size: 160)) { phase in
                             switch phase {
                             case .success(let image):
                                 image
@@ -999,7 +1030,7 @@ struct TherapistProfileView: View {
 
             if !isPreview {
                 Button {
-                    showBookingFlow = true
+                    bookingContext = BookingContext(service: nil)
                 } label: {
                     Text("See Full Calendar")
                         .font(.system(size: 13, weight: .medium))
@@ -1043,7 +1074,24 @@ struct TherapistProfileView: View {
                 ReviewCard(review: review)
             }
             
-            if reviews.isEmpty {
+            if reviewsLoadError && reviews.isEmpty {
+                VStack(spacing: HUSpacing.sm) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 32))
+                        .foregroundStyle(HUColor.textTertiary)
+                    Text("Couldn't load reviews")
+                        .font(HUFont.subheadline())
+                        .foregroundStyle(HUColor.textSecondary)
+                    Button("Retry") {
+                        HUHaptic.impact(.light)
+                        Task { await loadReviews() }
+                    }
+                    .font(HUFont.caption(weight: .semibold))
+                    .foregroundStyle(HUColor.primary)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, HUSpacing.xl)
+            } else if reviews.isEmpty {
                 VStack(spacing: HUSpacing.sm) {
                     Image(systemName: "star.bubble")
                         .font(.system(size: 32))

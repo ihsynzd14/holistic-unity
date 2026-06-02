@@ -56,13 +56,27 @@ private struct YouTubeShortsWebView: UIViewRepresentable {
         // `loadHTMLString` in favour of direct `load(URLRequest:)`,
         // which entirely removes the string-concatenation surface.
         let rawID = url.lastPathComponent
-        guard isValidYouTubeID(rawID),
-              let embedURL = URL(string: "https://www.youtube-nocookie.com/embed/\(rawID)?autoplay=1&playsinline=1&rel=0&modestbranding=1")
-        else {
+        guard isValidYouTubeID(rawID) else {
             webView.loadHTMLString("<html><body style='background:#000;color:#fff;font:14px sans-serif;display:flex;align-items:center;justify-content:center;height:100%'>Video non disponibile</body></html>", baseURL: nil)
             return
         }
-        webView.load(URLRequest(url: embedURL))
+        // SECURITY / PLAYBACK (2026-06-02, F7): A direct URLRequest to the
+        // /embed/ URL gives the YouTube IFrame player no valid parent origin,
+        // triggering embed-restriction error 150/153. Fix: render the
+        // already-validated ID inside a minimal iframe document and supply
+        // https://www.youtube.com as the baseURL. The ID has passed the
+        // strict 11-char [A-Za-z0-9_-] gate above, so interpolating it into
+        // the src attribute is injection-safe — this does NOT reintroduce F3.
+        let html = """
+        <!doctype html><html><head>\
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>\
+        <style>html,body{margin:0;background:#000;height:100%}iframe{border:0;width:100%;height:100%}</style>\
+        </head><body>\
+        <iframe src='https://www.youtube-nocookie.com/embed/\(rawID)?autoplay=1&playsinline=1&rel=0&modestbranding=1'\
+                allow='autoplay; encrypted-media; picture-in-picture' allowfullscreen></iframe>\
+        </body></html>
+        """
+        webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
     }
 
     /// Validates a YouTube video ID. YouTube IDs are always exactly
@@ -94,6 +108,30 @@ struct VideoThumbnailPreview: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        webView.load(URLRequest(url: embedURL))
+        // SECURITY / PLAYBACK (2026-06-02, F7): YouTube embeds loaded via a
+        // direct URLRequest have no valid parent origin, triggering error 153.
+        // For YouTube hosts only, render the validated ID inside an iframe
+        // document with baseURL = https://www.youtube.com so the player
+        // receives a legitimate origin. The ID has already been validated by
+        // TherapistProfileView.videoEmbedURL (isValidYouTubeID gate) before
+        // reaching this view, so interpolation is injection-safe.
+        // Vimeo embeds are NOT affected — they work fine with a direct load
+        // and must stay on that path to avoid regression.
+        let host = embedURL.host ?? ""
+        if host.contains("youtube.com") || host.contains("youtube-nocookie.com") {
+            let html = """
+            <!doctype html><html><head>\
+            <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>\
+            <style>html,body{margin:0;background:#000;height:100%}iframe{border:0;width:100%;height:100%}</style>\
+            </head><body>\
+            <iframe src='\(embedURL.absoluteString)'\
+                    allow='autoplay; encrypted-media; picture-in-picture' allowfullscreen></iframe>\
+            </body></html>
+            """
+            webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
+        } else {
+            // Vimeo and any other host: direct load (unchanged from original).
+            webView.load(URLRequest(url: embedURL))
+        }
     }
 }

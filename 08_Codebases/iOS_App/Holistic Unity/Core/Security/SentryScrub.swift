@@ -69,7 +69,7 @@ enum SentryScrub {
         // Event message — `formatted` is the rendered string Sentry
         // displays as the issue title.
         if let formatted = event.message?.formatted {
-            event.message?.formatted = redact(formatted)
+            event.message = SentryMessage(formatted: redact(formatted))
         }
 
         // Exception values — the actual thrown-error strings.

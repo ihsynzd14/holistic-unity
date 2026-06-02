@@ -351,6 +351,65 @@ ${detailsCard([
 <p style="margin:18px 0 0 0;font-size:13px;color:${BRAND.muted};">Il rimborso sarà accreditato sul metodo di pagamento originale entro 5-10 giorni lavorativi.</p>`;
 }
 
+// T13 — Payout sent (Stripe payout.paid → therapist). Confirms the
+// compenso is on its way to the therapist's bank/IBAN.
+function bodyPayoutSent() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.charcoal};">Il tuo compenso è in arrivo</h2>
+<p style="margin:0 0 8px 0;">Ciao {{ params.name }}, buone notizie: abbiamo inviato il tuo compenso e verrà accreditato sul conto collegato al tuo account.</p>
+
+${detailsCard([
+  ["Importo", "{{ params.amount }}"],
+  ["Accredito previsto", "{{ params.arrival_date }}"],
+])}
+
+<div style="text-align:center;margin:24px 0 8px 0;">
+  ${ctaButton({ url: "https://therapistportal.holisticunity.app/dashboard/earnings", label: "Vedi i tuoi guadagni", color: BRAND.success })}
+</div>
+<p style="margin:18px 0 0 0;font-size:12px;color:${BRAND.muted};text-align:center;">I tempi di accredito dipendono dalla tua banca, di norma 1-2 giorni lavorativi.</p>`;
+}
+
+// T14 — Payout failed (Stripe payout.failed → therapist). Alerts the
+// therapist + tells them how to fix it (usually wrong/outdated IBAN).
+function bodyPayoutFailed() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.charcoal};">Problema con il tuo pagamento</h2>
+<p style="margin:0 0 8px 0;">Ciao {{ params.name }}, non siamo riusciti ad accreditare il tuo compenso. I fondi sono al sicuro: riproveremo l'accredito non appena il problema sarà risolto.</p>
+
+${detailsCard([
+  ["Importo", "{{ params.amount }}"],
+  ["Motivo", "{{ params.failure_reason }}"],
+])}
+
+<p style="margin:18px 0 16px 0;">Nella maggior parte dei casi è sufficiente verificare e aggiornare i dati bancari (IBAN) nel tuo profilo:</p>
+<div style="text-align:center;margin:0 0 8px 0;">
+  ${ctaButton({ url: "https://therapistportal.holisticunity.app/dashboard/settings", label: "Aggiorna i dati bancari" })}
+</div>
+<p style="margin:18px 0 0 0;font-size:12px;color:${BRAND.muted};text-align:center;">Se i dati sono già corretti, scrivici a support@holisticunity.app e lo risolviamo insieme.</p>`;
+}
+
+// A4 — Admin alert on ANY failed therapist payout. Internal email to
+// the platform admin (Marcello) with the details needed to act in the
+// Stripe Connect dashboard.
+function bodyAdminPayoutFailed() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.errorDark};">Payout terapista fallito</h2>
+<p style="margin:0 0 8px 0;">Un accredito verso un terapista non è andato a buon fine e richiede attenzione.</p>
+
+${detailsCard([
+  ["Terapista", "{{ params.therapist_name }}"],
+  ["Account Stripe", "{{ params.connected_account }}"],
+  ["Importo", "{{ params.amount }}"],
+  ["Motivo", "{{ params.failure_reason }}"],
+  ["Payout ID", "{{ params.payout_id }}"],
+])}
+
+<p style="margin:18px 0 16px 0;">Apri la dashboard Stripe Connect per verificare lo stato dell'account e le eventuali azioni correttive.</p>
+<div style="text-align:center;margin:0 0 8px 0;">
+  ${ctaButton({ url: "https://dashboard.stripe.com/connect/accounts/overview", label: "Apri Stripe Dashboard", color: BRAND.errorDark })}
+</div>`;
+}
+
 // ─── Templates to update ─────────────────────────────────────────
 const TEMPLATES = [
   { id: 1, preheader: "Benvenuto/a in Holistic Unity", heroLabel: "Benvenuto/a", body: bodyWelcomeClient },
@@ -364,6 +423,9 @@ const TEMPLATES = [
   { id: 9, preheader: "Prenotazione annullata", heroLabel: "Prenotazione annullata", body: bodyCancellationConfirmation },
   { id: 10, preheader: "Rimborso elaborato", heroLabel: "Rimborso confermato", body: bodyRefundConfirmation },
   { id: 11, preheader: "La tua sessione sta per iniziare", heroLabel: "1 ora alla sessione", body: bodySessionReminder1h },
+  { id: 12, preheader: "Il tuo compenso è in arrivo", heroLabel: "Pagamento inviato", body: bodyPayoutSent },
+  { id: 13, preheader: "Problema con il tuo pagamento", heroLabel: "Pagamento non riuscito", body: bodyPayoutFailed },
+  { id: 14, preheader: "Payout terapista fallito — azione richiesta", heroLabel: "Avviso amministratore", body: bodyAdminPayoutFailed },
 ];
 
 // ─── Push ────────────────────────────────────────────────────────

@@ -74,6 +74,9 @@ enum StripeErrorMapper {
             if allText.contains("try_again_later") || allText.contains("try again later") {
                 return Self.tryAgainLater
             }
+            if allText.contains("booking_overlap") || allText.contains("overlaps with an existing booking") {
+                return Self.bookingOverlap
+            }
             // Catch-all decline — checked last so the more specific
             // matches above win when both apply (e.g. an
             // `insufficient_funds` error also contains "declined").
@@ -117,6 +120,8 @@ enum StripeErrorMapper {
             return Self.processingError
         case "try_again_later":
             return Self.tryAgainLater
+        case "booking_overlap":
+            return Self.bookingOverlap
         default:
             return nil
         }
@@ -177,6 +182,13 @@ enum StripeErrorMapper {
         String(
             localized: "Temporary issue with the payment service. Please try again in a few minutes.",
             comment: "Stripe try_again_later / temporary issue"
+        )
+    }
+
+    static var bookingOverlap: String {
+        String(
+            localized: "This time slot was just taken by another booking. Please go back and choose a different time.",
+            comment: "Edge function booking_overlap — therapist already has a booking at the selected time"
         )
     }
 }

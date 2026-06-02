@@ -17,6 +17,10 @@ enum SessionCreditError: LocalizedError {
 
 final class SupabaseSessionCreditRepository: SessionCreditRepositoryProtocol, @unchecked Sendable {
 
+    // Select only the columns mapped by SessionCreditDTO to avoid decoding failures
+    // when the DB table has extra columns not present in the DTO.
+    private static let sessionCreditColumns = "id,client_id,therapist_id,service_id,pack_booking_id,sessions_total,sessions_remaining,created_at,updated_at"
+
     private let client: SupabaseClient
 
     init(client: SupabaseClient = SupabaseConfig.client) {
@@ -28,7 +32,7 @@ final class SupabaseSessionCreditRepository: SessionCreditRepositoryProtocol, @u
     func getActiveCredits(clientId: String, therapistId: String) async throws -> [SessionCredit] {
         let dtos: [SessionCreditDTO] = try await client
             .from(SupabaseConfig.Table.sessionCredits)
-            .select()
+            .select(Self.sessionCreditColumns)
             .eq("client_id", value: clientId)
             .eq("therapist_id", value: therapistId)
             .gt("sessions_remaining", value: 0)
@@ -42,7 +46,7 @@ final class SupabaseSessionCreditRepository: SessionCreditRepositoryProtocol, @u
     func getCredits(clientId: String) async throws -> [SessionCredit] {
         let dtos: [SessionCreditDTO] = try await client
             .from(SupabaseConfig.Table.sessionCredits)
-            .select()
+            .select(Self.sessionCreditColumns)
             .eq("client_id", value: clientId)
             .order("created_at", ascending: false)
             .execute()
@@ -69,7 +73,7 @@ final class SupabaseSessionCreditRepository: SessionCreditRepositoryProtocol, @u
         // The DB RPC should also enforce this, but we catch it early for better UX.
         let checkDtos: [SessionCreditDTO] = try await client
             .from(SupabaseConfig.Table.sessionCredits)
-            .select()
+            .select(Self.sessionCreditColumns)
             .eq("id", value: creditId)
             .limit(1)
             .execute()
@@ -96,7 +100,7 @@ final class SupabaseSessionCreditRepository: SessionCreditRepositoryProtocol, @u
     func getCredit(byPackBookingId packBookingId: String) async throws -> SessionCredit? {
         let dtos: [SessionCreditDTO] = try await client
             .from(SupabaseConfig.Table.sessionCredits)
-            .select()
+            .select(Self.sessionCreditColumns)
             .eq("pack_booking_id", value: packBookingId)
             .limit(1)
             .execute()

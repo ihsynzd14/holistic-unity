@@ -8,6 +8,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { Search, Star, MapPin, ShieldCheck, Globe, Sparkles } from "lucide-react";
 import { Spinner } from "@/components/ui/Spinner";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
+import { TierIcon, type TierKey } from "@/components/ui/TierIcon";
+import { TierLabel } from "@/components/ui/TierLabel";
 
 type Therapist = {
   id: string;
@@ -24,6 +26,7 @@ type Therapist = {
   is_verified: boolean | null;
   has_mfa: boolean | null;
   has_free_intro: boolean;
+  tier: TierKey | null;
   created_at?: string | null;
 };
 
@@ -64,9 +67,29 @@ export default function BrowseTherapistsPage() {
         for (const s of introServices ?? []) introSet.add(s.therapist_id as string);
       }
 
+      // Tier lives on `therapist_profiles` directly — the public view
+      // doesn't expose it (yet), so we sidecar-fetch it via a small
+      // server route that reads with service-role for the same IDs the
+      // view already approved as visible.
+      const tierMap: Record<string, TierKey> = {};
+      if (ids.length > 0) {
+        try {
+          const res = await fetch(
+            `/api/therapists/tiers?ids=${encodeURIComponent(ids.join(","))}`,
+          );
+          if (res.ok) {
+            const json = (await res.json()) as { tiers?: Record<string, TierKey> };
+            Object.assign(tierMap, json.tiers ?? {});
+          }
+        } catch {
+          // Tier enrichment is best-effort — list still renders without it.
+        }
+      }
+
       const enriched: Therapist[] = (data ?? []).map((t) => ({
-        ...(t as Omit<Therapist, "has_free_intro">),
+        ...(t as Omit<Therapist, "has_free_intro" | "tier">),
         has_free_intro: introSet.has(t.id as string),
+        tier: tierMap[t.id as string] ?? null,
       }));
 
       // Sort algorithm — replaces the previous `ORDER BY average_rating
@@ -220,18 +243,26 @@ export default function BrowseTherapistsPage() {
             >
               {/* Avatar + name */}
               <div className="flex items-start gap-3">
-                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-lg font-bold text-berry-dark">
-                  {th.photo_url ? (
-                    <Image
-                      src={th.photo_url}
-                      alt={th.display_name ?? ""}
-                      width={56}
-                      height={56}
-                      unoptimized
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    initials(th.display_name)
+                <div className="relative flex-shrink-0">
+                  <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-lg font-bold text-berry-dark">
+                    {th.photo_url ? (
+                      <Image
+                        src={th.photo_url}
+                        alt={th.display_name ?? ""}
+                        width={56}
+                        height={56}
+                        unoptimized
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      initials(th.display_name)
+                    )}
+                  </div>
+                  {/* Tier icon badge — bottom-right corner of avatar */}
+                  {th.tier && (
+                    <div className="absolute -bottom-1 -right-1 rounded-full bg-white p-0.5 shadow-sm ring-1 ring-berry/5">
+                      <TierIcon tier={th.tier} size={22} />
+                    </div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -247,6 +278,11 @@ export default function BrowseTherapistsPage() {
                       />
                     )}
                   </div>
+                  {th.tier && (
+                    <div className="mt-1">
+                      <TierLabel tier={th.tier} compact />
+                    </div>
+                  )}
                   {th.tagline && (
                     <p className="mt-0.5 text-xs text-charcoal-muted line-clamp-2">{th.tagline}</p>
                   )}

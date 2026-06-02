@@ -51,3 +51,6 @@ verify_jwt = false  # DB webhook → service-role key (timing-safe compared in i
 
 [functions.process-pending-payouts]
 verify_jwt = false  # pg_cron → service-role key (timing-safe compared in index.ts:24-40)
+
+[functions.save-early-access-lead]
+verify_jwt = false  # Public lead capture for the /early landing page — cold ad traffic has no session. Write-only, rate-limited by email + IP.
