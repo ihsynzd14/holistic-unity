@@ -149,7 +149,18 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
     
     func sendPasswordReset(email: String) async throws {
         do {
-            try await client.auth.resetPasswordForEmail(email)
+            // F5 fix: route the recovery link through the web /auth/confirm
+            // (token_hash / verifyOtp flow). Without a redirectTo the link fell
+            // back to the project Site URL and never reached a reset screen; and
+            // the old PKCE code flow couldn't complete because the verifier
+            // lives in this app, not the browser that opens the email. The web
+            // /auth/confirm verifies the token_hash (no verifier needed) and
+            // forwards the user to /reset-password. This URL must be in the
+            // Supabase Auth "Redirect URLs" allowlist (same entry as web client).
+            try await client.auth.resetPasswordForEmail(
+                email,
+                redirectTo: URL(string: "https://app.holisticunity.app/auth/confirm?next=/reset-password")
+            )
         } catch {
             throw mapSupabaseError(error)
         }

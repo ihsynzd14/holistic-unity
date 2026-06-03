@@ -95,43 +95,150 @@ private struct YouTubeShortsWebView: UIViewRepresentable {
 
 // MARK: - Video Thumbnail Preview (WebView embed)
 
-struct VideoThumbnailPreview: UIViewRepresentable {
+/// Inline video embed shown on the therapist profile.
+///
+/// F7·b (2026-06-03): YouTube error 150/153 means the video owner disabled
+/// embedding — unfixable app-side for that video. For YouTube we now drive the
+/// **IFrame Player API** so we can observe `onError` and replace the dead
+/// player with a "Guarda su YouTube" fallback that opens the original URL
+/// externally. The API also receives a valid `origin` (playerVars) and the
+/// WebView a Safari user-agent — the two things the bare-iframe path lacked.
+/// Vimeo / direct embeds keep the simple `URLRequest` load (they work today).
+struct VideoThumbnailPreview: View {
     let embedURL: URL
+    /// Original watch URL — opened in the YouTube app / Safari when the embed
+    /// is blocked.
+    let originalURL: URL
+    @State private var embedFailed = false
+    @Environment(\.openURL) private var openURL
+
+    var body: some View {
+        ZStack {
+            WebEmbedView(embedURL: embedURL, onError: { embedFailed = true })
+            if embedFailed {
+                VStack(spacing: HUSpacing.sm) {
+                    Image(systemName: "play.slash.fill")
+                        .font(.system(size: 28))
+                        .foregroundStyle(.white.opacity(0.9))
+                    Text("Questo video non può essere riprodotto qui")
+                        .font(HUFont.caption())
+                        .foregroundStyle(.white.opacity(0.9))
+                        .multilineTextAlignment(.center)
+                    Button {
+                        openURL(originalURL)
+                    } label: {
+                        Label("Guarda su YouTube", systemImage: "arrow.up.right.square")
+                            .font(HUFont.subheadline(weight: .semibold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, HUSpacing.lg)
+                            .padding(.vertical, HUSpacing.sm)
+                            .background(Capsule().fill(.red))
+                    }
+                }
+                .padding(HUSpacing.lg)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black)
+            }
+        }
+    }
+}
+
+private struct WebEmbedView: UIViewRepresentable {
+    let embedURL: URL
+    let onError: () -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(onError: onError) }
 
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
+        let controller = WKUserContentController()
+        controller.add(context.coordinator, name: "ytError")
+        config.userContentController = controller
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.scrollView.isScrollEnabled = false
         webView.backgroundColor = .clear
+        webView.isOpaque = false
+        // (a) Match YouTubeShortsWebView's Safari user-agent. The default
+        // WKWebView UA makes YouTube refuse some embeds; this inline preview
+        // was the only YouTube path missing it.
+        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        // SECURITY / PLAYBACK (2026-06-02, F7): YouTube embeds loaded via a
-        // direct URLRequest have no valid parent origin, triggering error 153.
-        // For YouTube hosts only, render the validated ID inside an iframe
-        // document with baseURL = https://www.youtube.com so the player
-        // receives a legitimate origin. The ID has already been validated by
-        // TherapistProfileView.videoEmbedURL (isValidYouTubeID gate) before
-        // reaching this view, so interpolation is injection-safe.
-        // Vimeo embeds are NOT affected — they work fine with a direct load
-        // and must stay on that path to avoid regression.
+        // Load once per URL — updateUIView runs on every parent state change
+        // (e.g. when embedFailed flips), and reloading would restart playback.
+        guard context.coordinator.loadedURL != embedURL else { return }
+        context.coordinator.loadedURL = embedURL
+
         let host = embedURL.host ?? ""
-        if host.contains("youtube.com") || host.contains("youtube-nocookie.com") {
-            let html = """
-            <!doctype html><html><head>\
-            <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>\
-            <style>html,body{margin:0;background:#000;height:100%}iframe{border:0;width:100%;height:100%}</style>\
-            </head><body>\
-            <iframe src='\(embedURL.absoluteString)'\
-                    allow='autoplay; encrypted-media; picture-in-picture' allowfullscreen></iframe>\
-            </body></html>
-            """
-            webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
-        } else {
-            // Vimeo and any other host: direct load (unchanged from original).
+        let isYouTube = host.contains("youtube.com") || host.contains("youtube-nocookie.com")
+        guard isYouTube else {
+            // Vimeo / other: direct load (unchanged — works today).
             webView.load(URLRequest(url: embedURL))
+            return
+        }
+
+        // YouTube via IFrame Player API. The ID was validated upstream
+        // (videoEmbedURL → isValidYouTubeID); re-validate before injecting into
+        // a <script> context to keep it injection-safe.
+        let videoId = embedURL.lastPathComponent
+        guard isValidYouTubeID(videoId) else {
+            DispatchQueue.main.async { self.onError() }
+            return
+        }
+        // (b) origin is supplied via playerVars so the player has a legitimate
+        // parent origin (matches baseURL below).
+        let html = """
+        <!doctype html><html><head>\
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>\
+        <style>html,body{margin:0;background:#000;height:100%}#player{width:100%;height:100%}</style>\
+        </head><body>\
+        <div id='player'></div>\
+        <script src='https://www.youtube.com/iframe_api'></script>\
+        <script>\
+        var player;\
+        function onYouTubeIframeAPIReady(){\
+          player=new YT.Player('player',{\
+            videoId:'\(videoId)',\
+            playerVars:{playsinline:1,rel:0,modestbranding:1,origin:'https://www.youtube.com'},\
+            events:{onError:function(e){\
+              if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.ytError){\
+                window.webkit.messageHandlers.ytError.postMessage(String(e.data));\
+              }\
+            }}\
+          });\
+        }\
+        </script>\
+        </body></html>
+        """
+        webView.loadHTMLString(html, baseURL: URL(string: "https://www.youtube.com"))
+    }
+
+    static func dismantleUIView(_ webView: WKWebView, coordinator: Coordinator) {
+        // Break the WKUserContentController → handler strong reference so the
+        // coordinator (and webView) can deallocate.
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "ytError")
+        webView.stopLoading()
+    }
+
+    /// YouTube IDs are exactly 11 chars from `[A-Za-z0-9_-]`.
+    private func isValidYouTubeID(_ id: String) -> Bool {
+        guard id.count == 11 else { return false }
+        return id.unicodeScalars.allSatisfy {
+            ($0 >= "A" && $0 <= "Z") || ($0 >= "a" && $0 <= "z") ||
+            ($0 >= "0" && $0 <= "9") || $0 == "_" || $0 == "-"
+        }
+    }
+
+    final class Coordinator: NSObject, WKScriptMessageHandler {
+        let onError: () -> Void
+        var loadedURL: URL?
+        init(onError: @escaping () -> Void) { self.onError = onError }
+        func userContentController(_ controller: WKUserContentController, didReceive message: WKScriptMessage) {
+            guard message.name == "ytError" else { return }
+            Task { @MainActor in self.onError() }
         }
     }
 }

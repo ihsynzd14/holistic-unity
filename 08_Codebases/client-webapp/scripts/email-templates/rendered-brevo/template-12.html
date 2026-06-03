@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="x-apple-disable-message-reformatting">
-  <title>Reimposta la tua password</title>
 </head>
 <body style="margin:0;padding:0;background:#FDF6F0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#2D2D2D;-webkit-text-size-adjust:100%;">
-  <!-- preheader (hidden, shown as preview text in inbox) -->
   <div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">
-    Tocca il pulsante per scegliere una nuova password.
+    Il tuo compenso è in arrivo
   </div>
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#FDF6F0;">
@@ -17,7 +15,6 @@
       <td align="center" style="padding:32px 16px;">
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;width:100%;background:#FFFFFF;border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(139,34,82,0.10);">
 
-          <!-- Hero -->
           <tr>
             <td align="center" style="background:linear-gradient(135deg,#8B2252 0%,#C9A96E 100%);background-color:#8B2252;padding:40px 24px 32px 24px;">
               <!--[if mso]>
@@ -34,35 +31,34 @@
               </td></tr></table>
               <![endif]-->
               <h1 style="margin:20px 0 0 0;font-family:Georgia,'Cormorant Garamond','Times New Roman',serif;font-size:26px;font-weight:700;color:#FFFFFF;letter-spacing:0.4px;">Holistic Unity</h1>
+              <p style="margin:6px 0 0 0;font-size:13px;color:rgba(255,255,255,0.85);letter-spacing:0.5px;text-transform:uppercase;">Pagamento inviato</p>
             </td>
           </tr>
 
-          <!-- Body -->
           <tr>
             <td style="padding:36px 32px 28px 32px;font-size:15px;line-height:1.65;color:#2D2D2D;">
               
-<h2 style="margin:0 0 16px 0;font-family:Georgia,'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#2D2D2D;">Reimposta la tua password</h2>
-<p style="margin:0 0 16px 0;">Hai chiesto di reimpostare la password del tuo account Holistic Unity. Tocca il pulsante qui sotto per scegliere una nuova password.</p>
-<p style="margin:0 0 28px 0;">Per la tua sicurezza il link è valido per 1 ora. Se non sei stato/a tu a richiedere il reset, ignora questa email — la tua password attuale resta valida.</p>
-<div style="text-align:center;margin:8px 0 0 0;">
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:#2D2D2D;">Il tuo compenso è in arrivo</h2>
+<p style="margin:0 0 8px 0;">Ciao {{ params.name }}, buone notizie: abbiamo inviato il tuo compenso e verrà accreditato sul conto collegato al tuo account.</p>
+
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#FDF6F0;border-radius:14px;padding:18px 20px;margin:20px 0;border:1px solid #F0DFE5;"><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Importo</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.amount }}</td></tr><tr><td style="padding:6px 16px 6px 0;color:#7B7B7B;font-size:13px;font-weight:500;width:120px;">Accredito previsto</td><td style="padding:6px 0;color:#2D2D2D;font-size:14px;font-weight:600;">{{ params.arrival_date }}</td></tr></table>
+
+<div style="text-align:center;margin:24px 0 8px 0;">
   
 <!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="50%" stroke="f" fillcolor="#8B2252">
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://therapistportal.holisticunity.app/dashboard/earnings" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="50%" stroke="f" fillcolor="#33B85C">
   <w:anchorlock/>
-  <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:600;">Scegli nuova password</center>
+  <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:600;">Vedi i tuoi guadagni</center>
 </v:roundrect>
 <![endif]-->
 <!--[if !mso]><!-- -->
-<a href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery" target="_blank" style="display:inline-block;padding:15px 36px;background:#8B2252;color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;letter-spacing:0.3px;mso-hide:all;">Scegli nuova password</a>
+<a href="https://therapistportal.holisticunity.app/dashboard/earnings" target="_blank" style="display:inline-block;padding:15px 36px;background:#33B85C;color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;letter-spacing:0.3px;mso-hide:all;">Vedi i tuoi guadagni</a>
 <!--<![endif]-->
 </div>
-
-<p style="margin:24px 0 4px 0;font-size:13px;color:#7B7B7B;">Se il pulsante non funziona, copia e incolla questo link nel tuo browser:</p>
-<p style="margin:0;font-size:12px;color:#8B2252;word-break:break-all;"><a href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery" style="color:#8B2252;text-decoration:underline;">{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery</a></p>
+<p style="margin:18px 0 0 0;font-size:12px;color:#7B7B7B;text-align:center;">I tempi di accredito dipendono dalla tua banca, di norma 1-2 giorni lavorativi.</p>
             </td>
           </tr>
 
-          <!-- Footer -->
           <tr>
             <td style="padding:22px 32px 28px 32px;border-top:1px solid #F0DFE5;background:#FDF6F0;font-size:12px;line-height:1.65;color:#7B7B7B;text-align:center;">
               <p style="margin:0 0 6px 0;font-weight:600;color:#2D2D2D;letter-spacing:0.3px;">STORM X DIGITAL S.R.L.</p>

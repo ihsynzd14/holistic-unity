@@ -5,6 +5,28 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { calculatePaymentAmounts } from "@/lib/payments/fee-config";
 import { buildCalendarLinks } from "@/lib/booking/calendar-links";
 import { withRateLimit } from "@/lib/auth/rateLimit";
+import { resolveDayRanges, type Availability, type WeekdayKey } from "@/lib/booking/slots";
+
+/**
+ * True when a Supabase/Postgres error means the slot was taken concurrently.
+ * Two sources, both added/extended in migration
+ * 20260603120000_bookings_overlap_exclusion_constraint:
+ *   - the `bookings_no_overlap` EXCLUDE constraint → SQLSTATE 23P01
+ *     (exclusion_violation), the race-proof backstop fired at INSERT.
+ *   - the `prevent_overlapping_active_bookings` trigger → SQLSTATE P0001
+ *     raising "Time slot is no longer available".
+ * The pre-insert conflict SELECT above catches the common case; this catches
+ * the tiny TOCTOU window between that SELECT and the INSERT. We surface it as
+ * a 409 so the slot picker tells the user to pick another time instead of
+ * showing a generic 500.
+ */
+function isSlotConflictError(
+  err: { code?: string; message?: string } | null | undefined,
+): boolean {
+  if (!err) return false;
+  if (err.code === "23P01" || err.code === "P0001") return true;
+  return /no longer available|non è più disponibile/i.test(err.message ?? "");
+}
 
 /**
  * POST /api/checkout/create
@@ -196,25 +218,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      type WeekdayKey =
-        | "sunday"
-        | "monday"
-        | "tuesday"
-        | "wednesday"
-        | "thursday"
-        | "friday"
-        | "saturday";
-      const availability = profile.availability as
-        | {
-            timezone?: string;
-            recurring?: Partial<Record<WeekdayKey, { start: string; end: string }[]>>;
-            exceptions?: Array<{
-              date: string;
-              type?: "day_off" | "special";
-              ranges?: { start: string; end: string }[];
-            }>;
-          }
-        | null;
+      const availability = profile.availability as Availability | null;
       if (availability?.recurring) {
         const tz = availability.timezone || "Europe/Rome";
         const tzParts = new Intl.DateTimeFormat("en-US", {
@@ -244,20 +248,9 @@ export async function POST(request: NextRequest) {
           parseInt(get("minute") || "0", 10);
         const slotEndMins = slotMins + (service.duration ?? 60);
         const dateStr = `${get("year")}-${get("month")}-${get("day")}`;
-        const exception = availability.exceptions?.find(
-          (e) => e.date === dateStr,
-        );
-        let ranges: { start: string; end: string }[];
-        if (exception) {
-          if (exception.type === "day_off") ranges = [];
-          else
-            ranges =
-              exception.ranges ??
-              availability.recurring[dayKey] ??
-              [];
-        } else {
-          ranges = availability.recurring[dayKey] ?? [];
-        }
+        // Day-off / special-hours exceptions applied on top of recurring,
+        // via the shared helper (identical semantics to the slot picker).
+        const ranges = resolveDayRanges(availability, dateStr, dayKey);
         const fits = ranges.some((r) => {
           const [sh, sm] = r.start.split(":").map(Number);
           const [eh, em] = r.end.split(":").map(Number);
@@ -317,6 +310,12 @@ export async function POST(request: NextRequest) {
         .select("id")
         .single();
       if (bkErr) {
+        if (isSlotConflictError(bkErr)) {
+          return NextResponse.json(
+            { error: "Questo orario non è più disponibile. Scegli un altro slot." },
+            { status: 409 },
+          );
+        }
         return NextResponse.json({ error: bkErr.message }, { status: 500 });
       }
       // Fire booking-confirmed notifications (client + therapist). Same
@@ -420,6 +419,15 @@ export async function POST(request: NextRequest) {
       .select("id")
       .single();
     if (bookingErr || !booking) {
+      // Race-proof guard fired (another client grabbed the slot in the
+      // window between the conflict SELECT above and this INSERT) → 409 so
+      // the UI re-prompts for a different time instead of a generic error.
+      if (isSlotConflictError(bookingErr)) {
+        return NextResponse.json(
+          { error: "Questo orario non è più disponibile. Scegli un altro slot." },
+          { status: 409 },
+        );
+      }
       return NextResponse.json(
         { error: bookingErr?.message || "Errore nella creazione prenotazione" },
         { status: 500 },

@@ -163,7 +163,15 @@ ${fallbackLink(url)}`;
 }
 
 function bodyRecovery() {
-  const url = "{{ .ConfirmationURL }}";
+  // F5 fix: token_hash / verifyOtp flow. {{ .RedirectTo }} is the per-app
+  // /auth/confirm URL each app passes (client + therapist share this ONE
+  // project-wide template), so the link routes to the right app and is then
+  // verified WITHOUT a PKCE code_verifier — it works from any browser / the
+  // Mail in-app browser / another device. The redirectTo each app passes
+  // (…/auth/confirm?next=/reset-password) MUST be in the Supabase Auth
+  // "Redirect URLs" allowlist, otherwise {{ .RedirectTo }} falls back to the
+  // Site URL and the link breaks.
+  const url = "{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery";
   return `
 <h2 style="margin:0 0 16px 0;font-family:Georgia,'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:${BRAND.charcoal};">Reimposta la tua password</h2>
 <p style="margin:0 0 16px 0;">Hai chiesto di reimpostare la password del tuo account Holistic Unity. Tocca il pulsante qui sotto per scegliere una nuova password.</p>

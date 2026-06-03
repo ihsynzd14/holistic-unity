@@ -45,6 +45,10 @@ export const BREVO_TEMPLATES = {
   PAYOUT_SENT: 12,
   PAYOUT_FAILED: 13,
   ADMIN_PAYOUT_FAILED: 14,
+  // Admin alerts (A1/A2) — internal emails to the platform admin,
+  // fired by the admin-dashboard /api/cron/admin-alerts cron.
+  ADMIN_NEW_THERAPIST: 15,
+  ADMIN_NEW_REPORT: 16,
   RESCHEDULE_PROPOSED: 26,
   RESCHEDULE_RESPONDED: 27,
   // Marketing (requires marketing_consent = true)

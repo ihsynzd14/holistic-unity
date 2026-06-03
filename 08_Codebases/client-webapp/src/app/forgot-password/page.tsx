@@ -12,12 +12,15 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 /**
  * /forgot-password — Client-side password recovery entry point.
  *
- * Flow:
- *   1. User enters email → call supabase.auth.resetPasswordForEmail
- *   2. Supabase sends the branded "recovery" email template (already
- *      pushed in scripts/email-templates/push-email-templates.mjs) with
- *      a link that lands on /auth/callback?code=…&next=/reset-password
- *   3. /auth/callback exchanges the code for a session
+ * Flow (token_hash / verifyOtp — survives the link opening in any browser):
+ *   1. User enters email → resetPasswordForEmail with
+ *      redirectTo = /auth/confirm?next=/reset-password
+ *   2. Supabase sends the branded "recovery" template; the link lands on
+ *      /auth/confirm?token_hash=…&type=recovery&next=/reset-password
+ *   3. /auth/confirm calls verifyOtp({ type, token_hash }) — no PKCE
+ *      code_verifier, so it works from a different browser / the Mail
+ *      in-app browser / another device (the old /auth/callback code flow
+ *      did not — that was the F5 "link non funziona" bug)
  *   4. Authenticated user arrives at /reset-password and sets a new
  *      password via supabase.auth.updateUser({ password })
  *
@@ -49,7 +52,10 @@ export default function ForgotPasswordPage() {
     const { error: resetErr } = await supabase.auth.resetPasswordForEmail(
       email.trim(),
       {
-        redirectTo: `${window.location.origin}/auth/callback?next=/reset-password`,
+        // token_hash flow (F5 fix): land on /auth/confirm, which calls
+        // verifyOtp — no PKCE code_verifier needed, so the link works even
+        // when opened in a different browser / the Mail in-app browser.
+        redirectTo: `${window.location.origin}/auth/confirm?next=/reset-password`,
       },
     );
     setLoading(false);

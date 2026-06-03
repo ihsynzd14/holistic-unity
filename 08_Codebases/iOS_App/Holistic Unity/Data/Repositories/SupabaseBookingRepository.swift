@@ -196,6 +196,16 @@ final class SupabaseBookingRepository: BookingRepositoryProtocol, @unchecked Sen
         var slots: [TimeRange] = []
         let slotDuration = serviceDuration
 
+        // Honor the therapist's booking policy (Problem C): a minimum-notice
+        // window before a session can start, and a buffer enforced between
+        // consecutive sessions. Mirrors the web slot engine
+        // (client-webapp lib/booking/slots.ts) so iOS and web offer the same
+        // slots. Previously iOS only filtered past + zero-buffer overlaps,
+        // silently ignoring both therapist settings.
+        let bufferInterval = TimeInterval(max(therapistProfile.availability.bufferMinutes, 0) * 60)
+        let minNoticeInterval = TimeInterval(max(therapistProfile.availability.minNoticeHours, 0) * 3600)
+        let earliestBookable = Date().addingTimeInterval(minNoticeInterval)
+
         for range in dayRanges {
             let startParts = range.start.split(separator: ":")
             let endParts = range.end.split(separator: ":")
@@ -221,17 +231,22 @@ final class SupabaseBookingRepository: BookingRepositoryProtocol, @unchecked Sen
                 let hasConflict = existingBookings.contains { booking in
                     guard let bookingStart = formatter.date(from: booking.scheduledAt) else { return false }
                     let bookingEnd = bookingStart.addingTimeInterval(TimeInterval(booking.duration * 60))
-                    return slotStart < bookingEnd && slotEnd > bookingStart
+                    // Extend the busy interval by the buffer on both sides so a
+                    // new session can't be booked back-to-back with an existing one.
+                    let busyStart = bookingStart.addingTimeInterval(-bufferInterval)
+                    let busyEnd = bookingEnd.addingTimeInterval(bufferInterval)
+                    return slotStart < busyEnd && slotEnd > busyStart
                 }
 
-                // Also skip slots that are in the past
-                let isInPast = slotStart < Date()
+                // Skip slots before the minimum-notice cutoff. This also
+                // excludes past slots, since earliestBookable >= now.
+                let tooSoon = slotStart < earliestBookable
 
-                if !hasConflict && !isInPast {
+                if !hasConflict && !tooSoon {
                     slots.append(TimeRange(start: startTime, end: endTime))
                 }
 
-                currentMinutes += 30 // 30-minute slot increments
+                currentMinutes += 15 // 15-minute slot cadence (matches web computeSlots slotStepMinutes)
             }
         }
 

@@ -410,6 +410,46 @@ ${detailsCard([
 </div>`;
 }
 
+// A1 — New therapist awaiting review (admin alert). Internal email to
+// the platform admin so a new signup doesn't sit unreviewed.
+function bodyAdminNewTherapist() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.charcoal};">Nuovo terapista in attesa di approvazione</h2>
+<p style="margin:0 0 8px 0;">Un terapista ha completato la registrazione e attende la revisione del profilo.</p>
+
+${detailsCard([
+  ["Nome", "{{ params.therapist_name }}"],
+  ["Email", "{{ params.therapist_email }}"],
+  ["Città", "{{ params.city }}"],
+  ["ID profilo", "{{ params.therapist_id }}"],
+])}
+
+<p style="margin:18px 0 16px 0;">Apri la dashboard per esaminare il profilo e approvarlo o richiedere modifiche.</p>
+<div style="text-align:center;margin:0 0 8px 0;">
+  ${ctaButton({ url: "https://admin.holisticunity.app", label: "Apri la dashboard admin" })}
+</div>`;
+}
+
+// A2 — New report submitted (admin alert). Internal email to the
+// platform admin for UGC moderation (App Store Guideline 1.2).
+function bodyAdminNewReport() {
+  return `
+<h2 style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:22px;color:${BRAND.errorDark};">Nuova segnalazione ricevuta</h2>
+<p style="margin:0 0 8px 0;">Un utente ha inviato una segnalazione che richiede revisione.</p>
+
+${detailsCard([
+  ["Tipo contenuto", "{{ params.reported_type }}"],
+  ["Motivo", "{{ params.reason }}"],
+  ["ID contenuto", "{{ params.reported_id }}"],
+  ["ID segnalazione", "{{ params.report_id }}"],
+])}
+
+<p style="margin:18px 0 16px 0;">Esamina la segnalazione nella dashboard e prendi gli eventuali provvedimenti.</p>
+<div style="text-align:center;margin:0 0 8px 0;">
+  ${ctaButton({ url: "https://admin.holisticunity.app", label: "Apri la dashboard admin", color: BRAND.errorDark })}
+</div>`;
+}
+
 // ─── Templates to update ─────────────────────────────────────────
 const TEMPLATES = [
   { id: 1, preheader: "Benvenuto/a in Holistic Unity", heroLabel: "Benvenuto/a", body: bodyWelcomeClient },
@@ -426,6 +466,8 @@ const TEMPLATES = [
   { id: 12, preheader: "Il tuo compenso è in arrivo", heroLabel: "Pagamento inviato", body: bodyPayoutSent },
   { id: 13, preheader: "Problema con il tuo pagamento", heroLabel: "Pagamento non riuscito", body: bodyPayoutFailed },
   { id: 14, preheader: "Payout terapista fallito — azione richiesta", heroLabel: "Avviso amministratore", body: bodyAdminPayoutFailed },
+  { id: 15, preheader: "Nuovo terapista in attesa di approvazione", heroLabel: "Avviso amministratore", body: bodyAdminNewTherapist },
+  { id: 16, preheader: "Nuova segnalazione ricevuta", heroLabel: "Avviso amministratore", body: bodyAdminNewReport },
 ];
 
 // ─── Push ────────────────────────────────────────────────────────

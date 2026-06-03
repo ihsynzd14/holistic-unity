@@ -26,9 +26,12 @@ export type Availability = {
     >
   >;
   exceptions?: Array<{
-    date: string;
-    type?: "day_off" | "special";
-    ranges?: TimeRange[];
+    date: string; // "YYYY-MM-DD" in the therapist's timezone
+    // Shape the therapist editor actually writes (availability/page.tsx):
+    //   isAvailable=false → day off (no slots that day)
+    //   isAvailable=true  → special hours in customRanges (override recurring)
+    isAvailable?: boolean;
+    customRanges?: TimeRange[] | null;
   }>;
   bufferMinutes?: number;
   minNoticeHours?: number;
@@ -59,6 +62,36 @@ const DAY_KEYS = [
   "friday",
   "saturday",
 ] as const;
+
+export type WeekdayKey = (typeof DAY_KEYS)[number];
+
+/**
+ * Resolve a single day's bookable HH:MM ranges, applying availability
+ * exceptions on top of the recurring weekly schedule.
+ *
+ * Exceptions use the shape the therapist editor actually writes —
+ * `{ date, isAvailable, customRanges }`, NOT `{ type, ranges }`. Reading the
+ * wrong field names (the previous bug) silently ignored every exception:
+ * day-offs still showed slots, and special hours fell back to the weekly
+ * schedule. Shared by computeSlots and the server-side /api/checkout/create
+ * guard so the two cannot drift again.
+ */
+export function resolveDayRanges(
+  availability: Availability | null | undefined,
+  dateStr: string,
+  dayKey: WeekdayKey,
+): TimeRange[] {
+  const av = availability ?? {};
+  const exception = av.exceptions?.find((e) => e.date === dateStr);
+  if (exception) {
+    if (exception.isAvailable === false) return []; // explicit day off
+    if (exception.customRanges && exception.customRanges.length > 0) {
+      return exception.customRanges; // special hours override recurring
+    }
+    // isAvailable with no custom ranges → fall through to recurring
+  }
+  return av.recurring?.[dayKey] ?? [];
+}
 
 // Statuses that hold a slot, blocking other clients from booking it.
 //
@@ -253,15 +286,10 @@ export function computeSlots(args: {
       String(dayParts.day).padStart(2, "0"),
     ].join("-");
 
-    // Resolve the day's ranges — exception first, then recurring fallback
-    const exception = av.exceptions?.find((e) => e.date === dateStr);
-    let ranges: TimeRange[];
-    if (exception) {
-      if (exception.type === "day_off") ranges = [];
-      else ranges = exception.ranges ?? av.recurring?.[dayKey] ?? [];
-    } else {
-      ranges = av.recurring?.[dayKey] ?? [];
-    }
+    // Resolve the day's ranges — exceptions (day-off / special hours) on top
+    // of the recurring schedule, via the shared helper so the server-side
+    // checkout guard applies identical semantics.
+    const ranges = resolveDayRanges(av, dateStr, dayKey);
 
     // Convert HH:MM ranges (in `tz`) → UTC epoch intervals, clipped
     // to earliestBookable.

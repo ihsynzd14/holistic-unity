@@ -766,7 +766,7 @@ struct TherapistProfileView: View {
                 shortsPlayerURL = videoURL
             }
         } else if let embedURL = videoEmbedURL(from: videoURL) {
-            VideoThumbnailPreview(embedURL: embedURL)
+            VideoThumbnailPreview(embedURL: embedURL, originalURL: videoURL)
                 .frame(height: 200)
                 .clipShape(RoundedRectangle(cornerRadius: HURadius.xxl))
         } else {
@@ -1032,7 +1032,7 @@ struct TherapistProfileView: View {
                 Button {
                     bookingContext = BookingContext(service: nil)
                 } label: {
-                    Text("See Full Calendar")
+                    Text("Prenota")
                         .font(.system(size: 13, weight: .medium))
                         .foregroundStyle(HUColor.primary)
                         .frame(maxWidth: .infinity)

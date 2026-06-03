@@ -14,6 +14,10 @@ struct ManageBookingView: View {
     @State private var selectedTimeSlot: String?
     @State private var availableSlots: [TimeRange] = []
     @State private var isLoadingSlots = false
+    /// Therapist availability (for the timezone the slots are generated in).
+    /// Resolved lazily in loadAvailableSlots; used to build the reschedule
+    /// instant in the therapist's zone (Problem B).
+    @State private var therapistAvailability: TherapistAvailability?
     @State private var cancellationReason = ""
     @State private var isProcessing = false
     @State private var errorMessage: String?
@@ -452,6 +456,13 @@ struct ManageBookingView: View {
     
     private func loadAvailableSlots() async {
         isLoadingSlots = true
+        // Resolve the therapist's timezone once so the rescheduled instant is
+        // built in the SAME zone the slots were generated in (Problem B). Prefer
+        // the profile we were handed; fetch only if it wasn't passed in.
+        if therapistAvailability == nil {
+            therapistAvailability = therapist?.availability
+                ?? (try? await DIContainer.shared.therapistRepository.getProfile(therapistId: booking.therapistId))?.availability
+        }
         do {
             availableSlots = try await DIContainer.shared.bookingRepository.getAvailableSlots(
                 therapistId: booking.therapistId,
@@ -472,17 +483,12 @@ struct ManageBookingView: View {
             return
         }
         
-        // Parse the selected time into a full Date
-        let timeParts = timeSlot.split(separator: ":")
-        guard timeParts.count == 2,
-              let hour = Int(timeParts[0]),
-              let minute = Int(timeParts[1]) else {
+        // Build the proposed instant in the THERAPIST'S timezone — the slots
+        // are therapist-local, so materializing in the device zone would shift
+        // the real appointment time for cross-timezone clients (Problem B).
+        let availability = therapistAvailability ?? therapist?.availability ?? .default
+        guard let newDate = availability.resolveSlotInstant(slot: timeSlot, on: selectedDate) else {
             errorMessage = "Invalid time slot selected"
-            return
-        }
-        
-        guard let newDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: selectedDate) else {
-            errorMessage = "Could not create date from selection"
             return
         }
         

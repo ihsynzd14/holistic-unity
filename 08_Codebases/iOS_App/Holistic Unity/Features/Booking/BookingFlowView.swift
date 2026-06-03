@@ -59,11 +59,18 @@ final class BookingFlowViewModel {
     init(therapist: TherapistProfile, currentUserId: String, preselectedService: TherapistService? = nil) {
         self.therapist = therapist
         self.currentUserId = currentUserId
-        if let preselectedService {
-            // User clicked "Book" on a specific service from the profile —
-            // they've already chosen. Skip the "Choose a Service" step
-            // and land on "Choose Date & Time" directly.
-            self.selectedService = preselectedService
+        // Land directly on "Choose Date & Time" (step 1) when the service is
+        // already determined: either the user tapped "Book" on a specific
+        // service, OR the therapist offers exactly one service (the
+        // "Choose a Service" step would just show a single pointless option —
+        // this was the F7·a bug where entry points labelled for the calendar
+        // dumped the user on service selection). With 2+ services the service
+        // step is still required: the calendar is service-specific (slots
+        // depend on the chosen service's duration).
+        let resolvedService = preselectedService
+            ?? (therapist.services.count == 1 ? therapist.services.first : nil)
+        if let resolvedService {
+            self.selectedService = resolvedService
             self.currentStep = 1
             Task { @MainActor in
                 await self.checkForExistingCredits()
@@ -301,7 +308,7 @@ final class BookingFlowViewModel {
             duration: service.duration,
             price: 0,
             scheduledAt: scheduledDate,
-            timezone: TimeZone.current.identifier,
+            timezone: therapist.availability.timezone,
             status: .confirmed,
             videoRoomId: videoRoomId,
             platformFee: 0,
@@ -331,14 +338,10 @@ final class BookingFlowViewModel {
     /// Builds a scheduled date from the selected date + time slot
     private func buildScheduledDate() -> Date? {
         guard let timeSlot = selectedTimeSlot else { return nil }
-        let parts = timeSlot.split(separator: ":")
-        guard parts.count >= 2, let hour = Int(parts[0]), let minute = Int(parts[1]) else { return nil }
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone.current
-        var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
-        components.hour = hour
-        components.minute = minute
-        return calendar.date(from: components)
+        // Slots are generated in the therapist's timezone, so the chosen slot
+        // must be materialized back in that same zone — using the device zone
+        // here was the cross-timezone booking bug (Problem B).
+        return therapist.availability.resolveSlotInstant(slot: timeSlot, on: selectedDate)
     }
     
     /// C2: Prepares the Stripe PaymentSheet by creating a pending booking AND
@@ -375,7 +378,7 @@ final class BookingFlowViewModel {
                 duration: service.duration,
                 price: finalAmount,
                 scheduledAt: formatter.string(from: scheduledDate),
-                timezone: TimeZone.current.identifier,
+                timezone: therapist.availability.timezone,
                 videoRoomId: videoRoomId,
                 promoCode: promoCode.isEmpty ? nil : promoCode,
                 discount: promoDiscount > 0 ? promoDiscount : nil,
@@ -550,7 +553,7 @@ final class BookingFlowViewModel {
             duration: service.duration,
             price: service.price,
             scheduledAt: scheduledDate,
-            timezone: TimeZone.current.identifier,
+            timezone: therapist.availability.timezone,
             status: .pending,
             videoRoomId: videoRoomId,
             platformFee: platformFee,
@@ -843,7 +846,16 @@ struct BookingFlowView: View {
                 VStack(alignment: .leading, spacing: HUSpacing.md) {
                     Text("Available Times")
                         .font(HUFont.headline())
-                    
+
+                    // Cross-timezone clarity: slot labels are in the therapist's
+                    // wall-clock time. Only shown when it differs from the
+                    // device zone, so same-zone (e.g. IT↔IT) users see no change.
+                    if therapist.availability.resolvedTimeZone.identifier != TimeZone.current.identifier {
+                        Text(String(localized: "Times shown in the therapist's timezone (\(therapist.availability.timezone)).", comment: "Hint under the slot grid when the client and therapist are in different timezones"))
+                            .font(HUFont.caption())
+                            .foregroundStyle(HUColor.textSecondary)
+                    }
+
                     if viewModel.isLoadingSlots {
                         HULoadingView(message: "Checking availability…")
                             .frame(height: 100)
@@ -1254,15 +1266,10 @@ struct BookingFlowView: View {
         guard let timeSlot = viewModel.selectedTimeSlot,
               let service = viewModel.selectedService else { return }
         
-        let parts = timeSlot.split(separator: ":")
-        guard parts.count >= 2, let hour = Int(parts[0]), let minute = Int(parts[1]) else { return }
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone.current
-        var components = calendar.dateComponents([.year, .month, .day], from: viewModel.selectedDate)
-        components.hour = hour
-        components.minute = minute
-        guard let startDate = calendar.date(from: components) else { return }
-        let endDate = calendar.date(byAdding: .minute, value: service.duration, to: startDate) ?? startDate
+        // Build the event in the therapist's timezone so the calendar entry
+        // lands at the real session instant (matches the booked scheduled_at).
+        guard let startDate = therapist.availability.resolveSlotInstant(slot: timeSlot, on: viewModel.selectedDate) else { return }
+        let endDate = startDate.addingTimeInterval(TimeInterval(service.duration * 60))
         
         let event = EKEvent(eventStore: store)
         event.title = "\(service.name) with \(therapist.displayName)"

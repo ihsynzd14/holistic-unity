@@ -200,10 +200,13 @@ extension TherapistAvailability: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        exceptions = try container.decode([AvailabilityException].self, forKey: .exceptions)
-        timezone = try container.decode(String.self, forKey: .timezone)
-        minNoticeHours = try container.decode(Int.self, forKey: .minNoticeHours)
-        bufferMinutes = try container.decode(Int.self, forKey: .bufferMinutes)
+        // Tolerant decoding: legacy/partial availability JSON missing any of
+        // these keys must not fail the whole decode (which would break slot
+        // loading entirely). Mirrors the web engine's `?? default` behaviour.
+        exceptions = (try? container.decode([AvailabilityException].self, forKey: .exceptions)) ?? []
+        timezone = (try? container.decode(String.self, forKey: .timezone)) ?? TimeZone.current.identifier
+        minNoticeHours = (try? container.decode(Int.self, forKey: .minNoticeHours)) ?? AppConstants.Booking.minNoticeHoursDefault
+        bufferMinutes = (try? container.decode(Int.self, forKey: .bufferMinutes)) ?? AppConstants.Booking.bufferMinutesDefault
         
         // Try decoding as a JSON object (string-keyed dictionary) first — this is what
         // Supabase JSONB returns. Fall back to Swift's default alternating-array format.
@@ -217,5 +220,39 @@ extension TherapistAvailability: Codable {
         } else {
             recurring = try container.decode([DayOfWeek: [TimeRange]].self, forKey: .recurring)
         }
+    }
+}
+
+// MARK: - Slot ↔ instant resolution (timezone-correct)
+
+extension TherapistAvailability {
+    /// The therapist's wall-clock timezone, falling back to the device zone
+    /// when the stored identifier is invalid or empty.
+    var resolvedTimeZone: TimeZone {
+        TimeZone(identifier: timezone) ?? .current
+    }
+
+    /// Converts a slot label ("HH:mm" — therapist-local wall-clock, which is
+    /// how `getAvailableSlots` generates slots) into an absolute instant on
+    /// the given calendar `day`, interpreted IN THE THERAPIST'S TIMEZONE.
+    ///
+    /// Materializing the slot in the *device's* timezone (the previous
+    /// behaviour) stored the wrong absolute time whenever client and therapist
+    /// were in different zones — a slot meaning "09:00 in Europe/Rome" was
+    /// saved as "09:00 in the client's zone". Resolving in the therapist's zone
+    /// keeps the stored `scheduled_at` identical to the slot instant that was
+    /// conflict-checked during generation.
+    func resolveSlotInstant(slot: String, on day: Date) -> Date? {
+        let parts = slot.split(separator: ":")
+        guard parts.count >= 2,
+              let hour = Int(parts[0]),
+              let minute = Int(parts[1]) else { return nil }
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = resolvedTimeZone
+        var components = calendar.dateComponents([.year, .month, .day], from: day)
+        components.hour = hour
+        components.minute = minute
+        components.second = 0
+        return calendar.date(from: components)
     }
 }
