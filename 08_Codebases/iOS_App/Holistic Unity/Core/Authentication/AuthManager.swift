@@ -451,7 +451,17 @@ final class AuthManager {
     /// signed-in user. Throws on transport / rate-limit errors so the
     /// UI can show a toast. Reuses the existing repository hook.
     func resendVerificationEmail() async throws {
-        try await authRepository.sendEmailVerification()
+        guard let email = currentUser?.email, !email.isEmpty else {
+            throw NSError(
+                domain: "AuthManager",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: String(
+                    localized: "We couldn't find your email address. Please sign out and create your account again.",
+                    comment: "Resend verification failed: no email on the current user"
+                )]
+            )
+        }
+        try await authRepository.sendEmailVerification(email: email)
     }
     
     private func persistUserId(_ userId: String) {

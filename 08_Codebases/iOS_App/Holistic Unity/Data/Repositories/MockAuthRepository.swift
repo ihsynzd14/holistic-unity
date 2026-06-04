@@ -95,7 +95,7 @@ final class MockAuthRepository: AuthRepositoryProtocol {
         return user
     }
     
-    func sendEmailVerification() async throws {
+    func sendEmailVerification(email: String) async throws {
         try await Task.sleep(for: .seconds(0.5))
     }
     

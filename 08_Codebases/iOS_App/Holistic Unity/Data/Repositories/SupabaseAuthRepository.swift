@@ -148,9 +148,21 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
     
     // MARK: - Email Verification & Password Reset
     
-    func sendEmailVerification() async throws {
-        // Supabase handles email verification through its auth system
-        // This is typically configured in the Supabase dashboard
+    func sendEmailVerification(email: String) async throws {
+        do {
+            // Bug 2 fix: this was a no-op stub — the UI showed "email inviata"
+            // but nothing was sent. Actually resend the signup confirmation,
+            // routed through the token_hash /auth/confirm flow (via
+            // emailRedirectTo) so the resent link works from any browser/device
+            // exactly like a fresh signup.
+            try await client.auth.resend(
+                email: email,
+                type: .signup,
+                emailRedirectTo: URL(string: "https://app.holisticunity.app/auth/confirm?next=/welcome")
+            )
+        } catch {
+            throw mapSupabaseError(error)
+        }
     }
     
     func sendPasswordReset(email: String) async throws {

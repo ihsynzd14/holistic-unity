@@ -27,7 +27,7 @@ protocol AuthRepositoryProtocol: Sendable {
     func signInWithEmail(email: String, password: String) async throws -> User
     func signInWithApple(idToken: String, nonce: String) async throws -> User
     func signInWithGoogle(idToken: String, accessToken: String) async throws -> User
-    func sendEmailVerification() async throws
+    func sendEmailVerification(email: String) async throws
     func sendPasswordReset(email: String) async throws
     func signOut() throws
     func deleteAccount() async throws
