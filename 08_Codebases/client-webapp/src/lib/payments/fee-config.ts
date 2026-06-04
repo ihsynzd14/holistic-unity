@@ -27,8 +27,12 @@ export const EEA_COUNTRIES = ["IS", "LI", "NO"];
 
 const PLATFORM_FEE_PERCENT = 0.20;
 const IVA_RATE = 0.22;
-const SERVICE_FEE_PERCENT = 0.029;
-const SERVICE_FEE_FIXED = 30; // cents
+// Canonical processing fee = 2.5% + €0.25 (PAYMENT_MODEL.md §3; matches iOS
+// STRIPE_PERCENT / STRIPE_FIXED_CENTS). Was 0.029 / 30 (2.9% + €0.30) — the
+// legacy rate the docs flagged "DA RIMUOVERE"; web clients were being charged
+// more than iOS clients for the same session until this was aligned.
+const SERVICE_FEE_PERCENT = 0.025;
+const SERVICE_FEE_FIXED = 25; // cents
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

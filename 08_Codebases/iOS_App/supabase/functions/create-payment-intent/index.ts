@@ -18,10 +18,10 @@ const ITALY_VARIANTS = ["IT", "ITALY", "ITALIA"];
 //   International cards: 3.25% + €0.25
 //   PIX (cross-border):  ~4%   + FX conversion
 //   Apple Pay:           same as underlying card
-// We use 2.9% + €0.30 as a blended rate that covers the vast majority of
-// transactions (EEA + UK) with a small buffer for international cards.
-// The 20% platform commission absorbs any shortfall on rare intl/PIX payments.
-// Legacy constants removed — see STRIPE_PERCENT and STRIPE_FIXED_CENTS in fee calculation section
+// We charge 2.5% + €0.25 (STRIPE_PERCENT / STRIPE_FIXED_CENTS) — the UK card
+// rate, per PAYMENT_MODEL.md. The 20% platform commission absorbs the shortfall
+// on pricier international/PIX cards. (An earlier 2.9% "blended rate" was
+// removed; the web fee-config was aligned to 2.5% to match.)
 
 // Helper to call Stripe REST API directly
 async function stripeRequest(
