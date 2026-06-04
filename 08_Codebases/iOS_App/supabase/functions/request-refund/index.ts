@@ -281,34 +281,162 @@ serve(async (req) => {
       );
     }
 
-    // Build the Stripe refund request. Refund amount is calculated server-side
-    // from the single global policy: 50% if more than 24 hours before session.
+    // Atomic optimistic lock: cancel the booking BEFORE the refund so two
+    // cancel/refund paths can't both refund the same booking. Only one caller
+    // flips it out of a live status; anyone else gets 409 and never reaches
+    // Stripe. (Mirrors client-webapp/.../cancel/route.ts.) Runs as service_role,
+    // so protect_booking_columns is bypassed; the iOS app's subsequent
+    // cancelBooking becomes a harmless no-op (cancelled→cancelled skips the
+    // trigger's status check).
+    const CANCELLABLE = ["pending", "confirmed", "in_progress", "reschedule_pending"];
+    const { data: lockedBooking, error: lockErr } = await supabaseAdmin
+      .from("bookings")
+      .update({
+        status: "cancelled",
+        cancelled_by: "client",
+        cancelled_at: new Date().toISOString(),
+        cancellation_reason: "Refund requested by client",
+        cancellation_notice_hrs: Math.floor(hoursUntilSession),
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", transaction.booking_id)
+      .in("status", CANCELLABLE)
+      .select("id")
+      .maybeSingle();
+    if (lockErr) {
+      console.error("request-refund: booking lock failed:", lockErr);
+      return new Response(
+        JSON.stringify({ error: "Failed to cancel booking for refund" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    if (!lockedBooking) {
+      // Already cancelled/handled by another path (therapist cancel, a prior
+      // refund, a stale retry) → do NOT issue a second refund.
+      return new Response(
+        JSON.stringify({ error: "Booking is no longer active — it may already be cancelled or refunded." }),
+        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Post-payout detection (best-effort): if the charge is older than the
+    // 14-day payout-hold, the therapist may already have withdrawn the funds,
+    // so reverse_transfer can fail / drive the connected account negative.
+    // Mirrors therapist-webapp/.../cancel/route.ts.
+    const PAYOUT_HOLD_DAYS = 14;
+    let chargeAgeDays = 0;
+    let isPostPayout = false;
+    try {
+      const pi = await stripeRequest(
+        "GET",
+        `/payment_intents/${transaction.stripe_payment_intent_id}`
+      );
+      if (pi?.created) {
+        chargeAgeDays = (Date.now() / 1000 - Number(pi.created)) / 86400;
+        isPostPayout = chargeAgeDays > PAYOUT_HOLD_DAYS;
+      }
+    } catch (piErr) {
+      console.warn("request-refund: PI lookup for post-payout check failed:", piErr);
+    }
+
+    // Build the Stripe refund. CRITICAL: with destination charges the
+    // therapist's payout is already in their connected account, so we MUST
+    // reverse the transfer or the platform eats the payout. Matches
+    // PAYMENT_MODEL.md + flows/08-refund-cancellation.md (100% → also refund
+    // the application fee; 50% → platform keeps it) and the webapp cancel routes.
+    const isFullTier = refundPercentage >= 1.0;
     const refundParams: Record<string, unknown> = {
       payment_intent: transaction.stripe_payment_intent_id,
       amount: String(refundAmountCents),
+      reverse_transfer: true,
+      refund_application_fee: isFullTier,
+      metadata: {
+        booking_id: transaction.booking_id,
+        tier: isFullTier ? "100" : "50",
+        notice_hours: String(Math.floor(hoursUntilSession)),
+        reason: "client_requested_refund",
+      },
     };
 
     // Create the refund via Stripe API
-    const refund = await stripeRequest("POST", "/refunds", refundParams);
+    let refund;
+    try {
+      refund = await stripeRequest("POST", "/refunds", refundParams);
+    } catch (refundErr) {
+      const msg = refundErr instanceof Error ? refundErr.message : String(refundErr);
+      // The booking is already cancelled (locked above), so we must NOT throw —
+      // that would leave it cancelled, unrefunded, and unflagged. ANY refund
+      // failure (transient, post-payout, or insufficient connected-account
+      // balance) is flagged for admin manual reconciliation. The client keeps
+      // their cancellation; an admin completes the refund.
+      console.error("request-refund: Stripe refund failed after booking lock:", msg);
+      await supabaseAdmin
+        .from("bookings")
+        .update({
+          requires_manual_refund: true,
+          manual_refund_note:
+            `Automatic refund failed: ${msg.slice(0, 180)}. Charge age ` +
+            `${chargeAgeDays.toFixed(1)}d (payout-hold ${PAYOUT_HOLD_DAYS}d). ` +
+            `Booking is cancelled; complete the refund manually.`,
+        })
+        .eq("id", transaction.booking_id);
+      return new Response(
+        JSON.stringify({
+          error: "refund_requires_manual_review",
+          detail: msg,
+          requires_manual_refund: true,
+          booking_cancelled: true,
+        }),
+        {
+          status: 202,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
 
     console.log(
       `Refund created: ${redactStripeId(refund.id)} for payment_intent ${redactStripeId(transaction.stripe_payment_intent_id)}, amount: ${refund.amount / 100} ${refund.currency}`
     );
 
-    // The stripe-webhook handler will update the transaction status
-    // when it receives the charge.refunded event from Stripe.
-    // But we can also update it immediately for faster UI feedback.
+    // Update the transaction immediately (the charge.refunded webhook also
+    // reconciles). Ledger consistency per PLATFORM_MAP.md matrix:
+    //   full refund          → status + payout_status 'refunded'
+    //   partial, post-escrow → 'partially_refunded' (clawback accounted)
+    //   partial, pre-escrow  → leave payout_status 'pending' (cron pays the
+    //                          un-refunded half later)
     const refundedAmount = refund.amount / 100;
     const transactionAmount = transaction.amount;
     const isFullRefund = refundedAmount >= transactionAmount;
 
+    const txUpdate: Record<string, unknown> = {
+      status: isFullRefund ? "refunded" : "partially_refunded",
+      refund_amount: refundedAmount,
+    };
+    if (isFullRefund) {
+      txUpdate.payout_status = "refunded";
+    } else if (isPostPayout) {
+      txUpdate.payout_status = "partially_refunded";
+    }
     await supabaseAdmin
       .from("transactions")
-      .update({
-        status: isFullRefund ? "refunded" : "partially_refunded",
-        refund_amount: refundedAmount,
-      })
+      .update(txUpdate)
       .eq("id", transaction.id);
+
+    // Post-payout refund succeeded but may have driven the connected account
+    // negative — flag for admin verification. (The charge.refunded webhook
+    // clears this flag on completion for full refunds.)
+    if (isPostPayout) {
+      await supabaseAdmin
+        .from("bookings")
+        .update({
+          requires_manual_refund: true,
+          manual_refund_note:
+            `Refund issued ${chargeAgeDays.toFixed(1)}d after charge ` +
+            `(payout-hold ${PAYOUT_HOLD_DAYS}d). Verify the connected account ` +
+            `did not end up with a negative balance.`,
+        })
+        .eq("id", transaction.booking_id);
+    }
 
     return new Response(
       JSON.stringify({
