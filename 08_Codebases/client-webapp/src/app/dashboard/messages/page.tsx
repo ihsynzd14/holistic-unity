@@ -23,6 +23,12 @@ import { useI18n } from "@/lib/i18n/context";
 import { Spinner } from "@/components/ui/Spinner";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { SafeAvatar, renderableAvatarUrl } from "@/components/chat/SafeAvatar";
+import {
+  OperatorAvatarProvider,
+  OperatorChannelPreview,
+  OperatorMessageAvatar,
+  useOperatorAvatar,
+} from "@/components/chat/OperatorAvatars";
 
 const STREAM_API_KEY = process.env.NEXT_PUBLIC_STREAM_API_KEY || "";
 
@@ -193,22 +199,28 @@ export default function MessagesPage() {
         style={{ animationDelay: "60ms", height: "calc(100vh - 180px)", minHeight: "500px" }}
       >
         <Chat client={client} theme="str-chat__theme-light">
-          {/* Deep-link handler: when /dashboard/messages?to=<id> is
-              opened (from "Scrivi all'operatore" on /checkout/success),
-              create-or-find the 1:1 channel between the current user
-              and the target, set it active, and strip the param so
-              refreshing the page doesn't loop the create call. */}
-          {targetUserId && (
-            <AutoOpenChannel
-              targetUserId={targetUserId}
-              onDone={() => router.replace("/dashboard/messages")}
+          {/* Resolves each operator's canonical avatar from
+              therapist_profiles_public so chat shows the same photo as
+              "Trova operatore" even when Stream's stored image is missing
+              (users.photo_url ⇄ therapist_profiles.photo_url drift). */}
+          <OperatorAvatarProvider>
+            {/* Deep-link handler: when /dashboard/messages?to=<id> is
+                opened (from "Scrivi all'operatore" on /checkout/success),
+                create-or-find the 1:1 channel between the current user
+                and the target, set it active, and strip the param so
+                refreshing the page doesn't loop the create call. */}
+            {targetUserId && (
+              <AutoOpenChannel
+                targetUserId={targetUserId}
+                onDone={() => router.replace("/dashboard/messages")}
+              />
+            )}
+            <ResponsivePanes
+              filters={filters}
+              sort={sort}
+              emptyLabel={t.messages.noConversations}
             />
-          )}
-          <ResponsivePanes
-            filters={filters}
-            sort={sort}
-            emptyLabel={t.messages.noConversations}
-          />
+          </OperatorAvatarProvider>
         </Chat>
       </div>
     </div>
@@ -259,6 +271,7 @@ function ResponsivePanes({
           sort={sort}
           showChannelSearch
           Avatar={SafeAvatar}
+          Preview={OperatorChannelPreview}
           EmptyStateIndicator={() => (
             <div className="p-6 text-center">
               <MessageCircle className="mx-auto h-8 w-8 text-berry-muted/40" strokeWidth={1} />
@@ -275,7 +288,7 @@ function ResponsivePanes({
           hasActive ? "flex w-full" : "hidden lg:block"
         } min-w-0 flex-1`}
       >
-        <Channel Avatar={SafeAvatar}>
+        <Channel Avatar={OperatorMessageAvatar}>
           <Window>
             {/* Mobile-only back button row. lg:hidden so it disappears on
                 desktop where both panes are visible side-by-side. */}
@@ -326,9 +339,13 @@ function CustomChannelHeader() {
     return other?.user ?? null;
   }, [channel, client.userID]);
 
+  // Canonical operator photo from therapist_profiles_public — used when
+  // Stream has no usable image for this operator (the photo_url drift).
+  const resolvedPhoto = useOperatorAvatar(otherUser?.id);
+
   // Reset the failure flag when the conversation (and thus the avatar
   // source) changes, so a valid image for the next operator gets a chance.
-  useEffect(() => setAvatarFailed(false), [otherUser?.image]);
+  useEffect(() => setAvatarFailed(false), [otherUser?.image, resolvedPhoto]);
 
   if (!otherUser) {
     // Channel still loading or no other member yet — render a minimal
@@ -340,12 +357,14 @@ function CustomChannelHeader() {
 
   const isOnline = Boolean(otherUser.online);
   const name = otherUser.name || "Operatore";
-  // Only render the photo if CSP would allow the host; a blocked host (the
-  // legacy ui-avatars.com fallback) collapses to initials with no doomed
-  // request — an onError handler alone can't stop the CSP violation log.
+  // Prefer Stream's stored image when CSP would allow the host, otherwise
+  // fall back to the canonical operator photo resolved from
+  // therapist_profiles_public. Only render a host CSP permits — a blocked
+  // host (the legacy ui-avatars.com fallback) collapses to initials with no
+  // doomed request, since an onError handler alone can't stop the CSP log.
   const headerImage = avatarFailed
     ? undefined
-    : renderableAvatarUrl(otherUser.image as string | undefined);
+    : (renderableAvatarUrl(otherUser.image as string | undefined) ?? resolvedPhoto);
 
   return (
     <div className="flex items-center gap-3 border-b border-berry/5 bg-white/85 px-4 py-3 backdrop-blur-md">
