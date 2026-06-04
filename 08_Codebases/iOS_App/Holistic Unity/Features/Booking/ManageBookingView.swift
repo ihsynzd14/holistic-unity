@@ -460,8 +460,13 @@ struct ManageBookingView: View {
         // built in the SAME zone the slots were generated in (Problem B). Prefer
         // the profile we were handed; fetch only if it wasn't passed in.
         if therapistAvailability == nil {
-            therapistAvailability = therapist?.availability
-                ?? (try? await DIContainer.shared.therapistRepository.getProfile(therapistId: booking.therapistId))?.availability
+            // NB: can't write `?? (try? await …)` — the `??` right-hand side is
+            // a non-async @autoclosure, so `await` isn't allowed inside it.
+            if let passed = therapist?.availability {
+                therapistAvailability = passed
+            } else if let profile = try? await DIContainer.shared.therapistRepository.getProfile(therapistId: booking.therapistId) {
+                therapistAvailability = profile.availability
+            }
         }
         do {
             availableSlots = try await DIContainer.shared.bookingRepository.getAvailableSlots(
