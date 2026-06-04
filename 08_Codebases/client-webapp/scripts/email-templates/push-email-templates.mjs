@@ -151,7 +151,10 @@ function fallbackLink(url) {
 // at send time. Anything else stays literal.
 
 function bodyConfirmation() {
-  const url = "{{ .ConfirmationURL }}";
+  // token_hash flow: link goes straight to the app's /auth/confirm (verifyOtp),
+  // not Supabase's /verify→/auth/callback (PKCE). {{ .RedirectTo }} is each
+  // app's own /auth/confirm?next=… (set via emailRedirectTo on signUp).
+  const url = "{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=signup";
   return `
 <h2 style="margin:0 0 16px 0;font-family:Georgia,'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:${BRAND.charcoal};">Benvenuto/a in Holistic Unity</h2>
 <p style="margin:0 0 16px 0;">Manca un solo passaggio: conferma il tuo indirizzo email per attivare l'account e iniziare a scoprire terapisti e pratiche olistiche selezionate per te.</p>

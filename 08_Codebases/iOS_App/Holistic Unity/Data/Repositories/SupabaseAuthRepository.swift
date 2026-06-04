@@ -45,7 +45,13 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
             let result = try await client.auth.signUp(
                 email: email,
                 password: password,
-                data: ["display_name": .string(displayName)]
+                data: ["display_name": .string(displayName)],
+                // Confirmation fix: land the confirm link on the web
+                // /auth/confirm (token_hash / verifyOtp). Without a redirectTo
+                // the link went to the Site URL root, and the PKCE flow could
+                // never complete because the verifier lives in this app, not
+                // the browser that opens the email.
+                redirectTo: URL(string: "https://app.holisticunity.app/auth/confirm?next=/welcome")
             )
             
             let authUser = result.session?.user ?? result.user

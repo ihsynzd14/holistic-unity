@@ -47,18 +47,18 @@
 <div style="text-align:center;margin:8px 0 0 0;">
   
 <!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="50%" stroke="f" fillcolor="#8B2252">
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=signup" style="height:50px;v-text-anchor:middle;width:280px;" arcsize="50%" stroke="f" fillcolor="#8B2252">
   <w:anchorlock/>
   <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:600;">Conferma il mio indirizzo</center>
 </v:roundrect>
 <![endif]-->
 <!--[if !mso]><!-- -->
-<a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:15px 36px;background:#8B2252;color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;letter-spacing:0.3px;mso-hide:all;">Conferma il mio indirizzo</a>
+<a href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=signup" target="_blank" style="display:inline-block;padding:15px 36px;background:#8B2252;color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;letter-spacing:0.3px;mso-hide:all;">Conferma il mio indirizzo</a>
 <!--<![endif]-->
 </div>
 
 <p style="margin:24px 0 4px 0;font-size:13px;color:#7B7B7B;">Se il pulsante non funziona, copia e incolla questo link nel tuo browser:</p>
-<p style="margin:0;font-size:12px;color:#8B2252;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#8B2252;text-decoration:underline;">{{ .ConfirmationURL }}</a></p>
+<p style="margin:0;font-size:12px;color:#8B2252;word-break:break-all;"><a href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=signup" style="color:#8B2252;text-decoration:underline;">{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=signup</a></p>
             </td>
           </tr>
 

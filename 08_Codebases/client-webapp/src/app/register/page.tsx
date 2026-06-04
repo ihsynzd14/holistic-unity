@@ -188,12 +188,11 @@ function RegisterForm() {
           tos_pending_health_data: false,
           tos_pending_accepted_at: acceptedAt,
         },
-        // Explicit redirect overrides the global Supabase Site URL so
-        // the confirmation link in the email always lands on this app's
-        // /auth/callback (which exchanges the code for a session and
-        // redirects to /welcome). Defence in depth: even if someone
-        // resets the Site URL to localhost in dev, prod stays correct.
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/welcome`,
+        // Explicit redirect overrides the global Supabase Site URL so the
+        // confirmation link lands on THIS app's /auth/confirm (token_hash /
+        // verifyOtp flow — NOT /auth/callback PKCE, which failed when the
+        // link opened in a different browser/device than signup).
+        emailRedirectTo: `${window.location.origin}/auth/confirm?next=/welcome`,
       },
     });
 

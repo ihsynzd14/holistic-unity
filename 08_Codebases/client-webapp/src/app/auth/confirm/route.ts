@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { type EmailOtpType } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 
 /**
  * GET /auth/confirm?token_hash=...&type=...&next=...
@@ -50,7 +54,42 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/login?error=auth_link_expired`);
   }
 
+  // ─── C2 Welcome email (signup only) ─────────────────────────────────
+  // Moved here from /auth/callback now that signup confirmation uses the
+  // token_hash flow. ONLY for `signup` — recovery must never trigger it.
+  // Idempotent via app_metadata.welcome_sent_at; fail-safe (never blocks the
+  // redirect). Mirrors the logic that used to live in /auth/callback.
+  if (type === "signup") {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && !user.app_metadata?.welcome_sent_at) {
+        await fetch(`${SUPABASE_URL}/functions/v1/send-brevo-email`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            template_id: 1, // BREVO_TEMPLATES.WELCOME_CLIENT
+            user_id: user.id,
+            params: {},
+            tags: ["welcome", "client"],
+          }),
+        });
+        const admin = createAdminClient();
+        await admin.auth.admin.updateUserById(user.id, {
+          app_metadata: {
+            ...(user.app_metadata ?? {}),
+            welcome_sent_at: new Date().toISOString(),
+          },
+        });
+      }
+    } catch (welcomeErr) {
+      console.warn("[auth/confirm] welcome email failed (non-blocking):", welcomeErr);
+    }
+  }
+
   // Success — session cookies set by the SSR client. Send the user onward
-  // (recovery → /reset-password).
+  // (recovery → /reset-password, signup → /welcome).
   return NextResponse.redirect(`${origin}${safeNext}`);
 }
