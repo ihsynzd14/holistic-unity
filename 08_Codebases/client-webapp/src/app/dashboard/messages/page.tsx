@@ -22,7 +22,7 @@ import { ArrowLeft, MessageCircle, CalendarPlus, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { Spinner } from "@/components/ui/Spinner";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
-import { SafeAvatar } from "@/components/chat/SafeAvatar";
+import { SafeAvatar, renderableAvatarUrl } from "@/components/chat/SafeAvatar";
 
 const STREAM_API_KEY = process.env.NEXT_PUBLIC_STREAM_API_KEY || "";
 
@@ -340,13 +340,19 @@ function CustomChannelHeader() {
 
   const isOnline = Boolean(otherUser.online);
   const name = otherUser.name || "Operatore";
+  // Only render the photo if CSP would allow the host; a blocked host (the
+  // legacy ui-avatars.com fallback) collapses to initials with no doomed
+  // request — an onError handler alone can't stop the CSP violation log.
+  const headerImage = avatarFailed
+    ? undefined
+    : renderableAvatarUrl(otherUser.image as string | undefined);
 
   return (
     <div className="flex items-center gap-3 border-b border-berry/5 bg-white/85 px-4 py-3 backdrop-blur-md">
       <div className="relative h-10 w-10 flex-shrink-0">
-        {otherUser.image && !avatarFailed ? (
+        {headerImage ? (
           <Image
-            src={otherUser.image as string}
+            src={headerImage}
             alt={name}
             width={40}
             height={40}

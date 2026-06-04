@@ -4,22 +4,39 @@ import { useEffect, useState } from "react";
 import { ChannelAvatar, type ChannelAvatarProps } from "stream-chat-react";
 
 /**
+ * Returns the avatar URL ONLY if our CSP `img-src` (see
+ * src/lib/security/csp.ts) would actually allow the browser to load it —
+ * same-origin, data/blob, Supabase Storage, or Stream's own CDN.
+ *
+ * Anything else (notably the legacy `ui-avatars.com` fallback URL still
+ * cached on some Stream user records) returns `undefined`, so callers render
+ * the initials placeholder WITHOUT ever creating an `<img>` element pointing
+ * at a blocked host. This is the crucial bit: an `onError` handler does NOT
+ * prevent the request — the browser still fires it, CSP still blocks it, and
+ * the console still logs a violation. Not emitting the element at all is the
+ * only way to keep the console clean.
+ */
+export function renderableAvatarUrl(url?: string | null): string | undefined {
+  if (!url) return undefined;
+  if (url.startsWith("/") || url.startsWith("data:") || url.startsWith("blob:")) {
+    return url;
+  }
+  try {
+    const { protocol, hostname } = new URL(url);
+    if (protocol !== "https:") return undefined;
+    const allowed =
+      hostname.endsWith(".supabase.co") ||
+      hostname.endsWith(".stream-io-cdn.com");
+    return allowed ? url : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
  * Drop-in replacement for Stream Chat's default avatar that never leaves a
- * broken-image icon on screen.
- *
- * WHY THIS EXISTS:
- *   The other party in a conversation is an operator (therapist). Those
- *   without an uploaded `photo_url` historically had a `ui-avatars.com`
- *   URL stored as their Stream avatar. This app's CSP `img-src` (see
- *   src/lib/security/csp.ts) does not allow that host, so it is blocked
- *   and renders as a torn-photo placeholder. Stream's stock Avatar has an
- *   onError fallback, yet a CSP-blocked / 404 URL can still flash the
- *   broken icon before it settles.
- *
- *   This component renders the initials fallback the instant the image
- *   fails (or is absent), reusing Stream's own CSS classes so the existing
- *   globals.css theming applies unchanged. Group channels keep Stream's
- *   stock multi-avatar layout.
+ * broken-image icon on screen AND never triggers a CSP-blocked request.
+ * Group channels keep Stream's stock multi-avatar layout.
  */
 export function SafeAvatar(props: ChannelAvatarProps) {
   const { className, groupChannelDisplayInfo, image, name, onClick, onMouseOver } =
@@ -36,7 +53,9 @@ export function SafeAvatar(props: ChannelAvatarProps) {
   }
 
   const initial = (name?.trim()?.[0] || "?").toUpperCase();
-  const showImage = Boolean(image) && !failed;
+  // Gate on host: only render an <img> for URLs CSP permits. A blocked host
+  // (ui-avatars.com) collapses to initials with no doomed network request.
+  const safeImage = failed ? undefined : renderableAvatarUrl(image);
   const rootClass = ["str-chat__avatar str-chat__message-sender-avatar", className]
     .filter(Boolean)
     .join(" ");
@@ -50,13 +69,13 @@ export function SafeAvatar(props: ChannelAvatarProps) {
       role="button"
       title={name}
     >
-      {showImage ? (
+      {safeImage ? (
         <img
           alt={initial}
           className="str-chat__avatar-image"
           data-testid="avatar-img"
           onError={() => setFailed(true)}
-          src={image ?? undefined}
+          src={safeImage}
         />
       ) : (
         <div className="str-chat__avatar-fallback" data-testid="avatar-fallback">
