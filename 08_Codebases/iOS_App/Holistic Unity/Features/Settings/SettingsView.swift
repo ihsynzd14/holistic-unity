@@ -53,6 +53,11 @@ struct SettingsView: View {
     @State private var showSignOutConfirmation = false
     @State private var showDeleteError = false
     @State private var deleteError: String = ""
+    // Password reset — email-provider users only (Apple/Google manage their
+    // own credentials, so the row is hidden for them).
+    @State private var isSendingPasswordReset = false
+    @State private var showPasswordResetAlert = false
+    @State private var passwordResetMessage = ""
 
     private var userName: String {
         let trimmed = (authManager.currentUser?.displayName ?? "")
@@ -148,6 +153,11 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("L'azione è irreversibile. Tutti i tuoi dati verranno eliminati.")
+            }
+            .alert("Reimposta password", isPresented: $showPasswordResetAlert) {
+                Button("OK") {}
+            } message: {
+                Text(passwordResetMessage)
             }
         }
         .task {
@@ -305,7 +315,43 @@ struct SettingsView: View {
             menuRow(icon: "clock.arrow.circlepath", tint: HUColor.brandMagenta, title: "Storico pagamenti") {
                 PaymentHistoryView()
             }
+            // Reset password — email-provider users only. Apple/Google users
+            // have no password with us (managed by the provider), so hide it.
+            if authManager.currentUser?.authProvider == .email {
+                Button {
+                    HUHaptic.impact(.light)
+                    Task { await sendPasswordReset() }
+                } label: {
+                    menuRowContent(
+                        icon: "key.fill",
+                        tint: HUColor.brandMagenta,
+                        title: "Reimposta password",
+                        detail: isSendingPasswordReset ? "Invio in corso…" : nil,
+                        showsChevron: false,
+                        danger: false
+                    )
+                }
+                .buttonStyle(.plain)
+                .disabled(isSendingPasswordReset)
+            }
         }
+    }
+
+    /// Sends a password-reset email to the signed-in email-provider user
+    /// (reuses the token_hash /auth/confirm → /reset-password flow). Shown
+    /// only when authProvider == .email; Apple/Google users manage their
+    /// credentials with the provider, so there is no password to reset here.
+    private func sendPasswordReset() async {
+        guard let email = authManager.currentUser?.email, !email.isEmpty else { return }
+        isSendingPasswordReset = true
+        do {
+            try await authManager.sendPasswordReset(email: email)
+            passwordResetMessage = "Ti abbiamo inviato un'email per reimpostare la password. Controlla la tua casella (anche lo spam)."
+        } catch {
+            passwordResetMessage = "Non siamo riusciti a inviare l'email. Riprova tra poco."
+        }
+        isSendingPasswordReset = false
+        showPasswordResetAlert = true
     }
 
     private var experienceGroup: some View {
