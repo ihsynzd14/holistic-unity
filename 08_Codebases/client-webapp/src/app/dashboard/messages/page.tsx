@@ -22,6 +22,7 @@ import { ArrowLeft, MessageCircle, CalendarPlus, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { Spinner } from "@/components/ui/Spinner";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
+import { SafeAvatar } from "@/components/chat/SafeAvatar";
 
 const STREAM_API_KEY = process.env.NEXT_PUBLIC_STREAM_API_KEY || "";
 
@@ -106,20 +107,19 @@ export default function MessagesPage() {
 
         chatClient = StreamChat.getInstance(STREAM_API_KEY);
         try {
-          // Use the user's real photo if uploaded, otherwise an
-          // initials avatar in the brand berry. Stream Chat caches
-          // this user record by `id` — to refresh an avatar after
-          // a photo upload the user must reconnect (we already do
-          // that on every page mount via this useEffect, so it
-          // self-heals on next visit).
-          const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-            userData?.display_name || "U",
-          )}&background=8B2252&color=fff`;
+          // Only store a real uploaded photo as the Stream avatar; when the
+          // user has none we leave `image` unset and let Stream render its
+          // native initials fallback (styled berry via globals.css). We used
+          // to store a `ui-avatars.com` URL, but the therapist/admin apps'
+          // CSP img-src only allows *.supabase.co, so that host was blocked
+          // there and showed as a broken-image icon for clients (who rarely
+          // upload a photo). Stream caches the user record by `id`, so this
+          // self-heals on the next page mount via this useEffect.
           await chatClient.connectUser(
             {
               id: user.id,
               name: userData?.display_name || user.email || therapistFallbackName,
-              image: userData?.photo_url || fallbackAvatar,
+              image: userData?.photo_url ?? undefined,
             },
             tokenData.token
           );
@@ -258,6 +258,7 @@ function ResponsivePanes({
           filters={filters}
           sort={sort}
           showChannelSearch
+          Avatar={SafeAvatar}
           EmptyStateIndicator={() => (
             <div className="p-6 text-center">
               <MessageCircle className="mx-auto h-8 w-8 text-berry-muted/40" strokeWidth={1} />
@@ -274,7 +275,7 @@ function ResponsivePanes({
           hasActive ? "flex w-full" : "hidden lg:block"
         } min-w-0 flex-1`}
       >
-        <Channel>
+        <Channel Avatar={SafeAvatar}>
           <Window>
             {/* Mobile-only back button row. lg:hidden so it disappears on
                 desktop where both panes are visible side-by-side. */}
@@ -311,6 +312,11 @@ function ResponsivePanes({
 function CustomChannelHeader() {
   const { channel } = useChannelStateContext();
   const { client } = useChatContext();
+  // Track avatar load failures so a CSP-blocked / 404 image (e.g. the old
+  // ui-avatars.com fallback URL still cached on Stream for operators with
+  // no uploaded photo) cleanly degrades to the initials placeholder instead
+  // of a broken-image icon.
+  const [avatarFailed, setAvatarFailed] = useState(false);
 
   const otherUser = useMemo(() => {
     const members = channel?.state?.members ?? {};
@@ -319,6 +325,10 @@ function CustomChannelHeader() {
     );
     return other?.user ?? null;
   }, [channel, client.userID]);
+
+  // Reset the failure flag when the conversation (and thus the avatar
+  // source) changes, so a valid image for the next operator gets a chance.
+  useEffect(() => setAvatarFailed(false), [otherUser?.image]);
 
   if (!otherUser) {
     // Channel still loading or no other member yet — render a minimal
@@ -334,13 +344,14 @@ function CustomChannelHeader() {
   return (
     <div className="flex items-center gap-3 border-b border-berry/5 bg-white/85 px-4 py-3 backdrop-blur-md">
       <div className="relative h-10 w-10 flex-shrink-0">
-        {otherUser.image ? (
+        {otherUser.image && !avatarFailed ? (
           <Image
             src={otherUser.image as string}
             alt={name}
             width={40}
             height={40}
             unoptimized
+            onError={() => setAvatarFailed(true)}
             className="h-10 w-10 rounded-full object-cover ring-2 ring-white"
           />
         ) : (
