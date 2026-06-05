@@ -40,6 +40,9 @@ verify_jwt = false
 [functions.create-booking-with-payment]
 verify_jwt = false  # x-user-token workaround, same as create-payment-intent
 
+[functions.get-available-slots]
+verify_jwt = false  # iOS-invoked; authenticates internally via supabaseAdmin.auth.getUser(jwt)
+
 [functions.detach-payment-method]
 verify_jwt = false  # x-user-token workaround
 

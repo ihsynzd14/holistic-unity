@@ -1,5 +1,6 @@
 import Foundation
 import Supabase
+import OSLog
 
 // MARK: - Atomic Credit Booking DTOs (nonisolated to avoid MainActor inference)
 
@@ -163,6 +164,26 @@ final class SupabaseBookingRepository: BookingRepositoryProtocol, @unchecked Sen
     // MARK: - Availability
     
     func getAvailableSlots(therapistId: String, date: Date, serviceDuration: Int) async throws -> [TimeRange] {
+        // PRIMARY: the `get-available-slots` edge function — the canonical
+        // server-side engine. It runs with the service role, so it can read the
+        // therapist's RLS-protected calendar integrations and subtract their
+        // Google/Microsoft "busy" periods. The client itself can't do this (a
+        // client user cannot read another therapist's OAuth tokens), so without
+        // this call iOS would happily offer a slot the therapist is busy on in
+        // their personal calendar — a double-booking the web flow already avoids.
+        do {
+            return try await getAvailableSlotsViaEdgeFunction(
+                therapistId: therapistId,
+                date: date,
+                serviceDuration: serviceDuration
+            )
+        } catch {
+            Logger(subsystem: Bundle.main.bundleIdentifier ?? "HolisticUnity", category: "Booking")
+                .warning("get-available-slots edge function failed; falling back to local slot computation (external-calendar busy will NOT be applied): \(error.localizedDescription, privacy: .public)")
+        }
+
+        // FALLBACK: local computation. Honors recurring + exceptions + min-notice
+        // + buffer + existing platform bookings, but NOT external calendars.
         // Fetch therapist profile first so we can use the therapist's own timezone
         // for all date/time calculations. Using the client's local calendar would
         // produce wrong slots when the client and therapist are in different timezones.
@@ -252,7 +273,49 @@ final class SupabaseBookingRepository: BookingRepositoryProtocol, @unchecked Sen
 
         return slots
     }
-    
+
+    /// Calls the `get-available-slots` edge function (the canonical server-side
+    /// engine) which also subtracts external-calendar (Google/Microsoft) busy
+    /// periods. Returns slot start/end as "HH:MM" strings in the therapist's
+    /// timezone — same shape as the local computation, so callers are unaffected.
+    private func getAvailableSlotsViaEdgeFunction(
+        therapistId: String,
+        date: Date,
+        serviceDuration: Int
+    ) async throws -> [TimeRange] {
+        struct SlotsRequest: Encodable {
+            let therapistId: String
+            let serviceDuration: Int
+            let utcTimestamp: Double
+        }
+        struct SlotDTO: Decodable {
+            let start: String
+            let end: String
+        }
+        struct SlotsResponse: Decodable {
+            let slots: [SlotDTO]
+        }
+
+        // Ensure the cached JWT is fresh so the function's auth check doesn't
+        // 401 on a silently-expired token (same guard as VideoCallService).
+        _ = try await client.auth.session
+
+        let request = SlotsRequest(
+            therapistId: therapistId,
+            serviceDuration: serviceDuration,
+            // The function derives the therapist-local calendar day from this,
+            // so a client in another timezone still resolves the correct day.
+            utcTimestamp: date.timeIntervalSince1970 * 1000
+        )
+
+        let response: SlotsResponse = try await client.functions.invoke(
+            "get-available-slots",
+            options: FunctionInvokeOptions(body: request)
+        )
+
+        return response.slots.map { TimeRange(start: $0.start, end: $0.end) }
+    }
+
     // MARK: - Booking Actions
     
     func acceptBooking(bookingId: String) async throws {

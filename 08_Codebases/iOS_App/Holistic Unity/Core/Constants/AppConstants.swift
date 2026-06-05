@@ -20,6 +20,23 @@ enum AppConstants {
         static let videoCallEarlyJoinMinutes = 10
         static let videoCallGracePeriodMinutes = 10
         static let maxRescheduleCount = 3
+
+        /// How far ahead clients can book — a rolling month-plus window.
+        /// Mirrors the web client's `BOOKING_WINDOW_DAYS` so iOS and web expose
+        /// the SAME horizon (previously the iOS pickers were open-ended, letting
+        /// clients book arbitrarily far out while web capped the window).
+        static let bookingWindowDays = 42
+
+        /// Selectable range for the booking / reschedule date pickers:
+        /// tomorrow (1-day min notice) through `bookingWindowDays` ahead.
+        /// Computed on access so it stays correct across midnight.
+        static var selectableDateRange: ClosedRange<Date> {
+            let cal = Calendar.current
+            let today = Date()
+            let lower = cal.startOfDay(for: cal.date(byAdding: .day, value: 1, to: today) ?? today)
+            let upper = cal.startOfDay(for: cal.date(byAdding: .day, value: bookingWindowDays, to: today) ?? today)
+            return lower...upper
+        }
     }
     
     // MARK: - Media

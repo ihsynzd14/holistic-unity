@@ -145,21 +145,34 @@ struct TherapistAvailability: Equatable {
         bufferMinutes: AppConstants.Booking.bufferMinutesDefault
     )
     
-    /// Returns time ranges for a specific day, considering exceptions
+    /// Returns time ranges for a specific day, considering exceptions.
+    ///
+    /// Resolution happens in the THERAPIST's timezone (`self.timezone`), not the
+    /// device's. Using `Calendar.current` here let a client in a different zone
+    /// resolve the wrong weekday (or match the wrong exception) near midnight —
+    /// a mismatch with the web engine, which always resolves days in the
+    /// therapist zone. Exceptions are matched by calendar date (yyyy-MM-dd): the
+    /// stored exception date decodes to UTC midnight, so formatting it in UTC
+    /// recovers the original day string the therapist saved.
     func availableRanges(for date: Date) -> [TimeRange] {
-        // Check exceptions first
-        if let exception = exceptions.first(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
+        let tz = TimeZone(identifier: timezone) ?? .current
+        let selectedDay = Self.ymd(date, in: tz)
+
+        // Check exceptions first (day-off / special hours), matched by calendar day.
+        if let exception = exceptions.first(where: { Self.ymd($0.date, in: Self.utc) == selectedDay }) {
             if !exception.isAvailable { return [] }
             if let customRanges = exception.customRanges { return customRanges }
         }
-        
-        // Fall back to recurring schedule
-        let weekday = dayOfWeek(for: date)
+
+        // Fall back to recurring schedule (weekday computed in the therapist zone).
+        let weekday = dayOfWeek(for: date, in: tz)
         return recurring[weekday] ?? []
     }
-    
-    private func dayOfWeek(for date: Date) -> DayOfWeek {
-        let weekday = Calendar.current.component(.weekday, from: date)
+
+    private func dayOfWeek(for date: Date, in tz: TimeZone) -> DayOfWeek {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = tz
+        let weekday = calendar.component(.weekday, from: date)
         switch weekday {
         case 1: return .sunday
         case 2: return .monday
@@ -170,6 +183,20 @@ struct TherapistAvailability: Equatable {
         case 7: return .saturday
         default: return .monday
         }
+    }
+
+    /// UTC, used to recover an exception's stored "yyyy-MM-dd" (it decodes to UTC midnight).
+    private static let utc = TimeZone(secondsFromGMT: 0) ?? .current
+
+    /// Formats a date as "yyyy-MM-dd" in the given timezone (Gregorian, POSIX
+    /// locale) so two instants can be compared by calendar day without tz drift.
+    private static func ymd(_ date: Date, in tz: TimeZone) -> String {
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = tz
+        f.dateFormat = "yyyy-MM-dd"
+        return f.string(from: date)
     }
 }
 

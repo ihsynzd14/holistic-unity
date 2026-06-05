@@ -830,9 +830,9 @@ struct BookingFlowView: View {
                 DatePicker(
                     "Select Date",
                     selection: $viewModel.selectedDate,
-                    in: Calendar.current.startOfDay(
-                        for: Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
-                    )...,
+                    // Tomorrow … +bookingWindowDays. Bounded so iOS exposes the
+                    // same monthly horizon as the web client (was open-ended).
+                    in: AppConstants.Booking.selectableDateRange,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)

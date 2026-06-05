@@ -207,7 +207,8 @@ struct ManageBookingView: View {
                     DatePicker(
                         "Date",
                         selection: $selectedDate,
-                        in: Date().addingTimeInterval(86400)...,
+                        // Same bounded monthly window as the booking flow / web.
+                        in: AppConstants.Booking.selectableDateRange,
                         displayedComponents: .date
                     )
                     .datePickerStyle(.graphical)

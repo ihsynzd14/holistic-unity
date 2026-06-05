@@ -204,7 +204,7 @@ async function fetchMicrosoftBusy(accessToken, calendarEmail, timeMin, timeMax) 
       const slotEndUTCMs = new Date(minutesToISO(date, slotEndMinutes - tzOffsetMinutes)).getTime();
       // Skip slots in the past or within min-notice window
       if (slotStartUTCMs < nowMs + minNoticeMs) {
-        currentMinutes += 30;
+        currentMinutes += 15;
         continue;
       }
       // Check overlap with busy periods (all in UTC)
@@ -219,7 +219,7 @@ async function fetchMicrosoftBusy(accessToken, calendarEmail, timeMin, timeMax) 
           end: `${String(Math.floor(slotEndMinutes / 60)).padStart(2, "0")}:${String(slotEndMinutes % 60).padStart(2, "0")}`
         });
       }
-      currentMinutes += 30; // 30-minute increments
+      currentMinutes += 15; // 15-minute increments (matches web computeSlots + iOS local engine)
     }
   }
   return slots;
