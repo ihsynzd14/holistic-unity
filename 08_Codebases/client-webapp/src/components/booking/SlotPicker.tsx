@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Availability, Booking, DaySlots } from "@/lib/booking/slots";
-import { computeSlots } from "@/lib/booking/slots";
+import { computeSlots, BOOKING_WINDOW_DAYS } from "@/lib/booking/slots";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 
 interface SlotPickerProps {
@@ -34,18 +34,18 @@ export default function SlotPicker({
   locale = "it-IT",
   labels,
 }: SlotPickerProps) {
-  // 21-day window (extended from 14): if a therapist has a packed
-  // calendar in the next 2 weeks, the original 14-day grid would render
-  // as empty and the client abandoned. Going out to 21 days surfaces
-  // the next bookable slot in nearly all cases without overwhelming
-  // the picker (week strip still defaults to the first 7 days).
+  // Monthly window (BOOKING_WINDOW_DAYS = 42 days / 6 weeks): therapists
+  // organise availability month-by-month and in-studio clients plan a full
+  // month ahead, so the picker must surface the whole upcoming month — not
+  // just the next 2-3 weeks. The week strip still pages 7 days at a time, so
+  // a longer horizon doesn't overwhelm the UI; it just adds more pages.
   const days = useMemo(
     () =>
       computeSlots({
         availability,
         bookings,
         durationMinutes,
-        windowDays: 21,
+        windowDays: BOOKING_WINDOW_DAYS,
       }),
     [availability, bookings, durationMinutes],
   );
@@ -147,7 +147,7 @@ export default function SlotPicker({
             <p className="mt-2 text-sm font-medium text-charcoal-muted">{labels.noSlots}</p>
             <p className="mt-1 text-xs text-charcoal-muted/70">
               {noSlotsAtAll
-                ? "Nessuna disponibilità nelle prossime 3 settimane. Scrivi al terapista per concordare un orario."
+                ? "Nessuna disponibilità nel prossimo mese. Scrivi al terapista per concordare un orario."
                 : firstAvailableIdx > activeDayIdx
                 ? `Prossimo slot disponibile: ${days[firstAvailableIdx].date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" })}.`
                 : labels.noSlotsHelp}

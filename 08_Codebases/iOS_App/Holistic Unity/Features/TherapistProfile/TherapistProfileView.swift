@@ -887,15 +887,18 @@ struct TherapistProfileView: View {
     private func videoEmbedURL(from url: URL) -> URL? {
         let urlString = url.absoluteString
 
-        // `youtube-nocookie.com` is YouTube's privacy-enhanced embed
-        // domain. We prefer it over `youtube.com` because (a) no
-        // cookies are written to the WebView storage, reducing
-        // cross-domain leakage, and (b) it carries the same content
-        // with an explicit "no tracking" surface in Privacy Manifest
-        // conversations with Apple Review.
+        // We no longer build a `youtube.com/embed` URL and load it inside a
+        // WKWebView via `loadHTMLString`: that path never sends a real HTTP
+        // `Referer`, so YouTube refuses the embed with the error 150/152/153
+        // family even for videos whose owners allow embedding. Instead we
+        // point the WebView at our own hosted player page
+        // (app.holisticunity.app/embed/youtube), which IS a real same-origin
+        // navigation — WKWebView then sends a genuine `Referer` and YouTube
+        // accepts it. See AppConstants.Webapp.youTubeEmbedURL and
+        // VideoPlayerViews.swift for the full story.
         func ytEmbed(_ id: String) -> URL? {
             guard Self.isValidYouTubeID(id) else { return nil }
-            return URL(string: "https://www.youtube-nocookie.com/embed/\(id)?playsinline=1&rel=0&modestbranding=1")
+            return AppConstants.Webapp.youTubeEmbedURL(videoID: id)
         }
 
         if urlString.contains("youtube.com/watch") || urlString.contains("youtube-nocookie.com/watch"),
@@ -931,9 +934,9 @@ struct TherapistProfileView: View {
     /// Validates a YouTube video ID. YouTube IDs are exactly 11
     /// characters drawn from `[A-Za-z0-9_-]`. Anything outside this
     /// alphabet is rejected as a potential injection attempt.
-    /// Mirrors `YouTubeShortsWebView.isValidYouTubeID` (single source
-    /// of truth would be nicer; kept duplicated to avoid coupling the
-    /// view to the design-system component).
+    /// Mirrors `YouTubeID.isValid` in VideoPlayerViews.swift (single
+    /// source of truth would be nicer; kept duplicated to avoid coupling
+    /// the view to the design-system component).
     static func isValidYouTubeID(_ id: String) -> Bool {
         guard id.count == 11 else { return false }
         return id.unicodeScalars.allSatisfy { scalar in

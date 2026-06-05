@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import SlotPicker from "@/components/booking/SlotPicker";
 import type { Availability, Booking as SlotBooking } from "@/lib/booking/slots";
+import { BOOKING_WINDOW_DAYS } from "@/lib/booking/slots";
 import { calculatePaymentAmounts } from "@/lib/payments/fee-config";
 
 // `therapist_profiles.categories[]` stores `practices.slug` values
@@ -256,7 +257,13 @@ export default function TherapistDetailPage() {
     async function load() {
       const supabase = createClient();
       const now = new Date();
-      const windowEnd = new Date(now.getTime() + 21 * 24 * 60 * 60 * 1000);
+      // Must match the SlotPicker's compute horizon (BOOKING_WINDOW_DAYS) —
+      // otherwise the picker would render free slots for days beyond the
+      // busy window we fetched, showing booked slots as available and
+      // risking double-booking on the extra weeks.
+      const windowEnd = new Date(
+        now.getTime() + BOOKING_WINDOW_DAYS * 24 * 60 * 60 * 1000,
+      );
 
       // Profile is fetched via /api/therapists/[id]/profile, an
       // authenticated server route that uses the user's access token

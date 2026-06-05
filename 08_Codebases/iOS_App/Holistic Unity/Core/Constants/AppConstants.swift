@@ -74,6 +74,19 @@ enum AppConstants {
     // MARK: - Webapp
     enum Webapp {
         static let therapistPortalURL = "https://therapist-webapp-tau.vercel.app"
+
+        /// Client-facing web app (Vercel → app.holisticunity.app). Also hosts
+        /// the `/embed/youtube` player page that the in-app WKWebView loads to
+        /// play YouTube intro videos with a real `Referer` header — see
+        /// VideoPlayerViews.swift for the WKWebView error-152 context.
+        static let clientBaseURL = "https://app.holisticunity.app"
+
+        /// Hosted YouTube IFrame player for a validated 11-char video ID.
+        /// `autoplay` is used by the full-screen Shorts player; the inline
+        /// profile preview leaves it off so the user taps to start.
+        static func youTubeEmbedURL(videoID: String, autoplay: Bool = false) -> URL? {
+            URL(string: "\(clientBaseURL)/embed/youtube?v=\(videoID)\(autoplay ? "&autoplay=1" : "")")
+        }
     }
 
     // MARK: - Pagination

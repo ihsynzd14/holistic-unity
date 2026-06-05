@@ -5,6 +5,7 @@ import {
   fetchExternalCalendarBusy,
   type CalendarIntegration,
 } from "@/lib/calendar/tokens";
+import { BOOKING_WINDOW_DAYS } from "@/lib/booking/slots";
 
 /**
  * GET /api/therapists/[id]/freebusy?start=ISO&end=ISO
@@ -45,12 +46,14 @@ export async function GET(
   const startParam = searchParams.get("start");
   const endParam = searchParams.get("end");
 
-  // Default window: now → +21 days (matches the slot picker's window).
+  // Default window: now → +BOOKING_WINDOW_DAYS (matches the slot picker's
+  // monthly window). The hard cap below (60 days) still bounds explicit
+  // start/end params for anti-abuse.
   const now = Date.now();
   const startMs = startParam ? new Date(startParam).getTime() : now;
   const endMs = endParam
     ? new Date(endParam).getTime()
-    : now + 21 * 24 * 60 * 60 * 1000;
+    : now + BOOKING_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
   if (isNaN(startMs) || isNaN(endMs)) {
     return NextResponse.json({ error: "Invalid date" }, { status: 400 });

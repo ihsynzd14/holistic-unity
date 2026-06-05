@@ -15,6 +15,16 @@
  *   - skips slots overlapping any pending/confirmed/in_progress booking
  */
 
+/**
+ * Default booking horizon: how many calendar days ahead a client can see
+ * and book. Set to 42 (6 weeks) so the picker always covers a full month
+ * ahead from any start date — therapists organise availability monthly and
+ * clients in-studio plan a month out. (Was 14/21 — effectively biweekly,
+ * which is why a published monthly schedule was never fully bookable.)
+ * The freebusy API enforces a separate hard cap (60 days) for anti-abuse.
+ */
+export const BOOKING_WINDOW_DAYS = 42;
+
 export type TimeRange = { start: string; end: string }; // "HH:MM"
 
 export type Availability = {
@@ -237,7 +247,7 @@ export function computeSlots(args: {
   slotStepMinutes?: number;
 }): DaySlots[] {
   const now = args.now ?? new Date();
-  const windowDays = args.windowDays ?? 14;
+  const windowDays = args.windowDays ?? BOOKING_WINDOW_DAYS;
   const stepMinutes = args.slotStepMinutes ?? 15;
   const stepMs = stepMinutes * 60_000;
   const av = args.availability ?? {};

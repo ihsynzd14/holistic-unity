@@ -126,6 +126,46 @@ export function buildCsp(
 }
 
 /**
+ * CSP for the `/embed/youtube` route — a standalone, public HTML page that
+ * hosts the YouTube IFrame Player so the iOS app can load it as a *real*
+ * HTTPS navigation inside its WKWebView.
+ *
+ * WHY A SEPARATE CSP:
+ *   The main-app policy intentionally omits YouTube from `script-src`
+ *   (only Vimeo/YouTube *frames* are allowed, for the profile poster). The
+ *   embed host genuinely needs to run YouTube's `iframe_api` script, so it
+ *   gets its own tightly-scoped policy instead of widening the app-wide one.
+ *
+ * WHY THIS FIXES iOS ERROR 150/152/153:
+ *   WKWebView's `loadHTMLString(..., baseURL:)` never sends a real HTTP
+ *   `Referer`, so YouTube's player refuses to embed (the 15x "playback
+ *   disabled here" family) even for videos whose owners *do* allow
+ *   embedding. Serving this page from `app.holisticunity.app` and loading
+ *   it via `URLRequest` makes WKWebView send a genuine same-origin
+ *   `Referer`, which YouTube accepts.
+ *
+ * `default-src 'none'` denies everything not explicitly listed. The video
+ * bytes themselves stream inside YouTube's own iframe (its own origin +
+ * CSP), so this page only needs to load the API script and frame YouTube.
+ */
+export function buildEmbedCsp(): string {
+  return [
+    "default-src 'none'",
+    // `iframe_api` is served from www.youtube.com and pulls its widget from
+    // s.ytimg.com; the inline bootstrap script initialises the player.
+    "script-src 'self' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com",
+    "style-src 'unsafe-inline'",
+    "img-src https://i.ytimg.com https://img.youtube.com data:",
+    "connect-src https://www.youtube.com https://s.ytimg.com",
+    // The actual <iframe> player — both the standard and no-cookie hosts.
+    "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+    // The page is only ever the top document inside WKWebView; never framed.
+    "frame-ancestors 'none'",
+    "base-uri 'none'",
+  ].join("; ");
+}
+
+/**
  * Generate a CSP-safe nonce.
  *
  * 128 random bits → base64 without padding. Web Crypto is available in

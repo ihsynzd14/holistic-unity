@@ -45,6 +45,15 @@ function isBypassed(pathname: string): boolean {
  * edge logs can see it for debugging.
  */
 export async function proxy(request: NextRequest) {
+  // Public, self-contained embed pages (the YouTube player host loaded by
+  // the iOS app's WKWebView). They serve their own tightly-scoped CSP from
+  // the route handler and need no Supabase session refresh or TOS gate —
+  // short-circuit before any of that runs. (The app-wide CSP omits YouTube
+  // from script-src by design, so it must NOT be applied here.)
+  if (request.nextUrl.pathname.startsWith("/embed/")) {
+    return NextResponse.next();
+  }
+
   const nonce = generateNonce();
   const csp = buildCsp(nonce, {
     isDev: process.env.NODE_ENV !== "production",

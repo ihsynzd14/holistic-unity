@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Holistic Unity — Meta Ads Performance Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --burgundy: #7B2252;
+    --burgundy-dark: #5A1840;
+    --burgundy-pale: #F3EBF6;
+    --cream: #F7F2EC;
+    --cream-soft: #FBF7F1;
+    --gold: #B8864E;
+    --ink: #1C1410;
+    --ink-muted: #5C4A3D;
+    --line: #E5DCC8;
+    --good: #1B5E20;
+    --warn: #B6822E;
+    --alert: #B71C1C;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 40px 32px 80px; }
+
+  /* ── Brand header ── */
+  .brand-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .brand-mark { width: 36px; height: 36px; background: var(--burgundy); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .brand-mark svg { fill: white; }
+  .brand-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.01em; }
+  .brand-tag { font-size: 11px; color: var(--burgundy); text-transform: uppercase; letter-spacing: 0.14em; margin-left: auto; }
+
+  header.title-block { margin-bottom: 28px; }
+  header.title-block h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; margin: 0 0 8px; color: var(--burgundy-dark); font-size: 38px; line-height: 1.1; letter-spacing: -0.01em; }
+  header.title-block .subtitle { color: var(--ink-muted); font-size: 14px; }
+  header.title-block .period { display: inline-block; background: var(--burgundy-pale); color: var(--burgundy); padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; margin-right: 8px; }
+
+  /* ── Executive Summary ── */
+  .exec-summary { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 24px 28px; margin: 24px 0 40px; }
+  .exec-summary h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; color: var(--burgundy); font-size: 18px; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 16px; padding: 0; border: none; }
+  .exec-summary p { margin: 8px 0; font-size: 15px; color: var(--ink); line-height: 1.65; }
+  .exec-summary strong { color: var(--burgundy-dark); font-weight: 600; }
+  .exec-bullets { margin: 16px 0 0; padding: 0; list-style: none; }
+  .exec-bullets li { padding: 6px 0 6px 24px; position: relative; font-size: 14px; }
+  .exec-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--burgundy); font-weight: 600; }
+  .exec-bullets li.good::before { content: '↑'; color: var(--good); }
+  .exec-bullets li.warn::before { content: '!'; color: var(--warn); font-weight: 700; }
+  .exec-bullets li.alert::before { content: '×'; color: var(--alert); font-weight: 700; }
+
+  /* ── Section titles ── */
+  h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; color: var(--burgundy-dark); font-size: 22px; padding-bottom: 8px; margin: 48px 0 12px; border-bottom: 1px solid var(--line); }
+  h3 { font-size: 12px; font-weight: 600; color: var(--ink-muted); margin: 28px 0 10px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── KPI cards ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+  .kpi-card { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 18px 22px; transition: border-color 0.2s; }
+  .kpi-label { font-size: 10px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .kpi-value { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 500; color: var(--ink); margin: 6px 0 4px; line-height: 1.1; letter-spacing: -0.01em; }
+  .kpi-card.kpi-great { border-color: var(--good); }
+  .kpi-card.kpi-great .kpi-value { color: var(--good); }
+  .kpi-card.kpi-good .kpi-value { color: var(--burgundy); }
+  .kpi-card.kpi-warn { border-color: var(--warn); }
+  .kpi-card.kpi-warn .kpi-value { color: var(--warn); }
+  .kpi-card.kpi-alert { border-color: var(--alert); background: #FFEBEE40; }
+  .kpi-card.kpi-alert .kpi-value { color: var(--alert); }
+  .delta { font-size: 11px; font-weight: 700; margin-left: 6px; }
+  .kpi-sub { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* ── Alerts ── */
+  .alert-list { margin: 12px 0 0; padding: 0; list-style: none; }
+  .alert-list li { padding: 12px 18px; border-radius: 6px; margin-bottom: 8px; font-size: 13px; border-left: 3px solid; background: white; }
+  .alert-info { border-color: var(--burgundy); }
+  .alert-warn { border-color: var(--warn); background: #FFF8E1; }
+  .alert-alert { border-color: var(--alert); background: #FFEBEE; }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 0 var(--line); font-size: 13px; margin: 8px 0; }
+  th { background: var(--cream-soft); padding: 11px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-muted); font-weight: 600; border-bottom: 1px solid var(--line); }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--cream-soft); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+  td.name { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  tr.subtle td { color: var(--ink-muted); font-size: 12px; }
+
+  /* ── Charts ── */
+  .chart-wrap { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 12px 0; }
+  canvas { max-height: 280px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── Footer ── */
+  footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: 11px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--burgundy); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  code { background: var(--cream-soft); padding: 1px 6px; border-radius: 3px; font-size: 11px; font-family: 'SF Mono', Menlo, monospace; }
+  .small-note { font-size: 11px; color: var(--ink-muted); margin: -4px 0 12px; font-style: italic; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; }
+    .container { padding: 20px; max-width: none; }
+    .chart-wrap, .kpi-card, table, .exec-summary { box-shadow: none; page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+    tr:hover td { background: transparent; }
+    canvas { max-height: 200px; }
+    footer { page-break-inside: avoid; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="brand-bar">
+  <div class="brand-mark">
+    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2 L4 7 v10 l8 5 8-5 V7 Z M12 5.2 L17.5 8.5 v7 L12 18.8 6.5 15.5 v-7 Z M9 11 h6 v2 h-6 z"/></svg>
+  </div>
+  <div class="brand-name">Holistic Unity</div>
+  <div class="brand-tag">Meta Ads · Performance Report</div>
+</div>
+
+<header class="title-block">
+  <h1>Risultati campagne Meta</h1>
+  <div class="subtitle">
+    <span class="period">2026-05-01 → 2026-06-04</span>
+    <span>Holistic Unity Ads · aggiornato 05 june 2026 · 15:21</span>
+  </div>
+</header>
+<div class="exec-summary"><h2>Sintesi per il management</h2><p>Nei <strong>35 giorni</strong> dal <strong>2026-05-01</strong> al <strong>2026-06-04</strong>, le campagne hanno generato <strong>3.442 click</strong> con una spesa di <strong>€ 138,19</strong>. Il CTR medio è <strong>3,31%</strong> (sopra target, soglia 1,50%), il CPC è <strong>€ 0,04</strong>.</p><ul class="exec-bullets"><li class="good"><strong>AS1_Naturopatia_IT_28-55_Broad</strong> performa <strong>3.1× meglio</strong> di AS3_SkepticalSeekers_IT_30-55 a livello CTR (5,47% vs 1,77%).</li><li class="good">Un solo ad — <strong>AD_HU_Nat03_Pattern_4x5_EA</strong> — ha portato il <strong>50% dei click totali</strong> (1.716 su 3.442).</li><li class="warn"><strong>1 ad</strong> con CTR sotto l'1% e oltre 100 impression — candidato pausa per recuperare budget.</li><li class="good">Campagna <strong>HU_TOFU_AwarenessTraffic_Naturopatia_W1</strong> ha CTR 5,47% — supera la campagna HU_TOFU_AwarenessTraffic_GeneralApp_W1 (2,07%) di un fattore 2.6×.</li></ul></div><h2>Health & raccomandazioni</h2><ul class="alert-list"><li class="alert-info">Performance eccellente: CTR 3.31%, CPC €0.04. Considera scaling del budget +20%.</li></ul><h2>Performance — sintesi</h2><div class="kpi-grid">
+<div class="kpi-card ">
+  <div class="kpi-label">Spesa</div>
+  <div class="kpi-value">€ 138,19 </div>
+  <div class="kpi-sub">vs. € 0,00 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card ">
+  <div class="kpi-label">Impressioni</div>
+  <div class="kpi-value">103.898 </div>
+  <div class="kpi-sub">vs. 0 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card ">
+  <div class="kpi-label">Click</div>
+  <div class="kpi-value">3.442 </div>
+  <div class="kpi-sub">vs. 0 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card kpi-great">
+  <div class="kpi-label">CTR</div>
+  <div class="kpi-value">3,31% </div>
+  <div class="kpi-sub">vs. 0,00% (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card kpi-great">
+  <div class="kpi-label">CPC</div>
+  <div class="kpi-value">€ 0,04 </div>
+  <div class="kpi-sub">vs. € 0,00 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card ">
+  <div class="kpi-label">CPM</div>
+  <div class="kpi-value">€ 1,33 </div>
+  <div class="kpi-sub">vs. € 0,00 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card ">
+  <div class="kpi-label">Reach</div>
+  <div class="kpi-value">83.246 </div>
+  <div class="kpi-sub">vs. 0 (precedenti 35gg)</div>
+</div>
+
+<div class="kpi-card kpi-good">
+  <div class="kpi-label">Frequenza</div>
+  <div class="kpi-value">1,25 </div>
+  <div class="kpi-sub">vs. 0,00 (precedenti 35gg)</div>
+</div>
+</div><h2>Andamento giornaliero</h2>
+<div class="two-col">
+  <div class="chart-wrap"><canvas id="chart-spend"></canvas></div>
+  <div class="chart-wrap"><canvas id="chart-ctr"></canvas></div>
+</div>
+<script>
+const COLORS = { bg: '#7B2252', bgSoft: 'rgba(123,34,82,0.1)', gold: '#B8864E', line: '#E5DCC8' };
+new Chart(document.getElementById('chart-spend'), {
+  type: 'line', data: {
+    labels: ["2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04"],
+    datasets: [
+      { label: 'Spesa (€)', data: [9.13, 43.06, 42.98, 43.02], borderColor: COLORS.bg, backgroundColor: COLORS.bgSoft, fill: true, yAxisID: 'y' },
+      { label: 'Click', data: [182, 1214, 1134, 912], borderColor: COLORS.gold, fill: false, yAxisID: 'y1' }
+    ]
+  },
+  options: { responsive: true, interaction: { mode: 'index', intersect: false }, scales: {
+    y: { position: 'left', title: { display: true, text: 'Spesa €' } },
+    y1: { position: 'right', title: { display: true, text: 'Click' }, grid: { display: false } }
+  } }
+});
+new Chart(document.getElementById('chart-ctr'), {
+  type: 'bar', data: {
+    labels: ["2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04"],
+    datasets: [
+      { label: 'Impressioni', data: [6643, 38827, 27770, 30658], backgroundColor: COLORS.bgSoft, borderColor: COLORS.bg, borderWidth: 1, yAxisID: 'y' },
+      { label: 'CTR %', data: [2.739726, 3.12669, 4.083543, 2.974754], type: 'line', borderColor: COLORS.bg, fill: false, yAxisID: 'y1' }
+    ]
+  },
+  options: { responsive: true, interaction: { mode: 'index', intersect: false }, scales: {
+    y: { position: 'left', title: { display: true, text: 'Impression' } },
+    y1: { position: 'right', title: { display: true, text: 'CTR %' }, grid: { display: false } }
+  } }
+});
+</script>
+<h2>Campagne</h2><table><thead><tr><th>Campagna</th><th>Spesa</th><th>Impression</th><th>Click</th><th>CTR</th><th>CPC</th><th>Reach</th><th>Freq</th></tr></thead><tbody>
+<tr>
+  <td class="name">HU_TOFU_AwarenessTraffic_GeneralApp_W1</td>
+  <td class="num">€ 100,11</td>
+  <td class="num">65.922</td>
+  <td class="num">1.364</td>
+  <td class="num">2,07%</td>
+  <td class="num">€ 0,07</td>
+  <td class="num">52.378</td>
+  <td class="num">1,26</td>
+</tr>
+<tr>
+  <td class="name">HU_TOFU_AwarenessTraffic_Naturopatia_W1</td>
+  <td class="num">€ 38,08</td>
+  <td class="num">37.976</td>
+  <td class="num">2.078</td>
+  <td class="num">5,47%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">32.824</td>
+  <td class="num">1,16</td>
+</tr></tbody></table><h2>Ad Set — performance per audience</h2><table><thead><tr><th>Ad Set</th><th>Campagna</th><th>Spesa</th><th>Impression</th><th>Click</th><th>CTR</th><th>CPC</th><th>Freq</th></tr></thead><tbody>
+<tr>
+  <td class="name">AS1_Naturopatia_IT_28-55_Broad</td>
+  <td class="name subtle">HU_TOFU_AwarenessTraffic_Naturopatia_W1</td>
+  <td class="num">€ 38,08</td>
+  <td class="num">37.976</td>
+  <td class="num">2.078</td>
+  <td class="num">5,47%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">1,16</td>
+</tr>
+<tr>
+  <td class="name">AS1_Broad_IT_25-50</td>
+  <td class="name subtle">HU_TOFU_AwarenessTraffic_GeneralApp_W1</td>
+  <td class="num">€ 33,47</td>
+  <td class="num">21.920</td>
+  <td class="num">451</td>
+  <td class="num">2,06%</td>
+  <td class="num">€ 0,07</td>
+  <td class="num">1,15</td>
+</tr>
+<tr>
+  <td class="name">AS3_SkepticalSeekers_IT_30-55</td>
+  <td class="name subtle">HU_TOFU_AwarenessTraffic_GeneralApp_W1</td>
+  <td class="num">€ 33,40</td>
+  <td class="num">26.756</td>
+  <td class="num">474</td>
+  <td class="num">1,77%</td>
+  <td class="num">€ 0,07</td>
+  <td class="num">1,17</td>
+</tr>
+<tr>
+  <td class="name">AS2_WellnessCuriosi_IT_25-45</td>
+  <td class="name subtle">HU_TOFU_AwarenessTraffic_GeneralApp_W1</td>
+  <td class="num">€ 33,24</td>
+  <td class="num">17.246</td>
+  <td class="num">439</td>
+  <td class="num">2,55%</td>
+  <td class="num">€ 0,08</td>
+  <td class="num">1,18</td>
+</tr></tbody></table><h2>Top & Bottom ads (impression > 100)</h2><div class="two-col"><div><h3>🏆 Top 5 per CTR</h3><table><thead><tr><th>Ad</th><th>CTR</th><th>CPC</th><th>Spesa</th></tr></thead><tbody>
+<tr>
+  <td class="name">AD_HU_Nat03_Pattern_4x5_EA</td>
+  <td class="num">6,10%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 29,66</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat02_StomChiuso_9x16_EA</td>
+  <td class="num">4,14%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 1,83</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat06_Pattern_9x16_EA</td>
+  <td class="num">3,79%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 5,59</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen04_NonAltraPiat_9x16_EA</td>
+  <td class="num">3,54%</td>
+  <td class="num">€ 0,05</td>
+  <td class="num">€ 0,83</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen05_NonAltraPiat_4x5_EA</td>
+  <td class="num">2,73%</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">€ 0,42</td>
+</tr></tbody></table></div><div><h3>⚠️ Bottom 5 per CTR</h3><table><thead><tr><th>Ad</th><th>CTR</th><th>CPC</th><th>Spesa</th></tr></thead><tbody>
+<tr>
+  <td class="name">AD_HU_Gen03_TrovaProf2_9x16_EA</td>
+  <td class="num">0,29%</td>
+  <td class="num">€ 0,10</td>
+  <td class="num">€ 0,10</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen07_PrezziTrasp_4x5_EA</td>
+  <td class="num">1,09%</td>
+  <td class="num">€ 0,08</td>
+  <td class="num">€ 0,40</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen06_NonPromettiamo_9x16_EA</td>
+  <td class="num">1,44%</td>
+  <td class="num">€ 0,09</td>
+  <td class="num">€ 2,69</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen08_AntiGoogle_4x5_EA</td>
+  <td class="num">1,60%</td>
+  <td class="num">€ 0,06</td>
+  <td class="num">€ 0,92</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat01_StomChiuso_4x5_EA</td>
+  <td class="num">1,75%</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">€ 0,10</td>
+</tr></tbody></table></div></div><h2>Performance per gruppo di interessi</h2><div style="font-size:12px;color:var(--ink-muted);margin:-8px 0 12px;">Meta non espone metriche per singolo interest. Ogni ad set è un "gruppo di interessi" combinato — qui sotto ordinato per click totali. Le metriche sono ereditate da tutti gli ads del set.</div><table><thead><tr><th>Ad Set</th><th>Interessi targeting</th><th>Età</th><th>Spesa</th><th>Click</th><th>CTR</th><th>CPC</th></tr></thead><tbody>
+<tr>
+  <td class="name">AS1_Naturopatia_IT_28-55_Broad</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">28-55</td>
+  <td class="num">€ 38,08</td>
+  <td class="num">2.078</td>
+  <td class="num">5,47%</td>
+  <td class="num">€ 0,02</td>
+</tr>
+<tr>
+  <td class="name">AS3_SkepticalSeekers_IT_30-55</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">30-55</td>
+  <td class="num">€ 33,40</td>
+  <td class="num">474</td>
+  <td class="num">1,77%</td>
+  <td class="num">€ 0,07</td>
+</tr>
+<tr>
+  <td class="name">AS1_Broad_IT_25-50</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad (no interest)</em></td>
+  <td class="num">25-50</td>
+  <td class="num">€ 33,47</td>
+  <td class="num">451</td>
+  <td class="num">2,06%</td>
+  <td class="num">€ 0,07</td>
+</tr>
+<tr>
+  <td class="name">AS2_WellnessCuriosi_IT_25-45</td>
+  <td style="font-size:12px;line-height:1.4">Yoga (spiritualità) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale) · Astrologia (spiritualità) · Benessere (psicologia)</td>
+  <td class="num">25-45</td>
+  <td class="num">€ 33,24</td>
+  <td class="num">439</td>
+  <td class="num">2,55%</td>
+  <td class="num">€ 0,08</td>
+</tr></tbody></table><h2>Ads × interessi associati</h2><div style="font-size:12px;color:var(--ink-muted);margin:-8px 0 12px;">Tutti gli ads attivi con i click realizzati e gli interessi ereditati dal proprio ad set. Ordinato per click decrescenti.</div><table><thead><tr><th>Ad</th><th>Interessi del set</th><th>Click</th><th>CTR</th><th>CPC</th><th>Spesa</th></tr></thead><tbody>
+<tr>
+  <td class="name">AD_HU_Nat03_Pattern_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">1.716</td>
+  <td class="num">6,10%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 29,66</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen02_NonRumore_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Yoga (spiritualità) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale) · Astrologia (spiritualità) · Benessere (psicologia)</td>
+  <td class="num">438</td>
+  <td class="num">2,59%</td>
+  <td class="num">€ 0,08</td>
+  <td class="num">€ 33,14</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen09_AntiGoogle_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">438</td>
+  <td class="num">1,81%</td>
+  <td class="num">€ 0,07</td>
+  <td class="num">€ 30,31</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen01_TrovaProf_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad</em></td>
+  <td class="num">407</td>
+  <td class="num">2,03%</td>
+  <td class="num">€ 0,08</td>
+  <td class="num">€ 31,30</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat06_Pattern_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">254</td>
+  <td class="num">3,79%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 5,59</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat02_StomChiuso_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">79</td>
+  <td class="num">4,14%</td>
+  <td class="num">€ 0,02</td>
+  <td class="num">€ 1,83</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen06_NonPromettiamo_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">31</td>
+  <td class="num">1,44%</td>
+  <td class="num">€ 0,09</td>
+  <td class="num">€ 2,69</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat05_NonDieta_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">26</td>
+  <td class="num">2,57%</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">€ 0,90</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen04_NonAltraPiat_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad</em></td>
+  <td class="num">16</td>
+  <td class="num">3,54%</td>
+  <td class="num">€ 0,05</td>
+  <td class="num">€ 0,83</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen08_AntiGoogle_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad</em></td>
+  <td class="num">15</td>
+  <td class="num">1,60%</td>
+  <td class="num">€ 0,06</td>
+  <td class="num">€ 0,92</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen05_NonAltraPiat_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad</em></td>
+  <td class="num">13</td>
+  <td class="num">2,73%</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">€ 0,42</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen07_PrezziTrasp_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">5</td>
+  <td class="num">1,09%</td>
+  <td class="num">€ 0,08</td>
+  <td class="num">€ 0,40</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat01_StomChiuso_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">3</td>
+  <td class="num">1,75%</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">€ 0,10</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen03_TrovaProf2_9x16_EA</td>
+  <td style="font-size:12px;line-height:1.4">Yoga (spiritualità) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale) · Astrologia (spiritualità) · Benessere (psicologia)</td>
+  <td class="num">1</td>
+  <td class="num">0,29%</td>
+  <td class="num">€ 0,10</td>
+  <td class="num">€ 0,10</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Gen05_NonAltraPiat_4x5</td>
+  <td style="font-size:12px;line-height:1.4"><em style='color:var(--ink-muted)'>broad</em></td>
+  <td class="num">0</td>
+  <td class="num">0,00%</td>
+  <td class="num">€ 0,00</td>
+  <td class="num">€ 0,00</td>
+</tr>
+<tr>
+  <td class="name">AD_HU_Nat04_NonDieta_4x5_EA</td>
+  <td style="font-size:12px;line-height:1.4">Cura personale (psicologia) · Auto-aiuto (psicologia) · Sviluppo personale (identità personale)</td>
+  <td class="num">0</td>
+  <td class="num">0,00%</td>
+  <td class="num">€ 0,00</td>
+  <td class="num">€ 0,00</td>
+</tr></tbody></table><h2>Breakdown demografico & posizionamento</h2><div class="two-col"><div><h3>Età × Genere</h3><table><thead><tr><th>Età</th><th>Genere</th><th>Impr</th><th>Click</th><th>CTR</th></tr></thead><tbody>
+<tr>
+  <td>45-54</td>
+  <td>female</td>
+  <td class="num">27.682</td>
+  <td class="num">1.192</td>
+  <td class="num">4,31%</td>
+</tr>
+<tr>
+  <td>45-54</td>
+  <td>male</td>
+  <td class="num">15.354</td>
+  <td class="num">376</td>
+  <td class="num">2,45%</td>
+</tr>
+<tr>
+  <td>35-44</td>
+  <td>male</td>
+  <td class="num">13.448</td>
+  <td class="num">302</td>
+  <td class="num">2,25%</td>
+</tr>
+<tr>
+  <td>35-44</td>
+  <td>female</td>
+  <td class="num">13.236</td>
+  <td class="num">470</td>
+  <td class="num">3,55%</td>
+</tr>
+<tr>
+  <td>25-34</td>
+  <td>male</td>
+  <td class="num">12.330</td>
+  <td class="num">292</td>
+  <td class="num">2,37%</td>
+</tr>
+<tr>
+  <td>25-34</td>
+  <td>female</td>
+  <td class="num">9.346</td>
+  <td class="num">346</td>
+  <td class="num">3,70%</td>
+</tr>
+<tr>
+  <td>55-64</td>
+  <td>female</td>
+  <td class="num">5.001</td>
+  <td class="num">221</td>
+  <td class="num">4,42%</td>
+</tr>
+<tr>
+  <td>45-54</td>
+  <td>unknown</td>
+  <td class="num">2.092</td>
+  <td class="num">84</td>
+  <td class="num">4,02%</td>
+</tr>
+<tr>
+  <td>55-64</td>
+  <td>male</td>
+  <td class="num">2.084</td>
+  <td class="num">57</td>
+  <td class="num">2,74%</td>
+</tr>
+<tr>
+  <td>35-44</td>
+  <td>unknown</td>
+  <td class="num">1.588</td>
+  <td class="num">54</td>
+  <td class="num">3,40%</td>
+</tr>
+<tr>
+  <td>25-34</td>
+  <td>unknown</td>
+  <td class="num">1.427</td>
+  <td class="num">38</td>
+  <td class="num">2,66%</td>
+</tr>
+<tr>
+  <td>55-64</td>
+  <td>unknown</td>
+  <td class="num">291</td>
+  <td class="num">10</td>
+  <td class="num">3,44%</td>
+</tr>
+<tr>
+  <td>Unknown</td>
+  <td>unknown</td>
+  <td class="num">19</td>
+  <td class="num">0</td>
+  <td class="num">0,00%</td>
+</tr></tbody></table></div><div><h3>Piattaforma × Posizionamento</h3><table><thead><tr><th>Piatt.</th><th>Posiz.</th><th>Impr</th><th>Click</th><th>CTR</th></tr></thead><tbody>
+<tr>
+  <td>facebook</td>
+  <td>feed</td>
+  <td class="num">57.242</td>
+  <td class="num">1.662</td>
+  <td class="num">2,90%</td>
+</tr>
+<tr>
+  <td>instagram</td>
+  <td>instagram_reels</td>
+  <td class="num">21.133</td>
+  <td class="num">1.021</td>
+  <td class="num">4,83%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>facebook_reels</td>
+  <td class="num">7.847</td>
+  <td class="num">227</td>
+  <td class="num">2,89%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>facebook_stories</td>
+  <td class="num">7.639</td>
+  <td class="num">473</td>
+  <td class="num">6,19%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>right_hand_column</td>
+  <td class="num">6.979</td>
+  <td class="num">6</td>
+  <td class="num">0,09%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>instream_video</td>
+  <td class="num">1.922</td>
+  <td class="num">14</td>
+  <td class="num">0,73%</td>
+</tr>
+<tr>
+  <td>instagram</td>
+  <td>instagram_stories</td>
+  <td class="num">394</td>
+  <td class="num">14</td>
+  <td class="num">3,55%</td>
+</tr>
+<tr>
+  <td>instagram</td>
+  <td>feed</td>
+  <td class="num">317</td>
+  <td class="num">11</td>
+  <td class="num">3,47%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>facebook_notification</td>
+  <td class="num">156</td>
+  <td class="num">7</td>
+  <td class="num">4,49%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>marketplace</td>
+  <td class="num">132</td>
+  <td class="num">2</td>
+  <td class="num">1,52%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>facebook_profile_feed</td>
+  <td class="num">124</td>
+  <td class="num">4</td>
+  <td class="num">3,23%</td>
+</tr>
+<tr>
+  <td>facebook</td>
+  <td>search</td>
+  <td class="num">12</td>
+  <td class="num">1</td>
+  <td class="num">8,33%</td>
+</tr>
+<tr>
+  <td>instagram</td>
+  <td>instagram_explore_grid_home</td>
+  <td class="num">1</td>
+  <td class="num">0</td>
+  <td class="num">0,00%</td>
+</tr></tbody></table></div></div><h3>Device</h3><table><thead><tr><th>Device</th><th>Spesa</th><th>Impression</th><th>Click</th><th>CTR</th></tr></thead><tbody>
+<tr>
+  <td>android_smartphone</td>
+  <td class="num">€ 116,58</td>
+  <td class="num">81.573</td>
+  <td class="num">2.825</td>
+  <td class="num">3,46%</td>
+</tr>
+<tr>
+  <td>iphone</td>
+  <td class="num">€ 17,70</td>
+  <td class="num">14.358</td>
+  <td class="num">583</td>
+  <td class="num">4,06%</td>
+</tr>
+<tr>
+  <td>desktop</td>
+  <td class="num">€ 2,69</td>
+  <td class="num">7.005</td>
+  <td class="num">7</td>
+  <td class="num">0,10%</td>
+</tr>
+<tr>
+  <td>android_tablet</td>
+  <td class="num">€ 1,06</td>
+  <td class="num">851</td>
+  <td class="num">25</td>
+  <td class="num">2,94%</td>
+</tr>
+<tr>
+  <td>ipad</td>
+  <td class="num">€ 0,13</td>
+  <td class="num">104</td>
+  <td class="num">1</td>
+  <td class="num">0,96%</td>
+</tr>
+<tr>
+  <td>other</td>
+  <td class="num">€ 0,03</td>
+  <td class="num">7</td>
+  <td class="num">1</td>
+  <td class="num">14,29%</td>
+</tr></tbody></table><h2>Account</h2>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-label">Account</div><div class="kpi-value" style="font-size:18px">Holistic Unity Ads</div><div class="kpi-sub">Status: 1</div></div>
+  <div class="kpi-card"><div class="kpi-label">Currency</div><div class="kpi-value" style="font-size:18px">EUR</div><div class="kpi-sub">Timezone: Europe/Rome</div></div>
+  <div class="kpi-card"><div class="kpi-label">Spesa totale (lifetime)</div><div class="kpi-value">€ 13.819,00</div></div>
+  <div class="kpi-card"><div class="kpi-label">Spend cap</div><div class="kpi-value">Nessuno</div></div>
+</div>
+
+<footer>
+  <div>
+    Holistic Unity · Report generato automaticamente il 2026-06-05 15:21<br>
+    Account <code>act_1639569793931524</code> · Fonte dati: Meta Marketing API v22.0
+  </div>
+  <div class="no-print">
+    <a href="https://business.facebook.com/adsmanager/manage/accounts?act=act_1639569793931524">Apri Ads Manager →</a><br>
+    <code>python3 scripts/dashboard.py</code> per aggiornare
+  </div>
+</footer>
+</div>
+</body>
+</html>
