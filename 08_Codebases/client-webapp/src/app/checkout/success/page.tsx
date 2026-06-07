@@ -21,7 +21,7 @@ function SuccessInner() {
     service_name: string | null;
     duration: number | null;
     therapist_id: string | null;
-    therapist: { display_name: string | null } | null;
+    therapist: { display_name: string | null; slug: string | null } | null;
     status: string;
     price: number | null;
     currency: string | null;
@@ -73,7 +73,7 @@ function SuccessInner() {
           // the "Scrivi all'operatore" button can create a 1:1 chat.
           // price + currency are needed for the Meta Pixel Purchase
           // event below.
-          "scheduled_at, service_name, duration, status, therapist_id, price, currency, therapist:therapist_profiles!bookings_therapist_id_fkey(display_name)",
+          "scheduled_at, service_name, duration, status, therapist_id, price, currency, therapist:therapist_profiles!bookings_therapist_id_fkey(display_name, slug)",
         )
         .eq("id", bookingId)
         .maybeSingle();
@@ -227,7 +227,7 @@ function SuccessInner() {
           where the booking sidebar is pre-loaded with all services. */}
       {booking?.therapist_id && booking.therapist?.display_name && (
         <Link
-          href={`/dashboard/therapists/${booking.therapist_id}#prenota`}
+          href={`/dashboard/therapists/${booking.therapist?.slug ?? booking.therapist_id}#prenota`}
           className="group flex items-center justify-between gap-3 rounded-2xl border border-berry/10 bg-gradient-to-br from-berry/5 via-white to-gold/5 px-5 py-4 text-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
         >
           <span className="text-charcoal-muted">

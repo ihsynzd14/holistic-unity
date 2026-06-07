@@ -67,6 +67,10 @@ export async function updateSession(
     path.startsWith("/forgot-password") ||
     path.startsWith("/reset-password") ||
     path.startsWith("/auth") ||
+    // Public therapist profiles (shareable links on therapists' own
+    // sites). Must render for logged-out visitors; safety is enforced in
+    // the data layer (approved + stripe-active + public-safe columns).
+    path.startsWith("/t/") ||
     path === "/";
 
   // Redirect unauthenticated users to login

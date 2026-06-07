@@ -45,6 +45,7 @@ type RelatedPractice = {
 
 type Therapist = {
   id: string;
+  slug: string | null;
   display_name: string | null;
   tagline: string | null;
   photo_url: string | null;
@@ -91,7 +92,7 @@ export default function PracticeDetailPage() {
       const { data: therapistsData } = await supabase
         .from("therapist_profiles_public")
         .select(
-          "id, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, categories",
+          "id, slug, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, categories",
         )
         .contains("categories", [(practiceData as Practice).slug])
         .order("average_rating", { ascending: false, nullsFirst: false })
@@ -288,7 +289,7 @@ export default function PracticeDetailPage() {
             {therapists.map((th) => (
               <Link
                 key={th.id}
-                href={`/dashboard/therapists/${th.id}`}
+                href={`/dashboard/therapists/${th.slug ?? th.id}`}
                 className="group flex items-start gap-3 rounded-2xl border border-berry/5 bg-white/70 p-4 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-base font-bold text-berry-dark">

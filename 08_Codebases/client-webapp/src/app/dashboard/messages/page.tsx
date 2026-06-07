@@ -347,6 +347,33 @@ function CustomChannelHeader() {
   // source) changes, so a valid image for the next operator gets a chance.
   useEffect(() => setAvatarFailed(false), [otherUser?.image, resolvedPhoto]);
 
+  // Resolve the operator's public slug so the "Prenota" link shows the
+  // pretty /dashboard/therapists/<slug> URL (never the UUID) on hover.
+  // Falls back to the id until it loads / if the operator has no slug.
+  const [otherSlug, setOtherSlug] = useState<string | null>(null);
+  useEffect(() => {
+    const uid = otherUser?.id;
+    if (!uid) {
+      setOtherSlug(null);
+      return;
+    }
+    let active = true;
+    const supabase = createClient();
+    void supabase
+      .from("therapist_profiles_public")
+      .select("slug")
+      .eq("id", uid)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (active) {
+          setOtherSlug((data as { slug?: string | null } | null)?.slug ?? null);
+        }
+      });
+    return () => {
+      active = false;
+    };
+  }, [otherUser?.id]);
+
   if (!otherUser) {
     // Channel still loading or no other member yet — render a minimal
     // header so the layout doesn't jump.
@@ -398,7 +425,7 @@ function CustomChannelHeader() {
         </p>
       </div>
       <Link
-        href={`/dashboard/therapists/${otherUser.id}#prenota`}
+        href={`/dashboard/therapists/${otherSlug ?? otherUser.id}#prenota`}
         className="inline-flex items-center gap-1.5 rounded-full bg-berry px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm shadow-berry/20 transition-all hover:bg-berry-dark hover:shadow-md"
       >
         <CalendarPlus className="h-3.5 w-3.5" />

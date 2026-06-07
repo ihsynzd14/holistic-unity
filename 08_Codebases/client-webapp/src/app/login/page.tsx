@@ -21,6 +21,14 @@ function LoginForm() {
   // If a therapist tried to log in here by mistake, the dashboard layout
   // bounces them to /login?error=wrong_portal — show a friendly note.
   const wrongPortal = searchParams.get("error") === "wrong_portal";
+  // Optional post-login destination (e.g. arriving from a public /t/<slug>
+  // profile's "Prenota" CTA). Guarded against open redirects: must be a
+  // same-origin path, never a protocol-relative //evil.com URL.
+  const nextRaw = searchParams.get("next");
+  const safeNext =
+    nextRaw && nextRaw.startsWith("/") && !nextRaw.startsWith("//")
+      ? nextRaw
+      : "/dashboard";
   const { t } = useI18n();
 
   async function handleLogin(e: React.FormEvent) {
@@ -62,7 +70,7 @@ function LoginForm() {
     // the redirect, fires fire-and-forget.
     fetch("/api/security/log-login", { method: "POST" }).catch(() => {});
 
-    router.push("/dashboard");
+    router.push(safeNext);
     router.refresh();
   }
 

@@ -4,7 +4,7 @@ import { Suspense, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n/context";
 import { CLIENT_TOS_VERSION, TOS_URLS } from "@/lib/tos/version";
 import {
@@ -34,6 +34,16 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 function RegisterForm() {
   const { t, locale, setLocale } = useI18n();
   const router = useRouter();
+  // Optional post-signup destination (e.g. arriving from a public
+  // /t/<slug> profile's "Prenota" CTA). Guarded against open redirects:
+  // same-origin path only, never protocol-relative //evil.com. Null when
+  // absent so the existing /welcome and /dashboard defaults are kept.
+  const searchParams = useSearchParams();
+  const nextRaw = searchParams.get("next");
+  const safeNext =
+    nextRaw && nextRaw.startsWith("/") && !nextRaw.startsWith("//")
+      ? nextRaw
+      : null;
 
   const [fullName, setFullName] = useState("");
   const [gender, setGender] = useState("");
@@ -192,7 +202,7 @@ function RegisterForm() {
         // confirmation link lands on THIS app's /auth/confirm (token_hash /
         // verifyOtp flow — NOT /auth/callback PKCE, which failed when the
         // link opened in a different browser/device than signup).
-        emailRedirectTo: `${window.location.origin}/auth/confirm?next=/welcome`,
+        emailRedirectTo: `${window.location.origin}/auth/confirm?next=${encodeURIComponent(safeNext ?? "/welcome")}`,
       },
     });
 
@@ -233,7 +243,7 @@ function RegisterForm() {
 
       // Client accounts are NOT gated on admin approval — straight to
       // the dashboard.
-      router.push("/dashboard");
+      router.push(safeNext ?? "/dashboard");
       router.refresh();
       return;
     }

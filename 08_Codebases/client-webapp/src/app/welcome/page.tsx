@@ -31,6 +31,7 @@ const META_SIGNUP_EVENT_KEY = "hu-meta-complete-registration-fired";
 
 type RecommendedTherapist = {
   id: string;
+  slug: string | null;
   display_name: string | null;
   tagline: string | null;
   photo_url: string | null;
@@ -308,7 +309,7 @@ export default function WelcomePage() {
         const { data: therapistsData } = await supabase
           .from("therapist_profiles_public")
           .select(
-            "id, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, has_mfa, categories",
+            "id, slug, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, has_mfa, categories",
           )
           .overlaps("categories", therapistKeys)
           .order("average_rating", { ascending: false, nullsFirst: false })
@@ -746,7 +747,7 @@ function SummaryStep({
                 {therapists.map((t) => (
                   <Link
                     key={t.id}
-                    href={`/dashboard/therapists/${t.id}`}
+                    href={`/dashboard/therapists/${t.slug ?? t.id}`}
                     className="group rounded-2xl border border-berry/10 bg-white/80 p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
                   >
                     <div className="flex items-start gap-3">

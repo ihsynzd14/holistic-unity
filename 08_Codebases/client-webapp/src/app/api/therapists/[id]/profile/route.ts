@@ -62,22 +62,28 @@ export async function GET(
     return NextResponse.json({ error: "Non autenticato" }, { status: 401 });
   }
 
-  const { id: therapistId } = await params;
-  if (!/^[0-9a-f-]{36}$/i.test(therapistId)) {
+  // Accept EITHER the canonical UUID or a public slug, so the in-app
+  // detail route can show pretty `/dashboard/therapists/<slug>` URLs while
+  // old UUID links keep working. Slugs match the shape produced by the DB
+  // slugify() (lowercase, hyphen-separated).
+  const { id: idOrSlug } = await params;
+  const isUuid = /^[0-9a-f-]{36}$/i.test(idOrSlug);
+  if (!isUuid && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(idOrSlug)) {
     return NextResponse.json({ error: "Invalid therapist id" }, { status: 400 });
   }
+  const lookupColumn = isUuid ? "id" : "slug";
 
   const admin = createAdminClient();
 
-  // Try with `helps_with` first — graceful fallback for older deployments
-  // where the column doesn't exist yet. Same pattern the page used to
-  // run client-side; we keep it server-side now.
+  // `helps_with` + `slug` are newer columns — graceful fallback for older
+  // deployments where they don't exist yet (a UUID lookup still works
+  // without them; only the pretty-URL swap needs slug).
   const baseSelect = SAFE_COLUMNS.join(", ");
-  const tryQuery = async (withHelpsWith: boolean) => {
+  const tryQuery = async (withOptional: boolean) => {
     return admin
       .from("therapist_profiles")
-      .select(withHelpsWith ? `${baseSelect}, helps_with` : baseSelect)
-      .eq("id", therapistId)
+      .select(withOptional ? `${baseSelect}, helps_with, slug` : baseSelect)
+      .eq(lookupColumn, idOrSlug)
       .eq("approval_status", "approved")
       .eq("is_approved", true)
       .eq("stripe_account_status", "active")
@@ -85,7 +91,7 @@ export async function GET(
   };
 
   let { data, error } = await tryQuery(true);
-  if (error?.message?.includes("helps_with")) {
+  if (error?.message?.includes("helps_with") || error?.message?.includes("slug")) {
     ({ data, error } = await tryQuery(false));
   }
 

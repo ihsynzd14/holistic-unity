@@ -13,6 +13,7 @@ import { TierLabel } from "@/components/ui/TierLabel";
 
 type Therapist = {
   id: string;
+  slug: string | null;
   display_name: string | null;
   tagline: string | null;
   photo_url: string | null;
@@ -48,7 +49,7 @@ export default function BrowseTherapistsPage() {
       const { data } = await supabase
         .from("therapist_profiles_public")
         .select(
-          "id, display_name, tagline, photo_url, years_experience, categories, languages, city, country, average_rating, total_reviews, is_verified, has_mfa, created_at"
+          "id, slug, display_name, tagline, photo_url, years_experience, categories, languages, city, country, average_rating, total_reviews, is_verified, has_mfa, created_at"
         );
 
       // Detect therapists offering a free "sessione conoscitiva". The
@@ -237,7 +238,7 @@ export default function BrowseTherapistsPage() {
           {filtered.map((th, idx) => (
             <Link
               key={th.id}
-              href={`/dashboard/therapists/${th.id}`}
+              href={`/dashboard/therapists/${th.slug ?? th.id}`}
               className="group animate-reveal flex flex-col rounded-2xl border border-berry/5 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-berry/20 hover:shadow-[0_18px_40px_-16px_rgba(123,34,82,0.22)]"
               style={{ animationDelay: `${120 + idx * 40}ms` }}
             >

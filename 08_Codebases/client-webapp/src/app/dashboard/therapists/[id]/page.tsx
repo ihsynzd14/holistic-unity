@@ -61,6 +61,7 @@ const PRACTICE_LABELS: Record<string, string> = {
 
 type Profile = {
   id: string;
+  slug: string | null;
   display_name: string | null;
   tagline: string | null;
   bio: string | null;
@@ -275,32 +276,61 @@ export default function TherapistDetailPage() {
       // literally book a slot with via /freebusy.
       // Services + certifications stay as direct Supabase reads (RLS
       // already permits anonymous select on those tables).
-      const profileReq = fetch(`/api/therapists/${id}/profile`)
+      // Resolve the route param (slug OR uuid) to the profile FIRST. The
+      // profile route accepts either and returns the canonical record;
+      // everything else below is keyed on the canonical therapist UUID
+      // (profile.id), so a slug in the URL still loads services, slots and
+      // checkout correctly.
+      const { profile: profileData } = await fetch(
+        `/api/therapists/${id}/profile`,
+      )
         .then((r) => (r.ok ? r.json() : { profile: null }))
         .catch(() => ({ profile: null }));
+
+      const therapistId = (profileData as Profile | null)?.id ?? null;
+      if (!therapistId) {
+        setProfile(null);
+        setLoading(false);
+        return;
+      }
+
+      // Swap the address bar to the pretty slug URL when we arrived via the
+      // UUID. history.replaceState (not the router) so the page doesn't
+      // re-render or re-fetch; the #prenota hash is preserved.
+      const canonicalSlug = (profileData as Profile).slug;
+      if (
+        canonicalSlug &&
+        id !== canonicalSlug &&
+        typeof window !== "undefined"
+      ) {
+        window.history.replaceState(
+          null,
+          "",
+          `/dashboard/therapists/${canonicalSlug}${window.location.hash}`,
+        );
+      }
+
       const [
-        { profile: profileData },
         { data: servicesData },
         { data: certsData },
         freebusyRes,
         { data: reviewsData },
         completedRes,
       ] = await Promise.all([
-        profileReq,
         supabase
           .from("therapist_services")
           .select("id, name, description, duration, price, category, is_intro_call")
-          .eq("therapist_id", id)
+          .eq("therapist_id", therapistId)
           .eq("is_active", true)
           .order("is_intro_call", { ascending: false })
           .order("price", { ascending: true }),
         supabase
           .from("certifications")
           .select("id, name, issuing_organization, year_obtained")
-          .eq("therapist_id", id)
+          .eq("therapist_id", therapistId)
           .order("year_obtained", { ascending: false }),
         fetch(
-          `/api/therapists/${id}/freebusy?start=${encodeURIComponent(
+          `/api/therapists/${therapistId}/freebusy?start=${encodeURIComponent(
             now.toISOString(),
           )}&end=${encodeURIComponent(windowEnd.toISOString())}`,
         ).then((r) => r.json()).catch(() => ({ busy: [] })),
@@ -310,7 +340,7 @@ export default function TherapistDetailPage() {
         supabase
           .from("reviews")
           .select("id, rating, text, client_name, client_photo_url, therapist_reply, created_at")
-          .eq("therapist_id", id)
+          .eq("therapist_id", therapistId)
           .order("created_at", { ascending: false })
           .limit(12),
         // Lifetime completed-sessions counter — drives the hero "Sessioni"
@@ -323,10 +353,10 @@ export default function TherapistDetailPage() {
         supabase
           .from("bookings")
           .select("id", { count: "exact", head: true })
-          .eq("therapist_id", id)
+          .eq("therapist_id", therapistId)
           .eq("status", "completed"),
       ]);
-      setProfile((profileData as Profile) || null);
+      setProfile(profileData as Profile);
       setServices((servicesData as Service[]) || []);
       setCertifications((certsData as Certification[]) || []);
       setBookings((freebusyRes?.busy as SlotBooking[]) || []);
@@ -364,7 +394,7 @@ export default function TherapistDetailPage() {
             "@/lib/analytics/meta-pixel"
           );
           trackViewContent({
-            content_ids: [id as string],
+            content_ids: [therapistId],
             content_type: "product",
             content_name:
               (profileData as Profile).display_name ?? "therapist",
@@ -404,7 +434,7 @@ export default function TherapistDetailPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          therapistId: id,
+          therapistId: profile?.id ?? id,
           serviceId: selectedService.id,
           slotIso: selectedSlot.toISOString(),
         }),

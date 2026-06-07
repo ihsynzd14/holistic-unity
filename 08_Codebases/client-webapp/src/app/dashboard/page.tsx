@@ -89,6 +89,7 @@ type FeaturedPractice = {
 
 type SuggestedTherapist = {
   id: string;
+  slug: string | null;
   display_name: string | null;
   tagline: string | null;
   photo_url: string | null;
@@ -358,7 +359,7 @@ export default function ClientDashboardPage() {
           const { data: thData } = await supabase
             .from("therapist_profiles_public")
             .select(
-              "id, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, categories",
+              "id, slug, display_name, tagline, photo_url, city, average_rating, total_reviews, is_verified, categories",
             )
             .overlaps("categories", therapistKeys)
             .order("average_rating", { ascending: false, nullsFirst: false })
@@ -567,7 +568,7 @@ export default function ClientDashboardPage() {
             {suggested.map((th, i) => (
               <Link
                 key={th.id}
-                href={`/dashboard/therapists/${th.id}`}
+                href={`/dashboard/therapists/${th.slug ?? th.id}`}
                 className="group overflow-hidden rounded-2xl border border-berry/5 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-berry/10"
                 style={{ animationDelay: `${140 + i * 40}ms` }}
               >

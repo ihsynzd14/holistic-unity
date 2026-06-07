@@ -34,6 +34,11 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  // Absolute base for canonical + OpenGraph URLs (used by the public
+  // /t/<slug> therapist pages whose links live on external sites).
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_PUBLIC_APP_URL ?? "https://app.holisticunity.app",
+  ),
   title: "Holistic Unity",
   description: "Trova il tuo operatore olistico, prenota una sessione e parti per il tuo percorso di benessere.",
   icons: {
