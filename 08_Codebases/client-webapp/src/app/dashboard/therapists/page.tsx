@@ -238,84 +238,86 @@ export default function BrowseTherapistsPage() {
             <Link
               key={th.id}
               href={`/dashboard/therapists/${th.id}`}
-              className="group animate-reveal rounded-2xl border border-berry/5 bg-white/70 p-5 shadow-sm backdrop-blur-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+              className="group animate-reveal flex flex-col rounded-2xl border border-berry/5 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-berry/20 hover:shadow-[0_18px_40px_-16px_rgba(123,34,82,0.22)]"
               style={{ animationDelay: `${120 + idx * 40}ms` }}
             >
-              {/* Avatar + name */}
-              <div className="flex items-start gap-3">
-                <div className="relative flex-shrink-0">
-                  <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 text-lg font-bold text-berry-dark">
-                    {th.photo_url ? (
-                      <Image
-                        src={th.photo_url}
-                        alt={th.display_name ?? ""}
-                        width={56}
-                        height={56}
-                        unoptimized
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      initials(th.display_name)
-                    )}
-                  </div>
-                  {/* Tier icon badge — bottom-right corner of avatar */}
-                  {th.tier && (
-                    <div className="absolute -bottom-1 -right-1 rounded-full bg-white p-0.5 shadow-sm ring-1 ring-berry/5">
-                      <TierIcon tier={th.tier} size={22} />
-                    </div>
+              {/* Identity: avatar, tier, name, role */}
+              <div className="flex items-start gap-3.5">
+                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-berry-subtle to-gold/20 font-[family-name:var(--font-display)] text-2xl font-medium text-berry-dark ring-1 ring-berry/5">
+                  {th.photo_url ? (
+                    <Image
+                      src={th.photo_url}
+                      alt={th.display_name ?? ""}
+                      width={64}
+                      height={64}
+                      unoptimized
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                  ) : (
+                    initials(th.display_name)
                   )}
                 </div>
-                <div className="flex-1 min-w-0">
+                <div className="min-w-0 flex-1">
+                  {th.tier && (
+                    <div className="mb-1.5 flex items-center gap-1.5">
+                      <span className="inline-flex flex-shrink-0 rounded-full bg-white p-0.5 shadow-sm ring-1 ring-berry/5">
+                        <TierIcon tier={th.tier} size={20} />
+                      </span>
+                      <TierLabel tier={th.tier} compact />
+                    </div>
+                  )}
                   <div className="flex items-center gap-1.5">
-                    <p className="text-sm font-semibold text-charcoal truncate">
+                    <h3 className="min-w-0 truncate font-[family-name:var(--font-display)] text-[17px] font-medium leading-tight tracking-tight text-charcoal">
                       {th.display_name?.trim() || "—"}
-                    </p>
+                    </h3>
                     {th.is_verified && (
                       <ShieldCheck
-                        className="h-3.5 w-3.5 flex-shrink-0 text-info"
+                        className="h-4 w-4 flex-shrink-0 text-info"
                         strokeWidth={2}
                         aria-label="Profilo verificato dall'admin"
                       />
                     )}
                   </div>
-                  {th.tier && (
-                    <div className="mt-1">
-                      <TierLabel tier={th.tier} compact />
-                    </div>
-                  )}
                   {th.tagline && (
-                    <p className="mt-0.5 text-xs text-charcoal-muted line-clamp-2">{th.tagline}</p>
-                  )}
-                  {th.has_free_intro && (
-                    <span className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-success">
-                      <Sparkles className="h-3 w-3" strokeWidth={2.25} />
-                      Sessione conoscitiva gratuita
-                    </span>
+                    <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-charcoal-light">
+                      {th.tagline}
+                    </p>
                   )}
                 </div>
               </div>
 
-              {/* Meta row */}
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-charcoal-muted">
-                {(th.average_rating ?? 0) > 0 && (
-                  <span className="inline-flex items-center gap-1">
-                    <Star className="h-3 w-3 fill-gold text-gold" />
-                    {(th.average_rating ?? 0).toFixed(1)} ({th.total_reviews ?? 0})
-                  </span>
-                )}
-                {th.city && (
-                  <span className="inline-flex items-center gap-1">
-                    <MapPin className="h-3 w-3" />
-                    {th.city}
-                  </span>
-                )}
-                {(th.languages ?? []).length > 0 && (
-                  <span className="inline-flex items-center gap-1">
-                    <Globe className="h-3 w-3" />
-                    {(th.languages ?? []).slice(0, 2).join(", ")}
-                  </span>
-                )}
-              </div>
+              {/* Free intro: the headline conversion signal, on its own band */}
+              {th.has_free_intro && (
+                <span className="mt-3.5 inline-flex w-fit items-center gap-1.5 rounded-full bg-success-light px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.04em] text-success">
+                  <Sparkles className="h-3 w-3" strokeWidth={2.25} />
+                  Sessione conoscitiva gratuita
+                </span>
+              )}
+
+              {/* Meta: rating, city, languages */}
+              {((th.average_rating ?? 0) > 0 || th.city || (th.languages ?? []).length > 0) && (
+                <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-berry/5 pt-3.5 text-[11px] text-charcoal-muted">
+                  {(th.average_rating ?? 0) > 0 && (
+                    <span className="inline-flex items-center gap-1">
+                      <Star className="h-3 w-3 fill-gold text-gold" strokeWidth={0} />
+                      <span className="font-semibold text-charcoal-light">{(th.average_rating ?? 0).toFixed(1)}</span>
+                      <span>({th.total_reviews ?? 0})</span>
+                    </span>
+                  )}
+                  {th.city && (
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin className="h-3 w-3" />
+                      {th.city}
+                    </span>
+                  )}
+                  {(th.languages ?? []).length > 0 && (
+                    <span className="inline-flex items-center gap-1">
+                      <Globe className="h-3 w-3" />
+                      {(th.languages ?? []).slice(0, 2).join(", ")}
+                    </span>
+                  )}
+                </div>
+              )}
 
               {/* Categories */}
               {(th.categories ?? []).length > 0 && (

@@ -558,12 +558,6 @@ export default function TherapistDetailPage() {
                 </div>
               )}
             </div>
-            {/* Tier icon — overhangs the top-left corner, mirrors the verified pill */}
-            {profile.tier && (
-              <div className="absolute -left-2 -top-2 rounded-full bg-white p-1 shadow-md ring-1 ring-berry/5">
-                <TierIcon tier={profile.tier} size={56} />
-              </div>
-            )}
             {/* Verified pill — overhangs the top-right corner */}
             {profile.is_verified && (
               <div
@@ -599,9 +593,12 @@ export default function TherapistDetailPage() {
 
           {/* Content column */}
           <div className="min-w-0">
-            {/* Tier label — chevron pill above the name (Section A of the design system) */}
+            {/* Tier badge — icon + chevron pill above the name (Section A of the design system) */}
             {profile.tier && (
-              <div className="mb-3">
+              <div className="mb-3 flex items-center gap-2.5">
+                <span className="inline-flex flex-shrink-0 rounded-full bg-white p-0.5 shadow-sm ring-1 ring-berry/5">
+                  <TierIcon tier={profile.tier} size={38} />
+                </span>
                 <TierLabel tier={profile.tier} />
               </div>
             )}
