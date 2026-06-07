@@ -1417,7 +1417,7 @@ export default function TherapistDetailPage() {
                +2 / +3) that scroll to the in-page picker. We don't
                compute actual slot times here; the real picker handles
                that once the visitor commits to a service.
-            3. Trust signal — "Soddisfatta o rimborsata".
+            3. Trust signal — secure booking reassurance.
           On mobile the sticky bottom CTA (below) carries the same
           conversion job in a screen-friendlier form.
         */}
@@ -1558,7 +1558,7 @@ export default function TherapistDetailPage() {
                 </span>
                 <div>
                   <p className="text-[12.5px] font-semibold text-charcoal">
-                    Soddisfatta o rimborsata
+                    Prenotazione sicura
                   </p>
                   <p className="mt-1 text-[11.5px] leading-[1.55] text-charcoal-light">
                     {hasFreeIntro ? "Conoscitiva gratuita, " : ""}
