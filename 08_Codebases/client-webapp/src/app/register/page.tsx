@@ -237,9 +237,42 @@ function RegisterForm() {
         );
       }
       // Account fully created (no email confirm) — fire CompleteRegistration
-      // for ad attribution. Status=true signals success to Meta.
-      const { trackCompleteRegistration } = await import("@/lib/analytics/meta-pixel");
-      trackCompleteRegistration({ content_name: "client_register", status: true });
+      // for ad attribution. Status=true signals success to Meta. The
+      // browser pixel side gets an event_id deterministic on userId; the
+      // auth-hook Supabase Edge Function call below sends the same
+      // event_id from server-side, and Meta dedups the pair so we get
+      // the union of their match-quality signals without double-counting.
+      const { trackCompleteRegistration, readMetaCookies } = await import(
+        "@/lib/analytics/meta-pixel"
+      );
+      const eventId = userId ? `registration_${userId}` : undefined;
+      const didFireMeta = trackCompleteRegistration(
+        { content_name: "client_register", status: true },
+        eventId,
+      );
+      // CAPI server-side mirror via Supabase Edge Function — survives
+      // iOS 14+ ATT and ad blockers. Gated on `didFireMeta` because
+      // that returns false only when marketing consent hasn't been
+      // given, and we must NOT send server-side conversions for users
+      // who opted out.
+      if (didFireMeta && userId) {
+        const { fbp, fbc } = readMetaCookies();
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        if (supabaseUrl) {
+          void fetch(`${supabaseUrl}/functions/v1/auth-hook`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              user_id: userId,
+              email,
+              fbp,
+              fbc,
+              source_url: window.location.href,
+            }),
+            keepalive: true,
+          }).catch(() => { /* fail-silent — never block redirect */ });
+        }
+      }
 
       // Client accounts are NOT gated on admin approval — straight to
       // the dashboard.

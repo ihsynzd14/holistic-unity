@@ -90,14 +90,21 @@ function SuccessInner() {
         ) {
           purchaseTrackedRef.current = true;
           import("@/lib/analytics/meta-pixel").then(({ trackPurchase }) => {
-            trackPurchase({
-              value: Number(data.price ?? 0),
-              currency: (data.currency || "EUR").toUpperCase(),
-              content_ids: bookingId ? [bookingId] : undefined,
-              content_name: data.service_name ?? undefined,
-              num_items: 1,
-              transaction_id: bookingId ?? undefined,
-            });
+            trackPurchase(
+              {
+                value: Number(data.price ?? 0),
+                currency: (data.currency || "EUR").toUpperCase(),
+                content_ids: bookingId ? [bookingId] : undefined,
+                content_name: data.service_name ?? undefined,
+                num_items: 1,
+                transaction_id: bookingId ?? undefined,
+              },
+              // event_id matches what the Stripe webhook sends to Meta
+              // CAPI — build_event_id("purchase", booking.id). Meta
+              // dedups by (event_name, event_id) so this browser hit and
+              // the server hit count as one conversion at attribution.
+              bookingId ? `purchase_${bookingId}` : undefined,
+            );
           });
         }
 

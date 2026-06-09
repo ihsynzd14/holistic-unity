@@ -161,14 +161,44 @@ export default function WelcomePage() {
         // blocked/late GA script cannot make Meta re-fire on every revisit.
         if (!legacyAlreadyFired && metaMarker !== user.id) {
           try {
-            const { trackCompleteRegistration } = await import(
+            const { trackCompleteRegistration, readMetaCookies } = await import(
               "@/lib/analytics/meta-pixel"
             );
-            const didFireMeta = trackCompleteRegistration({
-              content_name: "client_register",
-              status: true,
-            });
-            if (didFireMeta) localStorage.setItem(META_SIGNUP_EVENT_KEY, user.id);
+            // event_id deterministic on user.id so the CAPI server-side
+            // mirror (Supabase auth-hook Edge Function just below) dedups
+            // against this browser hit at Meta.
+            const eventId = `registration_${user.id}`;
+            const didFireMeta = trackCompleteRegistration(
+              {
+                content_name: "client_register",
+                status: true,
+              },
+              eventId,
+            );
+            if (didFireMeta) {
+              localStorage.setItem(META_SIGNUP_EVENT_KEY, user.id);
+              // CAPI server-side mirror via Supabase Edge Function —
+              // survives iOS 14+ ATT and ad blockers. Gated on
+              // `didFireMeta` so we don't send a server-side conversion
+              // for users who opted out of marketing cookies (the pixel
+              // respects the same gate).
+              const { fbp, fbc } = readMetaCookies();
+              const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+              if (supabaseUrl) {
+                void fetch(`${supabaseUrl}/functions/v1/auth-hook`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    user_id: user.id,
+                    email: user.email,
+                    fbp,
+                    fbc,
+                    source_url: window.location.href,
+                  }),
+                  keepalive: true,
+                }).catch(() => { /* fail-silent */ });
+              }
+            }
           } catch { /* meta-pixel module / consent gating may noop */ }
         }
 

@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { redactStripeId, redactUuid } from "../_shared/redact.ts";
 import { BREVO_TEMPLATES } from "../_shared/brevo.ts";
+import { buildEventId, sendCapiEvent } from "../_shared/meta_capi.ts";
 
 const STRIPE_SECRET_KEY = Deno.env.get("STRIPE_SECRET_KEY")!;
 const STRIPE_WEBHOOK_SECRET = Deno.env.get("STRIPE_WEBHOOK_SECRET")!;
@@ -691,6 +692,58 @@ serve(async (req) => {
           } catch (pmErr) {
             console.error("Failed to save payment method:", pmErr);
           }
+        }
+
+        // ─── Meta CAPI — Purchase event (server-side) ──────────────────
+        // Fires for both web and iOS payments because Stripe routes
+        // payment_intent.succeeded to this function in both flows. The
+        // browser pixel side at /checkout/success uses the same
+        // event_id (purchase_<bookingId>) so Meta dedups to a single
+        // conversion with the union of their match-quality signals.
+        //
+        // No await: we don't want Meta latency holding the webhook's
+        // 200 back to Stripe past Stripe's retry budget. The helper
+        // module times out at 5s internally and never throws.
+        if (bookingId) {
+          // Email priority: Stripe's receipt_email (set explicitly at
+          // PaymentIntent creation) → users.email by clientId. The
+          // bookings table doesn't carry email so the users lookup is
+          // the only fallback when receipt_email wasn't set.
+          let capiEmail: string | undefined = paymentIntent.receipt_email ||
+            undefined;
+          if (!capiEmail && clientId) {
+            try {
+              const { data: userRow } = await supabaseAdmin
+                .from("users")
+                .select("email")
+                .eq("id", clientId)
+                .maybeSingle();
+              capiEmail = userRow?.email ?? undefined;
+            } catch (_err) {
+              // Email lookup failure is non-blocking — CAPI will fire
+              // with just external_id and still match for users Meta
+              // knows by id.
+            }
+          }
+
+          const source = paymentIntent.metadata?.source;
+          void sendCapiEvent({
+            eventName: "Purchase",
+            eventId: buildEventId("purchase", bookingId),
+            email: capiEmail,
+            externalId: clientId ?? undefined,
+            value: totalCharged,
+            currency: (currency || "eur").toUpperCase(),
+            actionSource: source === "ios" ? "app" : "website",
+            customData: {
+              content_name: "holistic_session",
+              content_type: "product",
+              content_ids: [bookingId],
+              num_items: 1,
+              discipline: paymentIntent.metadata?.discipline,
+              package: paymentIntent.metadata?.package ?? "single",
+            },
+          });
         }
 
         console.log(

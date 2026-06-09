@@ -28,6 +28,11 @@ import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { getCorsHeaders, handleCorsPreflightOrNull } from "../_shared/cors.ts";
 import { isRateLimited, rateLimitResponse } from "../_shared/rate-limit.ts";
+import {
+  buildEventId,
+  extractClientIp,
+  sendCapiEvent,
+} from "../_shared/meta_capi.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -146,6 +151,70 @@ serve(async (req) => {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
+  }
+
+  // --- Meta CAPI Lead — pre-launch funnel mirror ----------------------
+  // The early-access form is the marquee Lead source while the campaigns
+  // are pointed at /early_access (pre-launch TOFU). The post-launch Lead
+  // trigger lives on the bookings table via a DB Webhook → meta-capi-event;
+  // having both keeps attribution working through the transition without
+  // double-counting (Meta dedups by event_id, and the two paths use
+  // different deterministic ids).
+  //
+  // Consent gate (GDPR): we only forward the event to Meta when the
+  // caller explicitly passes `meta_consent: true`. The frontend sets
+  // this flag based on the cookie banner state — `hu-marketing-ack=1`
+  // → consent given, anything else → row stored, but no third-party
+  // marketing event leaves Supabase. The lead row itself is stored
+  // either way under legitimate business interest (we email the
+  // user-facing launch announcement, not a marketing campaign).
+  //
+  // Deterministic id keyed on (email_hash, hour_bucket): a refresh of
+  // the form within an hour still collapses to one Lead at Meta. The
+  // hash is the same SHA-256 the CAPI module uses to obfuscate email
+  // server-side, so we read it back from the same surface and don't
+  // expose the raw email in any id.
+  //
+  // Fire-and-forget: we already 200'd the row write conceptually; we
+  // do not want a Meta hiccup turning the form submit into a 500.
+  const metaConsent = body.meta_consent === true;
+  if (metaConsent) try {
+    const emailBytes = new TextEncoder().encode(email);
+    const emailHashBuf = await crypto.subtle.digest("SHA-256", emailBytes);
+    const emailShort = Array.from(new Uint8Array(emailHashBuf))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("")
+      .slice(0, 16);
+    const hourBucket = Math.floor(Date.now() / (60 * 60 * 1000));
+    const eventId = buildEventId("lead", `${emailShort}_${hourBucket}`);
+
+    const sourceTag = typeof body.source === "string" ? body.source : undefined;
+    const fbp = typeof body.fbp === "string" ? body.fbp : undefined;
+    const fbc = typeof body.fbc === "string" ? body.fbc : undefined;
+
+    // void: don't await — same fail-silent posture as the rest of the
+    // function. The helper has its own 5s timeout.
+    void sendCapiEvent({
+      eventName: "Lead",
+      eventId,
+      email,
+      clientIp: extractClientIp(req),
+      clientUserAgent: req.headers.get("user-agent") ?? undefined,
+      fbp,
+      fbc,
+      actionSource: "website",
+      customData: {
+        content_name: sourceTag ? `early_access_${sourceTag}` : "early_access",
+        content_category: "Booking Intent",
+        value: 0,
+        currency: "EUR",
+      },
+    });
+  } catch (capiErr) {
+    console.warn(
+      "[save-early-access-lead] CAPI mirror threw (non-blocking):",
+      capiErr instanceof Error ? capiErr.message : String(capiErr),
+    );
   }
 
   return new Response(JSON.stringify({ ok: true }), {

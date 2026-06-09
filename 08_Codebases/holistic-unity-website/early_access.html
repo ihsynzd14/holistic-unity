@@ -1082,16 +1082,38 @@
 
   /* ════════ Persist the lead to Supabase (fire-and-forget) ════════
      Any network/DB failure is logged and swallowed so it never blocks the
-     success state. Upserts on email into early_access_leads via edge function. */
+     success state. Upserts on email into early_access_leads via edge function.
+
+     The same Edge Function ALSO mirrors the lead as a Meta CAPI `Lead`
+     event server-side — but only when meta_consent=true (set below from
+     the cookie banner state). Forwarding fbp/fbc lets Meta attribute the
+     conversion to the ad click that brought the user here. */
   const LEAD_ENDPOINT = 'https://bqyqkvkzkemiwyqjkbna.supabase.co/functions/v1/save-early-access-lead';
+
+  function readCookie(name) {
+    const m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]+)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
 
   function saveLead(email, source) {
     if (!email) return;
+    // hu-marketing-ack=1 is set by the cookie banner on "Accetta tutti".
+    // We only forward the cookies + signal CAPI consent in that case;
+    // the row itself is always stored (used for the launch email, which
+    // is legitimate business communication to the user who opted in to
+    // the early-access list).
+    const metaConsent = readCookie('hu-marketing-ack') === '1';
     try {
       fetch(LEAD_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({
+          email,
+          source,
+          meta_consent: metaConsent,
+          fbp: metaConsent ? readCookie('_fbp') : null,
+          fbc: metaConsent ? readCookie('_fbc') : null,
+        }),
         keepalive: true, // complete the request even if the page navigates away
       }).catch(err => console.warn('[Lead] save failed', err));
     } catch (err) {
