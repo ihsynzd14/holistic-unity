@@ -263,6 +263,87 @@ async function sendBrevoEmail(
   }
 }
 
+// T7 fix — booking-confirmed notifications for iOS bookings. Ports the web
+// webhook's notifyBookingConfirmed: email (Brevo template 3 → client, 4 →
+// therapist) + the two in-app `notifications` rows (which drive push). iOS
+// bookings confirm in THIS webhook (payment_intent.succeeded), not via the web
+// webhook, so until now neither party was notified. Fully non-blocking — a
+// failure must never make the webhook return non-2xx (Stripe would retry and
+// double-process the payout).
+async function notifyBookingConfirmed(
+  admin: ReturnType<typeof createClient>,
+  supabaseUrl: string,
+  serviceKey: string,
+  args: {
+    bookingId: string;
+    clientId: string;
+    therapistId: string;
+    scheduledAt: string;
+    serviceName: string | null;
+    duration: number | null;
+    price: number;
+  }
+): Promise<void> {
+  try {
+    const { bookingId, clientId, therapistId, scheduledAt, serviceName, duration, price } = args;
+    if (!clientId || !therapistId) return;
+
+    const { data: tRow } = await admin
+      .from("therapist_profiles")
+      .select("display_name")
+      .eq("id", therapistId)
+      .maybeSingle();
+    const therapistName = (tRow as { display_name?: string } | null)?.display_name ?? "Operatore";
+    const svc = serviceName ?? "Sessione";
+
+    // scheduled_at is stored UTC; render in Europe/Rome so the email shows the
+    // local session time (matches the web webhook).
+    const TZ = "Europe/Rome";
+    const d = new Date(scheduledAt);
+    const sessionDateStr = d.toLocaleDateString("it-IT", {
+      weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: TZ,
+    });
+    const sessionTimeStr = d.toLocaleTimeString("it-IT", {
+      hour: "2-digit", minute: "2-digit", timeZone: TZ,
+    });
+    const amountStr = price > 0 ? `€ ${price.toFixed(2).replace(".", ",")}` : "Gratuita";
+    const params = {
+      session_date: sessionDateStr,
+      session_time: sessionTimeStr,
+      amount: amountStr,
+      booking_id: bookingId,
+      service_name: svc,
+      scheduled_at: scheduledAt,
+      duration_minutes: duration ?? 60,
+      therapist_name: therapistName,
+      call_url: `https://app.holisticunity.app/call/${bookingId}`,
+    };
+
+    await Promise.allSettled([
+      sendBrevoEmail(supabaseUrl, serviceKey, { template_id: 3, user_id: clientId, params, tags: ["booking_confirmed"] }),
+      sendBrevoEmail(supabaseUrl, serviceKey, { template_id: 4, user_id: therapistId, params, tags: ["booking_confirmed"] }),
+      admin.from("notifications").insert({
+        user_id: clientId,
+        type: "booking_confirmed",
+        title: "Prenotazione confermata",
+        body: `La tua sessione "${svc}" è confermata.`,
+        booking_id: bookingId,
+        therapist_id: therapistId,
+      }),
+      admin.from("notifications").insert({
+        user_id: therapistId,
+        type: "booking_confirmed",
+        title: "Nuova prenotazione",
+        body: `Hai una nuova sessione "${svc}" in calendario.`,
+        booking_id: bookingId,
+        client_id: clientId,
+      }),
+    ]);
+  } catch (err) {
+    console.warn("[stripe-webhook] notifyBookingConfirmed failed (non-blocking):", err);
+  }
+}
+
 // Format a Stripe minor-unit amount (cents) as a localized currency string.
 // Falls back to a plain "12.34 EUR" form if the currency code is unknown.
 function formatMoney(amountCents: number, currency: string): string {
@@ -501,22 +582,29 @@ serve(async (req) => {
 
         // Update booking status to confirmed if we found one
         if (bookingId) {
-          const { error: bookingError } = await supabaseAdmin
+          // Optimistic-locked confirm: flip pending/pending_payment → confirmed
+          // and capture whether THIS webhook did the flip. The iOS edge webhook
+          // also receives payment_intent.succeeded for WEB bookings (confirmed by
+          // the Next.js /api/webhooks/stripe via checkout.session.completed), so
+          // gating notifications on the lock means exactly ONE path notifies —
+          // web bookings aren't double-notified, and the rare race where this
+          // webhook wins still notifies.
+          const { data: confirmedBooking, error: bookingError } = await supabaseAdmin
             .from("bookings")
             .update({
               status: "confirmed",
               stripe_payment_intent_id: paymentIntent.id,
             })
-            .eq("id", bookingId);
+            .eq("id", bookingId)
+            .in("status", ["pending", "pending_payment"])
+            .select("id, scheduled_at, service_name, duration, price")
+            .maybeSingle();
 
           if (bookingError) {
             console.error("Failed to update booking:", bookingError);
-          } else {
-            // Sync to Google/Microsoft Calendar. This MUST be non-blocking
-            // because a token-refresh failure (revoked OAuth) would otherwise
-            // throw before session_credits are created for pack purchases,
-            // leaving the client paid but without credits. Swallow all errors
-            // here — the booking is already confirmed; calendar sync is best-effort.
+          } else if (confirmedBooking) {
+            // Calendar sync — non-blocking (a token-refresh failure must not
+            // throw before credits are created for pack purchases).
             try {
               await syncBookingToCalendar(bookingId, therapistId, supabaseAdmin);
             } catch (calErr) {
@@ -525,6 +613,24 @@ serve(async (req) => {
                 calErr instanceof Error ? calErr.message : String(calErr)
               );
             }
+
+            // T7 fix: notify BOTH parties (client email t3 + therapist email t4 +
+            // 2 in-app notifications). Until now iOS bookings notified nobody.
+            const cb = confirmedBooking as {
+              scheduled_at: string;
+              service_name: string | null;
+              duration: number | null;
+              price: number | null;
+            };
+            await notifyBookingConfirmed(supabaseAdmin, supabaseUrl, supabaseServiceKey, {
+              bookingId,
+              clientId: clientId ?? "",
+              therapistId: therapistId ?? "",
+              scheduledAt: cb.scheduled_at,
+              serviceName: cb.service_name,
+              duration: cb.duration,
+              price: Number(cb.price ?? 0),
+            });
           }
 
           if (serviceId && packSessionsRemaining > 0) {
