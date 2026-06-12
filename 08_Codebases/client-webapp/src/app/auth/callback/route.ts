@@ -69,6 +69,19 @@ export async function GET(request: NextRequest) {
           tags: ["welcome", "client"],
         }),
       });
+      // Create/refresh the Brevo CONTACT (attributes + list membership).
+      // The transactional welcome email above does NOT register the user
+      // in the Brevo contact lists — sync-brevo-contact does. This path
+      // covers SSO / PKCE signups (the email-confirm path is handled in
+      // /auth/confirm).
+      await fetch(`${SUPABASE_URL}/functions/v1/sync-brevo-contact`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: user.id, event: "client_signup" }),
+      });
       const admin = createAdminClient();
       await admin.auth.admin.updateUserById(user.id, {
         app_metadata: {

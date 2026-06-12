@@ -206,7 +206,11 @@ serve(async (req) => {
       customData: {
         content_name: sourceTag ? `early_access_${sourceTag}` : "early_access",
         content_category: "Booking Intent",
-        value: 0,
+        // Meta requires value > 0 on Lead events for ad optimisation —
+        // a free lead has no monetary price, so we send the standard
+        // placeholder of 1 (currency still EUR). This is the value the
+        // browser pixel sends too, so dedup stays consistent.
+        value: 1,
         currency: "EUR",
       },
     });

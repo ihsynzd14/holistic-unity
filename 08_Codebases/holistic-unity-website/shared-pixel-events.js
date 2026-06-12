@@ -84,7 +84,9 @@
         track('Lead', {
           content_name: text.substring(0, 80),
           content_category: 'Booking Intent',
-          value: 0,
+          // Meta requires value > 0 on Lead events — a lead has no
+          // price, so we send the standard placeholder of 1.
+          value: 1,
           currency: 'EUR'
         });
       }

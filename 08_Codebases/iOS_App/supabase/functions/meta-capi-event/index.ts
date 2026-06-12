@@ -146,7 +146,9 @@ function normalizeDbWebhook(
         content_category: "Booking Intent",
         therapist_id: therapistId,
         service_name: serviceName,
-        value: 0,
+        // Meta requires value > 0 on Lead events — free call has no
+        // price, so we send the standard placeholder of 1.
+        value: 1,
         currency: "EUR",
       },
     };
@@ -243,8 +245,9 @@ serve(async (req) => {
       );
     }
     // Force value/currency to defaults — a browser caller cannot inflate
-    // attribution by sending value=10000.
-    body.value = 0;
+    // attribution by sending value=10000. We clamp to 1 (not 0) because
+    // Meta requires value > 0 on Lead events.
+    body.value = 1;
     body.currency = "EUR";
   }
 

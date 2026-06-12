@@ -76,6 +76,20 @@ export async function GET(request: NextRequest) {
             tags: ["welcome", "client"],
           }),
         });
+        // Create/refresh the Brevo CONTACT (attributes + list membership).
+        // Without this the user only ever received a transactional email
+        // and never appeared in the Brevo contact lists — the C2 welcome
+        // mail fired but the contact was never synced (sync-brevo-contact
+        // was only wired to therapist approval). This covers both web AND
+        // iOS email signups, since iOS verification redirects here too.
+        await fetch(`${SUPABASE_URL}/functions/v1/sync-brevo-contact`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: user.id, event: "client_signup" }),
+        });
         const admin = createAdminClient();
         await admin.auth.admin.updateUserById(user.id, {
           app_metadata: {

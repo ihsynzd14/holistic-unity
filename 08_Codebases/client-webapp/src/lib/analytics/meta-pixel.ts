@@ -59,12 +59,21 @@ function track(
   return true;
 }
 
-/** Registration intent — fired when the user submits the form. */
+/**
+ * Registration intent — fired when the user submits the form. Meta
+ * requires `value` > 0 on Lead events for ad optimisation, so the
+ * helper defaults value to 1 (currency EUR) when the caller doesn't
+ * pass one — a lead has no monetary price, 1 is the standard placeholder.
+ */
 export function trackLead(
-  params?: { content_name?: string },
+  params?: { content_name?: string; value?: number; currency?: string },
   eventID?: string,
 ) {
-  return track("Lead", params, eventID);
+  return track(
+    "Lead",
+    { value: 1, currency: "EUR", ...params },
+    eventID,
+  );
 }
 
 /** Account successfully created. */

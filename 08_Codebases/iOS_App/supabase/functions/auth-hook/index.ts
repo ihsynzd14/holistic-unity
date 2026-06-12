@@ -113,7 +113,9 @@ serve(async (req) => {
     eventSourceUrl: typeof body.source_url === "string"
       ? body.source_url
       : undefined,
-    customData: { content_name: "client_register" },
+    // value > 0 so Meta accepts the event for optimisation — a signup
+    // has no monetary price, so we send the standard placeholder of 1.
+    customData: { content_name: "client_register", value: 1, currency: "EUR" },
   });
 
   return new Response(
