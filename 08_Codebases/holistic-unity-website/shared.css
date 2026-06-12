@@ -85,17 +85,6 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 }
 .nav-links a:hover { color: var(--berry); }
 .nav-links a:hover::after { width: 100%; }
-/* Pre-launch early-access highlight: berry text + softly pulsing gold dot */
-.nav-early { color: var(--berry) !important; font-weight: 600 !important; display: inline-flex; align-items: center; gap: 7px; }
-.nav-early::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
-  box-shadow: 0 0 0 0 rgba(201,169,110,0.55); animation: navEarlyPulse 2.2s ease-out infinite;
-}
-@keyframes navEarlyPulse {
-  0% { box-shadow: 0 0 0 0 rgba(201,169,110,0.55); }
-  70% { box-shadow: 0 0 0 7px rgba(201,169,110,0); }
-  100% { box-shadow: 0 0 0 0 rgba(201,169,110,0); }
-}
 /* ==================== NAV DROPDOWN ==================== */
 .nav-dropdown { position: relative; padding-bottom: 12px; margin-bottom: -12px; }
 .nav-dropdown > a { cursor: pointer; }
