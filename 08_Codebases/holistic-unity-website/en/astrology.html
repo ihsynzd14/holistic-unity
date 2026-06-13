@@ -28,71 +28,69 @@
 
 
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Astrology Birth Chart Reading",
-    "description": "Professional online natal chart readings and interpretations with verified astrologers",
-    "provider": {
-      "@type": "Organization",
-      "name": "Holistic Unity",
-      "url": "https://holisticunity.app"
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Astrology Birth Chart Reading",
+  "description": "Decode the celestial blueprint of your natal chart. Gain profound insights into your personality, relationships, life purpose, and cosmic timing with a…",
+  "provider": {
+    "@type": "Organization",
+    "name": "Holistic Unity",
+    "url": "https://holisticunity.app"
+  },
+  "areaServed": {
+    "@type": "GeoShape",
+    "box": "34.0522,-118.2437 41.9028,12.4964 -23.5505,-46.6333"
+  },
+  "inLanguage": "en"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an astrology birth chart?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A natal chart is a map of the sky at the exact moment you were born, showing the positions of the sun, moon, and planets across the 12 astrological houses and signs."
+      }
     },
-    "areaServed": {
-      "@type": "GeoShape",
-      "box": "34.0522,-118.2437 41.9028,12.4964 -23.5505,-46.6333"
+    {
+      "@type": "Question",
+      "name": "What's the difference between a sun sign and a birth chart?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your sun sign is just one of many elements in your chart. A full birth chart includes your moon sign, rising sign, and the positions of all planets — offering a much richer portrait of who you are."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need my birth time for an astrology reading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your birth time determines your rising sign and house placements, making the reading much more precise. However, a reading is still valuable with just your birth date and place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can an astrology reading tell me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A reading can reveal personality traits, life themes, relationship patterns, career inclinations, spiritual purpose, and the timing of important life cycles. It offers a roadmap for understanding yourself more deeply and making conscious choices aligned with your cosmic blueprint."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I book an astrology birth chart reading online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All readings on Holistic Unity are conducted online via built-in HD video sessions with verified astrologers. You can connect from home and receive a personalised reading at a time that works for you."
+      }
     }
-  }
-  </script>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is an astrology birth chart?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A natal chart is a map of the sky at the exact moment you were born, showing the positions of the sun, moon, and planets across the 12 astrological houses and signs."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What's the difference between a sun sign and a birth chart?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your sun sign is just one of many elements in your chart. A full birth chart includes your moon sign, rising sign, and the positions of all planets — offering a much richer portrait of who you are."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need my birth time for an astrology reading?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your birth time determines your rising sign and house placements, making the reading much more precise. However, a reading is still valuable with just your birth date and place."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What can an astrology reading tell me?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A reading can reveal personality traits, life themes, relationship patterns, career inclinations, spiritual purpose, and the timing of important life cycles."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I book an astrology birth chart reading online?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. All readings on Holistic Unity are conducted online via built-in HD video sessions with verified astrologers."
-          }
-        }
-    ]
-  }
-  </script>
+  ],
+  "inLanguage": "en"
+}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="/shared.css" rel="stylesheet"/>
 <!-- Meta Pixel: gated behind marketing consent in shared.js -->
@@ -103,7 +101,7 @@
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="/en/">
-<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity Logo" src="/images/logo.png"/></picture>
+<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity Logo" decoding="async" height="197" src="/images/logo.png" width="192"/></picture>
 <span>Holistic Unity</span>
 </a>
 <button aria-expanded="false" aria-label="Toggle navigation menu" class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -126,7 +124,7 @@
 </ul>
 </div>
 </nav>
-<section class="page-hero" style="background-image: url('images/categories/Astrology.png');">
+<section class="page-hero" style="background-image: url('/images/categories/Astrology.jpg'); background-image: image-set(url('/images/categories/Astrology.webp') type('image/webp'), url('/images/categories/Astrology.jpg') type('image/jpeg'));">
 <div class="hero-overlay"></div>
 <div class="hero-content">
 <h1>Your <em>Astrology</em> Birth Chart Reading</h1>
@@ -273,19 +271,19 @@
 <h2 class="section-title">Explore Other Therapies</h2>
 <div class="other-therapies-grid">
 <a class="other-card" href="/en/human-design">
-<picture><source srcset="/images/categories/Human%20Design.webp" type="image/webp"/><img alt="Human Design" loading="lazy" src="/images/categories/Human Design.jpg"/></picture>
+<picture><source srcset="/images/categories/Human%20Design.webp" type="image/webp"/><img alt="Human Design" decoding="async" height="720" loading="lazy" src="/images/categories/Human Design.jpg" width="1280"/></picture>
 <span>Human Design</span>
 </a>
 <a class="other-card" href="/en/numerology">
-<picture><source srcset="/images/categories/Numerology.webp" type="image/webp"/><img alt="Numerology" loading="lazy" src="/images/categories/Numerology.jpg"/></picture>
+<picture><source srcset="/images/categories/Numerology.webp" type="image/webp"/><img alt="Numerology" decoding="async" height="720" loading="lazy" src="/images/categories/Numerology.jpg" width="1280"/></picture>
 <span>Numerology</span>
 </a>
 <a class="other-card" href="/en/thetahealing">
-<picture><source srcset="/images/categories/ThetaHealing.webp" type="image/webp"/><img alt="ThetaHealing®" loading="lazy" src="/images/categories/ThetaHealing.jpg"/></picture>
+<picture><source srcset="/images/categories/ThetaHealing.webp" type="image/webp"/><img alt="ThetaHealing®" decoding="async" height="720" loading="lazy" src="/images/categories/ThetaHealing.jpg" width="1280"/></picture>
 <span>ThetaHealing®</span>
 </a>
 <a class="other-card" href="/en/ayurveda">
-<picture><source srcset="/images/categories/Ayurveda.webp" type="image/webp"/><img alt="Ayurveda" loading="lazy" src="/images/categories/Ayurveda.jpg"/></picture>
+<picture><source srcset="/images/categories/Ayurveda.webp" type="image/webp"/><img alt="Ayurveda" decoding="async" height="720" loading="lazy" src="/images/categories/Ayurveda.jpg" width="1280"/></picture>
 <span>Ayurveda</span>
 </a>
 </div>
@@ -296,7 +294,7 @@
 <div class="footer-content">
 <div class="footer-brand">
 <a class="footer-logo" href="/en/">
-<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" height="44" src="/images/logo.png" width="44"/></picture>
+<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" decoding="async" height="44" src="/images/logo.png" width="44"/></picture>
 <span>Holistic Unity</span>
 </a>
 <p>The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time.</p>

@@ -33,6 +33,7 @@ import os
 import re
 import sys
 import glob
+import json
 import warnings
 from bs4 import BeautifulSoup, NavigableString
 from bs4 import MarkupResemblesLocatorWarning
@@ -298,6 +299,56 @@ def absolutize_assets(soup):
         tag["srcset"] = fix(tag["srcset"])
 
 
+def extract_faq(soup):
+    """Pull (question, answer) pairs from the baked visible FAQ accordion."""
+    qa = []
+    for item in soup.select(".faq-item"):
+        qel = item.select_one(".faq-question")
+        ael = item.select_one(".faq-answer")
+        if not qel or not ael:
+            continue
+        spans = qel.find_all("span", recursive=False)
+        q = next((s.get_text(" ", strip=True) for s in spans
+                  if "faq-icon" not in (s.get("class") or [])),
+                 qel.get_text(" ", strip=True))
+        a = ael.get_text(" ", strip=True)
+        if q and a:
+            qa.append((q, a))
+    return qa
+
+
+def localize_jsonld(soup, lang):
+    """Make structured data match the page language: rebuild FAQPage from the
+    baked visible FAQ, add inLanguage, and sync description on content types."""
+    desc_tag = soup.select_one('meta[name="description"]')
+    desc = desc_tag["content"] if desc_tag and desc_tag.has_attr("content") else None
+    DESC_TYPES = {"Service", "BlogPosting", "Article", "Product",
+                  "WebPage", "MobileApplication"}
+    for script in soup.find_all("script", attrs={"type": "application/ld+json"}):
+        raw = script.string or script.get_text()
+        try:
+            data = json.loads(raw)
+        except Exception:
+            continue
+        objs = data if isinstance(data, list) else [data]
+        for obj in objs:
+            if not isinstance(obj, dict):
+                continue
+            obj["inLanguage"] = lang
+            t = obj.get("@type")
+            if t == "FAQPage":
+                qa = extract_faq(soup)
+                if qa:
+                    obj["mainEntity"] = [
+                        {"@type": "Question", "name": q,
+                         "acceptedAnswer": {"@type": "Answer", "text": a}}
+                        for q, a in qa
+                    ]
+            elif t in DESC_TYPES and desc:
+                obj["description"] = desc
+        script.string = json.dumps(data, ensure_ascii=False, indent=2)
+
+
 def build_page(rel):
     src_file = os.path.join(SRC, rel)
     with open(src_file, "r", encoding="utf-8") as fh:
@@ -309,6 +360,7 @@ def build_page(rel):
         rewrite_head(soup, rel, lang)
         active = convert_toggle(soup, rel)
         bake_language(soup, lang)
+        localize_jsonld(soup, lang)   # after bake: visible FAQ is now in `lang`
         if lang != DEFAULT_LANG:
             rewrite_links_for_subdir(soup, lang)
             absolutize_assets(soup)

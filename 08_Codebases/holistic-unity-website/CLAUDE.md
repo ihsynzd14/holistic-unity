@@ -306,13 +306,21 @@ attributes intact). The deployed pages are generated:
 **Rebuild after any content edit (edit `_src/`, then):**
 
 ```bash
+# 1. image pipeline (run on _src BEFORE prerender)
+python scripts/optimize_images.py       # WebP + light JPG fallbacks for new images
+python scripts/rewrite_images_html.py   # wrap new <img> in <picture> + repoint OG
+python scripts/rewrite_bg_images.py     # CSS background-image PNG → image-set(webp,jpg)
+python scripts/add_image_dims.py        # width/height (CLS) + lazy/eager + hero fetchpriority
+# 2. prerender + sitemap
 python scripts/prerender_i18n.py    # bake _src → root(it) + en/ + pt/  (per-lang
                                     # title/desc/OG/canonical/hreflang, toggle→links,
-                                    # data-* stripped, window.HU_LANG injected)
+                                    # localized JSON-LD/FAQ, data-* stripped, window.HU_LANG)
 python scripts/generate_sitemap.py  # trilingual sitemap.xml with hreflang clusters
-python scripts/optimize_images.py   # WebP + light JPG fallbacks for new images
-python scripts/rewrite_images_html.py   # wrap new <img> in <picture> (run on _src first)
 ```
+
+JSON-LD is localized per language by the prerender: `inLanguage` is set, FAQPage
+`mainEntity` is rebuilt from the baked (correct-language) visible FAQ, and
+Service/BlogPosting descriptions are synced to the page's per-language description.
 
 Notes:
 - `scripts/prerender_i18n.py` reads meta per language from the H1 (`data-{lang}`) +

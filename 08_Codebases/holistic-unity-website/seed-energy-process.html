@@ -29,67 +29,74 @@
 
 <title>Sessioni di SEED – Energy Process® Online | Holistic Unity</title>
 <link href="shared.css" rel="stylesheet"/>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "SEED – Energy Process® Sessions Online",
-    "description": "Deep energetic work of inner awakening to realign with your soul and the mission you chose for this lifetime, with SEED Academy–certified facilitators worldwide.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Holistic Unity",
-      "url": "https://holisticunity.app"
-    },
-    "areaServed": ["US", "IT", "BR", "EU"],
-    "availableLanguage": ["en", "it", "pt"],
-    "offers": {
-      "@type": "Offer",
-      "availability": "OnDemand",
-      "priceCurrency": "EUR",
-      "price": "Contact for pricing"
-    }
-  }
-  </script>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is SEED – Energy Process®?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SEED – Energy Process® is an energetic and inner-awakening practice that guides you toward realignment with your soul mission. The name SEED means 'seed': in each session, the facilitator creates a connection between the part of your soul present in the physical body and your most authentic soul, which holds the potential of creation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is SEED – Energy Process® done online?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Sessions work effectively online via video call. Many recipients report the same depth as in person; in fact, being in your own personal space can support an even better state of openness."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How many sessions do I need?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Every person is unique. Some recipients experience significant change from the very first session; others prefer a path structured over time. The facilitator will guide you to the choice that best suits you."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I need to do anything to prepare?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We recommend arriving at the session with a clear intention of what you wish to transform in your life."
-        }
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "SEED – Energy Process® Sessions Online",
+  "description": "Sessioni di SEED – Energy Process® con facilitatori certificati da SEED Academy. Lavoro energetico profondo per il riallineamento con la tua anima e la tua…",
+  "provider": {
+    "@type": "Organization",
+    "name": "Holistic Unity",
+    "url": "https://holisticunity.app"
+  },
+  "areaServed": [
+    "US",
+    "IT",
+    "BR",
+    "EU"
+  ],
+  "availableLanguage": [
+    "en",
+    "it",
+    "pt"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "availability": "OnDemand",
+    "priceCurrency": "EUR",
+    "price": "Contact for pricing"
+  },
+  "inLanguage": "it"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cos'è SEED – Energy Process®?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEED – Energy Process® è una pratica energetica e di risveglio interiore che guida verso il riallineamento con la propria missione d'anima. Il nome SEED significa «seme»: in ogni sessione il facilitatore crea una connessione tra la tua parte animica presente nel corpo fisico e la parte animica più autentica, che custodisce il potenziale della creazione."
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "Question",
+      "name": "SEED – Energy Process® si svolge online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, le sessioni funzionano efficacemente anche online via videochiamata. Molti riceventi riportano la stessa profondità dell'incontro in presenza; anzi, trovarsi nel proprio spazio personale può favorire un migliore stato di apertura."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Di quante sessioni ho bisogno?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ogni persona è unica. Alcuni riceventi sperimentano cambiamenti significativi già dalla prima sessione, altri preferiscono un percorso strutturato nel tempo. Il facilitatore ti guiderà nella scelta più adatta a te."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Devo fare qualcosa per prepararmi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ti consigliamo di arrivare alla sessione con un'intenzione chiara di ciò che desideri trasformare nella tua vita."
+      }
+    }
+  ],
+  "inLanguage": "it"
+}</script>
 <!-- Meta Pixel: gated behind marketing consent in shared.js -->
 <!-- Google Analytics 4 -->
 <script async="" src="/analytics.js"></script>
@@ -98,7 +105,7 @@
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="/">
-<picture><source srcset="images/logo.webp" type="image/webp"/><img alt="Holistic Unity Logo" src="images/logo.png"/></picture>
+<picture><source srcset="images/logo.webp" type="image/webp"/><img alt="Holistic Unity Logo" decoding="async" height="197" src="images/logo.png" width="192"/></picture>
 <span>Holistic Unity</span>
 </a>
 <button aria-expanded="false" aria-label="Toggle navigation menu" class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -138,7 +145,7 @@
 </div>
 </div>
 <div class="page-hero-image">
-<picture><source srcset="images/seed.webp" type="image/webp"/><img alt="SEED – Energy Process® Illustration" loading="lazy" src="images/seed.png"/></picture>
+<picture><source srcset="images/seed.webp" type="image/webp"/><img alt="SEED – Energy Process® Illustration" fetchpriority="high" height="438" loading="eager" src="images/seed.png" width="437"/></picture>
 </div>
 </div>
 </section>
@@ -263,19 +270,19 @@
 <h2 class="section-title">Esplora Altre Terapie</h2>
 <div class="other-therapies-grid">
 <a class="other-card" href="thetahealing">
-<picture><source srcset="images/categories/ThetaHealing.webp" type="image/webp"/><img alt="ThetaHealing®" loading="lazy" src="images/categories/ThetaHealing.jpg"/></picture>
+<picture><source srcset="images/categories/ThetaHealing.webp" type="image/webp"/><img alt="ThetaHealing®" decoding="async" height="720" loading="lazy" src="images/categories/ThetaHealing.jpg" width="1280"/></picture>
 <span>ThetaHealing®</span>
 </a>
 <a class="other-card" href="reiki">
-<picture><source srcset="images/categories/Reiki.webp" type="image/webp"/><img alt="Reiki" loading="lazy" src="images/categories/Reiki.jpg"/></picture>
+<picture><source srcset="images/categories/Reiki.webp" type="image/webp"/><img alt="Reiki" decoding="async" height="720" loading="lazy" src="images/categories/Reiki.jpg" width="1280"/></picture>
 <span>Reiki</span>
 </a>
 <a class="other-card" href="shamanism">
-<picture><source srcset="images/categories/Sciamanesimo.webp" type="image/webp"/><img alt="Shamanism" loading="lazy" src="images/categories/Sciamanesimo.jpg"/></picture>
+<picture><source srcset="images/categories/Sciamanesimo.webp" type="image/webp"/><img alt="Shamanism" decoding="async" height="768" loading="lazy" src="images/categories/Sciamanesimo.jpg" width="1024"/></picture>
 <span>Sciamanesimo</span>
 </a>
 <a class="other-card" href="family-constellation">
-<picture><source srcset="images/categories/Family%20Constellation.webp" type="image/webp"/><img alt="Family Constellation" loading="lazy" src="images/categories/Family%20Constellation.jpg"/></picture>
+<picture><source srcset="images/categories/Family%20Constellation.webp" type="image/webp"/><img alt="Family Constellation" decoding="async" height="720" loading="lazy" src="images/categories/Family%20Constellation.jpg" width="1280"/></picture>
 <span>Costellazioni Familiari</span>
 </a>
 </div>
@@ -287,7 +294,7 @@
 <div class="footer-content">
 <div class="footer-brand">
 <a class="footer-logo" href="/">
-<picture><source srcset="images/logo.webp" type="image/webp"/><img alt="Holistic Unity" height="44" src="images/logo.png" width="44"/></picture>
+<picture><source srcset="images/logo.webp" type="image/webp"/><img alt="Holistic Unity" decoding="async" height="44" src="images/logo.png" width="44"/></picture>
 <span>Holistic Unity</span>
 </a>
 <p>Il marketplace del benessere olistico che unisce terapeuti verificati e cercatori, una sessione alla volta.</p>

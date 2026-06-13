@@ -33,66 +33,67 @@
 
 
 <!-- Structured Data (JSON-LD) -->
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Holistic Unity",
+  "url": "https://holisticunity.app",
+  "logo": "https://holisticunity.app/images/logo.png",
+  "description": "Marketplace di operatori olistici verificati (L. 4/2013) per sessioni online. ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni.",
+  "foundingDate": "2026",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "email": "support@holisticunity.app"
+  },
+  "sameAs": [
+    "https://www.instagram.com/holisticunityapp/"
+  ],
+  "areaServed": "Worldwide",
+  "availableLanguage": [
+    "it",
+    "en",
+    "pt"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Strada del Carro 24",
+    "addressLocality": "Bisceglie",
+    "addressRegion": "BA",
+    "postalCode": "76011",
+    "addressCountry": "IT"
+  },
+  "inLanguage": "pt"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Holistic Unity",
+  "url": "https://holisticunity.app",
+  "description": "Marketplace di operatori olistici verificati (L. 4/2013) - ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni.",
+  "inLanguage": "pt"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Holistic Unity",
+  "applicationCategory": "HealthAndFitness",
+  "operatingSystem": "iOS",
+  "description": "Encontre um operador holístico verificado. 11 disciplinas, 4 idiomas, preços claros - sem acabar no Instagram.",
+  "url": "https://holisticunity.app",
+  "image": "https://holisticunity.app/images/og-image.png",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
     "@type": "Organization",
     "name": "Holistic Unity",
-    "url": "https://holisticunity.app",
-    "logo": "https://holisticunity.app/images/logo.png",
-    "description": "Marketplace di operatori olistici verificati (L. 4/2013) per sessioni online. ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni.",
-    "foundingDate": "2026",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "Customer Service",
-      "email": "support@holisticunity.app"
-    },
-    "sameAs": [
-      "https://www.instagram.com/holisticunityapp/"
-    ],
-    "areaServed": "Worldwide",
-    "availableLanguage": ["it", "en", "pt"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Via Strada del Carro 24",
-      "addressLocality": "Bisceglie",
-      "addressRegion": "BA",
-      "postalCode": "76011",
-      "addressCountry": "IT"
-    }
-  }
-  </script>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Holistic Unity",
-    "url": "https://holisticunity.app",
-    "description": "Marketplace di operatori olistici verificati (L. 4/2013) - ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Costellazioni."
-  }
-  </script>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MobileApplication",
-    "name": "Holistic Unity",
-    "applicationCategory": "HealthAndFitness",
-    "operatingSystem": "iOS",
-    "description": "Marketplace di operatori olistici verificati (L. 4/2013) per sessioni online. ThetaHealing®, Astrologia, Human Design, Numerologia, Reiki, Ayurveda e altre discipline.",
-    "url": "https://holisticunity.app",
-    "image": "https://holisticunity.app/images/og-image.png",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Holistic Unity",
-      "url": "https://holisticunity.app"
-    }
-  }
-  </script>
+    "url": "https://holisticunity.app"
+  },
+  "inLanguage": "pt"
+}</script>
 <!-- Production shared styles (nav/footer tokens) -->
 <link href="/shared.css" rel="stylesheet"/>
 <!-- Google Fonts for display + body -->
@@ -1539,7 +1540,7 @@
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="/pt/">
-<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" src="/images/logo.png"/></picture>
+<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" decoding="async" height="197" src="/images/logo.png" width="192"/></picture>
 <span>Holistic Unity</span>
 </a>
 <button aria-expanded="false" aria-label="Apri il menu" class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1606,11 +1607,11 @@
 </div>
 <div class="hero-visual reveal-right">
 <div class="hero-photo">
-<picture><source srcset="/preview-redesign/images/therapist-callcard-2.webp" type="image/webp"/><img alt="Cliente italiana in sessione olistica con il laptop dal divano di casa" src="/preview-redesign/images/therapist-callcard-2.jpg"/></picture>
+<picture><source srcset="/preview-redesign/images/therapist-callcard-2.webp" type="image/webp"/><img alt="Cliente italiana in sessione olistica con il laptop dal divano di casa" fetchpriority="high" height="1402" loading="eager" src="/preview-redesign/images/therapist-callcard-2.jpg" width="1122"/></picture>
 </div>
 <!-- <div class="hero-callcard">
           <div class="hero-callcard-photo">
-            <picture><source type="image/webp" srcset="preview-redesign/images/therapist-callcard.webp"><img src="preview-redesign/images/therapist-callcard.jpg" alt="Sara Conti, praticante ThetaHealing®"></picture>
+            <picture><source type="image/webp" srcset="preview-redesign/images/therapist-callcard.webp"><img src="preview-redesign/images/therapist-callcard.jpg" alt="Sara Conti, praticante ThetaHealing®" width="1030" height="1030" decoding="async" loading="lazy"></picture>
             <span class="hero-callcard-dot" aria-label="In linea ora"></span>
           </div>
           <div class="hero-callcard-body">
@@ -1742,7 +1743,7 @@
 <div class="steps-grid">
 <div class="step-card reveal-left">
 <div class="step-photo step-photo-mockup">
-<picture><source srcset="preview-live-style/images/mockup-browse.webp" type="image/webp"/><img alt="Schermata app - 11 discipline olistiche" class="step-mockup-img" src="preview-live-style/images/mockup-browse.png"/></picture>
+<picture><source srcset="preview-live-style/images/mockup-browse.webp" type="image/webp"/><img alt="Schermata app - 11 discipline olistiche" class="step-mockup-img" decoding="async" height="1200" loading="lazy" src="preview-live-style/images/mockup-browse.png" width="896"/></picture>
 </div>
 <div class="step-body">
 <span class="step-number">1</span>
@@ -1753,7 +1754,7 @@
 </div>
 <div class="step-card reveal">
 <div class="step-photo step-photo-mockup">
-<picture><source srcset="preview-live-style/images/mockup-bookings.webp" type="image/webp"/><img alt="Schermata app - sessione confermata pronta per Join" class="step-mockup-img" src="preview-live-style/images/mockup-bookings.png"/></picture>
+<picture><source srcset="preview-live-style/images/mockup-bookings.webp" type="image/webp"/><img alt="Schermata app - sessione confermata pronta per Join" class="step-mockup-img" decoding="async" height="1200" loading="lazy" src="preview-live-style/images/mockup-bookings.png" width="896"/></picture>
 </div>
 <div class="step-body">
 <span class="step-number">2</span>
@@ -1764,10 +1765,10 @@
 </div>
 <div class="step-card reveal-right">
 <div class="step-photo step-photo-live">
-<picture><source srcset="/images/hands-tea.webp" type="image/webp"/><img alt="Cliente con tazza di tè durante una sessione video" class="step-photo-bg" src="/images/hands-tea.jpg"/></picture>
+<picture><source srcset="/images/hands-tea.webp" type="image/webp"/><img alt="Cliente con tazza di tè durante una sessione video" class="step-photo-bg" decoding="async" height="864" loading="lazy" src="/images/hands-tea.jpg" width="1184"/></picture>
 <div class="step-live-overlay">
 <div class="step-live-photo">
-<picture><source srcset="/images/therapist-callcard.webp" type="image/webp"/><img alt="" src="/images/therapist-callcard.jpg"/></picture>
+<picture><source srcset="/images/therapist-callcard.webp" type="image/webp"/><img alt="" decoding="async" height="1030" loading="lazy" src="/images/therapist-callcard.jpg" width="1030"/></picture>
 <span aria-label="In sessione" class="step-live-dot"></span>
 </div>
 <div class="step-live-body">
@@ -1797,7 +1798,7 @@
 <div class="therapies-grid">
 <a class="therapy-card reveal-left" href="/pt/thetahealing">
 <span class="therapy-badge gold">Primeiro encontro</span>
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-theta.webp" type="image/webp"/><img alt="ThetaHealing®" loading="lazy" src="/preview-redesign/images/hu-theta.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-theta.webp" type="image/webp"/><img alt="ThetaHealing®" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-theta.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">01 / 11</div>
 <h3>ThetaHealing<sup>®</sup></h3>
@@ -1824,7 +1825,7 @@
 </a>
 <a class="therapy-card reveal" href="/pt/reiki">
 <span class="therapy-badge">Mais reservada</span>
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-reiki.webp" type="image/webp"/><img alt="Reiki" loading="lazy" src="/preview-redesign/images/hu-reiki.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-reiki.webp" type="image/webp"/><img alt="Reiki" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-reiki.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">02 / 11</div>
 <h3>Reiki</h3>
@@ -1850,7 +1851,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-right" href="/pt/astrology">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-astro.webp" type="image/webp"/><img alt="Astrologia" loading="lazy" src="/preview-redesign/images/hu-astro.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-astro.webp" type="image/webp"/><img alt="Astrologia" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-astro.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">03 / 11</div>
 <h3>Astrologia</h3>
@@ -1859,7 +1860,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-left" href="/pt/human-design">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-hd.webp" type="image/webp"/><img alt="Human Design" loading="lazy" src="/preview-redesign/images/hu-hd.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-hd.webp" type="image/webp"/><img alt="Human Design" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-hd.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">04 / 11</div>
 <h3>Human Design</h3>
@@ -1868,7 +1869,7 @@
 </div>
 </a>
 <a class="therapy-card reveal" href="/pt/numerology">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-num.webp" type="image/webp"/><img alt="Numerologia" loading="lazy" src="/preview-redesign/images/hu-num.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-num.webp" type="image/webp"/><img alt="Numerologia" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-num.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">05 / 11</div>
 <h3>Numerologia</h3>
@@ -1877,7 +1878,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-right" href="/pt/ayurveda">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-ayur.webp" type="image/webp"/><img alt="Ayurveda" loading="lazy" src="/preview-redesign/images/hu-ayur.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-ayur.webp" type="image/webp"/><img alt="Ayurveda" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-ayur.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">06 / 11</div>
 <h3>Ayurveda</h3>
@@ -1886,7 +1887,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-left" href="/pt/naturopathy">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-natu.webp" type="image/webp"/><img alt="Naturopatia" loading="lazy" src="/preview-redesign/images/hu-natu.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-natu.webp" type="image/webp"/><img alt="Naturopatia" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-natu.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">07 / 11</div>
 <h3>Naturopatia</h3>
@@ -1896,7 +1897,7 @@
 </a>
 <a class="therapy-card reveal" href="/pt/family-constellation">
 <span class="therapy-badge">Percurso profundo</span>
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-cf.webp" type="image/webp"/><img alt="Costellazioni Familiari" loading="lazy" src="/preview-redesign/images/hu-cf.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-cf.webp" type="image/webp"/><img alt="Costellazioni Familiari" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-cf.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">08 / 11</div>
 <h3>Constelação Familiar</h3>
@@ -1922,7 +1923,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-right" href="/pt/systemic-constellation">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-cs.webp" type="image/webp"/><img alt="Costellazioni Sistemiche" loading="lazy" src="/preview-redesign/images/hu-cs.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-cs.webp" type="image/webp"/><img alt="Costellazioni Sistemiche" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-cs.jpg" width="1200"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">09 / 11</div>
 <h3>Constelação Sistêmica</h3>
@@ -1931,7 +1932,7 @@
 </div>
 </a>
 <a class="therapy-card reveal-left" href="/pt/shamanism">
-<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-sciam.webp" type="image/webp"/><img alt="Sciamanesimo" loading="lazy" src="/preview-redesign/images/hu-sciam.jpg"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/preview-redesign/images/hu-sciam.webp" type="image/webp"/><img alt="Sciamanesimo" decoding="async" height="896" loading="lazy" src="/preview-redesign/images/hu-sciam.jpg" width="1184"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">10 / 11</div>
 <h3>Xamanismo</h3>
@@ -1957,7 +1958,7 @@
 </div>
 </a>
 <a class="therapy-card reveal" href="/pt/seed-energy-process">
-<div class="therapy-illo"><picture><source srcset="/images/seed.webp" type="image/webp"/><img alt="SEED – Energy Process®" loading="lazy" src="/images/seed.png"/></picture></div>
+<div class="therapy-illo"><picture><source srcset="/images/seed.webp" type="image/webp"/><img alt="SEED – Energy Process®" decoding="async" height="438" loading="lazy" src="/images/seed.png" width="437"/></picture></div>
 <div class="therapy-info">
 <div class="therapy-num">11 / 11</div>
 <h3>SEED – Energy Process<sup>®</sup></h3>
@@ -2009,7 +2010,7 @@
 </div>
 </div>
 <div class="app-visual reveal-right">
-<picture><source srcset="preview-live-style/images/mockup-home.webp" type="image/webp"/><img alt="Schermata home dell'app Holistic Unity - anteprima mobile" class="app-mockup-img" src="preview-live-style/images/mockup-home.png"/></picture>
+<picture><source srcset="preview-live-style/images/mockup-home.webp" type="image/webp"/><img alt="Schermata home dell'app Holistic Unity - anteprima mobile" class="app-mockup-img" decoding="async" height="4800" loading="lazy" src="preview-live-style/images/mockup-home.png" width="3584"/></picture>
 </div>
 </div>
 </div>
@@ -2024,19 +2025,19 @@
 <h2>Quanto custa começar um <em>percurso holístico</em>?</h2>
 <p>O seu percurso começa com uma <strong>call de conhecimento gratuita de ~15 minutos</strong> por videochamada - para entender se é o percurso certo para você, antes de reservar uma sessão de verdade. Se decidir continuar, o preço varia conforme a disciplina e o operador escolhido e é sempre visível antes da reserva. Zero assinaturas, você paga só pelo que faz.</p>
 <div class="payment-badges">
-<img alt="Mastercard" height="22" src="https://cdn.simpleicons.org/mastercard/1A1F71"/>
-<img alt="Visa" height="18" src="https://cdn.simpleicons.org/visa/1A1F71"/>
-<img alt="Apple Pay" height="20" src="https://cdn.simpleicons.org/applepay/111111"/>
-<img alt="Google Pay" height="18" src="https://cdn.simpleicons.org/googlepay/1A1F71"/>
+<img alt="Mastercard" decoding="async" height="22" loading="lazy" src="https://cdn.simpleicons.org/mastercard/1A1F71"/>
+<img alt="Visa" decoding="async" height="18" loading="lazy" src="https://cdn.simpleicons.org/visa/1A1F71"/>
+<img alt="Apple Pay" decoding="async" height="20" loading="lazy" src="https://cdn.simpleicons.org/applepay/111111"/>
+<img alt="Google Pay" decoding="async" height="18" loading="lazy" src="https://cdn.simpleicons.org/googlepay/1A1F71"/>
 <span class="payment-stripe">
 <span>Powered by</span>
-<img alt="Stripe" height="16" src="https://cdn.simpleicons.org/stripe/635BFF"/>
+<img alt="Stripe" decoding="async" height="16" loading="lazy" src="https://cdn.simpleicons.org/stripe/635BFF"/>
 </span>
 </div>
 </div>
 <div class="pricing-intro-visual reveal-right">
 <div class="pricing-photo">
-<picture><source srcset="/preview-redesign/images/therapist-callcard.webp" type="image/webp"/><img alt="Operatore olistico in videochiamata" src="/preview-redesign/images/therapist-callcard.jpg"/></picture>
+<picture><source srcset="/preview-redesign/images/therapist-callcard.webp" type="image/webp"/><img alt="Operatore olistico in videochiamata" decoding="async" height="1030" loading="lazy" src="/preview-redesign/images/therapist-callcard.jpg" width="1030"/></picture>
 </div>
 <div class="pricing-chip pricing-chip-free">
 <span class="pchip-title">Call de conhecimento</span>
@@ -2262,7 +2263,7 @@
 </div>
 </div>
 <div class="final-cta-photo reveal-right">
-<picture><source srcset="/preview-redesign/images/hero-v3-client-laptop-calendar.webp" type="image/webp"/><img alt="Cliente in sessione olistica dal salotto di casa" src="/preview-redesign/images/hero-v3-client-laptop-calendar.jpg"/></picture>
+<picture><source srcset="/preview-redesign/images/hero-v3-client-laptop-calendar.webp" type="image/webp"/><img alt="Cliente in sessione olistica dal salotto di casa" decoding="async" height="1200" loading="lazy" src="/preview-redesign/images/hero-v3-client-laptop-calendar.jpg" width="896"/></picture>
 </div>
 </div>
 </div>
@@ -2294,7 +2295,7 @@
 <div class="footer-content">
 <div class="footer-brand">
 <a class="footer-logo" href="/pt/">
-<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" height="44" src="/images/logo.png" width="44"/></picture>
+<picture><source srcset="/images/logo.webp" type="image/webp"/><img alt="Holistic Unity" decoding="async" height="44" src="/images/logo.png" width="44"/></picture>
 <span>Holistic Unity</span>
 </a>
 <p>Marketplace de operadores holísticos verificados (Lei italiana 4/2013). ThetaHealing®, Reiki, Astrologia, Human Design, Numerologia, Ayurveda, Naturopatia, Constelações. Storm X Digital S.R.L.</p>

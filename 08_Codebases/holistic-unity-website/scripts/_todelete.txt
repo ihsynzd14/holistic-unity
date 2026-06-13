@@ -1,0 +1,12 @@
+images\categories\Ayurveda.png
+images\categories\Family Constellation.png
+images\categories\Naturopathy.png
+images\categories\Reiki.png
+images\categories\Sciamanesimo.png
+images\categories\Systemic Constellation.png
+images\categories\ThetaHealing.png
+images\family-constellation.png
+images\naturopathy.png
+images\therapist-callcard-2.png
+images\therapist-callcard.png
+images\thetahealing.png
