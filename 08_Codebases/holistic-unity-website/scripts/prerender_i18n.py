@@ -371,7 +371,13 @@ def build_page(rel):
                 classes = [c for c in el.get("class", []) if c != "active"]
                 if code == lang:
                     classes.append("active")
-                el["class"] = classes
+                    el["aria-current"] = "page"   # a11y: current language
+                elif el.has_attr("aria-current"):
+                    del el["aria-current"]
+                if classes:
+                    el["class"] = classes
+                elif el.has_attr("class"):
+                    del el["class"]               # avoid empty class=""
         html = str(soup)
         if not html.lstrip().startswith("<!DOCTYPE"):
             html = "<!DOCTYPE html>\n" + html

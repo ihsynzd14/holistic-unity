@@ -109,12 +109,21 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .dropdown-menu a::after { display: none !important; }
 .dropdown-menu a:hover { background: rgba(139,34,82,0.04); color: var(--berry); }
 
-.lang-toggle { display: flex; background: var(--soft-pink); border-radius: 20px; padding: 3px; cursor: pointer; }
-.lang-toggle button {
-  background: none; border: none; padding: 6px 14px; font-size: 0.8rem; font-weight: 600;
+.lang-toggle { display: inline-flex; align-items: center; gap: 2px; background: var(--soft-pink); border-radius: 20px; padding: 3px; cursor: pointer; }
+/* Targets both <button> (source templates) and <a> (prerendered pages, where the
+   picker is real links to /en, /pt for crawlability). The anchor resets remove
+   the default underline/blue and let the pill padding size correctly. */
+.lang-toggle button,
+.lang-toggle a {
+  display: inline-block; text-decoration: none; line-height: 1; text-align: center;
+  background: none; border: none; padding: 6px 13px; font-size: 0.8rem; font-weight: 600;
   font-family: var(--font-body); color: var(--charcoal-light); border-radius: 17px; cursor: pointer; transition: all 0.3s;
 }
-.lang-toggle button.active { background: var(--white); color: var(--berry); box-shadow: 0 2px 8px rgba(139,34,82,0.12); }
+.lang-toggle a:hover { color: var(--berry); text-decoration: none; }
+.lang-toggle a::after { display: none; }   /* suppress the nav-link gold underline bar on the pills */
+.lang-toggle button.active,
+.lang-toggle a.active { background: var(--white); color: var(--berry); box-shadow: 0 2px 8px rgba(139,34,82,0.12); }
+.lang-toggle a.active:hover { color: var(--berry); }
 .nav-cta {
   background: var(--berry); color: var(--white) !important; padding: 10px 24px !important;
   border-radius: 50px; font-weight: 600 !important; font-size: 0.85rem !important;
