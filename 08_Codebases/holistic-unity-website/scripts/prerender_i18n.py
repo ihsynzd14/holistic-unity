@@ -291,7 +291,7 @@ def is_internal_page_link(href):
     if re.match(r"^https?://", href):
         return None
     # asset
-    if href.lstrip("./").startswith(("images/", "preview-redesign/")) or \
+    if href.lstrip("./").startswith(("images/", "preview-redesign/", "preview-live-style/")) or \
        href.lstrip("/").split("?")[0] in {"shared.css", "shared.js", "analytics.js"}:
         return None
     # leading-slash internal
@@ -327,8 +327,8 @@ def absolutize_assets(soup):
             return None
         v = val
         v = re.sub(r'^(?:\.\./)+', '/', v)          # ../images/x -> /images/x
-        if v.startswith(("images/", "preview-redesign/", "shared.css",
-                         "shared.js", "analytics.js")):
+        if v.startswith(("images/", "preview-redesign/", "preview-live-style/",
+                         "shared.css", "shared.js", "analytics.js")):
             v = "/" + v
         return v
 

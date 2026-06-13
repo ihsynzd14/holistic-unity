@@ -316,12 +316,15 @@ python scripts/optimize_fonts.py        # Google Fonts → non-render-blocking (
 python scripts/add_a11y.py              # skip-link + <main> landmark (WCAG 2.4.1) + muted-text contrast fix
 # legal pages are standalone (NOT in _src) — maintained directly + by:
 python scripts/add_legal_og.py          # og:* + WebPage JSON-LD on the 4 legal pages (idempotent)
+python scripts/fix_legal_pages.py       # legal: <title> + canonical + backfill empty OG + async fonts
 # 2. prerender + sitemap
 python scripts/prerender_i18n.py    # bake _src → root(it) + en/ + pt/  (per-lang
                                     # title/desc/OG/canonical/hreflang, toggle→links,
                                     # localized JSON-LD/FAQ, data-* stripped, window.HU_LANG,
                                     # INLINES shared.css, og:site_name + og:locale[:alternate])
 python scripts/generate_sitemap.py  # trilingual sitemap.xml with hreflang clusters
+# 3. pre-deploy gate (run before every `vercel --prod`)
+python scripts/pre_deploy_check.py  # broken-asset refs, SEO tags, JSON-LD, fonts, a11y, sitemap → "READY TO DEPLOY"
 ```
 
 > ⚠️ **`shared.css` is now INLINED into every page by the prerender** (Fix 2, to drop the
