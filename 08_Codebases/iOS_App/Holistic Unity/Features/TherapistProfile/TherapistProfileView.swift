@@ -45,96 +45,56 @@ struct TherapistProfileView: View {
     @State private var isBlocking = false
     @State private var blockError: String?
     @State private var didBlock = false
-    
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 // MARK: - Hero Section
                 heroSection
-                
+
+                // MARK: - Content
                 VStack(alignment: .leading, spacing: HUSpacing.xxl) {
-                    // MARK: - Preview Banner
                     if isPreview {
-                        HStack(spacing: 8) {
-                            Image(systemName: "eye.fill")
-                                .font(.system(size: 14))
-                            Text("This is how clients see your profile")
-                                .font(.system(size: 13, weight: .medium))
-                        }
-                        .foregroundStyle(HUColor.primary)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                        .background(HUColor.primaryLight)
-                        .clipShape(RoundedRectangle(cornerRadius: HURadius.lg))
+                        previewBanner
                     }
-                    
-                    // MARK: - Book CTA
-                    if !isPreview {
-                        bookingCTA
-                    }
-                    
-                    // MARK: - About Me
+
                     aboutSection
-                    
-                    // MARK: - My Type of Therapy
                     therapyTypesSection
-                    
-                    // MARK: - Services & Pricing
                     servicesSection
-                    
-                    // MARK: - Certifications
                     certificationsSection
-                    
-                    // MARK: - Presentation Video
                     videoSection
-                    
-                    // MARK: - Gallery
+
                     if !therapist.galleryImageURLs.isEmpty {
                         gallerySection
                     }
-                    
-                    // MARK: - Availability Preview
+
                     availabilitySection
-                    
-                    // MARK: - Reviews
                     reviewsSection
-                    
-                    // MARK: - Refund Policy
                     cancellationPolicySection
-                    
+
                     // Report + Block (Guideline 1.2 — fully wired
                     // to ReportService.shared as of 2026-05-18, was
                     // previously a local-state stub).
                     if !isPreview {
-                        VStack(spacing: HUSpacing.sm) {
-                            Button {
-                                HUHaptic.selection()
-                                showReportSheet = true
-                            } label: {
-                                Label("Segnala questo operatore", systemImage: "flag")
-                                    .font(HUFont.caption())
-                                    .foregroundStyle(HUColor.textTertiary)
-                            }
-
-                            Button {
-                                HUHaptic.selection()
-                                showBlockConfirm = true
-                            } label: {
-                                Label("Blocca", systemImage: "hand.raised.slash")
-                                    .font(HUFont.caption())
-                                    .foregroundStyle(HUColor.error.opacity(0.85))
-                            }
-                            .disabled(isBlocking || didBlock)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.bottom, HUSpacing.massive)
+                        reportBlockSection
                     }
                 }
                 .padding(.horizontal, HUSpacing.xl)
+                .padding(.top, HUSpacing.xl)
+                .padding(.bottom, HUSpacing.xl)
             }
         }
         .background(HUColor.background)
         .ignoresSafeArea(edges: .top)
+        // Signature booking-app pattern: a frosted, always-visible CTA bar
+        // pinned to the bottom safe area. Replaces the old inline hero CTA
+        // so the top of the screen stays calm and editorial, while booking
+        // remains one tap away at every scroll position.
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if !isPreview {
+                bookingBar
+            }
+        }
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
@@ -245,9 +205,9 @@ struct TherapistProfileView: View {
             Text(chatError ?? "")
         }
     }
-    
+
     // MARK: - Data Loading
-    
+
     private func blockTherapist() async {
         isBlocking = true
         blockError = nil
@@ -274,180 +234,226 @@ struct TherapistProfileView: View {
             reviewsLoadError = true
         }
     }
-    
-    // MARK: - Hero
-    
-    /// Editorial hero (painted edition 2026-05-16).
-    /// Centered painted portrait with verified pin, Fraunces serif
-    /// name, role caption, and meta row (loc · years · stars).
-    private var heroSection: some View {
-        VStack(spacing: 0) {
-            // Cream top band — replaces the old illustration banner.
-            // The banner cropped the painted asset awkwardly, and the
-            // overlapping photo created a busy top edge. Cream + halo
-            // matches the design's "spacious editorial" feel.
-            ZStack {
-                LinearGradient(
-                    colors: [HUColor.brandCream, HUColor.background],
-                    startPoint: .top,
-                    endPoint: .bottom
+
+    /// Opens (or creates) the 1:1 chat channel with this therapist.
+    /// Extracted from the old inline CTA closure so both the sticky
+    /// booking bar and any future entry points share one code path.
+    private func startChat() {
+        Task {
+            isLoadingChat = true
+            do {
+                let currentUserId = authManager.currentUser?.id ?? ""
+                let channelId = try await StreamChatService.shared.getOrCreateChannel(
+                    currentUserId: currentUserId,
+                    otherUserId: therapist.id
                 )
-                .frame(height: 96)
-
-                // Soft category-tinted radial halo behind the portrait.
-                Circle()
-                    .fill(
-                        RadialGradient(
-                            colors: [
-                                (therapist.categories.first?.color ?? HUColor.primary).opacity(0.22),
-                                .clear
-                            ],
-                            center: .center,
-                            startRadius: 6,
-                            endRadius: 140
-                        )
-                    )
-                    .frame(width: 260, height: 260)
-                    .offset(y: 30)
+                directChannelId = channelId
+                let controller = try await StreamChatService.shared.synchronizedController(for: channelId)
+                directChannelController = controller
+                showChat = true
+            } catch {
+                chatError = error.localizedDescription
             }
-            .frame(height: 96)
-            .frame(maxWidth: .infinity)
-
-            VStack(spacing: 14) {
-                // Centered painted portrait (140pt) with verified pin.
-                ZStack(alignment: .bottomTrailing) {
-                    Group {
-                        if let photoURL = therapist.photoURL {
-                            AsyncImage(url: photoURL.supabaseThumbnail(size: 140)) { phase in
-                                switch phase {
-                                case .success(let image):
-                                    image.resizable().scaledToFill()
-                                case .failure:
-                                    profileInitialsCircle
-                                case .empty:
-                                    ZStack {
-                                        Circle().fill(HUColor.primaryLight)
-                                        ProgressView().tint(HUColor.primary)
-                                    }
-                                @unknown default:
-                                    profileInitialsCircle
-                                }
-                            }
-                            .frame(width: 140, height: 140)
-                            .clipShape(Circle())
-                        } else {
-                            profileInitialsCircle
-                                .frame(width: 140, height: 140)
-                        }
-                    }
-                    .overlay(
-                        Circle().strokeBorder(HUColor.background, lineWidth: 5)
-                    )
-                    .shadow(color: HUColor.primary.opacity(0.18), radius: 22, y: 10)
-
-                    if therapist.isVerified {
-                        ZStack {
-                            Circle()
-                                .fill(HUColor.background)
-                                .frame(width: 32, height: 32)
-                            Image(systemName: "checkmark.seal.fill")
-                                .font(.system(size: 22))
-                                .foregroundStyle(HUColor.primary)
-                        }
-                        .offset(x: -4, y: -4)
-                    }
-                }
-                .overlay(alignment: .topLeading) {
-                    if let tier = therapist.tier {
-                        TierBadge(tier: tier, size: 56)
-                            .offset(x: -8, y: -8)
-                    }
-                }
-                .offset(y: -56)
-                .padding(.bottom, -56)
-
-                // Serif name (Fraunces) + role caption + meta.
-                VStack(spacing: 8) {
-                    if let tier = therapist.tier {
-                        TierPill(tier: tier)
-                    }
-
-                    Text(therapist.displayName)
-                        .font(HUFont.displayHeadline(size: 26, weight: .semiBold))
-                        .foregroundStyle(HUColor.textPrimary)
-                        .multilineTextAlignment(.center)
-
-                    Text(therapist.tagline)
-                        .font(.system(size: 13))
-                        .foregroundStyle(HUColor.textSecondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, HUSpacing.xl)
-
-                    // Meta row — separated by thin dividers, matches
-                    // design's "loc · 8 anni · ★ 4.9 (124)" layout.
-                    HStack(spacing: 10) {
-                        if let location = therapist.location {
-                            HStack(spacing: 4) {
-                                Image(systemName: "mappin.circle.fill")
-                                    .font(.system(size: 11))
-                                    .foregroundStyle(HUColor.brandMagenta)
-                                Text(location.city.isEmpty ? location.country : location.city)
-                                    .font(.system(size: 12))
-                                    .foregroundStyle(HUColor.textSecondary)
-                            }
-                            metaDivider
-                        }
-                        Text("\(therapist.yearsExperience) anni esp.")
-                            .font(.system(size: 12))
-                            .foregroundStyle(HUColor.textSecondary)
-                        metaDivider
-                        HStack(spacing: 4) {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 11))
-                                .foregroundStyle(HUColor.brandGold)
-                            Text(String(format: "%.1f", therapist.averageRating))
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundStyle(HUColor.textPrimary)
-                            Text("(\(therapist.totalReviews))")
-                                .font(.system(size: 11))
-                                .foregroundStyle(HUColor.textTertiary)
-                        }
-                    }
-                    .padding(.top, 2)
-                }
-
-                // Editorial pull-quote — uses the therapist's tagline
-                // verbatim in serif italic. Replaces the redundant
-                // "Book a Time for your session" header on the CTA.
-                if !therapist.tagline.isEmpty {
-                    Text("\u{201C}\(therapist.tagline)\u{201D}")
-                        .font(.custom("Fraunces72pt-Italic", size: 18))
-                        .foregroundStyle(HUColor.primary)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(3)
-                        .padding(.horizontal, HUSpacing.xl)
-                        .padding(.top, HUSpacing.md)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.bottom, HUSpacing.xl)
+            isLoadingChat = false
         }
     }
 
-    /// Thin vertical dot used between meta items in the hero row.
-    private var metaDivider: some View {
-        Circle()
-            .fill(HUColor.divider)
-            .frame(width: 3, height: 3)
+    // MARK: - Hero
+
+    /// Editorial hero (2026 edition). A soft cream wash with a
+    /// category-tinted halo cradles a centered painted portrait, then a
+    /// serif name, a single italic pull-quote (no more duplicated
+    /// tagline), a location chip, and a three-up credibility strip.
+    private var heroSection: some View {
+        VStack(spacing: HUSpacing.lg) {
+            // Portrait + soft radial halo
+            ZStack {
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [heroHaloColor.opacity(0.20), .clear],
+                            center: .center,
+                            startRadius: 10,
+                            endRadius: 150
+                        )
+                    )
+                    .frame(width: 290, height: 290)
+                    .offset(y: 6)
+
+                heroPortrait
+            }
+            .padding(.top, 64)
+
+            // Name, role quote, location
+            VStack(spacing: HUSpacing.sm) {
+                if let tier = therapist.tier {
+                    TierPill(tier: tier)
+                }
+
+                Text(therapist.displayName)
+                    .font(HUFont.displayTitle(size: 28, weight: .semiBold))
+                    .foregroundStyle(HUColor.textPrimary)
+                    .multilineTextAlignment(.center)
+
+                if !therapist.tagline.isEmpty {
+                    Text("\u{201C}\(therapist.tagline)\u{201D}")
+                        .font(.custom("Fraunces72pt-Italic", size: 17))
+                        .foregroundStyle(HUColor.primary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(3)
+                        .padding(.horizontal, HUSpacing.lg)
+                }
+
+                if let locationText {
+                    locationChip(locationText)
+                }
+            }
+
+            // Credibility strip
+            statStrip
+                .padding(.top, HUSpacing.xs)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, HUSpacing.xl)
+        .padding(.bottom, HUSpacing.lg)
+        .background(heroBackdrop)
     }
-    
+
+    private var heroBackdrop: some View {
+        LinearGradient(
+            colors: [HUColor.brandCream, HUColor.background],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    private var heroHaloColor: Color {
+        therapist.categories.first?.color ?? HUColor.primary
+    }
+
+    private var heroPortrait: some View {
+        ZStack(alignment: .bottomTrailing) {
+            Group {
+                if let photoURL = therapist.photoURL {
+                    AsyncImage(url: photoURL.supabaseThumbnail(size: 132)) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image.resizable().scaledToFill()
+                        case .failure:
+                            profileInitialsCircle
+                        case .empty:
+                            ZStack {
+                                Circle().fill(HUColor.primaryLight)
+                                ProgressView().tint(HUColor.primary)
+                            }
+                        @unknown default:
+                            profileInitialsCircle
+                        }
+                    }
+                    .frame(width: 132, height: 132)
+                    .clipShape(Circle())
+                } else {
+                    profileInitialsCircle
+                        .frame(width: 132, height: 132)
+                }
+            }
+            .overlay(Circle().strokeBorder(HUColor.background, lineWidth: 5))
+            .shadow(color: HUColor.primary.opacity(0.18), radius: 22, y: 10)
+
+            if therapist.isVerified {
+                ZStack {
+                    Circle()
+                        .fill(HUColor.background)
+                        .frame(width: 32, height: 32)
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.system(size: 22))
+                        .foregroundStyle(HUColor.primary)
+                }
+                .offset(x: -2, y: -2)
+            }
+        }
+        .overlay(alignment: .topLeading) {
+            if let tier = therapist.tier {
+                TierBadge(tier: tier, size: 52)
+                    .offset(x: -6, y: -6)
+            }
+        }
+    }
+
+    private var locationText: String? {
+        guard let location = therapist.location else { return nil }
+        if !location.city.isEmpty { return location.city }
+        if !location.country.isEmpty { return location.country }
+        return nil
+    }
+
+    private func locationChip(_ text: String) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: "mappin.and.ellipse")
+                .font(.system(size: 11, weight: .semibold))
+            Text(text)
+                .font(.system(size: 13, weight: .medium))
+        }
+        .foregroundStyle(HUColor.brandMagenta)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(HUColor.brandMagenta.opacity(0.10))
+        .clipShape(Capsule())
+        .padding(.top, 2)
+    }
+
+    // MARK: - Stat Strip
+
+    private var statStrip: some View {
+        HStack(spacing: HUSpacing.sm) {
+            if therapist.totalReviews > 0 {
+                statTile(
+                    icon: "star.fill",
+                    value: String(format: "%.1f", therapist.averageRating),
+                    label: "Voto",
+                    tint: HUColor.brandGold
+                )
+            } else {
+                statTile(icon: "sparkles", value: "Nuovo", label: "Profilo", tint: HUColor.brandGold)
+            }
+
+            statTile(icon: "rosette", value: "\(therapist.yearsExperience)", label: "Anni", tint: HUColor.primary)
+            statTile(icon: "video.fill", value: "Online", label: "Sessioni", tint: HUColor.primary)
+        }
+    }
+
+    private func statTile(icon: String, value: String, label: String, tint: Color) -> some View {
+        VStack(spacing: 5) {
+            Image(systemName: icon)
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(tint)
+            Text(value)
+                .font(.system(size: 17, weight: .bold))
+                .foregroundStyle(HUColor.textPrimary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            Text(label.uppercased())
+                .font(.system(size: 10, weight: .semibold))
+                .tracking(0.5)
+                .foregroundStyle(HUColor.textTertiary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, HUSpacing.md)
+        .background(HUColor.secondaryBackground)
+        .clipShape(RoundedRectangle(cornerRadius: HURadius.lg, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: HURadius.lg, style: .continuous)
+                .strokeBorder(HUColor.primary.opacity(0.04), lineWidth: 1)
+        )
+    }
+
     private var therapistInitials: String {
         let components = therapist.displayName.split(separator: " ")
         let first = components.first?.prefix(1) ?? ""
         let last = components.count > 1 ? components.last?.prefix(1) ?? "" : ""
         return "\(first)\(last)".uppercased()
     }
-    
+
     private var profileInitialsCircle: some View {
         ZStack {
             Circle()
@@ -461,281 +467,351 @@ struct TherapistProfileView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(width: 100, height: 100)
-            
+                .frame(width: 132, height: 132)
+
             Text(therapistInitials)
-                .font(.system(size: 36, weight: .semibold))
+                .font(.system(size: 42, weight: .semibold))
                 .foregroundStyle(HUColor.primaryDark)
         }
     }
-    
-    // MARK: - Book CTA
-    
-    /// Editorial CTA — full-width berry "Prenota sessione" pill paired
-    /// with a circular chat icon. Mirrors the design's inline pair
-    /// (no wrapping card, no redundant header) so the screen breathes.
-    private var bookingCTA: some View {
-        HStack(spacing: 10) {
+
+    // MARK: - Sticky Booking Bar
+
+    /// Frosted bottom bar: starting price on the left, message + the
+    /// primary "Prenota sessione" pill on the right. Only shown to
+    /// clients (`!isPreview`).
+    private var bookingBar: some View {
+        HStack(spacing: HUSpacing.md) {
+            VStack(alignment: .leading, spacing: 0) {
+                if let price = therapist.startingPrice {
+                    Text("da \(therapist.currency.symbol)\(Int(price))")
+                        .font(.custom("Fraunces72pt-SemiBold", size: 20))
+                        .foregroundStyle(HUColor.textPrimary)
+                        .lineLimit(1)
+                    Text("a sessione")
+                        .font(.system(size: 11))
+                        .foregroundStyle(HUColor.textTertiary)
+                        .lineLimit(1)
+                } else {
+                    Text("Prenota")
+                        .font(.custom("Fraunces72pt-SemiBold", size: 18))
+                        .foregroundStyle(HUColor.textPrimary)
+                    Text("Scegli un servizio")
+                        .font(.system(size: 11))
+                        .foregroundStyle(HUColor.textTertiary)
+                }
+            }
+
+            Spacer(minLength: HUSpacing.sm)
+
+            messageIconButton
+
             Button {
                 HUHaptic.impact(.light)
                 bookingContext = BookingContext(service: nil)
             } label: {
-                HStack(spacing: 8) {
-                    Image(systemName: "calendar.badge.plus")
-                        .font(.system(size: 14, weight: .semibold))
-                    Text("Prenota sessione")
-                        .font(.system(size: 15, weight: .semibold))
-                }
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
-                .background(PrimaryGradient.linear)
-                .clipShape(Capsule())
-                .shadow(color: HUColor.primary.opacity(0.25), radius: 14, y: 6)
+                Text("Prenota sessione")
+                    .font(.system(size: 15, weight: .semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, HUSpacing.lg)
+                    .frame(height: 50)
+                    .background(
+                        Capsule()
+                            .fill(PrimaryGradient.linear)
+                            .shadow(color: HUColor.primary.opacity(0.30), radius: 12, y: 5)
+                    )
             }
             .buttonStyle(HUPressButtonStyle())
-
-            Button {
-                Task {
-                    isLoadingChat = true
-                    do {
-                        let currentUserId = authManager.currentUser?.id ?? ""
-                        let channelId = try await StreamChatService.shared.getOrCreateChannel(
-                            currentUserId: currentUserId,
-                            otherUserId: therapist.id
-                        )
-                        directChannelId = channelId
-                        let controller = try await StreamChatService.shared.synchronizedController(for: channelId)
-                        directChannelController = controller
-                        showChat = true
-                    } catch {
-                        chatError = error.localizedDescription
-                    }
-                    isLoadingChat = false
-                }
-            } label: {
-                ZStack {
-                    Circle()
-                        .fill(HUColor.background)
-                        .frame(width: 52, height: 52)
-                        .overlay(
-                            Circle().strokeBorder(HUColor.brandMagenta.opacity(0.25), lineWidth: 1)
-                        )
-                    if isLoadingChat {
-                        ProgressView()
-                            .controlSize(.small)
-                            .tint(HUColor.brandMagenta)
-                    } else {
-                        Image(systemName: "bubble.left.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(HUColor.brandMagenta)
-                    }
-                }
-            }
-            .accessibilityLabel("Invia un messaggio a \(therapist.displayName)")
-            .disabled(isLoadingChat)
+        }
+        .padding(.horizontal, HUSpacing.xl)
+        .padding(.top, HUSpacing.md)
+        .padding(.bottom, HUSpacing.sm)
+        .background {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .ignoresSafeArea(edges: .bottom)
+        }
+        .overlay(alignment: .top) {
+            Rectangle()
+                .fill(HUColor.divider.opacity(0.6))
+                .frame(height: 0.5)
         }
     }
-    
-    // MARK: - About
-    
-    private var aboutSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            sectionTitle("A Little Bit About Me")
-            
-            Text(therapist.bio)
+
+    private var messageIconButton: some View {
+        Button {
+            startChat()
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(HUColor.brandMagenta.opacity(0.10))
+                    .frame(width: 50, height: 50)
+                    .overlay(Circle().strokeBorder(HUColor.brandMagenta.opacity(0.22), lineWidth: 1))
+                if isLoadingChat {
+                    ProgressView()
+                        .controlSize(.small)
+                        .tint(HUColor.brandMagenta)
+                } else {
+                    Image(systemName: "bubble.left.fill")
+                        .font(.system(size: 17))
+                        .foregroundStyle(HUColor.brandMagenta)
+                }
+            }
+        }
+        .buttonStyle(HUPressButtonStyle())
+        .disabled(isLoadingChat)
+        .accessibilityLabel("Invia un messaggio a \(therapist.displayName)")
+    }
+
+    // MARK: - Preview Banner
+
+    private var previewBanner: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "eye.fill")
                 .font(.system(size: 14))
+            Text("This is how clients see your profile")
+                .font(.system(size: 13, weight: .medium))
+        }
+        .foregroundStyle(HUColor.primary)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12)
+        .background(HUColor.primaryLight)
+        .clipShape(RoundedRectangle(cornerRadius: HURadius.lg, style: .continuous))
+    }
+
+    // MARK: - About
+
+    private var aboutSection: some View {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
+            sectionTitle("A Little Bit About Me")
+
+            Text(therapist.bio)
+                .font(.system(size: 15))
                 .foregroundStyle(HUColor.textSecondary)
-                .lineSpacing(5)
-            
+                .lineSpacing(6)
+                .fixedSize(horizontal: false, vertical: true)
+
             if !therapist.languages.isEmpty {
                 HStack(spacing: 6) {
                     Image(systemName: "globe")
-                        .font(.system(size: 12))
-                        .foregroundStyle(HUColor.primary)
+                        .font(.system(size: 12, weight: .medium))
                     Text("Speaks: \(therapist.languages.joined(separator: ", "))")
-                        .font(.system(size: 12))
-                        .foregroundStyle(HUColor.textSecondary)
+                        .font(.system(size: 13, weight: .medium))
                 }
+                .foregroundStyle(HUColor.primary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(HUColor.primaryLight.opacity(0.55))
+                .clipShape(Capsule())
             }
         }
     }
-    
+
     // MARK: - Therapy Types
-    
+
     private var therapyTypesSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle("My Type of Therapy")
-            
-            FlowLayout(spacing: 8) {
+
+            FlowLayout(spacing: HUSpacing.sm) {
                 ForEach(therapist.categories) { category in
-                    HStack(spacing: 5) {
+                    HStack(spacing: 6) {
                         Image(systemName: category.icon)
-                            .font(.system(size: 12))
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(category.color)
                         Text(category.displayName)
-                            .font(.system(size: 13, weight: .medium))
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(HUColor.textPrimary)
                     }
-                    .foregroundStyle(HUColor.primary)
                     .padding(.horizontal, 14)
-                    .padding(.vertical, 8)
-                    .background(HUColor.primaryLight)
+                    .padding(.vertical, 9)
+                    .background(category.color.opacity(0.13))
                     .clipShape(Capsule())
+                    .overlay(Capsule().strokeBorder(category.color.opacity(0.22), lineWidth: 1))
                 }
             }
         }
     }
-    
+
     // MARK: - Services
-    
+
     private var servicesSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle("Services & Pricing")
-            
-            ForEach(therapist.services) { service in
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        // Title row: name + FREE badge + category pill
-                        HStack(spacing: 6) {
-                            Text(service.name)
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundStyle(HUColor.textPrimary)
-                            if service.isIntroCall {
-                                Text("FREE")
-                                    .font(.system(size: 9, weight: .bold))
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 2)
-                                    .background(HUColor.success.opacity(0.15))
-                                    .foregroundStyle(HUColor.success)
-                                    .clipShape(Capsule())
-                            }
-                            // Per-service category pill (GAP 6). Clarifies
-                            // which modality this specific service is.
-                            Text(service.category.displayName)
-                                .font(.system(size: 9, weight: .semibold))
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(HUColor.primary.opacity(0.10))
-                                .foregroundStyle(HUColor.primary)
-                                .clipShape(Capsule())
-                        }
 
-                        // Description (GAP 5) — optional, truncated to 2 lines.
-                        if !service.description.isEmpty {
-                            Text(service.description)
-                                .font(.system(size: 11))
-                                .foregroundStyle(HUColor.textSecondary)
-                                .lineLimit(2)
-                                .multilineTextAlignment(.leading)
-                        }
-
-                        // Meta row: duration (all sessions are virtual — V1 platform default)
-                        HStack(spacing: 8) {
-                            Image(systemName: "video.fill")
-                                .font(.system(size: 9))
-                            Text("\(service.duration) min")
-                        }
-                        .font(.system(size: 11))
-                        .foregroundStyle(HUColor.textSecondary)
-
-                        // Pack info
-                        if let packSize = service.packSize, let packPrice = service.packPrice {
-                            HStack(spacing: 4) {
-                                Image(systemName: "tag.fill")
-                                    .font(.system(size: 9))
-                                Text("Pack of \(packSize): \(therapist.currency.symbol)\(Int(packPrice))/session")
-                                    .font(.system(size: 11, weight: .medium))
-                            }
-                            .foregroundStyle(HUColor.primary)
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 6) {
-                        if service.isIntroCall {
-                            Text("Free")
-                                .font(.custom("Fraunces72pt-SemiBold", size: 20))
-                                .foregroundStyle(HUColor.success)
-                        } else {
-                            Text("\(therapist.currency.symbol)\(Int(service.price))")
-                                .font(.custom("Fraunces72pt-SemiBold", size: 22))
-                                .foregroundStyle(HUColor.primary)
-                        }
-                        
-                        if !isPreview {
-                            Button {
-                                // Pre-select this specific service so the flow
-                                // skips the redundant "Choose a Service" step.
-                                // BookingContext is Identifiable, so .sheet(item:)
-                                // always builds BookingFlowView with the correct
-                                // service on first presentation.
-                                bookingContext = BookingContext(service: service)
-                            } label: {
-                                Text(service.isIntroCall ? "Schedule" : "Book")
-                                    .font(.system(size: 11, weight: .semibold))
-                                    .foregroundStyle(.white)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 5)
-                                    .background(service.isIntroCall ? HUColor.success : HUColor.primary)
-                                    .clipShape(Capsule())
-                            }
-                        }
-                    }
+            VStack(spacing: HUSpacing.md) {
+                ForEach(therapist.services) { service in
+                    serviceCard(service)
                 }
-                .padding(14)
-                .background(HUColor.secondaryBackground)
-                .clipShape(RoundedRectangle(cornerRadius: HURadius.xl))
             }
         }
     }
-    
-    // MARK: - Certifications
-    
-    private var certificationsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            sectionTitle("My Certifications")
-            
-            ForEach(therapist.certifications) { cert in
-                HStack(spacing: 12) {
-                    Image(systemName: "doc.text.fill")
-                        .font(.system(size: 20))
+
+    private func serviceCard(_ service: TherapistService) -> some View {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
+            // Title + price
+            HStack(alignment: .firstTextBaseline, spacing: HUSpacing.sm) {
+                Text(service.name)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(HUColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Spacer(minLength: HUSpacing.sm)
+
+                if service.isIntroCall {
+                    Text("Free")
+                        .font(.custom("Fraunces72pt-SemiBold", size: 22))
+                        .foregroundStyle(HUColor.success)
+                } else {
+                    Text("\(therapist.currency.symbol)\(Int(service.price))")
+                        .font(.custom("Fraunces72pt-SemiBold", size: 24))
                         .foregroundStyle(HUColor.primary)
-                        .frame(width: 40, height: 40)
-                        .background(HUColor.primaryLight)
-                        .clipShape(RoundedRectangle(cornerRadius: HURadius.md))
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        HStack(spacing: 4) {
-                            Text(cert.name)
-                                .font(.system(size: 13, weight: .medium))
-                                .foregroundStyle(HUColor.textPrimary)
-                            if cert.isVerified {
-                                Image(systemName: "checkmark.seal.fill")
-                                    .font(.system(size: 11))
-                                    .foregroundStyle(HUColor.primary)
-                            }
-                        }
-                        Text(cert.issuingOrganization)
-                            .font(.system(size: 11))
-                            .foregroundStyle(HUColor.textSecondary)
-                        Text("Obtained \(cert.yearString)")
-                            .font(.system(size: 11))
-                            .foregroundStyle(HUColor.textTertiary)
-                    }
-                    
-                    Spacer()
                 }
-                .padding(12)
-                .background(HUColor.secondaryBackground)
-                .clipShape(RoundedRectangle(cornerRadius: HURadius.lg))
+            }
+
+            // Description
+            if !service.description.isEmpty {
+                Text(service.description)
+                    .font(.system(size: 13))
+                    .foregroundStyle(HUColor.textSecondary)
+                    .lineSpacing(3)
+                    .lineLimit(3)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            // Meta chips — duration, modality, intro tag
+            HStack(spacing: HUSpacing.sm) {
+                metaChip(icon: "video.fill", text: "\(service.duration) min", tint: HUColor.primary)
+                metaChip(
+                    icon: service.category.icon,
+                    text: service.category.displayName,
+                    tint: service.category.color
+                )
+                if service.isIntroCall {
+                    metaChip(icon: "gift.fill", text: "Intro", tint: HUColor.success)
+                }
+                Spacer(minLength: 0)
+            }
+
+            // Pack pricing highlight
+            if let packSize = service.packSize, let packPrice = service.packPrice {
+                HStack(spacing: 6) {
+                    Image(systemName: "square.stack.3d.up.fill")
+                        .font(.system(size: 11))
+                    Text("Pack of \(packSize): \(therapist.currency.symbol)\(Int(packPrice))/session")
+                        .font(.system(size: 12, weight: .medium))
+                }
+                .foregroundStyle(HUColor.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 9)
+                .background(HUColor.primaryLight.opacity(0.6))
+                .clipShape(RoundedRectangle(cornerRadius: HURadius.md, style: .continuous))
+            }
+
+            // Per-service CTA
+            if !isPreview {
+                Button {
+                    // Pre-select this specific service so the flow skips the
+                    // redundant "Choose a Service" step. BookingContext is
+                    // Identifiable, so .sheet(item:) always builds
+                    // BookingFlowView with the correct service on first present.
+                    HUHaptic.impact(.light)
+                    bookingContext = BookingContext(service: service)
+                } label: {
+                    HStack(spacing: 6) {
+                        Text(service.isIntroCall ? "Schedule" : "Book")
+                            .font(.system(size: 14, weight: .semibold))
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 12, weight: .semibold))
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 46)
+                    .background(
+                        Capsule().fill(
+                            service.isIntroCall
+                            ? AnyShapeStyle(HUColor.success)
+                            : AnyShapeStyle(PrimaryGradient.linear)
+                        )
+                    )
+                }
+                .buttonStyle(HUPressButtonStyle())
+            }
+        }
+        .huProfileSurface()
+    }
+
+    private func metaChip(icon: String, text: String, tint: Color) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 10, weight: .semibold))
+            Text(text)
+                .font(.system(size: 11, weight: .medium))
+                .lineLimit(1)
+        }
+        .foregroundStyle(tint)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(tint.opacity(0.12))
+        .clipShape(Capsule())
+    }
+
+    // MARK: - Certifications
+
+    private var certificationsSection: some View {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
+            sectionTitle("My Certifications")
+
+            VStack(spacing: HUSpacing.sm) {
+                ForEach(therapist.certifications) { cert in
+                    certificationRow(cert)
+                }
             }
         }
     }
-    
+
+    private func certificationRow(_ cert: Certificate) -> some View {
+        HStack(spacing: HUSpacing.md) {
+            ZStack {
+                RoundedRectangle(cornerRadius: HURadius.md, style: .continuous)
+                    .fill(PrimaryGradient.linear)
+                Image(systemName: "rosette")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.white)
+            }
+            .frame(width: 46, height: 46)
+
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 4) {
+                    Text(cert.name)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(HUColor.textPrimary)
+                    if cert.isVerified {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.system(size: 11))
+                            .foregroundStyle(HUColor.primary)
+                    }
+                }
+                Text(cert.issuingOrganization)
+                    .font(.system(size: 12))
+                    .foregroundStyle(HUColor.textSecondary)
+                Text("Obtained \(cert.yearString)")
+                    .font(.system(size: 11))
+                    .foregroundStyle(HUColor.textTertiary)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .huProfileSurface(padding: HUSpacing.md)
+    }
+
     // MARK: - Video
-    
+
     private var videoSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle(isPreview ? "Il mio video di presentazione" : "Video di presentazione")
 
             if let videoURL = therapist.videoIntroURL {
@@ -948,109 +1024,133 @@ struct TherapistProfileView: View {
     }
 
     // MARK: - Gallery
-    
+
     private var gallerySection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle("Gallery")
-            
+
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
+                HStack(spacing: HUSpacing.md) {
                     ForEach(therapist.galleryImageURLs, id: \.absoluteString) { url in
-                        AsyncImage(url: url.supabaseThumbnail(size: 160)) { phase in
-                            switch phase {
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 160, height: 120)
-                                    .clipShape(RoundedRectangle(cornerRadius: HURadius.lg))
-                            case .failure:
-                                RoundedRectangle(cornerRadius: HURadius.lg)
-                                    .fill(HUColor.secondaryBackground)
-                                    .frame(width: 160, height: 120)
-                                    .overlay {
-                                        Image(systemName: "photo")
-                                            .font(.system(size: 24))
-                                            .foregroundStyle(HUColor.textTertiary)
-                                    }
-                            case .empty:
-                                RoundedRectangle(cornerRadius: HURadius.lg)
-                                    .fill(HUColor.secondaryBackground)
-                                    .frame(width: 160, height: 120)
-                                    .overlay { ProgressView().tint(HUColor.primary) }
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
+                        galleryThumb(url)
                     }
                 }
+                .padding(.vertical, 2)
             }
         }
     }
-    
+
+    private func galleryThumb(_ url: URL) -> some View {
+        AsyncImage(url: url.supabaseThumbnail(size: 200)) { phase in
+            switch phase {
+            case .success(let image):
+                image.resizable().scaledToFill()
+            case .failure:
+                ZStack {
+                    HUColor.secondaryBackground
+                    Image(systemName: "photo")
+                        .font(.system(size: 24))
+                        .foregroundStyle(HUColor.textTertiary)
+                }
+            case .empty:
+                ZStack {
+                    HUColor.secondaryBackground
+                    ProgressView().tint(HUColor.primary)
+                }
+            @unknown default:
+                Color.clear
+            }
+        }
+        .frame(width: 180, height: 130)
+        .clipShape(RoundedRectangle(cornerRadius: HURadius.xl, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: HURadius.xl, style: .continuous)
+                .strokeBorder(HUColor.primary.opacity(0.05), lineWidth: 1)
+        )
+    }
+
     // MARK: - Availability Preview
-    
+
     private var availabilitySection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle("Availability This Week")
 
-            HStack(spacing: 4) {
+            HStack(spacing: HUSpacing.xs) {
                 ForEach(DayOfWeek.allCases) { day in
-                    let hasSlots = !(therapist.availability.recurring[day]?.isEmpty ?? true)
-                    VStack(spacing: 4) {
-                        Text(day.initial)
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundStyle(hasSlots ? .white : HUColor.textTertiary)
-
-                        Circle()
-                            .fill(hasSlots ? HUColor.success : Color.clear)
-                            .frame(width: 5, height: 5)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(hasSlots ? HUColor.primary : HUColor.secondaryBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: HURadius.md))
+                    availabilityCell(day)
                 }
             }
 
             // Legend — prevents the "what do the dots mean?" confusion.
-            HStack(spacing: 10) {
-                HStack(spacing: 4) {
-                    Circle().fill(HUColor.success).frame(width: 5, height: 5)
-                    Text("Available")
-                }
-                HStack(spacing: 4) {
-                    Circle()
-                        .strokeBorder(HUColor.textTertiary, lineWidth: 0.5)
-                        .frame(width: 5, height: 5)
-                    Text("Unavailable")
-                }
+            HStack(spacing: HUSpacing.lg) {
+                legendItem(filled: true, text: "Available")
+                legendItem(filled: false, text: "Unavailable")
                 Spacer()
             }
-            .font(.system(size: 10))
-            .foregroundStyle(HUColor.textSecondary)
             .padding(.top, 2)
 
             if !isPreview {
                 Button {
+                    HUHaptic.impact(.light)
                     bookingContext = BookingContext(service: nil)
                 } label: {
-                    Text("Prenota")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(HUColor.primary)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 38)
-                        .background(HUColor.primaryLight)
-                        .clipShape(Capsule())
+                    HStack(spacing: 6) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 13, weight: .semibold))
+                        Text("Prenota")
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                    .foregroundStyle(HUColor.primary)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 46)
+                    .background(HUColor.primaryLight.opacity(0.7))
+                    .clipShape(Capsule())
                 }
+                .buttonStyle(HUPressButtonStyle())
+                .padding(.top, HUSpacing.xs)
             }
         }
     }
-    
+
+    private func availabilityCell(_ day: DayOfWeek) -> some View {
+        let hasSlots = !(therapist.availability.recurring[day]?.isEmpty ?? true)
+        return VStack(spacing: 7) {
+            Text(day.initial)
+                .font(.system(size: 13, weight: .bold))
+                .foregroundStyle(hasSlots ? .white : HUColor.textTertiary)
+            Circle()
+                .fill(hasSlots ? Color.white.opacity(0.9) : HUColor.divider)
+                .frame(width: 5, height: 5)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 58)
+        .background {
+            RoundedRectangle(cornerRadius: HURadius.lg, style: .continuous)
+                .fill(hasSlots ? AnyShapeStyle(PrimaryGradient.linear) : AnyShapeStyle(HUColor.secondaryBackground))
+                .shadow(color: hasSlots ? HUColor.primary.opacity(0.22) : .clear, radius: 6, y: 3)
+        }
+    }
+
+    private func legendItem(filled: Bool, text: String) -> some View {
+        HStack(spacing: 5) {
+            Circle()
+                .fill(filled ? HUColor.success : Color.clear)
+                .frame(width: 6, height: 6)
+                .overlay {
+                    if !filled {
+                        Circle().strokeBorder(HUColor.textTertiary, lineWidth: 1)
+                    }
+                }
+            Text(text)
+                .font(.system(size: 11))
+                .foregroundStyle(HUColor.textSecondary)
+        }
+    }
+
     // MARK: - Reviews
-    
+
     private var reviewsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             HStack {
                 sectionTitle("\(therapist.displayName.split(separator: " ").first ?? "")\'s Reviews")
                 Spacer()
@@ -1063,20 +1163,26 @@ struct TherapistProfileView: View {
                 } label: {
                     HStack(spacing: 3) {
                         Text(selectedReviewSort.displayName)
-                            .font(.system(size: 11, weight: .medium))
+                            .font(.system(size: 12, weight: .medium))
                         Image(systemName: "chevron.down")
-                            .font(.system(size: 9))
+                            .font(.system(size: 9, weight: .semibold))
                     }
                     .foregroundStyle(HUColor.primary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(HUColor.primaryLight.opacity(0.6))
+                    .clipShape(Capsule())
                 }
             }
-            
+
             ratingBreakdown
-            
-            ForEach(reviews) { review in
-                ReviewCard(review: review)
+
+            VStack(spacing: HUSpacing.sm) {
+                ForEach(reviews) { review in
+                    ReviewCard(review: review)
+                }
             }
-            
+
             if reviewsLoadError && reviews.isEmpty {
                 VStack(spacing: HUSpacing.sm) {
                     Image(systemName: "exclamationmark.triangle")
@@ -1111,17 +1217,17 @@ struct TherapistProfileView: View {
             }
         }
     }
-    
+
     private var ratingBreakdown: some View {
         // Below 5 reviews the 5-bar distribution chart is statistically
         // meaningless and visually embarrassing (4 empty bars). Show a
         // warmer "early praise" layout instead.
         let hasEnoughReviews = therapist.totalReviews >= 5
 
-        return HStack(spacing: 20) {
+        return HStack(spacing: HUSpacing.xl) {
             VStack(spacing: 4) {
                 Text(String(format: "%.1f", therapist.averageRating))
-                    .font(HUFont.displayTitle(size: 42, weight: .bold))
+                    .font(HUFont.displayTitle(size: 44, weight: .bold))
                     .foregroundStyle(HUColor.textPrimary)
                 HURatingStars(rating: therapist.averageRating, size: 12)
                 Text("\(therapist.totalReviews) \(therapist.totalReviews == 1 ? "review" : "reviews")")
@@ -1130,7 +1236,7 @@ struct TherapistProfileView: View {
             }
 
             if hasEnoughReviews {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 5) {
                     ForEach(Array(stride(from: 5, through: 1, by: -1)), id: \.self) { star in
                         ratingBar(stars: star, percentage: ratingPercentage(for: star))
                     }
@@ -1141,26 +1247,25 @@ struct TherapistProfileView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "sparkles")
                             .font(.system(size: 12))
-                            .foregroundStyle(HUColor.primary)
+                            .foregroundStyle(HUColor.brandGold)
                         Text("Early praise")
-                            .font(HUFont.displaySubtitle(size: 14, weight: .semiBold))
+                            .font(HUFont.displaySubtitle(size: 15, weight: .semiBold))
                             .foregroundStyle(HUColor.textPrimary)
                     }
                     Text(therapist.totalReviews == 0
                          ? "Be the first to leave a review after your session."
                          : "Few reviews yet — all of them glowing.")
-                        .font(.system(size: 11))
+                        .font(.system(size: 12))
                         .foregroundStyle(HUColor.textSecondary)
                         .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .padding(14)
-        .background(HUColor.secondaryBackground)
-        .clipShape(RoundedRectangle(cornerRadius: HURadius.xl))
+        .huProfileSurface()
     }
-    
+
     private func ratingBar(stars: Int, percentage: Double) -> some View {
         HStack(spacing: 6) {
             Text("\(stars)")
@@ -1171,44 +1276,81 @@ struct TherapistProfileView: View {
                 .foregroundStyle(HUColor.starFilled)
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 2)
+                    Capsule()
                         .fill(HUColor.divider)
-                        .frame(height: 3)
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(HUColor.primary)
-                        .frame(width: geo.size.width * percentage, height: 3)
+                        .frame(height: 4)
+                    Capsule()
+                        .fill(PrimaryGradient.linear)
+                        .frame(width: geo.size.width * percentage, height: 4)
                 }
             }
-            .frame(height: 3)
+            .frame(height: 4)
         }
     }
-    
+
     // MARK: - Refund Policy
-    
+
     private var cancellationPolicySection: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: HUSpacing.md) {
             sectionTitle("Refund Policy")
-            
-            HStack(spacing: 10) {
-                Image(systemName: "info.circle")
-                    .font(.system(size: 16))
-                    .foregroundStyle(HUColor.primary)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(therapist.cancellationPolicy.displayName)
-                        .font(.system(size: 13, weight: .semibold))
-                    Text(therapist.cancellationPolicy.description)
-                        .font(.system(size: 11))
-                        .foregroundStyle(HUColor.textSecondary)
+
+            HStack(alignment: .top, spacing: HUSpacing.md) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: HURadius.md, style: .continuous)
+                        .fill(HUColor.primaryLight)
+                    Image(systemName: "shield.lefthalf.filled")
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundStyle(HUColor.primary)
                 }
+                .frame(width: 44, height: 44)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(therapist.cancellationPolicy.displayName)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(HUColor.textPrimary)
+                    Text(therapist.cancellationPolicy.description)
+                        .font(.system(size: 12))
+                        .foregroundStyle(HUColor.textSecondary)
+                        .lineSpacing(3)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                Spacer(minLength: 0)
             }
-            .padding(12)
-            .background(HUColor.secondaryBackground)
-            .clipShape(RoundedRectangle(cornerRadius: HURadius.lg))
+            .huProfileSurface()
         }
     }
-    
+
+    // MARK: - Report / Block
+
+    private var reportBlockSection: some View {
+        VStack(spacing: HUSpacing.md) {
+            Button {
+                HUHaptic.selection()
+                showReportSheet = true
+            } label: {
+                Label("Segnala questo operatore", systemImage: "flag")
+                    .font(.system(size: 13))
+                    .foregroundStyle(HUColor.textTertiary)
+            }
+
+            Button {
+                HUHaptic.selection()
+                showBlockConfirm = true
+            } label: {
+                Label("Blocca", systemImage: "hand.raised.slash")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(HUColor.error.opacity(0.85))
+            }
+            .disabled(isBlocking || didBlock)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
+        .padding(.top, HUSpacing.sm)
+        .padding(.bottom, HUSpacing.lg)
+    }
+
     // MARK: - Helpers
-    
+
     private func ratingPercentage(for stars: Int) -> Double {
         guard !reviews.isEmpty else {
             // No reviews loaded — show empty bars
@@ -1217,34 +1359,23 @@ struct TherapistProfileView: View {
         let count = reviews.filter { $0.rating == stars }.count
         return Double(count) / Double(reviews.count)
     }
-    
-    /// Editorial section title (Fraunces serif). Drop-in compatible
-    /// with all existing call sites — same one-string signature.
-    private func sectionTitle(_ title: String) -> some View {
-        Text(title)
-            .font(HUFont.displayHeadline(size: 20, weight: .semiBold))
-            .foregroundStyle(HUColor.textPrimary)
-    }
 
-    /// Brand-aware section title with gold uppercase eyebrow above
-    /// (used for newly-added editorial sections — leave the existing
-    /// `sectionTitle(_:)` untouched so we don't have to retouch every
-    /// callsite).
-    @ViewBuilder
-    private func editorialTitle(eyebrow: String, _ title: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(eyebrow.uppercased())
-                .font(.system(size: 11, weight: .bold))
-                .tracking(2.0)
-                .foregroundStyle(HUColor.brandGold)
+    /// Editorial section title (Fraunces serif) with a small berry
+    /// accent bar. Drop-in compatible with all existing call sites —
+    /// same one-string signature.
+    private func sectionTitle(_ title: String) -> some View {
+        HStack(spacing: HUSpacing.sm) {
+            Capsule()
+                .fill(PrimaryGradient.linear)
+                .frame(width: 4, height: 18)
             Text(title)
-                .font(HUFont.displayHeadline(size: 20, weight: .semiBold))
+                .font(HUFont.displayHeadline(size: 21, weight: .semiBold))
                 .foregroundStyle(HUColor.textPrimary)
         }
     }
-    
+
     // MARK: - Preview Data
-    
+
     #if DEBUG
     static func previewReviews(for therapistId: String) -> [Review] {
         [
@@ -1288,19 +1419,39 @@ struct TherapistProfileView: View {
     #endif
 }
 
+// MARK: - Profile Card Surface
+
+fileprivate extension View {
+    /// Unified soft card surface used across the profile: rounded
+    /// continuous corners, secondary fill, and a hairline berry stroke
+    /// for gentle depth. One modifier keeps every card consistent.
+    func huProfileSurface(padding: CGFloat = HUSpacing.lg) -> some View {
+        self
+            .padding(padding)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(HUColor.secondaryBackground)
+            .clipShape(RoundedRectangle(cornerRadius: HURadius.xxl, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: HURadius.xxl, style: .continuous)
+                    .strokeBorder(HUColor.primary.opacity(0.05), lineWidth: 1)
+            )
+    }
+}
+
 // MARK: - Review Card
 
 struct ReviewCard: View {
     let review: Review
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: HUSpacing.sm) {
             HStack(spacing: 10) {
-                HUAvatar(url: review.clientPhotoURL, name: review.clientName, size: 36)
-                
+                HUAvatar(url: review.clientPhotoURL, name: review.clientName, size: 38)
+
                 VStack(alignment: .leading, spacing: 2) {
                     Text(review.clientName)
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(HUColor.textPrimary)
                     HStack(spacing: 6) {
                         HURatingStars(rating: Double(review.rating), size: 10)
                         Text(review.formattedDate)
@@ -1308,32 +1459,41 @@ struct ReviewCard: View {
                             .foregroundStyle(HUColor.textTertiary)
                     }
                 }
+
+                Spacer(minLength: 0)
             }
-            
+
             if let text = review.text {
                 Text(text)
                     .font(.system(size: 13))
                     .foregroundStyle(HUColor.textSecondary)
-                    .lineSpacing(3)
+                    .lineSpacing(4)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            
+
             if let reply = review.therapistReply {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Therapist Reply")
-                        .font(.system(size: 11, weight: .semibold))
-                        .foregroundStyle(HUColor.primary)
+                    HStack(spacing: 5) {
+                        Image(systemName: "arrowshape.turn.up.left.fill")
+                            .font(.system(size: 9))
+                            .foregroundStyle(HUColor.primary)
+                        Text("Therapist Reply")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundStyle(HUColor.primary)
+                    }
                     Text(reply)
-                        .font(.system(size: 11))
+                        .font(.system(size: 12))
                         .foregroundStyle(HUColor.textSecondary)
+                        .lineSpacing(3)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(HUSpacing.md)
                 .background(HUColor.primaryLight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: HURadius.md))
+                .clipShape(RoundedRectangle(cornerRadius: HURadius.md, style: .continuous))
             }
         }
-        .padding(14)
-        .background(HUColor.secondaryBackground)
-        .clipShape(RoundedRectangle(cornerRadius: HURadius.xl))
+        .huProfileSurface()
     }
 }
 
