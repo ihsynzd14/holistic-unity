@@ -38,10 +38,10 @@
     .post-card .pill { display: inline-block; background: #9B0064; color: white; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; letter-spacing: 0.3px; margin-bottom: 10px; }
     .post-card h2 { font-size: 1.4rem; color: #2D1B2E; margin: 0 0 8px; line-height: 1.3; }
     .post-card p { color: #5a4555; font-size: 1rem; line-height: 1.6; margin: 0 0 10px; }
-    .post-card .post-meta { color: #8a6a80; font-size: 0.85rem; }
+    .post-card .post-meta { color: #71536a; font-size: 0.85rem; }
     .post-card:hover h2 { color: #9B0064; }
     @media (max-width: 720px) { .post-card { grid-template-columns: 1fr; gap: 16px; } }
-    .post-meta { font-size: 0.85rem; color: #8a6a80; margin-top: 10px; }
+    .post-meta { font-size: 0.85rem; color: #71536a; margin-top: 10px; }
   </style>
   <!-- Meta Pixel: gated behind marketing consent in shared.js -->
 
@@ -76,6 +76,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-en="Skip to main content" data-it="Vai al contenuto principale" data-pt="Pular para o conteúdo principal">Vai al contenuto principale</a>
 
 <nav id="navbar">
   <div class="container">
@@ -104,7 +105,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main" tabindex="-1">
 
   <section class="blog-hero">
     <div class="container">

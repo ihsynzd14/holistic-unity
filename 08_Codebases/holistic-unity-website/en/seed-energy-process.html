@@ -69,6 +69,20 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
 }
 .skip-link:focus { top: 0; }
 
+/* ==================== KEYBOARD FOCUS (WCAG 2.4.7 / EAA) ====================
+ * Visible focus ring for keyboard users on interactive elements. :focus-visible
+ * keeps it from showing on mouse clicks. Form inputs keep their own border-color
+ * focus state (they set outline:none deliberately). */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* ==================== UTILITY ==================== */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section-pad { padding: 100px 0; overflow-x: clip; }
@@ -557,6 +571,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 <script async="" src="/analytics.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="/en/">
@@ -583,7 +598,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 </ul>
 </div>
 </nav>
-<main>
+<main id="main" tabindex="-1">
 <section class="page-hero">
 <div class="container">
 <div class="page-hero-content">

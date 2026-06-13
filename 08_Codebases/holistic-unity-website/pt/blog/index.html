@@ -65,6 +65,20 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
 }
 .skip-link:focus { top: 0; }
 
+/* ==================== KEYBOARD FOCUS (WCAG 2.4.7 / EAA) ====================
+ * Visible focus ring for keyboard users on interactive elements. :focus-visible
+ * keeps it from showing on mouse clicks. Form inputs keep their own border-color
+ * focus state (they set outline:none deliberately). */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* ==================== UTILITY ==================== */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section-pad { padding: 100px 0; overflow-x: clip; }
@@ -493,10 +507,10 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
     .post-card .pill { display: inline-block; background: #9B0064; color: white; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; letter-spacing: 0.3px; margin-bottom: 10px; }
     .post-card h2 { font-size: 1.4rem; color: #2D1B2E; margin: 0 0 8px; line-height: 1.3; }
     .post-card p { color: #5a4555; font-size: 1rem; line-height: 1.6; margin: 0 0 10px; }
-    .post-card .post-meta { color: #8a6a80; font-size: 0.85rem; }
+    .post-card .post-meta { color: #71536a; font-size: 0.85rem; }
     .post-card:hover h2 { color: #9B0064; }
     @media (max-width: 720px) { .post-card { grid-template-columns: 1fr; gap: 16px; } }
-    .post-meta { font-size: 0.85rem; color: #8a6a80; margin-top: 10px; }
+    .post-meta { font-size: 0.85rem; color: #71536a; margin-top: 10px; }
   </style>
 <!-- Meta Pixel: gated behind marketing consent in shared.js -->
 <script type="application/ld+json">{
@@ -537,6 +551,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 }</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Pular para o conteúdo principal</a>
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="/pt/">
@@ -563,7 +578,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 </ul>
 </div>
 </nav>
-<main>
+<main id="main" tabindex="-1">
 <section class="blog-hero">
 <div class="container">
 <h1>Blog da Holistic Unity</h1>

@@ -306,17 +306,28 @@ attributes intact). The deployed pages are generated:
 **Rebuild after any content edit (edit `_src/`, then):**
 
 ```bash
-# 1. image pipeline (run on _src BEFORE prerender)
-python scripts/optimize_images.py       # WebP + light JPG fallbacks for new images
+# 1. asset/perf pipeline (run on _src BEFORE prerender)
+python scripts/optimize_images.py       # WebP + light JPG fallbacks; brand OG + apple-touch-icon
 python scripts/rewrite_images_html.py   # wrap new <img> in <picture> + repoint OG
 python scripts/rewrite_bg_images.py     # CSS background-image PNG → image-set(webp,jpg)
 python scripts/add_image_dims.py        # width/height (CLS) + lazy/eager + hero fetchpriority
+python scripts/add_icons.py             # favicon + apple-touch-icon links on every page
+python scripts/optimize_fonts.py        # Google Fonts → non-render-blocking (preload+swap) + trimmed weights
+python scripts/add_a11y.py              # skip-link + <main> landmark (WCAG 2.4.1) + muted-text contrast fix
+# legal pages are standalone (NOT in _src) — maintained directly + by:
+python scripts/add_legal_og.py          # og:* + WebPage JSON-LD on the 4 legal pages (idempotent)
 # 2. prerender + sitemap
 python scripts/prerender_i18n.py    # bake _src → root(it) + en/ + pt/  (per-lang
                                     # title/desc/OG/canonical/hreflang, toggle→links,
-                                    # localized JSON-LD/FAQ, data-* stripped, window.HU_LANG)
+                                    # localized JSON-LD/FAQ, data-* stripped, window.HU_LANG,
+                                    # INLINES shared.css, og:site_name + og:locale[:alternate])
 python scripts/generate_sitemap.py  # trilingual sitemap.xml with hreflang clusters
 ```
+
+> ⚠️ **`shared.css` is now INLINED into every page by the prerender** (Fix 2, to drop the
+> last render-blocking request). Editing `shared.css` therefore requires re-running
+> `prerender_i18n.py` for the change to reach the deployed pages — the external
+> `/shared.css` link no longer exists in the output.
 
 JSON-LD is localized per language by the prerender: `inLanguage` is set, FAQPage
 `mainEntity` is rebuilt from the baked (correct-language) visible FAQ, and

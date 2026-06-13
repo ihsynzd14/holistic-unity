@@ -76,6 +76,20 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
 }
 .skip-link:focus { top: 0; }
 
+/* ==================== KEYBOARD FOCUS (WCAG 2.4.7 / EAA) ====================
+ * Visible focus ring for keyboard users on interactive elements. :focus-visible
+ * keeps it from showing on mouse clicks. Form inputs keep their own border-color
+ * focus state (they set outline:none deliberately). */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 /* ==================== UTILITY ==================== */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section-pad { padding: 100px 0; overflow-x: clip; }
@@ -494,7 +508,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 <style>
     .article-hero { padding: 140px 0 60px; background: linear-gradient(135deg, #FCE4EF 0%, #FFF 60%); }
     .article-hero .container { max-width: 820px; }
-    .article-meta { display: flex; gap: 16px; align-items: center; color: #8a6a80; font-size: 0.9rem; margin-bottom: 20px; flex-wrap: wrap; }
+    .article-meta { display: flex; gap: 16px; align-items: center; color: #71536a; font-size: 0.9rem; margin-bottom: 20px; flex-wrap: wrap; }
     .article-meta .pill { background: #9B0064; color: white; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; letter-spacing: 0.3px; }
     .article-hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; margin: 0 0 18px; color: #2D1B2E; }
     .article-hero .lede { font-size: 1.15rem; color: #5a4555; line-height: 1.6; }
@@ -513,7 +527,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
     .article-hero-image img { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(45, 27, 46, 0.10); }
     .article-figure { margin: 40px 0 8px; }
     .article-figure img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 12px 40px rgba(45, 27, 46, 0.08); }
-    .article-figure figcaption { font-size: 0.9rem; color: #8a6a80; margin-top: 10px; text-align: center; font-style: italic; }
+    .article-figure figcaption { font-size: 0.9rem; color: #71536a; margin-top: 10px; text-align: center; font-style: italic; }
     @media (max-width: 820px) { .article-hero-image { margin: 28px 0 0; } .article-hero-image img { border-radius: 14px; } }
     .article-cta { background: linear-gradient(135deg, #9B0064 0%, #6B0047 100%); color: white; padding: 40px; border-radius: 20px; margin: 40px 0; text-align: center; }
     .article-cta h3 { color: white; font-size: 1.4rem; margin: 0 0 12px; }
@@ -526,7 +540,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
     .related-posts h2 { color: #2D1B2E; font-size: 1.4rem; margin: 0 0 20px; }
     .related-posts a { color: #9B0064; text-decoration: none; display: block; padding: 12px 0; border-bottom: 1px solid #eadfe4; }
     .related-posts a:last-child { border-bottom: 0; }
-    .breadcrumb { margin-bottom: 14px; font-size: 0.9rem; color: #8a6a80; }
+    .breadcrumb { margin-bottom: 14px; font-size: 0.9rem; color: #71536a; }
     .breadcrumb a { color: #9B0064; text-decoration: none; }
     .editorial-note { background: #FCF7FA; border-left: 3px solid #9B0064; padding: 16px 20px; margin: 24px 0 32px; border-radius: 4px; font-size: 0.95rem; color: #5a4555; line-height: 1.6; }
     .editorial-note strong { color: #2D1B2E; }
@@ -535,7 +549,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
     .sources-section ul { padding-left: 20px; margin: 0; }
     .sources-section li { font-size: 0.95rem; line-height: 1.7; color: #3d2d3d; margin-bottom: 10px; }
     .sources-section a { color: #9B0064; text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
-    .sources-section .sources-meta { font-size: 0.85rem; color: #8a6a80; margin-top: 16px; padding-top: 14px; border-top: 1px solid #eadfe4; font-style: italic; }
+    .sources-section .sources-meta { font-size: 0.85rem; color: #71536a; margin-top: 16px; padding-top: 14px; border-top: 1px solid #eadfe4; font-style: italic; }
   </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -654,6 +668,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 }</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
 <nav id="navbar">
 <div class="container">
 <a class="nav-logo" href="../">
@@ -680,7 +695,7 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 </ul>
 </div>
 </nav>
-<main>
+<main id="main" tabindex="-1">
 <article>
 <section class="article-hero">
 <div class="container">
