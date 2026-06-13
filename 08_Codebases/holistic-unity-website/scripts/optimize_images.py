@@ -186,6 +186,22 @@ def make_brand_og():
             canvas.save(dest, "JPEG", quality=88, optimize=True, progressive=True)
             print(f"  + brand social image: images/{name}")
 
+    # Apple touch icon: 180x180, OPAQUE (iOS renders transparency as black) at
+    # the site root so iOS/Safari "Add to Home Screen" shows a clean icon.
+    ati = os.path.join(ROOT, "apple-touch-icon.png")
+    if (FORCE or not os.path.exists(ati)) and logo_path:
+        src = load(logo_path).convert("RGBA")
+        icon = Image.new("RGB", (180, 180), (253, 246, 240))  # cream backdrop
+        if abs(src.width - src.height) <= 2:          # already square -> fill
+            sq = src.resize((180, 180), Image.LANCZOS)
+            icon.paste(sq, (0, 0), mask=sq.split()[-1])
+        else:                                          # letterbox + center
+            src.thumbnail((180, 180), Image.LANCZOS)
+            icon.paste(src, ((180 - src.width) // 2, (180 - src.height) // 2),
+                       mask=src.split()[-1])
+        icon.save(ati, "PNG", optimize=True)
+        print("  + apple-touch-icon.png (180x180) at site root")
+
 
 if __name__ == "__main__":
     main()

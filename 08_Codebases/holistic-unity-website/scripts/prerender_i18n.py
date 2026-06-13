@@ -43,6 +43,12 @@ warnings.simplefilter("ignore", MarkupResemblesLocatorWarning)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_src")
 SITE = "https://holisticunity.app"
+# shared.css is inlined into each page's <head> (Fix 2): it removes the one
+# remaining render-blocking same-origin request, so first paint no longer waits
+# on a round-trip. Inlining the FULL file (not a critical subset) avoids any
+# above-the-fold flash from late-arriving CSS variables / .reveal rules.
+with open(os.path.join(ROOT, "shared.css"), encoding="utf-8") as _f:
+    SHARED_CSS = _f.read()
 
 LANGS = ["it", "en", "pt"]
 DEFAULT_LANG = "it"                  # bare URLs (no prefix) serve this language
@@ -164,6 +170,35 @@ def set_meta(soup, name=None, prop=None, content=None):
     tag["content"] = content
 
 
+def ensure_meta(soup, prop, content):
+    """Update a `<meta property=...>` if present, else create it in <head>."""
+    tag = soup.select_one(f'meta[property="{prop}"]')
+    if tag is None:
+        tag = soup.new_tag("meta")
+        tag["property"] = prop
+        anchor = (soup.select_one('meta[property^="og:"]')
+                  or soup.select_one('link[rel="canonical"]') or soup.head)
+        if anchor is soup.head:
+            soup.head.append(tag)
+        else:
+            anchor.insert_after(tag)
+    tag["content"] = content
+    return tag
+
+
+def inline_shared_css(soup):
+    """Replace the render-blocking <link rel=stylesheet ...shared.css> with an
+    inline <style> (Fix 2) so first paint doesn't wait on a network round-trip."""
+    for link in soup.find_all("link"):
+        rels = link.get("rel", [])
+        if "stylesheet" in rels and "shared.css" in (link.get("href") or ""):
+            style = soup.new_tag("style")
+            style["data-inlined"] = "shared.css"
+            style.string = SHARED_CSS
+            link.replace_with(style)
+            break
+
+
 def rewrite_head(soup, rel, lang):
     path = url_path(rel)
     canon = lang_url(path, lang)
@@ -183,10 +218,19 @@ def rewrite_head(soup, rel, lang):
     set_meta(soup, prop="twitter:description", content=desc)
     set_meta(soup, prop="og:url", content=canon)
     set_meta(soup, prop="twitter:url", content=canon)
-    set_meta(soup, prop="og:locale", content=LOCALE[lang])
-    # remove alternate-locale lines (hreflang covers this)
+    # OpenGraph completeness: og:locale (current), og:site_name, and
+    # og:locale:alternate for the other two languages.
+    ensure_meta(soup, "og:locale", LOCALE[lang])
+    ensure_meta(soup, "og:site_name", BRAND)
     for m in soup.select('meta[property="og:locale:alternate"]'):
         m.decompose()
+    anchor = soup.select_one('meta[property="og:locale"]')
+    for other in [l for l in LANGS if l != lang]:
+        alt = soup.new_tag("meta")
+        alt["property"] = "og:locale:alternate"
+        alt["content"] = LOCALE[other]
+        anchor.insert_after(alt)
+        anchor = alt
 
     # canonical
     can = soup.select_one('link[rel="canonical"]')
@@ -364,6 +408,7 @@ def build_page(rel):
         if lang != DEFAULT_LANG:
             rewrite_links_for_subdir(soup, lang)
             absolutize_assets(soup)
+        inline_shared_css(soup)   # Fix 2: inline shared.css (drop blocking request)
         # mark active toggle (after potential link rewrite)
         for code in LANGS:
             el = soup.find(id={"it": "langIt", "en": "langEn", "pt": "langPt"}[code])
