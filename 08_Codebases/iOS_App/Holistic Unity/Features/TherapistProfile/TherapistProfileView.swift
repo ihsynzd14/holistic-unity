@@ -266,23 +266,24 @@ struct TherapistProfileView: View {
     /// tagline), a location chip, and a three-up credibility strip.
     private var heroSection: some View {
         VStack(spacing: HUSpacing.lg) {
-            // Portrait + soft radial halo
-            ZStack {
-                Circle()
-                    .fill(
-                        RadialGradient(
-                            colors: [heroHaloColor.opacity(0.20), .clear],
-                            center: .center,
-                            startRadius: 10,
-                            endRadius: 150
+            // Portrait + soft radial halo. The halo is a *non-layout*
+            // background so it can bleed outward visually without
+            // inflating the portrait's layout box — otherwise the 290pt
+            // halo forced ~80pt of dead space between the photo and name.
+            heroPortrait
+                .background {
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [heroHaloColor.opacity(0.20), .clear],
+                                center: .center,
+                                startRadius: 10,
+                                endRadius: 130
+                            )
                         )
-                    )
-                    .frame(width: 290, height: 290)
-                    .offset(y: 6)
-
-                heroPortrait
-            }
-            .padding(.top, 64)
+                        .frame(width: 240, height: 240)
+                }
+                .padding(.top, 64)
 
             // Name, role quote, location
             VStack(spacing: HUSpacing.sm) {

@@ -13,6 +13,12 @@ AGENTS.md
 README.md
 docs/
 
+# i18n template source. The deployed pages (root = Italian, /en, /pt) are
+# GENERATED from these by scripts/prerender_i18n.py. The templates still carry
+# the data-en/it/pt attributes; serving them would create duplicate, language-
+# mixed content that competes with the baked pages. Edit here, never deploy.
+_src/
+
 # Editorial drafts — pre-publication markdown. Indexable by Google if
 # served, would compete with the real published articles for SEO.
 blog/_drafts/

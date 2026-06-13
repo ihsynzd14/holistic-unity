@@ -8,6 +8,11 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /preview-live-style/
 Disallow: /preview-redesign/
+# The production homepage serves images from these preview folders. Allow the
+# image subpaths so Googlebot can fetch + index them (and render the page
+# correctly), while the preview HTML pages stay blocked above.
+Allow: /preview-live-style/images/
+Allow: /preview-redesign/images/
 
 Sitemap: https://holisticunity.app/sitemap.xml
 

@@ -2,537 +2,1421 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home Page -->
   <url>
     <loc>https://holisticunity.app/</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/" />
   </url>
-
-  <!-- About / Editorial Standards -->
+  <url>
+    <loc>https://holisticunity.app/en/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/" />
+  </url>
   <url>
     <loc>https://holisticunity.app/about</loc>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/about" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/about" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/about" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/about" />
   </url>
-
-  <!-- Therapy Landing Pages -->
   <url>
-    <loc>https://holisticunity.app/human-design</loc>
-    <lastmod>2026-04-03</lastmod>
+    <loc>https://holisticunity.app/en/about</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/human-design" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/human-design" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/human-design" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/human-design" />
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/about" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/about" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/pt/about</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/about" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/about" />
+  </url>
   <url>
     <loc>https://holisticunity.app/astrology</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/astrology" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/astrology" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/astrology" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/astrology" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/numerology</loc>
+    <loc>https://holisticunity.app/en/astrology</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/numerology" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/numerology" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/numerology" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/numerology" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/astrology" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/thetahealing</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://holisticunity.app/pt/astrology</loc>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/thetahealing" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/thetahealing" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/thetahealing" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/astrology" />
   </url>
-
-  <url>
-    <loc>https://holisticunity.app/reiki</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/reiki" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/reiki" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/reiki" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/reiki" />
-  </url>
-
   <url>
     <loc>https://holisticunity.app/ayurveda</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/ayurveda" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/ayurveda" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/ayurveda" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/ayurveda" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/naturopathy</loc>
+    <loc>https://holisticunity.app/en/ayurveda</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/naturopathy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/naturopathy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/naturopathy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/ayurveda" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/pt/ayurveda</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/ayurveda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/ayurveda" />
+  </url>
   <url>
     <loc>https://holisticunity.app/family-constellation</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/family-constellation" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/family-constellation" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/family-constellation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/family-constellation" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/systemic-constellation</loc>
+    <loc>https://holisticunity.app/en/family-constellation</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/systemic-constellation" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/systemic-constellation" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/systemic-constellation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/family-constellation" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/shamanism</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://holisticunity.app/pt/family-constellation</loc>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/shamanism" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/shamanism" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/shamanism" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/shamanism" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/family-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/family-constellation" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/human-design</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/human-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/human-design" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/human-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/human-design" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/human-design</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/human-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/human-design" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/human-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/human-design" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/human-design</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/human-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/human-design" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/human-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/human-design" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/naturopathy</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/naturopathy" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/naturopathy</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/naturopathy" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/naturopathy</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/naturopathy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/naturopathy" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/numerology</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/numerology</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/numerology</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/reiki</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/reiki</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/reiki</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/reiki" />
+  </url>
   <url>
     <loc>https://holisticunity.app/seed-energy-process</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/seed-energy-process" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/seed-energy-process" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/seed-energy-process" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/seed-energy-process" />
   </url>
-
-  <!-- Blog -->
+  <url>
+    <loc>https://holisticunity.app/en/seed-energy-process</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/seed-energy-process" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/seed-energy-process</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/seed-energy-process" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/seed-energy-process" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/shamanism</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/shamanism" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/shamanism" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/shamanism" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/shamanism" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/shamanism</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/shamanism" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/shamanism" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/shamanism" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/shamanism" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/shamanism</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/shamanism" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/shamanism" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/shamanism" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/shamanism" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/systemic-constellation</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/systemic-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/systemic-constellation</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/systemic-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/systemic-constellation</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/systemic-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/systemic-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/thetahealing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/thetahealing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/thetahealing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/thetahealing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/thetahealing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/thetahealing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/thetahealing" />
+  </url>
   <url>
     <loc>https://holisticunity.app/blog/</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/what-is-theta-healing</loc>
+    <loc>https://holisticunity.app/en/blog/</loc>
     <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/what-is-theta-healing" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-theta-healing" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/what-is-theta-healing" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-theta-healing" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/what-is-reiki</loc>
+    <loc>https://holisticunity.app/pt/blog/</loc>
     <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/what-is-reiki" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-reiki" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/what-is-reiki" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-reiki" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/" />
   </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/theta-healing-vs-reiki</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/human-design-vs-astrology</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/human-design-vs-astrology" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-vs-astrology" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/human-design-vs-astrology" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-vs-astrology" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/significato-olistico</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/significato-olistico" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-olistico" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/significato-olistico" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-olistico" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/cos-e-il-reiki</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/cos-e-il-reiki" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/cos-e-il-reiki" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/cos-e-il-reiki" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/cos-e-il-reiki" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/numerologia-data-di-nascita</loc>
-    <lastmod>2026-04-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/significato-numeri</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-numeri" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/significato-numeri" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/significato-numeri" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-numeri" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/case-astrologiche</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/case-astrologiche" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/case-astrologiche" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/case-astrologiche" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/case-astrologiche" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/onde-theta-benefici</loc>
-    <lastmod>2026-04-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/onde-theta-benefici" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/onde-theta-benefici" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/onde-theta-benefici" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/onde-theta-benefici" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/reiki-pericoli</loc>
-    <lastmod>2026-04-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-pericoli" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/reiki-pericoli" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/reiki-pericoli" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-pericoli" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/terapista-olistico-online</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/terapista-olistico-online" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/terapista-olistico-online" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/terapista-olistico-online" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/terapista-olistico-online" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/reiki-a-distanza</loc>
-    <lastmod>2026-04-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-a-distanza" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/reiki-a-distanza" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/reiki-a-distanza" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-a-distanza" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/sound-healing</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sound-healing" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/sound-healing" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/sound-healing" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sound-healing" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/what-is-numerology</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/what-is-numerology" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-numerology" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/what-is-numerology" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-numerology" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/come-diventare-operatore-olistico</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/what-happens-family-constellation</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/what-happens-family-constellation" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-happens-family-constellation" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/what-happens-family-constellation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-happens-family-constellation" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/sessione-olistica-online</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sessione-olistica-online" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/sessione-olistica-online" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/sessione-olistica-online" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sessione-olistica-online" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/ottava-casa-astrologica</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/reiki-for-anxiety</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/reiki-for-anxiety" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-for-anxiety" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/reiki-for-anxiety" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-for-anxiety" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/quarta-casa-astrologica</loc>
-    <lastmod>2026-05-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
-  </url>
-
-  <url>
-    <loc>https://holisticunity.app/blog/how-to-read-human-design-chart</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
-  </url>
-
   <url>
     <loc>https://holisticunity.app/blog/approccio-olistico</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/approccio-olistico" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/approccio-olistico" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/approccio-olistico" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/approccio-olistico" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/what-is-ayurveda</loc>
-    <lastmod>2026-05-05</lastmod>
+    <loc>https://holisticunity.app/en/blog/approccio-olistico</loc>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/what-is-ayurveda" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-ayurveda" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/what-is-ayurveda" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/approccio-olistico" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/pt/blog/approccio-olistico</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/approccio-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/approccio-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/case-astrologiche</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/case-astrologiche" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/case-astrologiche</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/case-astrologiche" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/case-astrologiche</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/case-astrologiche" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/case-astrologiche" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/come-diventare-operatore-olistico</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/come-diventare-operatore-olistico</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/come-diventare-operatore-olistico</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/come-diventare-operatore-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/come-diventare-operatore-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/consulto-astrologico-online</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/consulto-astrologico-online</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/consulto-astrologico-online</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/cos-e-il-reiki</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/cos-e-il-reiki</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/cos-e-il-reiki</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/cos-e-il-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/cos-e-il-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/costellazioni-familiari-online</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/costellazioni-familiari-online</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/costellazioni-familiari-online</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/how-to-read-human-design-chart</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/how-to-read-human-design-chart</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/how-to-read-human-design-chart</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/how-to-read-human-design-chart" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/how-to-read-human-design-chart" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/human-design-types-explained</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-types-explained" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/human-design-types-explained</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-types-explained" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/human-design-types-explained</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-types-explained" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/human-design-vs-astrology</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/human-design-vs-astrology</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/human-design-vs-astrology</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/human-design-vs-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-vs-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/medicina-olistica</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/medicina-olistica" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/medicina-olistica</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/medicina-olistica" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/medicina-olistica</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/medicina-olistica" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/numerologia-data-di-nascita</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/numerologia-data-di-nascita</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/numerologia-data-di-nascita</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/numerologia-data-di-nascita" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/numerologia-data-di-nascita" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/onde-theta-benefici</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/onde-theta-benefici" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/onde-theta-benefici</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/onde-theta-benefici" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/onde-theta-benefici</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/onde-theta-benefici" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/onde-theta-benefici" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/ottava-casa-astrologica</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/ottava-casa-astrologica</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/ottava-casa-astrologica</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/ottava-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/ottava-casa-astrologica" />
+  </url>
   <url>
     <loc>https://holisticunity.app/blog/pranic-healing</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/pranic-healing" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/pranic-healing" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/pranic-healing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/pranic-healing" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/vedic-vs-western-astrology</loc>
-    <lastmod>2026-05-07</lastmod>
+    <loc>https://holisticunity.app/en/blog/pranic-healing</loc>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/pranic-healing" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/medicina-olistica</loc>
-    <lastmod>2026-05-09</lastmod>
+    <loc>https://holisticunity.app/pt/blog/pranic-healing</loc>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/medicina-olistica" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/medicina-olistica" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/medicina-olistica" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/medicina-olistica" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/pranic-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/pranic-healing" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/human-design-types-explained</loc>
-    <lastmod>2026-05-10</lastmod>
+    <loc>https://holisticunity.app/blog/quarta-casa-astrologica</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/human-design-types-explained" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/human-design-types-explained" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/human-design-types-explained" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/human-design-types-explained" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/costellazioni-familiari-online</loc>
-    <lastmod>2026-05-11</lastmod>
+    <loc>https://holisticunity.app/en/blog/quarta-casa-astrologica</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/costellazioni-familiari-online" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
   </url>
-
   <url>
-    <loc>https://holisticunity.app/blog/consulto-astrologico-online</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://holisticunity.app/pt/blog/quarta-casa-astrologica</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/consulto-astrologico-online" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/consulto-astrologico-online" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/consulto-astrologico-online" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/consulto-astrologico-online" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/quarta-casa-astrologica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/quarta-casa-astrologica" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/blog/reiki-a-distanza</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-a-distanza" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/reiki-a-distanza</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-a-distanza" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/reiki-a-distanza</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-a-distanza" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-a-distanza" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/reiki-for-anxiety</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/reiki-for-anxiety</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/reiki-for-anxiety</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-for-anxiety" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/reiki-pericoli</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-pericoli" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/reiki-pericoli</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-pericoli" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/reiki-pericoli</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-pericoli" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-pericoli" />
+  </url>
   <url>
     <loc>https://holisticunity.app/blog/reiki-vs-massage</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/reiki-vs-massage" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-vs-massage" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-vs-massage" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-vs-massage" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/en/blog/reiki-vs-massage</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-vs-massage" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/reiki-vs-massage</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/reiki-vs-massage" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/reiki-vs-massage" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/sessione-olistica-online</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sessione-olistica-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/sessione-olistica-online</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sessione-olistica-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/sessione-olistica-online</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sessione-olistica-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sessione-olistica-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/significato-numeri</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-numeri" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/significato-numeri</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-numeri" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/significato-numeri</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-numeri" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-numeri" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/significato-olistico</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/significato-olistico</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/significato-olistico</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/significato-olistico" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/significato-olistico" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/sound-healing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sound-healing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/sound-healing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sound-healing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/sound-healing</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/sound-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/sound-healing" />
+  </url>
   <url>
     <loc>https://holisticunity.app/blog/spiritualita-significato</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/spiritualita-significato" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/spiritualita-significato" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/spiritualita-significato" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/spiritualita-significato" />
   </url>
-
+  <url>
+    <loc>https://holisticunity.app/en/blog/spiritualita-significato</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/spiritualita-significato" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/spiritualita-significato</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/spiritualita-significato" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/spiritualita-significato" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/terapista-olistico-online</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/terapista-olistico-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/terapista-olistico-online</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/terapista-olistico-online" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/terapista-olistico-online</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/terapista-olistico-online" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/terapista-olistico-online" />
+  </url>
   <url>
     <loc>https://holisticunity.app/blog/theta-healing-for-anxiety</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
     <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-for-anxiety" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
   </url>
-
-  <!-- Legal & Support Pages -->
+  <url>
+    <loc>https://holisticunity.app/en/blog/theta-healing-for-anxiety</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/theta-healing-for-anxiety</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-for-anxiety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-for-anxiety" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/theta-healing-vs-reiki</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/theta-healing-vs-reiki</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/theta-healing-vs-reiki</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/theta-healing-vs-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/theta-healing-vs-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/vedic-vs-western-astrology</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/vedic-vs-western-astrology</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/vedic-vs-western-astrology</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/vedic-vs-western-astrology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/vedic-vs-western-astrology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/what-happens-family-constellation</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/what-happens-family-constellation</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/what-happens-family-constellation</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-happens-family-constellation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-happens-family-constellation" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/what-is-ayurveda</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-ayurveda" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/what-is-ayurveda</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-ayurveda" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/what-is-ayurveda</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-ayurveda" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-ayurveda" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/what-is-numerology</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/what-is-numerology</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/what-is-numerology</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-numerology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-numerology" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/what-is-reiki</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/what-is-reiki</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/what-is-reiki</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-reiki" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-reiki" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/blog/what-is-theta-healing</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-theta-healing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/en/blog/what-is-theta-healing</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-theta-healing" />
+  </url>
+  <url>
+    <loc>https://holisticunity.app/pt/blog/what-is-theta-healing</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://holisticunity.app/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://holisticunity.app/en/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://holisticunity.app/pt/blog/what-is-theta-healing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://holisticunity.app/blog/what-is-theta-healing" />
+  </url>
   <url>
     <loc>https://holisticunity.app/privacy-policy</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <!-- cookie-policy, terms-clients, terms-therapists are intentionally excluded:
-       those pages carry noindex meta tags so submitting them to the sitemap
-       would create a contradiction that GSC flags as "Excluded by noindex". -->
 
 </urlset>

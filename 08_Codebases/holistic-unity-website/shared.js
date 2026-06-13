@@ -1,7 +1,12 @@
 /* ==================== SHARED JS — HOLISTIC UNITY ==================== */
 
-/* ==================== LANGUAGE ==================== */
-var currentLang = 'en';
+/* ==================== LANGUAGE ====================
+ * Prerendered pages (built by scripts/prerender_i18n.py) set window.HU_LANG and
+ * ship STATIC single-language content with the data-* attributes stripped. On
+ * those pages the language is fixed by the URL (/ = it, /en, /pt) and must NOT
+ * be re-switched client-side, so initLang() below early-returns. currentLang is
+ * still read by the cookie banner i18n, so seed it from HU_LANG when present. */
+var currentLang = (typeof window !== 'undefined' && window.HU_LANG) ? window.HU_LANG : 'en';
 
 function setLang(lang) {
   currentLang = lang;
@@ -22,6 +27,12 @@ function setLang(lang) {
 }
 
 (function initLang() {
+  // Prerendered static page: language is fixed by URL. Don't switch content
+  // (data-* are stripped anyway) or touch localStorage — just set <html lang>.
+  if (typeof window !== 'undefined' && window.HU_LANG) {
+    document.documentElement.lang = window.HU_LANG;
+    return;
+  }
   var saved = null;
   try { saved = localStorage.getItem('hu_lang'); } catch(e) {}
   var b = (navigator.language || 'en').slice(0, 2).toLowerCase();

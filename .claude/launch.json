@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "holistic-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "08_Codebases/holistic-unity-website", "-l", "8091", "-n"],
+      "port": 8091
+    }
+  ]
+}

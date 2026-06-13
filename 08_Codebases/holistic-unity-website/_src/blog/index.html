@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics is loaded by shared.js ONLY after the user gives
+       analytics consent via the cookie banner (CNIL/Garante compliance:
+       no analytics cookies before opt-in). Do NOT add gtag inline here —
+       that bypasses the consent gate and is a documented compliance risk. -->
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Holistic Unity blog — plain-English guides to holistic therapies, what they are, who they're for, and how to choose a practitioner.">
+  <meta name="author" content="Holistic Unity">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://holisticunity.app/blog/">
+  <meta property="og:title" content="Blog | Holistic Unity">
+  <meta property="og:description" content="Holistic Unity blog — plain-English guides to holistic therapies, what they are, who they're for, and how to choose a practitioner.">
+  <meta property="og:image" content="https://holisticunity.app/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog | Holistic Unity">
+  <meta name="twitter:description" content="Plain-English guides to holistic therapies — what they are, who they're for, and how to choose a practitioner.">
+  <meta name="twitter:image" content="https://holisticunity.app/images/og-image.jpg">
+  <link rel="canonical" href="https://holisticunity.app/blog/">
+  <link rel="alternate" type="application/rss+xml" title="Holistic Unity Blog RSS Feed" href="https://holisticunity.app/blog/feed.xml">
+  <title>Blog | Holistic Unity</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    .blog-hero { padding: 140px 0 40px; background: linear-gradient(135deg, #FCE4EF 0%, #FFF 60%); }
+    .blog-hero h1 { font-size: clamp(2rem, 4vw, 3rem); color: #2D1B2E; margin: 0 0 12px; }
+    .blog-hero p { color: #5a4555; font-size: 1.1rem; }
+    .post-list { padding: 40px 0 100px; }
+    .post-list .container { max-width: 820px; }
+    .post-card { display: grid; grid-template-columns: 280px 1fr; gap: 28px; align-items: center; padding: 28px 0; border-bottom: 1px solid #eadfe4; text-decoration: none; color: inherit; }
+    .post-card:last-child { border-bottom: 0; }
+    .post-card .post-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 10px 30px rgba(45, 27, 46, 0.08); transition: transform 0.3s ease; }
+    .post-card:hover .post-thumb { transform: translateY(-2px); }
+    .post-card .pill { display: inline-block; background: #9B0064; color: white; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; letter-spacing: 0.3px; margin-bottom: 10px; }
+    .post-card h2 { font-size: 1.4rem; color: #2D1B2E; margin: 0 0 8px; line-height: 1.3; }
+    .post-card p { color: #5a4555; font-size: 1rem; line-height: 1.6; margin: 0 0 10px; }
+    .post-card .post-meta { color: #8a6a80; font-size: 0.85rem; }
+    .post-card:hover h2 { color: #9B0064; }
+    @media (max-width: 720px) { .post-card { grid-template-columns: 1fr; gap: 16px; } }
+    .post-meta { font-size: 0.85rem; color: #8a6a80; margin-top: 10px; }
+  </style>
+  <!-- Meta Pixel: gated behind marketing consent in shared.js -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Holistic Unity Blog",
+    "url": "https://holisticunity.app/blog/",
+    "description": "Plain-English guides to holistic therapies — what they are, who they're for, and how to choose a practitioner.",
+    "inLanguage": ["en", "it", "pt"],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Holistic Unity",
+      "url": "https://holisticunity.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://holisticunity.app/images/logo.png"
+      }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://holisticunity.app/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://holisticunity.app/blog/"}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container">
+    <a href="../" class="nav-logo">
+      <picture><source type="image/webp" srcset="../images/logo.webp"><img src="../images/logo.png" alt="Holistic Unity Logo" /></picture>
+      <span>Holistic Unity</span>
+    </a>
+    <button id="hamburger" class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navLinks" class="nav-links">
+      <li><a href="../#how-it-works" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</a></li>
+      <li class="nav-dropdown"><a href="../#therapies" data-en="Therapies" data-it="Terapie" data-pt="Terapias">Therapies</a><div class="dropdown-menu"><a href="../thetahealing">ThetaHealing®</a><a href="../reiki">Reiki</a><a href="../astrology" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</a><a href="../human-design">Human Design</a><a href="../ayurveda">Ayurveda</a><a href="../numerology" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</a><a href="../naturopathy" data-en="Naturopathy" data-it="Naturopatia" data-pt="Naturopatia">Naturopathy</a><a href="../family-constellation" data-en="Family Constellation" data-it="Costellazione Familiare" data-pt="Constelação Familiar">Family Constellation</a><a href="../systemic-constellation" data-en="Systemic Constellation" data-it="Costellazione Sistemica" data-pt="Constelação Sistêmica">Systemic Constellation</a><a href="../shamanism" data-en="Shamanism" data-it="Sciamanesimo" data-pt="Xamanismo">Shamanism</a><a href="../seed-energy-process" data-en="SEED – Energy Process®" data-it="SEED – Energy Process®" data-pt="SEED – Energy Process®">SEED – Energy Process®</a></div></li>
+      <li><a href="../about#therapists" data-en="For Therapists" data-it="Per i Operatori" data-pt="Para Terapeutas">For Therapists</a></li>
+      <li><a href="./" data-en="Blog" data-it="Blog" data-pt="Blog" class="active">Blog</a></li>
+      <li><a href="../#faq" data-en="FAQ" data-it="FAQ" data-pt="FAQ">FAQ</a></li>
+      <li>
+        <div class="lang-toggle">
+          <button id="langEn" class="active" onclick="setLang('en')" aria-label="English">EN</button>
+          <button id="langIt" onclick="setLang('it')" aria-label="Italiano">IT</button>
+          <button id="langPt" onclick="setLang('pt')" aria-label="Português">PT</button>
+        </div>
+      </li>
+      <li><a href="https://app.holisticunity.app/register" class="nav-cta" data-en="Get Started" data-it="Inizia Ora" data-pt="Comece Agora">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1 data-en="Holistic Unity Blog" data-it="Blog di Holistic Unity" data-pt="Blog da Holistic Unity">Holistic Unity Blog</h1>
+      <p data-en="Clear, honest guides to holistic therapies — what they are, who they're for, and how to get the most from a session."
+         data-it="Guide chiare e oneste alle terapie olistiche — cosa sono, a chi sono rivolte, e come trarre il massimo da una sessione."
+         data-pt="Guias claros e honestos sobre terapias holísticas — o que são, para quem são, e como tirar o máximo de uma sessão.">Clear, honest guides to holistic therapies — what they are, who they're for, and how to get the most from a session.</p>
+    </div>
+  </section>
+
+  <section class="post-list">
+    <div class="container">
+
+      <a href="/blog/what-is-theta-healing" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/theta-healing-hero.webp"><img class="post-thumb"
+             src="../images/blog/theta-healing-hero.jpg"
+             alt="Meditating silhouette with a lotus halo — illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">ThetaHealing®</span>
+          <h2 data-en="What Is ThetaHealing®? A Beginner's Guide (And Who It's Really For)"
+              data-it="Cos'è il ThetaHealing®? Guida per Principianti (E a Chi Può Servire Davvero)"
+              data-pt="O que é ThetaHealing®? Guia para Iniciantes (E para Quem Realmente Serve)">What Is ThetaHealing®? A Beginner's Guide (And Who It's Really For)</h2>
+          <p data-en="ThetaHealing® explained in plain words — what it is, how a session works, what it can and can't do, and how to know if it's for you."
+             data-it="ThetaHealing® spiegato con parole semplici — cos'è, come funziona una sessione, cosa può e non può fare, e come capire se fa al caso tuo."
+             data-pt="ThetaHealing® explicado em palavras simples — o que é, como funciona uma sessão, o que pode e não pode fazer, e como saber se é para você.">ThetaHealing® explained in plain words — what it is, how a session works, what it can and can't do, and how to know if it's for you.</p>
+          <div class="post-meta" data-en="April 14, 2026 · 7 min read" data-it="14 aprile 2026 · 7 min di lettura" data-pt="14 de abril de 2026 · 7 min de leitura">April 14, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/what-is-reiki" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/reiki-hero.webp"><img class="post-thumb"
+             src="../images/blog/reiki-hero.jpg"
+             alt="Reiki practitioner channelling energy — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Reiki</span>
+          <h2 data-en="What Is Reiki? A Beginner's Guide to Energy Healing"
+              data-it="Cos'e il Reiki? Guida per Principianti alla Guarigione Energetica"
+              data-pt="O que e Reiki? Guia para Iniciantes sobre Cura Energetica">What Is Reiki? A Beginner's Guide to Energy Healing</h2>
+          <p data-en="Reiki explained clearly — what it is, how a distance session works, what it can and can't do, and how to tell if it's right for you."
+             data-it="Il Reiki spiegato con chiarezza — cos'e, come funziona una sessione a distanza, cosa puo e non puo fare, e come capire se fa per te."
+             data-pt="Reiki explicado com clareza — o que e, como funciona uma sessao a distancia, o que pode e nao pode fazer, e como saber se e para voce.">Reiki explained clearly — what it is, how a distance session works, what it can and can't do, and how to tell if it's right for you.</p>
+          <div class="post-meta" data-en="April 14, 2026 · 8 min read" data-it="14 aprile 2026 · 8 min di lettura" data-pt="14 de abril de 2026 · 8 min de leitura">April 14, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/theta-healing-vs-reiki" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/theta-healing-vs-reiki-hero.webp"><img class="post-thumb"
+             src="../images/blog/theta-healing-vs-reiki-hero.jpg"
+             alt="Two silhouettes — ThetaHealing meditation vs Reiki energy — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Comparison</span>
+          <h2>ThetaHealing&reg; vs Reiki: Which Energy Practice Is Right for You?</h2>
+          <p>ThetaHealing&reg; and Reiki compared honestly — how they differ, what each does best, and how to decide which is right for you.</p>
+          <div class="post-meta">April 15, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/human-design-vs-astrology" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/human-design-vs-astrology-hero.webp"><img class="post-thumb"
+             src="../images/blog/human-design-vs-astrology-hero.jpg"
+             alt="Two silhouettes — one surrounded by a star chart, one by a geometric bodygraph — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Comparison" data-it="Confronto" data-pt="Comparação">Comparison</span>
+          <h2 data-en="Human Design vs Astrology: Which System Is Right for You?"
+              data-it="Human Design vs Astrologia: Quale Sistema Fa per Te?"
+              data-pt="Human Design vs Astrologia: Qual Sistema É o Certo para Você?">Human Design vs Astrology: Which System Is Right for You?</h2>
+          <p data-en="Both use your birth data. Both produce a chart. But Human Design and Astrology answer very different questions — here's how to choose."
+             data-it="Entrambi usano i tuoi dati di nascita. Entrambi producono una mappa. Ma Human Design e Astrologia rispondono a domande molto diverse — ecco come scegliere."
+             data-pt="Ambos usam seus dados de nascimento. Ambos produzem um mapa. Mas Human Design e Astrologia respondem a perguntas muito diferentes — veja como escolher.">Both use your birth data. Both produce a chart. But Human Design and Astrology answer very different questions — here's how to choose.</p>
+          <div class="post-meta" data-en="April 15, 2026 · 9 min read" data-it="15 aprile 2026 · 9 min di lettura" data-pt="15 de abril de 2026 · 9 min de leitura">April 15, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/significato-olistico" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/significato-olistico-hero.webp"><img class="post-thumb"
+             src="../images/blog/significato-olistico-hero.jpg"
+             alt="Silhouette umana circondata da tre cerchi sovrapposti — mente, corpo e spirito — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holistica">Olistica</span>
+          <h2 data-en="What Does &quot;Holistic&quot; Mean? The Complete Guide"
+              data-it="Cosa Significa Olistico: La Guida Completa"
+              data-pt="O que Significa &quot;Holistico&quot;: O Guia Completo">Cosa Significa Olistico: La Guida Completa</h2>
+          <p data-en="The real meaning of 'holistic', the main disciplines it covers, the difference from alternative medicine — and how to choose a serious practitioner."
+             data-it="Il vero significato di 'olistico', le principali discipline che comprende, la differenza con la approccio bionaturale — e come scegliere un professionista serio."
+             data-pt="O significado real de 'holistico', as principais disciplinas, a diferenca com a approccio bionaturale — e como escolher um profissional serio.">Il vero significato di 'olistico', le principali discipline che comprende, la differenza con la approccio bionaturale — e come scegliere un professionista serio.</p>
+          <div class="post-meta" data-en="April 16, 2026 · 12 min read" data-it="16 aprile 2026 · 12 min di lettura" data-pt="16 de abril de 2026 · 12 min de leitura">16 aprile 2026 · 12 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/cos-e-il-reiki" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/cos-e-il-reiki-hero.webp"><img class="post-thumb"
+             src="../images/blog/cos-e-il-reiki-hero.jpg"
+             alt="Praticante Reiki che canalizza energia verso una figura distesa — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Reiki</span>
+          <h2 data-en="What Is Reiki? The Complete Guide to Benefits and Treatments"
+              data-it="Cos'è il Reiki: Guida Completa a Benefici e Trattamenti"
+              data-pt="O que é o Reiki: Guia Completo de Benefícios e Tratamentos">Cos'è il Reiki: Guida Completa a Benefici e Trattamenti</h2>
+          <p data-en="What Reiki is, how a session works, the documented benefits, and how to choose a practitioner. The most complete guide — honest, no mystical fluff."
+             data-it="Cos'è il Reiki, come funziona una sessione, i benefici documentati e come scegliere un praticante. La guida più completa — onesta, senza esagerazioni."
+             data-pt="O que é o Reiki, come funziona uma sessão, os benefícios documentados e como escolher um praticante. O guia mais completo — honesto, sem exageros.">Cos'è il Reiki, come funziona una sessione, i benefici documentati e come scegliere un praticante. La guida più completa — onesta, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 17, 2026 · 11 min read" data-it="17 aprile 2026 · 11 min di lettura" data-pt="17 de abril de 2026 · 11 min de leitura">17 aprile 2026 · 11 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/numerologia-data-di-nascita" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/numerologia-data-di-nascita-hero.webp"><img class="post-thumb"
+             src="../images/blog/numerologia-data-di-nascita-hero.jpg"
+             alt="Silhouette in meditazione circondata da numeri fluttuanti — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerologia</span>
+          <h2 data-en="Numerology of Your Birth Date: How to Calculate Your Number"
+              data-it="Numerologia della Data di Nascita: Calcola il Tuo Numero"
+              data-pt="Numerologia da Data de Nascimento: Calcule o Seu Numero">Numerologia della Data di Nascita: Calcola il Tuo Numero</h2>
+          <p data-en="How to calculate your Life Path Number from your birth date, the meaning of each number from 1 to 9, and the master numbers 11, 22, 33. A complete guide — honest, no mystical fluff."
+             data-it="Come calcolare il tuo Numero del Percorso di Vita dalla data di nascita, il significato dei numeri dall'1 al 9 e dei numeri maestri 11, 22, 33. La guida completa — onesta, senza esagerazioni."
+             data-pt="Como calcular seu Numero do Caminho de Vida da data de nascimento, o significado dos numeros de 1 a 9 e dos numeros mestres 11, 22, 33. O guia completo — honesto, sem exageros.">Come calcolare il tuo Numero del Percorso di Vita dalla data di nascita, il significato dei numeri dall'1 al 9 e dei numeri maestri 11, 22, 33. La guida completa — onesta, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 18, 2026 · 11 min read" data-it="18 aprile 2026 · 11 min di lettura" data-pt="18 de abril de 2026 · 11 min de leitura">18 aprile 2026 · 11 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/significato-numeri" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/significato-numeri-hero.webp"><img class="post-thumb"
+             src="../images/blog/significato-numeri-hero.jpg"
+             alt="Silhouette in meditazione circondata da nove simboli geometrici luminosi — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerologia</span>
+          <h2 data-en="The Meaning of Numbers 1 to 9 in Numerology"
+              data-it="Il Significato dei Numeri dall'1 al 9 in Numerologia"
+              data-pt="O Significado dos Números de 1 a 9 na Numerologia">Il Significato dei Numeri dall'1 al 9 in Numerologia</h2>
+          <p data-en="What each number from 1 to 9 means in numerology — qualities, tendencies, and challenges. A clear reference guide, no mystical exaggeration."
+             data-it="Cosa significa ciascun numero dall'1 al 9 in numerologia — qualità, tendenze e sfide. Una guida di riferimento chiara, senza esagerazioni mistiche."
+             data-pt="O que cada número de 1 a 9 significa na numerologia — qualidades, tendências e desafios. Um guia de referência claro, sem exageros místicos.">Cosa significa ciascun numero dall'1 al 9 in numerologia — qualità, tendenze e sfide. Una guida di riferimento chiara, senza esagerazioni mistiche.</p>
+          <div class="post-meta" data-en="April 19, 2026 · 8 min read" data-it="19 aprile 2026 · 8 min di lettura" data-pt="19 de abril de 2026 · 8 min de leitura">19 aprile 2026 · 8 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/onde-theta-benefici" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/onde-theta-benefici-hero.webp"><img class="post-thumb"
+             src="../images/blog/onde-theta-benefici-hero.jpg"
+             alt="Silhouette in meditazione con onde theta che si irradiano dalla testa — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">ThetaHealing&reg;</span>
+          <h2 data-en="Theta Waves: What They Are, Effects and Benefits for the Brain"
+              data-it="Onde Theta: Cosa Sono, Effetti e Benefici per il Cervello"
+              data-pt="Ondas Theta: O que São, Efeitos e Benefícios para o Cérebro">Onde Theta: Cosa Sono, Effetti e Benefici per il Cervello</h2>
+          <p data-en="What theta waves are, what frequency they operate at, what effects they produce on the brain, and how ThetaHealing® uses them. A clear guide, no hype."
+             data-it="Cosa sono le onde theta, a che frequenza operano, quali effetti producono sul cervello e come il ThetaHealing® le utilizza. Guida chiara, senza esagerazioni."
+             data-pt="O que são as ondas theta, a que frequência operam, que efeitos produzem no cérebro e como o ThetaHealing® as utiliza. Guia claro, sem exageros.">Cosa sono le onde theta, a che frequenza operano, quali effetti producono sul cervello e come il ThetaHealing® le utilizza. Guida chiara, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 21, 2026 · 7 min read" data-it="21 aprile 2026 · 7 min di lettura" data-pt="21 de abril de 2026 · 7 min de leitura">21 aprile 2026 · 7 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/case-astrologiche" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/case-astrologiche-hero.webp"><img class="post-thumb"
+             src="../images/blog/case-astrologiche-hero.jpg"
+             alt="Silhouette seduta al centro di una ruota zodiacale con 12 segmenti — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrologia</span>
+          <h2 data-en="The 12 Astrological Houses: Meaning and Complete Guide"
+              data-it="Le 12 Case Astrologiche: Significato e Guida Completa"
+              data-pt="As 12 Casas Astrológicas: Significado e Guia Completo">Le 12 Case Astrologiche: Significato e Guida Completa</h2>
+          <p data-en="What each of the 12 astrological houses means, which planets govern them, and how to start reading them in your own natal chart. A clear guide, no mystical fluff."
+             data-it="Cosa significa ciascuna delle 12 case astrologiche, quali pianeti le governano e come iniziare a leggerle nel tuo tema natale. Una guida chiara, senza esagerazioni."
+             data-pt="O que cada uma das 12 casas astrológicas significa, quais planetas as governam e como começar a lê-las no seu mapa natal. Um guia claro, sem exageros.">Cosa significa ciascuna delle 12 case astrologiche, quali pianeti le governano e come iniziare a leggerle nel tuo tema natale. Una guida chiara, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 20, 2026 · 12 min read" data-it="20 aprile 2026 · 12 min di lettura" data-pt="20 de abril de 2026 · 12 min de leitura">20 aprile 2026 · 12 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/reiki-pericoli" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/reiki-pericoli-hero.webp"><img class="post-thumb"
+             src="../images/blog/reiki-pericoli-hero.jpg"
+             alt="Silhouette seduta in pace circondata da cerchi di luce dorata — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Reiki</span>
+          <h2 data-en="Reiki: Real Dangers or False Myths? The Truth"
+              data-it="Reiki: Pericoli Reali o Falsi Miti? La Verità"
+              data-pt="Reiki: Perigos Reais ou Mitos? A Verdade">Reiki: Pericoli Reali o Falsi Miti? La Verità</h2>
+          <p data-en="Is Reiki dangerous? An honest analysis of the real risks, negative reviews and who should consult a doctor first. No alarmism, no exaggeration."
+             data-it="Il Reiki è pericoloso? Analisi onesta dei rischi reali, delle testimonianze negative e di chi dovrebbe consultare un medico prima. Nessun allarmismo."
+             data-pt="O Reiki é perigoso? Análise honesta dos riscos reais, avaliações negativas e quem deve consultar um médico primeiro. Sem alarmismo.">Il Reiki è pericoloso? Analisi onesta dei rischi reali, delle testimonianze negative e di chi dovrebbe consultare un medico prima. Nessun allarmismo.</p>
+          <div class="post-meta" data-en="April 22, 2026 · 7 min read" data-it="22 aprile 2026 · 7 min di lettura" data-pt="22 de abril de 2026 · 7 min de leitura">22 aprile 2026 · 7 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/terapista-olistico-online" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/terapista-olistico-online-hero.webp"><img class="post-thumb"
+             src="../images/blog/terapista-olistico-online-hero.jpg"
+             alt="Due silhouette collegate da un portale di luce dorata — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holística">Olistica</span>
+          <h2 data-en="Holistic Therapist Online: How to Find the Right Practitioner"
+              data-it="Operatore Olistico Online: Come Trovare il Professionista Giusto"
+              data-pt="Operatore Holístico Online: Como Encontrar o Profissional Certo">Operatore Olistico Online: Come Trovare il Professionista Giusto</h2>
+          <p data-en="What a holistic therapist actually does, how to tell a serious professional from one who isn't, and how to choose the right discipline for your situation."
+             data-it="Cosa fa davvero un operatore olistico, come distinguere un professionista serio da uno che non lo è, e come scegliere la disciplina giusta per la tua situazione."
+             data-pt="O que um operatore holístico realmente faz, como distinguir um profissional sério e como escolher a disciplina certa para a sua situação.">Cosa fa davvero un operatore olistico, come distinguere un professionista serio da uno che non lo è, e come scegliere la disciplina giusta per la tua situazione.</p>
+          <div class="post-meta" data-en="April 23, 2026 · 10 min read" data-it="23 aprile 2026 · 10 min di lettura" data-pt="23 de abril de 2026 · 10 min de leitura">23 aprile 2026 · 10 min di lettura</div>
+        </div>
+      </a>
+
+
+      <a href="/blog/reiki-a-distanza" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/reiki-a-distanza-hero.webp"><img class="post-thumb"
+             src="../images/blog/reiki-a-distanza-hero.jpg"
+             alt="Due silhouette collegate da onde di energia dorata attraverso lo spazio — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Reiki</span>
+          <h2 data-en="Distance Reiki: How It Works and What to Expect"
+              data-it="Reiki a Distanza: Come Funziona e Cosa Aspettarsi"
+              data-pt="Reiki a Distância: Como Funciona e o que Esperar">Reiki a Distanza: Come Funziona e Cosa Aspettarsi</h2>
+          <p data-en="How an online Reiki session works, what sensations to expect during and after, how to prepare, and how to choose a reliable practitioner. A clear guide, no mystical exaggeration."
+             data-it="Come si svolge una seduta di Reiki online, cosa percepire durante e dopo, come prepararsi e come scegliere un praticante affidabile. Guida chiara, senza esagerazioni mistiche."
+             data-pt="Como funciona uma sessão de Reiki online, que sensações esperar durante e depois, como se preparar e como escolher um praticante confiável. Guia claro, sem exageros místicos.">Come si svolge una seduta di Reiki online, cosa percepire durante e dopo, come prepararsi e come scegliere un praticante affidabile. Guida chiara, senza esagerazioni mistiche.</p>
+          <div class="post-meta" data-en="April 24, 2026 · 9 min read" data-it="24 aprile 2026 · 9 min di lettura" data-pt="24 de abril de 2026 · 9 min de leitura">24 aprile 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/sound-healing" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/sound-healing-hero.webp"><img class="post-thumb"
+             src="../images/blog/sound-healing-hero.jpg"
+             alt="Silhouette in meditazione circondata da onde sonore concentriche — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Sound Healing" data-it="Sound Healing" data-pt="Sound Healing">Sound Healing</span>
+          <h2 data-en="Sound Healing: What It Is, How It Works and What to Expect"
+              data-it="Sound Healing: Cos'è la Terapia del Suono e Come Funziona"
+              data-pt="Sound Healing: O que É, Como Funciona e O que Esperar">Sound Healing: Cos'è la Terapia del Suono e Come Funziona</h2>
+          <p data-en="What sound healing is, how vibration works on the body, the main techniques (Tibetan singing bowls, gong, tuning forks) and what to expect in a session. A complete guide, no mystical fluff."
+             data-it="Cos'è il sound healing, come la vibrazione agisce sul corpo, le principali tecniche (campane tibetane, gong, diapason) e cosa aspettarsi in una sessione. Guida completa, senza esagerazioni."
+             data-pt="O que é o sound healing, como a vibração age no corpo, as principais técnicas (tigelas tibetanas, gongo, diapasão) e o que esperar numa sessão. Guia completo, sem exageros.">Cos'è il sound healing, come la vibrazione agisce sul corpo, le principali tecniche (campane tibetane, gong, diapason) e cosa aspettarsi in una sessione. Guida completa, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 25, 2026 · 9 min read" data-it="25 aprile 2026 · 9 min di lettura" data-pt="25 de abril de 2026 · 9 min de leitura">25 aprile 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/what-is-numerology" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/what-is-numerology-hero.webp"><img class="post-thumb"
+             src="../images/blog/what-is-numerology-hero.jpg"
+             alt="Silhouette figure surrounded by nine concentric geometric circles of warm golden light — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</span>
+          <h2 data-en="What Is Numerology? A Beginner's Guide"
+              data-it="Cos'è la Numerologia? Guida per Principianti"
+              data-pt="O que é Numerologia? Guia para Iniciantes">What Is Numerology? A Beginner's Guide</h2>
+          <p data-en="What numerology is, how the core numbers (Life Path, Expression, Soul Urge) are calculated, what a reading actually involves, and what the system honestly can and can't do."
+             data-it="Cos'è la numerologia, come si calcolano i numeri principali (Percorso di Vita, Espressione, Impulso dell'Anima), cosa comprende una lettura e cosa il sistema può e non può fare onestamente."
+             data-pt="O que é a numerologia, como os números centrais são calculados, o que uma leitura realmente envolve e o que o sistema pode e não pode fazer honestamente.">What numerology is, how the core numbers (Life Path, Expression, Soul Urge) are calculated, what a reading actually involves, and what the system honestly can and can't do.</p>
+          <div class="post-meta" data-en="April 26, 2026 · 12 min read" data-it="26 aprile 2026 · 12 min di lettura" data-pt="26 de abril de 2026 · 12 min de leitura">April 26, 2026 · 12 min read</div>
+        </div>
+      </a>
+
+
+      <a href="/blog/come-diventare-operatore-olistico" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/come-diventare-operatore-olistico-hero.webp"><img class="post-thumb"
+             src="../images/blog/come-diventare-operatore-olistico-hero.jpg"
+             alt="Silhouette umana con alone dorato che rappresenta il percorso verso la professione olistica — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holística">Olistica</span>
+          <h2 data-en="How to Become a Certified Holistic Practitioner: Complete Guide"
+              data-it="Come Diventare Operatore Olistico Certificato: Guida Completa"
+              data-pt="Como se Tornar um Operador Holístico Certificado: Guia Completo">Come Diventare Operatore Olistico Certificato: Guida Completa</h2>
+          <p data-en="Training paths, recognised certifications, realistic income, and the practical steps to open your holistic practice in Italy — honest, no hype."
+             data-it="Percorsi formativi, certificazioni riconosciute, guadagni realistici e i passi pratici per aprire la tua attività olistica in Italia — onesto, senza esagerazioni."
+             data-pt="Percursos formativos, certificações reconhecidas, ganhos realistas e os passos práticos para abrir sua prática holística na Itália — honesto, sem exageros.">Percorsi formativi, certificazioni riconosciute, guadagni realistici e i passi pratici per aprire la tua attività olistica in Italia — onesto, senza esagerazioni.</p>
+          <div class="post-meta" data-en="April 27, 2026 · 10 min read" data-it="27 aprile 2026 · 10 min di lettura" data-pt="27 de abril de 2026 · 10 min de leitura">27 aprile 2026 · 10 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/what-happens-family-constellation" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/what-happens-family-constellation-hero.webp"><img class="post-thumb"
+             src="../images/blog/what-happens-family-constellation-hero.jpg"
+             alt="Silhouette figures standing in a constellation circle with a warm gold glow — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Family Constellation" data-it="Costellazioni Familiari" data-pt="Constelação Familiar">Family Constellation</span>
+          <h2 data-en="What Happens in a Family Constellation Session?"
+              data-it="Cosa Succede in una Sessione di Costellazioni Familiari?"
+              data-pt="O que Acontece numa Sessão de Constelação Familiar?">What Happens in a Family Constellation Session?</h2>
+          <p data-en="A plain-language guide to group and individual formats, the role of representatives, and what to expect in the days after a session."
+             data-it="Una guida in linguaggio semplice ai formati di gruppo e individuali, al ruolo dei rappresentanti e a cosa aspettarsi nei giorni dopo una sessione."
+             data-pt="Um guia em linguagem simples sobre formatos de grupo e individuais, o papel dos representantes e o que esperar nos dias após uma sessão.">A plain-language guide to group and individual formats, the role of representatives, and what to expect in the days after a session.</p>
+          <div class="post-meta" data-en="April 28, 2026 · 9 min read" data-it="28 aprile 2026 · 9 min di lettura" data-pt="28 de abril de 2026 · 9 min de leitura">April 28, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/sessione-olistica-online" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/sessione-olistica-online-hero.webp"><img class="post-thumb"
+             src="../images/blog/sessione-olistica-online-hero.jpg"
+             alt="Silhouette davanti a uno schermo luminoso con onde di luce dorata che attraversano lo spazio — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holística">Olistica</span>
+          <h2 data-en="Your First Online Holistic Session: A Practical Guide"
+              data-it="La Tua Prima Sessione Olistica Online: Guida Pratica"
+              data-pt="Sua Primeira Sessão Holística Online: Guia Prático">La Tua Prima Sessione Olistica Online: Guida Pratica</h2>
+          <p data-en="What to expect from an online holistic session: how to prepare, which disciplines work in video calls, duration, costs, privacy, and how to choose the right practitioner."
+             data-it="Cosa aspettarsi da una sessione olistica online: come prepararsi, quali discipline si svolgono in videocall, durata, costi, privacy e come scegliere l'operatore giusto."
+             data-pt="O que esperar de uma sessão holística online: como se preparar, quais disciplinas funcionam em videochamadas, duração, custos, privacidade e como escolher o profissional certo.">Cosa aspettarsi da una sessione olistica online: come prepararsi, quali discipline si svolgono in videocall, durata, costi, privacy e come scegliere l'operatore giusto.</p>
+          <div class="post-meta" data-en="April 29, 2026 · 9 min read" data-it="29 aprile 2026 · 9 min di lettura" data-pt="29 de abril de 2026 · 9 min de leitura">29 aprile 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/ottava-casa-astrologica" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/ottava-casa-astrologica-hero.webp"><img class="post-thumb"
+             src="../images/blog/ottava-casa-astrologica-hero.jpg"
+             alt="Silhouette al centro di una soglia mauve, ottavo segmento di una ruota astrologica circolare con onde profonde — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrologia</span>
+          <h2 data-en="The Eighth Astrological House: Meaning, Planets and Transformation"
+              data-it="L'Ottava Casa Astrologica: Significato, Pianeti e Trasformazione"
+              data-pt="A Oitava Casa Astrológica: Significado, Planetas e Transformação">L'Ottava Casa Astrologica: Significato, Pianeti e Trasformazione</h2>
+          <p data-en="A calm, grounded guide to the most misread house of the natal chart: what it really governs, which planets feel at home there, and how to read it without dramatic clichés."
+             data-it="Una guida calma e concreta alla casa più fraintesa del tema natale: cosa governa davvero, quali pianeti vi si trovano a loro agio e come leggerla senza cliché drammatici."
+             data-pt="Um guia calmo e concreto para a casa mais mal interpretada do mapa natal: o que ela realmente governa, quais planetas se sentem em casa ali e como lê-la sem clichês dramáticos.">Una guida calma e concreta alla casa più fraintesa del tema natale: cosa governa davvero, quali pianeti vi si trovano a loro agio e come leggerla senza cliché drammatici.</p>
+          <div class="post-meta" data-en="April 30, 2026 · 8 min read" data-it="30 aprile 2026 · 8 min di lettura" data-pt="30 de abril de 2026 · 8 min de leitura">30 aprile 2026 · 8 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/reiki-for-anxiety" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/reiki-for-anxiety-hero.webp"><img class="post-thumb"
+             src="../images/blog/reiki-for-anxiety-hero.jpg"
+             alt="A reclining silhouette receiving Reiki, gold light dissolving small dark shapes near the chest — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">Reiki</span>
+          <h2 data-en="Reiki for Anxiety: What the Research Actually Says"
+              data-it="Reiki per l'Ansia: Cosa Dice Davvero la Ricerca"
+              data-pt="Reiki para Ansiedade: O que a Pesquisa Realmente Diz">Reiki for Anxiety: What the Research Actually Says</h2>
+          <p data-en="An honest, evidence-based look at Reiki for anxiety — what peer-reviewed studies say, how a session works, and when clinical care is the right call instead."
+             data-it="Uno sguardo onesto, basato sull'evidenza, al Reiki per l'ansia — cosa dicono gli studi peer-reviewed, come funziona una sessione, e quando invece serve una cura clinica."
+             data-pt="Um olhar honesto e baseado em evidencia sobre Reiki para ansiedade — o que dizem os estudos revisados por pares, como funciona uma sessao e quando o cuidado clinico e o caminho certo.">An honest, evidence-based look at Reiki for anxiety — what peer-reviewed studies say, how a session works, and when clinical care is the right call instead.</p>
+          <div class="post-meta" data-en="May 1, 2026 · 9 min read" data-it="1 maggio 2026 · 9 min di lettura" data-pt="1 de maio de 2026 · 9 min de leitura">May 1, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/quarta-casa-astrologica" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/quarta-casa-astrologica-hero.webp"><img class="post-thumb"
+             src="../images/blog/quarta-casa-astrologica-hero.jpg"
+             alt="Silhouette seduta alla base di un grande albero con radici profonde e una luna dorata sopra — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrologia</span>
+          <h2 data-en="The Fourth Astrological House: Roots, Family and Inner Security"
+              data-it="La Quarta Casa Astrologica: Radici, Famiglia e Sicurezza"
+              data-pt="A Quarta Casa Astrológica: Raízes, Família e Segurança">La Quarta Casa Astrologica: Radici, Famiglia e Sicurezza</h2>
+          <p data-en="The most intimate house of the chart: family of origin, inner security and the home you carry inside. A clear guide to its meaning, the planets that inhabit it and how to read it in your own birth chart."
+             data-it="La casa più intima del tema natale: famiglia d'origine, sicurezza interiore e la casa che ti porti dentro. Una guida chiara al suo significato, ai pianeti che la abitano e a come leggerla nel tuo tema."
+             data-pt="A casa mais íntima do mapa natal: família de origem, segurança interior e a casa que você carrega dentro. Um guia claro para seu significado, os planetas que a habitam e como lê-la no seu mapa.">La casa più intima del tema natale: famiglia d'origine, sicurezza interiore e la casa che ti porti dentro. Una guida chiara al suo significato, ai pianeti che la abitano e a come leggerla nel tuo tema.</p>
+          <div class="post-meta" data-en="May 2, 2026 · 8 min read" data-it="2 maggio 2026 · 8 min di lettura" data-pt="2 de maio de 2026 · 8 min de leitura">2 maggio 2026 · 8 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/how-to-read-human-design-chart" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/how-to-read-human-design-chart-hero.webp"><img class="post-thumb"
+             src="../images/blog/how-to-read-human-design-chart-hero.jpg"
+             alt="A standing human silhouette with nine translucent geometric shapes floating in front of the body, connected by glowing channels — editorial illustration of a Human Design bodygraph"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Human Design" data-it="Human Design" data-pt="Human Design">Human Design</span>
+          <h2 data-en="How to Read Your Human Design Chart: A Clear, Honest Guide"
+              data-it="Come Leggere la Tua Carta Human Design: Una Guida Chiara e Onesta"
+              data-pt="Como Ler Seu Mapa de Human Design: Um Guia Claro e Honesto">How to Read Your Human Design Chart: A Clear, Honest Guide</h2>
+          <p data-en="Type, Strategy, Authority, the nine centres, channels and Profile — the bodygraph explained in the order an experienced reader actually uses. Plain English, honest about what the system claims and what it does not."
+             data-it="Tipo, Strategia, Autorità, i nove centri, canali e Profilo — il bodygraph spiegato nell'ordine in cui un lettore esperto procede davvero. Linguaggio chiaro, onesto su ciò che il sistema afferma e su ciò che non afferma."
+             data-pt="Tipo, Estratégia, Autoridade, os nove centros, canais e Perfil — o bodygraph explicado na ordem em que um leitor experiente realmente trabalha. Linguagem clara, honesto sobre o que o sistema afirma e o que não afirma.">Type, Strategy, Authority, the nine centres, channels and Profile — the bodygraph explained in the order an experienced reader actually uses. Plain English, honest about what the system claims and what it does not.</p>
+          <div class="post-meta" data-en="May 3, 2026 · 12 min read" data-it="3 maggio 2026 · 12 min di lettura" data-pt="3 de maio de 2026 · 12 min de leitura">May 3, 2026 · 12 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/approccio-olistico" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/approccio-olistico-hero.webp"><img class="post-thumb"
+             src="../images/blog/approccio-olistico-hero.jpg"
+             alt="Silhouette umana al centro di tre cerchi sovrapposti che rappresentano corpo, mente e spirito — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holística">Olistica</span>
+          <h2 data-en="Holistic Approach: What It Means in Practice"
+              data-it="Approccio Olistico: Cosa Significa nella Pratica"
+              data-pt="Abordagem Holística: O Que Significa na Prática">Approccio Olistico: Cosa Significa nella Pratica</h2>
+          <p data-en="The 'holistic approach' is one of the most used and most abused expressions in wellbeing. The principles that distinguish it in practice, the disciplines that adopt it, and how to recognise an honest practitioner instead of a vague promise."
+             data-it="L'«approccio olistico» è una delle espressioni più usate — e più abusate — nel mondo del benessere. I principi che lo distinguono nella pratica, le discipline che lo adottano e come riconoscere un operatore onesto invece di una promessa vaga."
+             data-pt="A «abordagem holística» é uma das expressões mais usadas — e mais abusadas — no mundo do bem-estar. Os princípios que a distinguem na prática, as disciplinas que a adotam e como reconhecer um profissional honesto em vez de uma promessa vaga.">L'«approccio olistico» è una delle espressioni più usate — e più abusate — nel mondo del benessere. I principi che lo distinguono nella pratica, le discipline che lo adottano e come riconoscere un operatore onesto invece di una promessa vaga.</p>
+          <div class="post-meta" data-en="May 4, 2026 · 9 min read" data-it="4 maggio 2026 · 9 min di lettura" data-pt="4 de maio de 2026 · 9 min de leitura">4 maggio 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/what-is-ayurveda" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/what-is-ayurveda-hero.webp"><img class="post-thumb"
+             src="../images/blog/what-is-ayurveda-hero.jpg"
+             alt="A meditating silhouette surrounded by three glowing elemental shapes representing vata, pitta, and kapha — editorial illustration of Ayurveda"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Ayurveda" data-it="Ayurveda" data-pt="Ayurveda">Ayurveda</span>
+          <h2 data-en="What Is Ayurveda? A Beginner's Guide to the Three Doshas"
+              data-it="Cos'è l'Ayurveda? Una Guida per Principianti ai Tre Dosha"
+              data-pt="O que é Ayurveda? Um Guia para Iniciantes sobre os Três Doshas">What Is Ayurveda? A Beginner's Guide to the Three Doshas</h2>
+          <p data-en="A clear, honest introduction to Ayurveda — the three doshas (vata, pitta, kapha), how the system actually works, what an Ayurvedic consultation looks like, and what it can and cannot do. No mysticism, no overpromises."
+             data-it="Un'introduzione chiara e onesta all'Ayurveda — i tre dosha (vata, pitta, kapha), come funziona davvero il sistema, com'è una consulenza ayurvedica e cosa può e non può fare. Niente fumosità mistica, niente promesse esagerate."
+             data-pt="Uma introdução clara e honesta à Ayurveda — os três doshas (vata, pitta, kapha), como o sistema realmente funciona, como é uma consulta ayurvédica e o que pode e não pode fazer. Sem misticismo, sem promessas exageradas.">A clear, honest introduction to Ayurveda — the three doshas (vata, pitta, kapha), how the system actually works, what an Ayurvedic consultation looks like, and what it can and cannot do. No mysticism, no overpromises.</p>
+          <div class="post-meta" data-en="May 5, 2026 · 11 min read" data-it="5 maggio 2026 · 11 min di lettura" data-pt="5 de maio de 2026 · 11 min de leitura">May 5, 2026 · 11 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/pranic-healing" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/pranic-healing-hero.webp"><img class="post-thumb"
+             src="../images/blog/pranic-healing-hero.jpg"
+             alt="Silhouette in piedi con palme aperte e flussi di luce dorata che fluiscono attraverso il corpo — illustrazione editoriale del Pranic Healing"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Energy Healing" data-it="Guarigione Energetica" data-pt="Cura Energética">Guarigione Energetica</span>
+          <h2 data-en="Pranic Healing: What It Is and How the Energy Practice Actually Works"
+              data-it="Pranic Healing: Cos'è e Come Funziona la Guarigione Pranica"
+              data-pt="Pranic Healing: O Que É e Como Funciona a Cura Prânica">Pranic Healing: Cos'è e Come Funziona la Guarigione Pranica</h2>
+          <p data-en="A clear, honest guide to Pranic Healing — Master Choa Kok Sui's no-touch energy method. What happens in a session, how it differs from Reiki, what the evidence really says, training levels, and how to choose a qualified practitioner in Italy."
+             data-it="Una guida chiara e onesta al Pranic Healing — il metodo energetico senza contatto di Master Choa Kok Sui. Cosa succede in una sessione, come si differenzia dal Reiki, cosa dicono davvero le evidenze, i livelli di formazione e come scegliere un operatore qualificato in Italia."
+             data-pt="Um guia claro e honesto sobre o Pranic Healing — o método energético sem contato de Master Choa Kok Sui. O que acontece numa sessão, como se diferencia do Reiki, o que realmente dizem as evidências, os níveis de formação e como escolher um praticante qualificado na Itália.">Una guida chiara e onesta al Pranic Healing — il metodo energetico senza contatto di Master Choa Kok Sui. Cosa succede in una sessione, come si differenzia dal Reiki, cosa dicono davvero le evidenze, i livelli di formazione e come scegliere un operatore qualificato in Italia.</p>
+          <div class="post-meta" data-en="May 6, 2026 · 9 min read" data-it="6 maggio 2026 · 9 min di lettura" data-pt="6 de maio de 2026 · 9 min de leitura">6 maggio 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/vedic-vs-western-astrology" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/vedic-vs-western-astrology-hero.webp"><img class="post-thumb"
+             src="../images/blog/vedic-vs-western-astrology-hero.jpg"
+             alt="Two overlapping zodiac wheels with a small silhouette figure between them — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</span>
+          <h2 data-en="Vedic vs Western Astrology: What's the Difference?"
+              data-it="Astrologia Vedica vs Occidentale: Quali Sono le Differenze?"
+              data-pt="Astrologia Védica vs Ocidental: Qual a Diferença?">Vedic vs Western Astrology: What's the Difference?</h2>
+          <p data-en="Why your Sun sign is different in a Vedic chart, what the sidereal zodiac actually measures, and how to choose between the two traditions. A clear side-by-side guide, no mysticism."
+             data-it="Perché il tuo segno solare è diverso in una carta vedica, cosa misura davvero lo zodiaco siderale e come scegliere tra le due tradizioni. Una guida chiara fianco a fianco, senza misticismo."
+             data-pt="Por que seu signo solar é diferente em um mapa védico, o que o zodíaco sideral realmente mede e como escolher entre as duas tradições. Um guia claro lado a lado, sem misticismo.">Why your Sun sign is different in a Vedic chart, what the sidereal zodiac actually measures, and how to choose between the two traditions. A clear side-by-side guide, no mysticism.</p>
+          <div class="post-meta" data-en="May 7, 2026 · 9 min read" data-it="7 maggio 2026 · 9 min di lettura" data-pt="7 de maio de 2026 · 9 min de leitura">May 7, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/medicina-olistica" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/medicina-olistica-hero.webp"><img class="post-thumb"
+             src="../images/blog/medicina-olistica-hero.jpg"
+             alt="Silhouette umana avvolta da quattro onde colorate che rappresentano corpo, mente, spirito ed emozione — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Holistic Wellness" data-it="Olistica" data-pt="Holística">Olistica</span>
+          <h2 data-en="Holistic Medicine: What It Is, Disciplines, and How It Works"
+              data-it="Medicina Olistica: Cos'è, Discipline e Come Funziona"
+              data-pt="Medicina Holística: O que é, Disciplinas e Como Funciona">Medicina Olistica: Cos'è, Discipline e Come Funziona</h2>
+          <p data-en="The expression 'holistic medicine' covers very different practices: some have decades of clinical research behind them, others a much weaker evidence base. An honest guide to what works, what doesn't, and how to choose a serious practitioner."
+             data-it="L'espressione «medicina olistica» copre pratiche molto diverse: alcune hanno decenni di ricerca clinica alle spalle, altre evidenze molto più deboli. Una guida onesta a cosa funziona, cosa no e come scegliere un professionista serio."
+             data-pt="A expressão «medicina holística» cobre práticas muito diferentes: algumas com décadas de pesquisa clínica, outras com evidências muito mais fracas. Um guia honesto sobre o que funciona, o que não funciona e como escolher um profissional sério.">L'espressione «medicina olistica» copre pratiche molto diverse: alcune hanno decenni di ricerca clinica alle spalle, altre evidenze molto più deboli. Una guida onesta a cosa funziona, cosa no e come scegliere un professionista serio.</p>
+          <div class="post-meta" data-en="May 9, 2026 · 11 min read" data-it="9 maggio 2026 · 11 min di lettura" data-pt="9 de maio de 2026 · 11 min de leitura">9 maggio 2026 · 11 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/human-design-types-explained" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/human-design-types-explained-hero.webp"><img class="post-thumb"
+             src="../images/blog/human-design-types-explained-hero.jpg"
+             alt="Five human silhouettes in different palette tones standing in a gentle arc — editorial illustration of the five Human Design types"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Human Design" data-it="Human Design" data-pt="Human Design">Human Design</span>
+          <h2 data-en="The 5 Human Design Types Explained: Manifestor, Generator, MG, Projector, Reflector"
+              data-it="I 5 Tipi di Human Design Spiegati: Manifestor, Generator, MG, Projector, Reflector"
+              data-pt="Os 5 Tipos de Human Design Explicados: Manifestor, Generator, MG, Projector, Reflector">The 5 Human Design Types Explained: Manifestor, Generator, MG, Projector, Reflector</h2>
+          <p data-en="Type is the single most important label on a Human Design chart. A clear, honest walkthrough of all five types — what each is designed to do, the strategy that fits, and the signature emotion that says it is working."
+             data-it="Il Tipo è l'etichetta più importante in una carta Human Design. Un percorso chiaro e onesto attraverso i cinque tipi — cosa ognuno è progettato a fare, la strategia che gli si addice, e l'emozione caratteristica che dice che sta funzionando."
+             data-pt="Tipo é o rótulo mais importante em um mapa de Human Design. Um percurso claro e honesto pelos cinco tipos — o que cada um é projetado para fazer, a estratégia que combina, e a emoção característica que mostra que está funcionando.">Type is the single most important label on a Human Design chart. A clear, honest walkthrough of all five types — what each is designed to do, the strategy that fits, and the signature emotion that says it is working.</p>
+          <div class="post-meta" data-en="May 10, 2026 · 11 min read" data-it="10 maggio 2026 · 11 min di lettura" data-pt="10 de maio de 2026 · 11 min de leitura">May 10, 2026 · 11 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/costellazioni-familiari-online" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/costellazioni-familiari-online-hero.webp"><img class="post-thumb"
+             src="../images/blog/costellazioni-familiari-online-hero.jpg"
+             alt="Cerchio di silhouette disposte come una costellazione, connesse da fili di luce dorata — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Family Constellation" data-it="Costellazioni Familiari" data-pt="Constelações Familiares">Costellazioni Familiari</span>
+          <h2 data-en="Online Family Constellations: How They Work and What to Expect"
+              data-it="Costellazioni Familiari Online: Come Funzionano e Cosa Aspettarsi"
+              data-pt="Constelações Familiares Online: Como Funcionam e O Que Esperar">Costellazioni Familiari Online: Come Funzionano e Cosa Aspettarsi</h2>
+          <p data-en="A practical guide to online Family Constellations: how a video session actually works, what you can address, the differences from the in-person setting, costs, and how to prepare — without exaggerating results."
+             data-it="Una guida pratica alle Costellazioni Familiari online: come funziona davvero una sessione in videochiamata, cosa puoi affrontare, le differenze con il setting in presenza, i costi e come prepararti — senza gonfiare i risultati."
+             data-pt="Um guia prático para Constelações Familiares online: como uma sessão por vídeo realmente funciona, o que você pode abordar, as diferenças com o cenário presencial, custos e como se preparar — sem inflar resultados.">Una guida pratica alle Costellazioni Familiari online: come funziona davvero una sessione in videochiamata, cosa puoi affrontare, le differenze con il setting in presenza, i costi e come prepararti — senza gonfiare i risultati.</p>
+          <div class="post-meta" data-en="May 11, 2026 · 9 min read" data-it="11 maggio 2026 · 9 min di lettura" data-pt="11 de maio de 2026 · 9 min de leitura">11 maggio 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/consulto-astrologico-online" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/consulto-astrologico-online-hero.webp"><img class="post-thumb"
+             src="../images/blog/consulto-astrologico-online-hero.jpg"
+             alt="Silhouette davanti a un tema natale circolare con simboli zodiacali — illustrazione editoriale"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrologia</span>
+          <h2 data-en="Online Astrology Reading: How to Choose and What to Expect"
+              data-it="Consulto Astrologico Online: Come Scegliere e Cosa Aspettarsi"
+              data-pt="Consulta Astrológica Online: Como Escolher e O Que Esperar">Consulto Astrologico Online: Come Scegliere e Cosa Aspettarsi</h2>
+          <p data-en="What actually happens in an online natal chart reading, how to recognise a serious astrologer, what to prepare before the session, realistic prices in Italy — and what you should not expect from astrology."
+             data-it="Cosa succede davvero in una lettura del tema natale online, come riconoscere un astrologo serio, cosa preparare prima della sessione, i prezzi realistici in Italia — e cosa non devi aspettarti dall'astrologia."
+             data-pt="O que realmente acontece em uma leitura do mapa natal online, como reconhecer um astrólogo sério, o que preparar antes da sessão, preços realistas na Itália — e o que você não deve esperar da astrologia.">Cosa succede davvero in una lettura del tema natale online, come riconoscere un astrologo serio, cosa preparare prima della sessione, i prezzi realistici in Italia — e cosa non devi aspettarti dall'astrologia.</p>
+          <div class="post-meta" data-en="May 13, 2026 · 9 min read" data-it="13 maggio 2026 · 9 min di lettura" data-pt="13 de maio de 2026 · 9 min de leitura">13 maggio 2026 · 9 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/reiki-vs-massage" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/reiki-vs-massage-hero.webp"><img class="post-thumb"
+             src="../images/blog/reiki-vs-massage-hero.jpg"
+             alt="Two silhouettes side by side — one receiving Reiki with hands hovering, one receiving a physical therapeutic massage"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Comparison" data-it="Confronto" data-pt="Comparação">Comparison</span>
+          <h2 data-en="Reiki vs Massage: How to Choose Between Energy Work and Bodywork"
+              data-it="Reiki vs Massaggio: Come Scegliere tra Energia e Lavoro sul Corpo"
+              data-pt="Reiki vs Massagem: Como Escolher entre Trabalho Energético e Corporal">Reiki vs Massage: How to Choose Between Energy Work and Bodywork</h2>
+          <p data-en="Reiki and massage compared honestly — how they differ, what the research says, and how to choose between energy work and physical bodywork for your needs."
+             data-it="Reiki e massaggio a confronto in modo onesto — come si differenziano, cosa dice la ricerca e come scegliere tra lavoro energetico e lavoro fisico in base alle tue esigenze."
+             data-pt="Reiki e massagem comparados honestamente — como diferem, o que diz a pesquisa e como escolher entre trabalho energético e corporal para suas necessidades.">Reiki and massage compared honestly — how they differ, what the research says, and how to choose between energy work and physical bodywork for your needs.</p>
+          <div class="post-meta" data-en="May 15, 2026 · 8 min read" data-it="15 maggio 2026 · 8 min di lettura" data-pt="15 de maio de 2026 · 8 min de leitura">May 15, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="/blog/spiritualita-significato" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/spiritualita-significato-hero.webp"><img class="post-thumb"
+             src="../images/blog/spiritualita-significato-hero.jpg"
+             alt="Silhouette umana con braccia aperte verso il cielo e sole dorato — illustrazione editoriale sulla spiritualità"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill" data-en="Spirituality" data-it="Spiritualità" data-pt="Espiritualidade">Spiritualità</span>
+          <h2 data-en="Spirituality: Meaning, Practices and How to Begin Today"
+              data-it="Spiritualità: Significato, Pratiche e Come Iniziare Oggi"
+              data-pt="Espiritualidade: Significado, Práticas e Como Começar Hoje">Spiritualità: Significato, Pratiche e Come Iniziare Oggi</h2>
+          <p data-en="What spirituality actually means in 2026, how it differs from religion, what research says about its effects, the most established practices and a realistic 30-day path to begin — without guru figures or magical promises."
+             data-it="Cosa significa davvero la spiritualità nel 2026, come si distingue dalla religione, cosa dice la ricerca sui suoi effetti, le pratiche più consolidate e un percorso realistico di 30 giorni per iniziare — senza figure guru né promesse magiche."
+             data-pt="O que significa realmente espiritualidade em 2026, como se distingue da religião, o que diz a pesquisa sobre seus efeitos, as práticas mais estabelecidas e um caminho realista de 30 dias para começar — sem figuras gurus nem promessas mágicas.">Cosa significa davvero la spiritualità nel 2026, come si distingue dalla religione, cosa dice la ricerca sui suoi effetti, le pratiche più consolidate e un percorso realistico di 30 giorni per iniziare — senza figure guru né promesse magiche.</p>
+          <div class="post-meta" data-en="May 16, 2026 · 11 min read" data-it="16 maggio 2026 · 11 min di lettura" data-pt="16 de maio de 2026 · 11 min de leitura">16 maggio 2026 · 11 min di lettura</div>
+        </div>
+      </a>
+
+      <a href="/blog/theta-healing-for-anxiety" class="post-card">
+        <picture><source type="image/webp" srcset="../images/blog/theta-healing-for-anxiety-hero.webp"><img class="post-thumb"
+             src="../images/blog/theta-healing-for-anxiety-hero.jpg"
+             alt="Reclining silhouette with concentric brainwave rings in warm gold and terracotta — editorial illustration"
+             width="1200" height="675" loading="lazy"></picture>
+        <div class="post-card-body">
+          <span class="pill">ThetaHealing&reg;</span>
+          <h2 data-en="ThetaHealing® for Anxiety: What to Know"
+              data-it="ThetaHealing® per l'Ansia: Cosa Sapere"
+              data-pt="ThetaHealing® para Ansiedade: O que Saber">ThetaHealing® for Anxiety: What to Know</h2>
+          <p data-en="A calm, honest look at ThetaHealing® for anxiety — what a session involves, what the evidence supports, and when it's a reasonable complement to clinical care."
+             data-it="Uno sguardo calmo e onesto al ThetaHealing® per l'ansia: cosa accade in una sessione, cosa sostiene l'evidenza e quando ha senso usarlo come complemento a un percorso clinico."
+             data-pt="Um olhar calmo e honesto sobre o ThetaHealing® para ansiedade — o que envolve uma sessão, o que a evidência sustenta e quando é um complemento razoável ao cuidado clínico.">A calm, honest look at ThetaHealing® for anxiety — what a session involves, what the evidence supports, and when it's a reasonable complement to clinical care.</p>
+          <div class="post-meta" data-en="May 18, 2026 · 9 min read" data-it="18 maggio 2026 · 9 min di lettura" data-pt="18 de maio de 2026 · 9 min de leitura">May 18, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <a href="../" class="footer-logo">
+            <picture><source type="image/webp" srcset="../images/logo.webp"><img src="../images/logo.png" alt="Holistic Unity" width="44" height="44"></picture>
+            <span>Holistic Unity</span>
+          </a>
+        <p data-en="Connecting souls with wellness."
+           data-it="Connettere le anime con il benessere."
+           data-pt="Conectando almas com bem-estar.">The holistic wellness marketplace that brings verified therapists and seekers together, one session at a time.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/holisticunityapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+      </div>
+      <div class="footer-column">
+        <h4 data-en="Therapies" data-it="Terapie" data-pt="Terapias">Therapies</h4>
+        <a href="../human-design">Human Design</a>
+        <a href="../astrology" data-en="Astrology" data-it="Astrologia" data-pt="Astrologia">Astrology</a>
+        <a href="../numerology" data-en="Numerology" data-it="Numerologia" data-pt="Numerologia">Numerology</a>
+        <a href="../thetahealing">ThetaHealing®</a>
+        <a href="../reiki">Reiki</a>
+        <a href="../ayurveda">Ayurveda</a>
+        <a href="../naturopathy" data-en="Naturopathy" data-it="Naturopatia" data-pt="Naturopatia">Naturopathy</a>
+        <a href="../family-constellation" data-en="Family Constellation" data-it="Costellazioni Familiari" data-pt="Constelação Familiar">Family Constellation</a>
+        <a href="../systemic-constellation" data-en="Systemic Constellation" data-it="Costellazioni Sistemiche" data-pt="Constelação Sistêmica">Systemic Constellation</a>
+        <a href="../shamanism" data-en="Shamanism" data-it="Sciamanesimo" data-pt="Xamanismo">Shamanism</a>
+        <a href="../seed-energy-process" data-en="SEED – Energy Process®" data-it="SEED – Energy Process®" data-pt="SEED – Energy Process®">SEED – Energy Process®</a>
+      </div>
+      <div class="footer-column">
+        <h4 data-en="Platform" data-it="Piattaforma" data-pt="Plataforma">Platform</h4>
+        <a href="../#how-it-works" data-en="How It Works" data-it="Come Funziona" data-pt="Como Funciona">How It Works</a>
+        <a href="../about#therapists" data-en="For Therapists" data-it="Per i Operatori" data-pt="Para Terapeutas">For Therapists</a>
+        <a href="./" data-en="Blog" data-it="Blog" data-pt="Blog">Blog</a>
+        <a href="../about" data-en="About" data-it="Chi Siamo" data-pt="Sobre">About</a>
+        <a href="../about#contact" data-en="Contact" data-it="Contatti" data-pt="Contato">Contact</a>
+      </div>
+      <div class="footer-column">
+        <h4 data-en="Legal" data-it="Legale" data-pt="Legal">Legal</h4>
+        <a href="../privacy-policy" data-en="Privacy Policy" data-it="Privacy Policy" data-pt="Política de Privacidade">Privacy Policy</a>
+        <a href="../cookie-policy" data-en="Cookie Policy" data-it="Cookie Policy" data-pt="Política de Cookies">Cookie Policy</a>
+        <a href="../terms-clients" data-en="Terms (Clients)" data-it="Termini (Clienti)" data-pt="Termos (Clientes)">Terms (Clients)</a>
+        <a href="../terms-therapists" data-en="Terms (Therapists)" data-it="Termini (Operatori)" data-pt="Termos (Terapeutas)">Terms (Therapists)</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Storm X Digital S.R.L. <span data-en="All rights reserved." data-it="Tutti i diritti riservati." data-pt="Todos os direitos reservados.">All rights reserved.</span></span>
+        <a href="https://www.instagram.com/holisticunityapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">@holisticunityapp</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared.js"></script>
+
+</body>
+</html>

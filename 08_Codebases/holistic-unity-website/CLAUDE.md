@@ -4,9 +4,13 @@ This folder is the **production marketing site** for Holistic Unity, a wellness 
 
 - **Live URL:** https://holisticunity.app
 - **Owner:** Marcello (Storm X Digital S.R.L.)
-- **Stack:** static HTML / CSS / inline JS (no framework, no build step)
+- **Stack:** static HTML / CSS / inline JS (no framework). One lightweight Python prerender step for i18n (see below).
 - **Hosting:** Vercel — project `prj_WDGMP74Ib3SxEfONAgKCWuaAbnj3`
-- **CMS:** none. Content is authored directly in HTML files.
+- **CMS:** none. Content is authored in the `_src/` HTML templates.
+
+> ⚠️ **The root `*.html`, `en/`, and `pt/` pages are GENERATED — do not hand-edit them.**
+> Edit the templates in **`_src/`** (they keep the `data-en/it/pt` attributes) and run
+> `python scripts/prerender_i18n.py`. See **Build & i18n pipeline** below.
 
 ---
 
@@ -284,15 +288,53 @@ Add a "New to [modality]?" section above the therapist strip, linking to the new
 
 ---
 
-## Deployment
+## Build & i18n pipeline
 
-Vercel is configured. From this folder:
+The site is statically prerendered into one URL per language so each language is
+independently indexable (previously all 3 languages lived on one URL via client-side
+`setLang()`, so Google only indexed one, and hreflang pointed every language at the
+same URL — non-functional). **Italian is the bare/default + x-default; English →
+`/en/…`, Portuguese → `/pt/…`.** Additive: no redirects; existing URLs are unchanged.
+
+**Source of truth = `_src/`** (the 13 marketing + 34 blog templates, with `data-*`
+attributes intact). The deployed pages are generated:
+
+| Source | Generates |
+|---|---|
+| `_src/reiki.html` | `reiki.html` (it) · `en/reiki.html` · `pt/reiki.html` |
+
+**Rebuild after any content edit (edit `_src/`, then):**
 
 ```bash
+python scripts/prerender_i18n.py    # bake _src → root(it) + en/ + pt/  (per-lang
+                                    # title/desc/OG/canonical/hreflang, toggle→links,
+                                    # data-* stripped, window.HU_LANG injected)
+python scripts/generate_sitemap.py  # trilingual sitemap.xml with hreflang clusters
+python scripts/optimize_images.py   # WebP + light JPG fallbacks for new images
+python scripts/rewrite_images_html.py   # wrap new <img> in <picture> (run on _src first)
+```
+
+Notes:
+- `scripts/prerender_i18n.py` reads meta per language from the H1 (`data-{lang}`) +
+  hero lede; EN keeps its hand-crafted `<title>`. Legal pages (privacy/terms/cookie)
+  use a *different* translation system and are **excluded** from the prerender.
+- `shared.js` `initLang()` early-returns when `window.HU_LANG` is set (baked pages),
+  so it never re-switches the static content.
+- `_src/` is in `.vercelignore` (templates must not be served as duplicate content).
+- Image work order: run the image scripts against `_src/` so the `<picture>` markup
+  is baked into all language outputs by the prerender.
+
+## Deployment
+
+Vercel is configured. **Rebuild first** (prerender + sitemap), then from this folder:
+
+```bash
+python scripts/prerender_i18n.py && python scripts/generate_sitemap.py
 vercel --prod --yes
 ```
 
-This deploys directly to https://holisticunity.app. No preview flow, no CI, no build step — files are served as-is.
+This deploys directly to https://holisticunity.app. No preview flow, no CI. Vercel
+`cleanUrls` serves `en/reiki.html` at `/en/reiki` automatically.
 
 Authentication: the user is already logged into Vercel locally. Do not modify `.vercel/project.json`.
 
