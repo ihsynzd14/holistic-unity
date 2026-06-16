@@ -53,7 +53,18 @@ final class SupabaseAuthRepository: AuthRepositoryProtocol, @unchecked Sendable 
                 // the browser that opens the email.
                 redirectTo: URL(string: "https://app.holisticunity.app/auth/confirm?next=/welcome")
             )
-            
+
+            // Email already registered? With Supabase email-enumeration
+            // protection ON, signUp does NOT throw for an existing address —
+            // it returns a user with an EMPTY `identities` array and no
+            // session. Detect that and surface a clear error instead of
+            // sending the user to the "check your email" screen for an email
+            // that will never arrive. Caught below and rethrown as-is; the UI
+            // maps .emailAlreadyInUse to a user-facing message.
+            if let identities = result.user.identities, identities.isEmpty {
+                throw AuthError.emailAlreadyInUse
+            }
+
             let authUser = result.session?.user ?? result.user
             
             // The database trigger (handle_new_user) auto-creates the users row

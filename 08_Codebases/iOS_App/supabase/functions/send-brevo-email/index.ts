@@ -156,11 +156,19 @@ serve(async (req)=>{
         tags
       });
     }
+    // Surface Brevo-side failures as a non-2xx so callers can detect them.
+    // Previously this always returned HTTP 200 even when Brevo rejected the
+    // send (e.g. inactive template, bad API key), which let callers mark a
+    // user as "welcomed" on a failed send.
     return new Response(JSON.stringify({
       success: result.ok,
-      status: result.status
+      status: result.status,
+      ...result.ok ? {} : {
+        error: "Brevo rejected the send",
+        brevo: result.data
+      }
     }), {
-      status: 200,
+      status: result.ok ? 200 : 502,
       headers: {
         ...corsHeaders,
         "Content-Type": "application/json"

@@ -129,6 +129,7 @@ const it = {
     errorNameRequired: "Inserisci il tuo nome e cognome.",
     errorPhoneRequired: "Inserisci un numero di telefono.",
     errorEmailInvalid: "Inserisci un indirizzo email valido.",
+    errorEmailAlreadyRegistered: "Esiste già un account con questa email. Prova ad accedere o a reimpostare la password.",
     successContinue: "Vai all'accesso",
     checkEmailTitle: "Controlla la tua email",
     checkEmailBody: "Apri il link che abbiamo inviato a {email} per confermare il tuo indirizzo. Dopo la conferma puoi accedere e prenotare la tua prima sessione.",

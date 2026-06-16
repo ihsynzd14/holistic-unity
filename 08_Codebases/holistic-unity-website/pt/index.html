@@ -1866,62 +1866,6 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
       color: var(--berry); font-weight: 700; opacity: 0.7;
     }
 
-    /* ═══════════════ iOS NOTIFY STRIP ═══════════════ */
-    .ios-notify-strip {
-      background: var(--cream);
-      padding: 40px 0 80px;
-    }
-    .ios-notify-card {
-      background: var(--white);
-      border-radius: 18px;
-      border: 1px solid rgba(139,34,82,0.08);
-      padding: 22px 28px;
-      display: flex; align-items: center; gap: 22px;
-      flex-wrap: wrap;
-    }
-    .ios-notify-icon {
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--charcoal) 0%, #1A1A1A 100%);
-      color: white;
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .ios-notify-body { flex-grow: 1; min-width: 220px; }
-    .ios-notify-body strong {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem; color: var(--berry); font-weight: 600;
-      line-height: 1.2; margin-bottom: 4px;
-    }
-    .ios-notify-body span {
-      font-size: 0.9rem; color: var(--charcoal-light);
-    }
-    .ios-notify-form {
-      display: flex; gap: 8px;
-      flex-shrink: 0;
-    }
-    .ios-notify-form input {
-      padding: 12px 18px;
-      border-radius: 50px;
-      border: 1.5px solid rgba(139,34,82,0.15);
-      background: var(--cream);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none; min-width: 200px;
-    }
-    .ios-notify-form input:focus { border-color: var(--berry); background: white; }
-    .ios-notify-form button {
-      padding: 12px 22px;
-      border: none; border-radius: 50px;
-      background: var(--charcoal); color: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem; font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .ios-notify-form button:hover { background: var(--berry); }
-
     /* ═══════════════ STICKY MOBILE BAR ═══════════════ */
     .sticky-bar {
       position: fixed;
@@ -1964,7 +1908,6 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
       .quote-grid { grid-template-columns: 1fr; max-width: 620px; margin: 56px auto 0; }
       .app-grid, .final-cta-inner { gap: 48px; }
       .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .ios-notify-card { flex-direction: column; align-items: flex-start; text-align: left; }
       .pricing-intro { grid-template-columns: 1fr; gap: 48px; }
       .pricing-intro-visual { max-width: 460px; margin: 0 auto; padding: 20px; }
       .expectations-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -1996,9 +1939,6 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
       .final-cta-form .form-row { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: 1fr; gap: 18px; }
       .pricing-reassurance { gap: 16px 24px; }
-      .ios-notify-form { width: 100%; flex-direction: column; gap: 10px; }
-      .ios-notify-form input { width: 100%; }
-      .ios-notify-form button { width: 100%; }
       .sticky-bar { display: flex; }
       /* Add bottom padding on mobile so sticky bar doesn't overlap the footer */
       footer { padding-bottom: 120px; }
@@ -2740,27 +2680,6 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
 </div>
 </div>
 </section>
-<!-- ═══════════════ iOS NOTIFY MINI-CARD ═══════════════ -->
-<section class="ios-notify-strip" id="ios-notify">
-<div class="container">
-<div class="ios-notify-card">
-<div class="ios-notify-icon">
-<svg fill="currentColor" height="28" viewbox="0 0 24 24" width="28"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"></path></svg>
-</div>
-<div class="ios-notify-body">
-<strong>App iOS em breve</strong>
-<span>Avisamos assim que estiver disponível na App Store.</span>
-</div>
-<form action="https://formsubmit.co/ajax/support@holisticunity.app" class="ios-notify-form" id="iosNotifyForm" method="POST">
-<input name="_subject" type="hidden" value="iOS waitlist - Holistic Unity (sito)"/>
-<input name="_captcha" type="hidden" value="false"/>
-<input autocomplete="off" name="_honey" style="display:none" tabindex="-1" type="text"/>
-<input name="email" placeholder="seu@email.com" required="" type="email"/>
-<button type="submit">Avise-me</button>
-</form>
-</div>
-</div>
-</section>
 <!-- ═══════════════ FOOTER ═══════════════ -->
 </main>
 <footer>
@@ -2903,39 +2822,6 @@ footer { background: var(--charcoal); color: var(--white); padding: 80px 0 40px;
        client-webapp's /welcome flow does the matching automatically).
        Meta Pixel `Lead` event now fires from /register, not here. */
 
-    /* ════════ iOS waitlist form - Formspree AJAX submit ════════ */
-    const iosForm = document.getElementById('iosNotifyForm');
-    if (iosForm) {
-      iosForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = iosForm.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        const origText = btn.textContent;
-        btn.textContent = 'Invio…';
-        try {
-          const data = {};
-          new FormData(iosForm).forEach((v, k) => { data[k] = v; });
-          const res = await fetch(iosForm.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
-          });
-          const json = await res.json();
-          if (json.success) {
-            iosForm.innerHTML = '<span style="color:var(--berry);font-weight:600;font-size:0.9rem;">&#10003; Ti scriveremo</span>';
-            if (typeof fbq !== 'undefined') { fbq('track', 'CompleteRegistration', { content_name: 'iOS waitlist' }); }
-          } else {
-            btn.disabled = false;
-            btn.textContent = 'Errore';
-            setTimeout(() => { btn.textContent = origText; }, 3000);
-          }
-        } catch (err) {
-          btn.disabled = false;
-          btn.textContent = 'Errore';
-          setTimeout(() => { btn.textContent = origText; }, 3000);
-        }
-      });
-    }
   </script>
 <!-- Meta Pixel: gated behind marketing consent in shared.js -->
 <!-- Google Analytics 4 -->

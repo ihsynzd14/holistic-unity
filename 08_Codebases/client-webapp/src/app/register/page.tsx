@@ -212,6 +212,17 @@ function RegisterForm() {
       return;
     }
 
+    // Supabase email-enumeration protection: when the email already
+    // belongs to an existing (confirmed) account, signUp returns NO error
+    // and a user whose `identities` array is EMPTY — instead of leaking
+    // that the address exists. Without this check we'd show the misleading
+    // "check your email" screen for an email that will never receive one.
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      setError(t.register.errorEmailAlreadyRegistered);
+      setLoading(false);
+      return;
+    }
+
     // If email confirmation is OFF in Supabase, the new user already has
     // a session — write their public.users row + log them straight in.
     // If email confirmation is ON, we get no session here; show the

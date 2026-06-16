@@ -54,16 +54,46 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/login?error=auth_link_expired`);
   }
 
-  // ─── C2 Welcome email (signup only) ─────────────────────────────────
-  // Moved here from /auth/callback now that signup confirmation uses the
-  // token_hash flow. ONLY for `signup` — recovery must never trigger it.
-  // Idempotent via app_metadata.welcome_sent_at; fail-safe (never blocks the
-  // redirect). Mirrors the logic that used to live in /auth/callback.
+  // ─── Signup post-confirm: provision the row, then C2 Welcome email ──
+  // ONLY for `signup` — recovery must never trigger any of this.
   if (type === "signup") {
+    // (1) Ensure the public.users row exists BEFORE the welcome send.
+    // With email-confirm ON and no signup DB trigger, the row otherwise
+    // doesn't exist yet at this point → send-brevo-email looks the user
+    // up by id, 404s, and the welcome is silently lost. Upsert is
+    // idempotent (no-op if the row already exists). Admin client so RLS
+    // doesn't block the insert. (Mirrors the therapist confirm route.)
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const meta = (user.user_metadata ?? {}) as Record<string, unknown>;
+        const fallbackName =
+          (meta.display_name as string) || (meta.full_name as string) || "";
+        const admin = createAdminClient();
+        await admin.from("users").upsert(
+          {
+            id: user.id,
+            email: user.email,
+            display_name: fallbackName,
+            phone_number: (meta.phone as string) || "",
+            role: "client",
+          },
+          { onConflict: "id", ignoreDuplicates: true },
+        );
+      }
+    } catch (provErr) {
+      console.error("[auth/confirm] client provisioning failed:", provErr);
+    }
+
+    // (2) C2 Welcome email (Brevo template_id=1). Idempotent via
+    // app_metadata.welcome_sent_at; fail-safe (never blocks the redirect).
+    // IMPORTANT: welcome_sent_at is set ONLY after a confirmed successful
+    // send — otherwise a transient Brevo/edge failure would permanently
+    // mark the user as welcomed and the email would be lost forever.
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (user && !user.app_metadata?.welcome_sent_at) {
-        await fetch(`${SUPABASE_URL}/functions/v1/send-brevo-email`, {
+        const welcomeRes = await fetch(`${SUPABASE_URL}/functions/v1/send-brevo-email`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
@@ -76,12 +106,16 @@ export async function GET(request: NextRequest) {
             tags: ["welcome", "client"],
           }),
         });
+        // The edge fn returns { success:false } when Brevo rejects the
+        // send, so check both the HTTP status AND the body.
+        let welcomeSent = welcomeRes.ok;
+        if (welcomeSent) {
+          const body = await welcomeRes.json().catch(() => null);
+          if (body && body.success === false) welcomeSent = false;
+        }
+
         // Create/refresh the Brevo CONTACT (attributes + list membership).
-        // Without this the user only ever received a transactional email
-        // and never appeared in the Brevo contact lists — the C2 welcome
-        // mail fired but the contact was never synced (sync-brevo-contact
-        // was only wired to therapist approval). This covers both web AND
-        // iOS email signups, since iOS verification redirects here too.
+        // Best-effort, independent of the welcome send result.
         await fetch(`${SUPABASE_URL}/functions/v1/sync-brevo-contact`, {
           method: "POST",
           headers: {
@@ -90,13 +124,20 @@ export async function GET(request: NextRequest) {
           },
           body: JSON.stringify({ user_id: user.id, event: "client_signup" }),
         });
-        const admin = createAdminClient();
-        await admin.auth.admin.updateUserById(user.id, {
-          app_metadata: {
-            ...(user.app_metadata ?? {}),
-            welcome_sent_at: new Date().toISOString(),
-          },
-        });
+
+        if (welcomeSent) {
+          const admin = createAdminClient();
+          await admin.auth.admin.updateUserById(user.id, {
+            app_metadata: {
+              ...(user.app_metadata ?? {}),
+              welcome_sent_at: new Date().toISOString(),
+            },
+          });
+        } else {
+          console.warn(
+            "[auth/confirm] welcome email NOT sent (edge/Brevo returned failure) — leaving welcome_sent_at unset so it can be retried",
+          );
+        }
       }
     } catch (welcomeErr) {
       console.warn("[auth/confirm] welcome email failed (non-blocking):", welcomeErr);

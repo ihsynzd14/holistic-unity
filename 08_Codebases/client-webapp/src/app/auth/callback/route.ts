@@ -48,15 +48,42 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // ─── C2 Welcome email (Brevo template_id=1, idempotent, fail-safe) ──
-  // Fires the first time a user lands here with a confirmed session.
-  // Idempotency via app_metadata.welcome_sent_at — prevents re-sends on
-  // subsequent callback hits (e.g. magic-link re-login). Wrapped in
-  // try/catch so a Brevo/admin failure NEVER breaks the redirect.
+  // ─── Ensure public.users exists, then C2 Welcome email ─────────────
+  // (1) Provision the row BEFORE the welcome send. send-brevo-email looks
+  // the user up by id; with no signup DB trigger the row may not exist
+  // yet on a fresh signup → 404 → welcome silently lost. Upsert is
+  // idempotent (no-op for existing users / re-logins). Admin client so
+  // RLS doesn't block the insert.
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const meta = (user.user_metadata ?? {}) as Record<string, unknown>;
+      const fallbackName =
+        (meta.display_name as string) || (meta.full_name as string) || "";
+      const admin = createAdminClient();
+      await admin.from("users").upsert(
+        {
+          id: user.id,
+          email: user.email,
+          display_name: fallbackName,
+          phone_number: (meta.phone as string) || "",
+          role: "client",
+        },
+        { onConflict: "id", ignoreDuplicates: true },
+      );
+    }
+  } catch (provErr) {
+    console.error("[auth/callback] client provisioning failed:", provErr);
+  }
+
+  // (2) C2 Welcome email (Brevo template_id=1). Idempotent via
+  // app_metadata.welcome_sent_at; fail-safe. welcome_sent_at is set ONLY
+  // after a confirmed successful send, so a transient failure doesn't
+  // permanently mark the user as welcomed and lose the email.
   try {
     const { data: { user } } = await supabase.auth.getUser();
     if (user && !user.app_metadata?.welcome_sent_at) {
-      await fetch(`${SUPABASE_URL}/functions/v1/send-brevo-email`, {
+      const welcomeRes = await fetch(`${SUPABASE_URL}/functions/v1/send-brevo-email`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
@@ -69,10 +96,15 @@ export async function GET(request: NextRequest) {
           tags: ["welcome", "client"],
         }),
       });
+      let welcomeSent = welcomeRes.ok;
+      if (welcomeSent) {
+        const body = await welcomeRes.json().catch(() => null);
+        if (body && body.success === false) welcomeSent = false;
+      }
+
       // Create/refresh the Brevo CONTACT (attributes + list membership).
-      // The transactional welcome email above does NOT register the user
-      // in the Brevo contact lists — sync-brevo-contact does. This path
-      // covers SSO / PKCE signups (the email-confirm path is handled in
+      // Best-effort, independent of the welcome send result. Covers
+      // SSO / PKCE signups (the email-confirm path is handled in
       // /auth/confirm).
       await fetch(`${SUPABASE_URL}/functions/v1/sync-brevo-contact`, {
         method: "POST",
@@ -82,13 +114,20 @@ export async function GET(request: NextRequest) {
         },
         body: JSON.stringify({ user_id: user.id, event: "client_signup" }),
       });
-      const admin = createAdminClient();
-      await admin.auth.admin.updateUserById(user.id, {
-        app_metadata: {
-          ...(user.app_metadata ?? {}),
-          welcome_sent_at: new Date().toISOString(),
-        },
-      });
+
+      if (welcomeSent) {
+        const admin = createAdminClient();
+        await admin.auth.admin.updateUserById(user.id, {
+          app_metadata: {
+            ...(user.app_metadata ?? {}),
+            welcome_sent_at: new Date().toISOString(),
+          },
+        });
+      } else {
+        console.warn(
+          "[auth/callback] welcome email NOT sent (edge/Brevo returned failure) — leaving welcome_sent_at unset so it can be retried",
+        );
+      }
     }
   } catch (welcomeErr) {
     console.warn(

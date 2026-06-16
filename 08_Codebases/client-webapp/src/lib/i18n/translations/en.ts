@@ -129,6 +129,7 @@ const en = {
     errorNameRequired: "Please enter your full name.",
     errorPhoneRequired: "Please enter a phone number.",
     errorEmailInvalid: "Please enter a valid email address.",
+    errorEmailAlreadyRegistered: "An account with this email already exists. Try signing in or resetting your password.",
     successContinue: "Go to sign in",
     checkEmailTitle: "Check your email",
     checkEmailBody: "Open the link we sent to {email} to confirm your address. Once confirmed you can sign in and book your first session.",
