@@ -310,6 +310,14 @@ def rewrite_links_for_subdir(soup, lang):
     """In /en and /pt trees, make every internal PAGE link an absolute
     /{lang}/... path. Relative asset paths are absolutized separately."""
     for a in soup.find_all("a", href=True):
+        # Skip the language-toggle links. convert_toggle() already set them
+        # to the correct cross-language URLs (EN -> /en/..., IT -> bare /...,
+        # PT -> /pt/...). The Italian link is a bare modality slug, so without
+        # this guard it matches PAGE_SLUGS and gets re-prefixed to /en/... or
+        # /pt/... — which makes the IT toggle point back at the current page,
+        # so the user can never switch to Italian (the reported bug).
+        if a.get("id") in ("langIt", "langEn", "langPt"):
+            continue
         href = a["href"]
         inner = is_internal_page_link(href)
         if inner is None:
