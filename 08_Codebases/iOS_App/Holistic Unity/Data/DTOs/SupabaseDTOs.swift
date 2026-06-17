@@ -240,6 +240,8 @@ struct TherapistServiceDTO: Codable, Sendable {
             return .numerology
         case "Shamanism", "Sciamanesimo":
             return .shamanism
+        case "SEED - Energy Process", "SEED – Energy Process", "seed-energy-process":
+            return .seedEnergyProcess
         default:
             return .naturopathy
         }

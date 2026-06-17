@@ -492,6 +492,8 @@ final class SupabaseTherapistRepository: TherapistRepositoryProtocol, @unchecked
             return .reiki
         case "sciamanesimo", "shamanism", "Shamanism", "Sciamanesimo":
             return .shamanism
+        case "seed-energy-process", "seed_energy_process", "SEED - Energy Process", "SEED – Energy Process":
+            return .seedEnergyProcess
         default:
             return nil
         }

@@ -95,6 +95,7 @@ enum FamiliarPractice: String, Codable, CaseIterable, Identifiable {
     case numerologia             = "Numerologia"
     case ayurveda                = "Ayurveda"
     case sciamanesimo            = "Sciamanesimo"
+    case seedEnergyProcess       = "SEED - Energy Process"
     case none
 
     var id: String { rawValue }
@@ -111,6 +112,7 @@ enum FamiliarPractice: String, Codable, CaseIterable, Identifiable {
         case .numerologia:             return "Numerologia"
         case .ayurveda:                return "Ayurveda"
         case .sciamanesimo:            return "Sciamanesimo"
+        case .seedEnergyProcess:       return "SEED – Energy Process®"
         case .none:                    return String(localized: "Non le conosco bene", comment: "Familiar practice fallback")
         }
     }
@@ -137,6 +139,7 @@ enum FamiliarPractice: String, Codable, CaseIterable, Identifiable {
         case .numerologia:             return .numerology
         case .ayurveda:                return .ayurveda
         case .sciamanesimo:            return .shamanism
+        case .seedEnergyProcess:       return .seedEnergyProcess
         case .none:                    return nil
         }
     }

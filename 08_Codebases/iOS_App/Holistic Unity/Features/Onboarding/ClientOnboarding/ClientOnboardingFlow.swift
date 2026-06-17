@@ -411,6 +411,7 @@ private extension TherapyCategory {
         case .naturopathy:           return HUColor.tileGreen
         case .ayurveda:              return HUColor.tileGold
         case .shamanism:             return HUColor.tileOrange
+        case .seedEnergyProcess:     return HUColor.tilePink
         }
     }
 }

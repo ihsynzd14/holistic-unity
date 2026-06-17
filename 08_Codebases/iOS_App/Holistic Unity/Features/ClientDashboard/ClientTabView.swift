@@ -1904,6 +1904,8 @@ struct AllTherapistsView: View {
             return String(localized: "Numeri come specchio, cicli, percorso di vita.", comment: "Category tagline")
         case .shamanism:
             return String(localized: "Saggezza terrestre, viaggio, recupero dell'anima.", comment: "Category tagline")
+        case .seedEnergyProcess:
+            return String(localized: "Risveglio interiore e riallineamento con la tua anima.", comment: "Category tagline")
         }
     }
 
@@ -1933,6 +1935,8 @@ struct AllTherapistsView: View {
             return String(localized: "Ogni numero è una vibrazione che ti accompagna.", comment: "Pullquote: Numerology")
         case .shamanism:
             return String(localized: "C'è una parte di te che è sempre stata intera.", comment: "Pullquote: Shamanism")
+        case .seedEnergyProcess:
+            return String(localized: "Tutto è un'anima. Torna a ricordare la tua.", comment: "Pullquote: SEED – Energy Process")
         }
     }
     

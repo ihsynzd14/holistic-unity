@@ -23,6 +23,9 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
     // Indigenous & Earth-based
     case shamanism
 
+    // Soul & Energy Process
+    case seedEnergyProcess = "seed_energy_process"
+
     var id: String { rawValue }
 
     /// The value stored in the Supabase DB (Italian, hyphen-separated).
@@ -39,9 +42,10 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
         case .numerology:            return "numerologia"
         case .reiki:                 return "reiki"
         case .shamanism:             return "sciamanesimo"
+        case .seedEnergyProcess:     return "seed-energy-process"
         }
     }
-    
+
     var displayName: String {
         switch self {
         case .thetaHealing: return String(localized: "ThetaHealing", comment: "Therapy category name")
@@ -54,6 +58,7 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
         case .humanDesign: return String(localized: "Human Design", comment: "Therapy category name")
         case .numerology: return String(localized: "Numerology", comment: "Therapy category name")
         case .shamanism: return String(localized: "Shamanism", comment: "Therapy category name")
+        case .seedEnergyProcess: return String(localized: "SEED – Energy Process", comment: "Therapy category name")
         }
     }
 
@@ -69,6 +74,7 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
         case .humanDesign: return "person.crop.circle.badge.checkmark"
         case .numerology: return "number.circle"
         case .shamanism: return "flame.circle"
+        case .seedEnergyProcess: return "sparkles"
         }
     }
 
@@ -95,6 +101,8 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
             return "Numerology is the study of the mystical significance of numbers and their influence on human life. By analyzing key numbers derived from your birth date and name, numerologists reveal insights about your personality, life path, opportunities, and challenges."
         case .shamanism:
             return "Shamanism is one of humanity's oldest spiritual traditions, practiced for tens of thousands of years across indigenous cultures worldwide. Practitioners work in altered states of consciousness — often supported by drumming, breath, and intention — to journey on your behalf, retrieve lost soul fragments, clear stagnant energies, and reconnect you with the wisdom of nature, ancestors, and your own inner guidance."
+        case .seedEnergyProcess:
+            return "SEED – Energy Process® is an energetic practice of inner awakening developed by Gioia Mandriola and Giorgio Alloa, founders of SEED Academy. In a session, the facilitator builds a direct bridge between your incarnated soul — the part of you living its blocks, fears, and resistances — and your most authentic part, the individual soul, which holds your fullest potential and a clear map of the path you chose for this life. Unlike approaches that work on a single aspect, SEED supports work across several levels at once — physical, mental, energetic, and spiritual. It is a holistic practice of personal and spiritual growth and does not replace psychotherapy or medical care."
         }
     }
 
@@ -121,6 +129,8 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
             return ["Life path clarity", "Understanding personal cycles", "Relationship insights", "Career and purpose guidance"]
         case .shamanism:
             return ["Reconnection with nature and intuition", "Release of energetic blocks and old trauma", "Soul retrieval and integration", "Deeper sense of meaning and belonging"]
+        case .seedEnergyProcess:
+            return ["Realignment with your soul mission", "Release of limiting beliefs and energetic blocks", "Greater clarity, direction, and authenticity", "Work across body, mind, energy, and spirit"]
         }
     }
 
@@ -147,6 +157,8 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
             return "People fascinated by numbers and patterns who want to understand their life path, personal cycles, and compatibility. Great for those making career or relationship decisions."
         case .shamanism:
             return "Those drawn to earth-based and ancestral wisdom who feel disconnected from themselves, nature, or a sense of purpose. Particularly supportive for people processing grief, transitions, or unresolved patterns that haven't responded to talk-based approaches."
+        case .seedEnergyProcess:
+            return "Those who feel they are straining for a life that isn't truly theirs and want to reconnect with who they really are. Especially supportive for people seeking clarity and direction, the courage to express their talents, and a deeper alignment with their own purpose."
         }
     }
 
@@ -163,6 +175,9 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
         case .humanDesign: return "IllustHumanDesign"
         case .numerology: return "IllustNumerology"
         case .shamanism: return "IllustSciamanesimo"
+        // No painted illustration asset yet — all callers guard with `if let`
+        // and fall back to the SF Symbol icon + color, so nil is safe.
+        case .seedEnergyProcess: return nil
         }
     }
     
@@ -183,6 +198,7 @@ enum TherapyCategory: String, Codable, CaseIterable, Identifiable {
         case .numerology: return Color(red: 0.45, green: 0.55, blue: 0.78)
         // Indigenous & Earth-based
         case .shamanism: return Color(red: 0.72, green: 0.45, blue: 0.32)
+        case .seedEnergyProcess: return Color(red: 0.78, green: 0.50, blue: 0.68)
         }
     }
 }
