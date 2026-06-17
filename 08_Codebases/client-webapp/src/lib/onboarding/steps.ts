@@ -244,15 +244,23 @@ export function recommendPractices(answers: AnswerSet, n = 3): string[] {
   // smarrite) and `inner_listening` — those are the areas where the
   // shamanic journey is most directly aligned with what the user is
   // signalling.
+  //
+  // 2026-06-17 (Lorena): SEED – Energy Process added to energy /
+  // inner_listening / life_direction (energy work, inner awakening, soul
+  // mission). Reiki REMOVED from recommendations — per Lorena it's not
+  // properly a standalone therapy and the few who offer it price it so
+  // low it isn't worth proactively surfacing. Reiki stays selectable +
+  // bookable and can still be self-reported in familiar_practices; we
+  // just no longer recommend it from focus/approach signals.
   const focusMap: Record<string, string[]> = {
-    body:           ["Naturopatia", "Ayurveda", "Reiki"],
+    body:           ["Naturopatia", "Ayurveda"],
     mind:           ["ThetaHealing", "Numerologia"],
-    energy:         ["ThetaHealing", "Reiki", "Sciamanesimo"],
+    energy:         ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
     relationships:  ["Costellazioni Familiari", "Costellazioni Sistemiche"],
-    life_direction: ["Astrologia", "Human Design", "Numerologia"],
+    life_direction: ["Astrologia", "Human Design", "Numerologia", "SEED - Energy Process"],
     daily_ritual:   ["Ayurveda", "Naturopatia"],
     family_roots:   ["Costellazioni Familiari", "Sciamanesimo"],
-    inner_listening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo"],
+    inner_listening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo", "SEED - Energy Process"],
   };
   for (const a of answers.focus_areas ?? []) {
     for (const p of focusMap[a] ?? []) bump(p, 2);
@@ -263,12 +271,13 @@ export function recommendPractices(answers: AnswerSet, n = 3): string[] {
   // use symbols but they're experienced, not interpreted) — left out
   // there to keep that bucket focused on Astrologia/Numerologia/HD.
   const approachMap: Record<string, string[]> = {
-    energetic:      ["ThetaHealing", "Reiki", "Sciamanesimo"],
+    energetic:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
     self_knowledge: ["Astrologia", "Human Design", "Numerologia"],
-    spiritual:      ["ThetaHealing", "Reiki", "Sciamanesimo"],
+    spiritual:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
     symbolic:       ["Astrologia", "Numerologia", "Human Design"],
     body_care:      ["Naturopatia", "Ayurveda"],
     // 'open' adds nothing — let other signals decide
+    // (Reiki removed 2026-06-17 — see focusMap note above)
   };
   for (const a of answers.approaches ?? []) {
     for (const p of approachMap[a] ?? []) bump(p, 2);

@@ -343,7 +343,7 @@ struct OnboardingAnswers: Equatable {
 /// used by `practices.category_key`).
 ///
 /// Last verified against `client-webapp/src/lib/onboarding/steps.ts`
-/// on 2026-05-16. Any change to the web version MUST be ported here
+/// on 2026-06-17. Any change to the web version MUST be ported here
 /// to keep the two platforms recommending the same practitioners.
 enum OnboardingMatchmaker {
 
@@ -359,15 +359,18 @@ enum OnboardingMatchmaker {
         }
 
         // Focus areas → practices that address them
+        // 2026-06-17 (Lorena): SEED added to energy / inner_listening /
+        // life_direction; Reiki removed from recommendations (kept
+        // selectable + self-reportable, just not proactively suggested).
         let focusMap: [FocusArea: [String]] = [
-            .body:           ["Naturopatia", "Ayurveda", "Reiki"],
+            .body:           ["Naturopatia", "Ayurveda"],
             .mind:           ["ThetaHealing", "Numerologia"],
-            .energy:         ["ThetaHealing", "Reiki", "Sciamanesimo"],
+            .energy:         ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
             .relationships:  ["Costellazioni Familiari", "Costellazioni Sistemiche"],
-            .lifeDirection:  ["Astrologia", "Human Design", "Numerologia"],
+            .lifeDirection:  ["Astrologia", "Human Design", "Numerologia", "SEED - Energy Process"],
             .dailyRitual:    ["Ayurveda", "Naturopatia"],
             .familyRoots:    ["Costellazioni Familiari", "Sciamanesimo"],
-            .innerListening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo"]
+            .innerListening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo", "SEED - Energy Process"]
         ]
         for area in answers.focusAreas {
             for key in focusMap[area] ?? [] { bump(key, by: 2) }
@@ -376,9 +379,9 @@ enum OnboardingMatchmaker {
         // Approaches → practices that match. `.open` adds nothing
         // (let other signals decide).
         let approachMap: [Approach: [String]] = [
-            .energetic:     ["ThetaHealing", "Reiki", "Sciamanesimo"],
+            .energetic:     ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
             .selfKnowledge: ["Astrologia", "Human Design", "Numerologia"],
-            .spiritual:     ["ThetaHealing", "Reiki", "Sciamanesimo"],
+            .spiritual:     ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
             .symbolic:      ["Astrologia", "Numerologia", "Human Design"],
             .bodyCare:      ["Naturopatia", "Ayurveda"]
         ]
