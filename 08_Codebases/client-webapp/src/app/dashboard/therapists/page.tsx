@@ -371,6 +371,7 @@ const PRACTICE_LABELS_LOCALE: Record<string, string> = {
   numerologia: "Numerologia",
   ayurveda: "Ayurveda",
   sciamanesimo: "Sciamanesimo",
+  "seed-energy-process": "SEED – Energy Process",
 };
 
 function prettyCategory(c: string): string {

@@ -86,6 +86,7 @@ export const ONBOARDING_STEPS: StepConfig[] = [
       { value: "Numerologia",             label: "Numerologia" },
       { value: "Ayurveda",                label: "Ayurveda" },
       { value: "Sciamanesimo",            label: "Sciamanesimo" },
+      { value: "SEED - Energy Process",   label: "SEED – Energy Process®" },
       { value: "none",                    label: "Non le conosco bene", description: "Va benissimo, ti guidiamo noi" },
     ],
     heroSrc: "/onboarding/heroes/03-practices.jpg",

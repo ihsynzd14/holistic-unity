@@ -59,6 +59,7 @@ const PRACTICES: Record<string, { label: string; image: string; tint: string }> 
   numerologia:                { label: "Numerologia",              image: "/practices/heroes/numerologia.jpg",              tint: "#E8DEFA" },
   ayurveda:                   { label: "Ayurveda",                 image: "/practices/heroes/ayurveda.jpg",                 tint: "#FCE8D6" },
   sciamanesimo:               { label: "Sciamanesimo",             image: "/practices/heroes/sciamanesimo.jpg",             tint: "#FCE8D6" },
+  "seed-energy-process":      { label: "SEED – Energy Process", image: "",                                              tint: "#EAD9F5" },
 };
 
 const FALLBACK_PRACTICE = { label: "Sessione", image: "", tint: "#F5E0EB" };

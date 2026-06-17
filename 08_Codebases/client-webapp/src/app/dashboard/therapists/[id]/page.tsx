@@ -57,6 +57,7 @@ const PRACTICE_LABELS: Record<string, string> = {
   numerologia: "Numerologia",
   ayurveda: "Ayurveda",
   sciamanesimo: "Sciamanesimo",
+  "seed-energy-process": "SEED – Energy Process",
 };
 
 type Profile = {
