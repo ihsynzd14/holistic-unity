@@ -15,6 +15,11 @@ final class AppState {
     /// Tab views should observe this, navigate, then set it to nil.
     var pendingDeepLink: DeepLink?
 
+    /// Set by surfaces that want to send the user to the Explore tab
+    /// (e.g. the empty Messages state). ClientTabView observes this,
+    /// switches to Explore, then resets it to false.
+    var requestExploreTab: Bool = false
+
     enum DeepLink: Equatable {
         case booking(id: String)
         case chat(conversationId: String)

@@ -94,6 +94,12 @@ struct ClientTabView: View {
             // Clear after handling so it doesn't fire again
             appState.pendingDeepLink = nil
         }
+        .onChange(of: appState.requestExploreTab) { _, requested in
+            guard requested else { return }
+            exploreCategoryFilter = nil
+            selectedTab = .explore
+            appState.requestExploreTab = false
+        }
     }
 }
 

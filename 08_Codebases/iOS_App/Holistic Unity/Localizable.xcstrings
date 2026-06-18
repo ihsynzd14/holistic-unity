@@ -6803,6 +6803,36 @@
           }
         }
       }
+    },
+    "No messages yet": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessun messaggio"
+          }
+        }
+      }
+    },
+    "Your chats appear here once you connect with a practitioner. Find one that resonates with you and book a session — your conversation opens automatically.": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le tue chat appaiono qui quando ti colleghi con un operatore. Trova quello più in sintonia con te e prenota una sessione: la conversazione si apre automaticamente."
+          }
+        }
+      }
+    },
+    "Find a practitioner": {
+      "localizations": {
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trova un operatore"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
