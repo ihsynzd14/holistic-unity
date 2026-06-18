@@ -372,6 +372,7 @@ const PRACTICE_LABELS_LOCALE: Record<string, string> = {
   ayurveda: "Ayurveda",
   sciamanesimo: "Sciamanesimo",
   "seed-energy-process": "SEED – Energy Process",
+  "quantum-touch-releasing": "Quantum Touch Releasing",
 };
 
 function prettyCategory(c: string): string {

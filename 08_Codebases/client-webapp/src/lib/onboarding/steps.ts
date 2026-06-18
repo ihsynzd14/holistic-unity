@@ -87,6 +87,7 @@ export const ONBOARDING_STEPS: StepConfig[] = [
       { value: "Ayurveda",                label: "Ayurveda" },
       { value: "Sciamanesimo",            label: "Sciamanesimo" },
       { value: "SEED - Energy Process",   label: "SEED – Energy Process®" },
+      { value: "Quantum Touch Releasing", label: "Quantum Touch Releasing®" },
       { value: "none",                    label: "Non le conosco bene", description: "Va benissimo, ti guidiamo noi" },
     ],
     heroSrc: "/onboarding/heroes/03-practices.jpg",
@@ -247,7 +248,10 @@ export function recommendPractices(answers: AnswerSet, n = 3): string[] {
   //
   // 2026-06-17 (Lorena): SEED – Energy Process added to energy /
   // inner_listening / life_direction (energy work, inner awakening, soul
-  // mission). Reiki REMOVED from recommendations — per Lorena it's not
+  // mission). 2026-06-18: Quantum Touch Releasing (QTR) added to energy /
+  // family_roots / inner_listening / life_direction + energetic / spiritual
+  // (vibrational/meditative work on recurring + inherited patterns, like SEED
+  // and Sciamanesimo). Reiki REMOVED from recommendations — per Lorena it's not
   // properly a standalone therapy and the few who offer it price it so
   // low it isn't worth proactively surfacing. Reiki stays selectable +
   // bookable and can still be self-reported in familiar_practices; we
@@ -255,12 +259,12 @@ export function recommendPractices(answers: AnswerSet, n = 3): string[] {
   const focusMap: Record<string, string[]> = {
     body:           ["Naturopatia", "Ayurveda"],
     mind:           ["ThetaHealing", "Numerologia"],
-    energy:         ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
+    energy:         ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process", "Quantum Touch Releasing"],
     relationships:  ["Costellazioni Familiari", "Costellazioni Sistemiche"],
-    life_direction: ["Astrologia", "Human Design", "Numerologia", "SEED - Energy Process"],
+    life_direction: ["Astrologia", "Human Design", "Numerologia", "SEED - Energy Process", "Quantum Touch Releasing"],
     daily_ritual:   ["Ayurveda", "Naturopatia"],
-    family_roots:   ["Costellazioni Familiari", "Sciamanesimo"],
-    inner_listening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo", "SEED - Energy Process"],
+    family_roots:   ["Costellazioni Familiari", "Sciamanesimo", "Quantum Touch Releasing"],
+    inner_listening: ["ThetaHealing", "Astrologia", "Human Design", "Sciamanesimo", "SEED - Energy Process", "Quantum Touch Releasing"],
   };
   for (const a of answers.focus_areas ?? []) {
     for (const p of focusMap[a] ?? []) bump(p, 2);
@@ -271,9 +275,9 @@ export function recommendPractices(answers: AnswerSet, n = 3): string[] {
   // use symbols but they're experienced, not interpreted) — left out
   // there to keep that bucket focused on Astrologia/Numerologia/HD.
   const approachMap: Record<string, string[]> = {
-    energetic:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
+    energetic:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process", "Quantum Touch Releasing"],
     self_knowledge: ["Astrologia", "Human Design", "Numerologia"],
-    spiritual:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process"],
+    spiritual:      ["ThetaHealing", "Sciamanesimo", "SEED - Energy Process", "Quantum Touch Releasing"],
     symbolic:       ["Astrologia", "Numerologia", "Human Design"],
     body_care:      ["Naturopatia", "Ayurveda"],
     // 'open' adds nothing — let other signals decide

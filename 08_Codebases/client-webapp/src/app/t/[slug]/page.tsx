@@ -33,6 +33,7 @@ const PRACTICE_LABELS: Record<string, string> = {
   ayurveda: "Ayurveda",
   sciamanesimo: "Sciamanesimo",
   "seed-energy-process": "SEED – Energy Process",
+  "quantum-touch-releasing": "Quantum Touch Releasing",
 };
 
 type Locale = "it" | "en";

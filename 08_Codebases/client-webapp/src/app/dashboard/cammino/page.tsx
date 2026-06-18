@@ -60,6 +60,7 @@ const PRACTICES: Record<string, { label: string; image: string; tint: string }> 
   ayurveda:                   { label: "Ayurveda",                 image: "/practices/heroes/ayurveda.jpg",                 tint: "#FCE8D6" },
   sciamanesimo:               { label: "Sciamanesimo",             image: "/practices/heroes/sciamanesimo.jpg",             tint: "#FCE8D6" },
   "seed-energy-process":      { label: "SEED – Energy Process", image: "",                                              tint: "#EAD9F5" },
+  "quantum-touch-releasing":  { label: "Quantum Touch Releasing", image: "",                                            tint: "#F4DCEA" },
 };
 
 const FALLBACK_PRACTICE = { label: "Sessione", image: "", tint: "#F5E0EB" };
