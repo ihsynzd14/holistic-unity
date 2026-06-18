@@ -564,21 +564,21 @@ struct ClientHomeView: View {
                     )
 
                     VStack(spacing: 0) {
-                        // Headline + subtitle, right-aligned over the archway.
-                        VStack(alignment: .trailing, spacing: HUSpacing.sm) {
+                        // Headline + subtitle, centered over the archway.
+                        VStack(alignment: .center, spacing: HUSpacing.sm) {
                             Text("Begin your journey")
                                 .font(HUFont.displayHeadline(size: 30, weight: .semiBold))
                                 .foregroundStyle(HUColor.primary)
-                                .multilineTextAlignment(.trailing)
+                                .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
                             Text("Connect with a practitioner who resonates with your intentions.")
                                 .font(HUFont.body(weight: .regular))
                                 .foregroundStyle(HUColor.textSecondary)
-                                .multilineTextAlignment(.trailing)
+                                .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
-                        .frame(maxWidth: 200, alignment: .trailing)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(maxWidth: 220)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, HUSpacing.xxl)
 
                         Spacer(minLength: HUSpacing.lg)
