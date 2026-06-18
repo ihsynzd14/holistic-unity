@@ -543,84 +543,68 @@ struct ClientHomeView: View {
                 }
                 .padding(.horizontal, HUSpacing.xl)
             } else {
-                // Empty state — refined editorial layout with branded lotus
-                // illustration, Fraunces title, and gradient CTA. Replaces
-                // the previous armchair illustration / plain pill button.
-                VStack(spacing: HUSpacing.lg) {
-                    // Lotus illustration framed by a soft branded halo.
-                    // The halo softens the cream-on-cream contrast of the
-                    // raw asset and anchors it visually inside the card.
-                    ZStack {
-                        Circle()
-                            .fill(
-                                RadialGradient(
-                                    colors: [
-                                        HUColor.primary.opacity(0.18),
-                                        HUColor.primary.opacity(0.00),
-                                    ],
-                                    center: .center,
-                                    startRadius: 6,
-                                    endRadius: 90
-                                )
-                            )
-                            .frame(width: 170, height: 170)
-                        Image("empty_no_sessions")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 132, height: 132)
-                    }
+                // Empty state — full-bleed editorial "gateway" artwork with
+                // the headline + subtitle set against the bright archway on the
+                // right, and a wide gradient CTA pinned to the bottom.
+                ZStack(alignment: .bottom) {
+                    // Background artwork fills the whole card.
+                    Image("home_gate")
+                        .resizable()
+                        .scaledToFill()
 
-                    VStack(spacing: HUSpacing.xs) {
-                        Text("Begin your journey")
-                            .font(HUFont.displayHeadline(size: 22, weight: .semiBold))
-                            .foregroundStyle(HUColor.textPrimary)
-                            .multilineTextAlignment(.center)
-                        Text("Connect with a practitioner who resonates with your intentions.")
-                            .font(HUFont.body(weight: .regular))
-                            .foregroundStyle(HUColor.textSecondary)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(.horizontal, HUSpacing.md)
-                    }
+                    // Soft scrim at the bottom so the CTA and the lower edge
+                    // read cleanly over the warm artwork.
+                    LinearGradient(
+                        colors: [
+                            .clear,
+                            HUColor.primary.opacity(0.10),
+                        ],
+                        startPoint: .center,
+                        endPoint: .bottom
+                    )
 
-                    Button {
-                        HUHaptic.impact(.light)
-                        onNavigateToExplore(nil)
-                    } label: {
-                        HStack(spacing: 8) {
-                            Text("Find your practitioner")
-                                .font(.system(size: 15, weight: .semibold))
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 13, weight: .semibold))
+                    VStack(spacing: 0) {
+                        // Headline + subtitle, right-aligned over the archway.
+                        VStack(alignment: .trailing, spacing: HUSpacing.sm) {
+                            Text("Begin your journey")
+                                .font(HUFont.displayHeadline(size: 30, weight: .semiBold))
+                                .foregroundStyle(HUColor.primary)
+                                .multilineTextAlignment(.trailing)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text("Connect with a practitioner who resonates with your intentions.")
+                                .font(HUFont.body(weight: .regular))
+                                .foregroundStyle(HUColor.textSecondary)
+                                .multilineTextAlignment(.trailing)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 22)
-                        .padding(.vertical, 13)
-                        .background(PrimaryGradient.linear)
-                        .clipShape(Capsule())
-                        .shadow(color: HUColor.primary.opacity(0.28), radius: 10, x: 0, y: 4)
+                        .frame(maxWidth: 200, alignment: .trailing)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.top, HUSpacing.xxl)
+
+                        Spacer(minLength: HUSpacing.lg)
+
+                        Button {
+                            HUHaptic.impact(.light)
+                            onNavigateToExplore(nil)
+                        } label: {
+                            HStack(spacing: 8) {
+                                Text("Find your practitioner")
+                                    .font(.system(size: 16, weight: .semibold))
+                                Image(systemName: "arrow.right")
+                                    .font(.system(size: 14, weight: .semibold))
+                            }
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(PrimaryGradient.linear)
+                            .clipShape(Capsule())
+                            .shadow(color: HUColor.primary.opacity(0.30), radius: 12, x: 0, y: 5)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
-                    .padding(.top, HUSpacing.xs)
+                    .padding(HUSpacing.lg)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, HUSpacing.xxl + 4)
-                .padding(.horizontal, HUSpacing.lg)
-                .background(
-                    // Warm wash at top + neutral surface below — gives the
-                    // card depth without competing with the lotus halo.
-                    ZStack {
-                        HUColor.secondaryBackground
-                        LinearGradient(
-                            colors: [
-                                HUColor.primaryLight.opacity(0.55),
-                                .clear,
-                            ],
-                            startPoint: .top,
-                            endPoint: .center
-                        )
-                    }
-                )
+                .aspectRatio(1, contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: HURadius.xxl))
                 .overlay(
                     RoundedRectangle(cornerRadius: HURadius.xxl)
