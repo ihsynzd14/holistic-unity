@@ -20,10 +20,30 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
   const totalPages = Math.ceil((count || 0) / PAGE_SIZE);
   const statuses = ["all", "pending", "confirmed", "in_progress", "completed", "cancelled", "no_show"];
 
+  // Real refund amounts for the bookings on this page — fetched as a SEPARATE
+  // query (not a PostgREST embed) so a transactions issue can never 400 the
+  // bookings query and blank the page. If it fails, PaymentCell falls back to
+  // the policy estimate.
+  const bookingIds = (bookings || []).map((b: any) => b.id);
+  const refundByBooking: Record<string, number> = {};
+  if (bookingIds.length) {
+    const { data: txs } = await supabase
+      .from("transactions")
+      .select("booking_id, refund_amount")
+      .in("booking_id", bookingIds);
+    for (const t of (txs || []) as any[]) {
+      if (t?.booking_id) refundByBooking[String(t.booking_id)] = Number(t.refund_amount || 0);
+    }
+  }
+
   return (
     <div>
       <DisplayHeading>Bookings</DisplayHeading>
       <p className="mt-1 text-sm text-charcoal-muted">All sessions on the platform</p>
+      <div className="mt-3 max-w-3xl rounded-xl border border-berry/10 bg-white/60 px-4 py-3 text-xs leading-relaxed text-charcoal-muted">
+        <p><span className="font-semibold text-charcoal">Payment</span> — <span className="font-medium text-success">Paid</span>: client paid via Stripe · <span className="font-medium">Unpaid</span>: never paid (left at checkout) · <span className="font-medium">Free</span>: €0 intro call.</p>
+        <p className="mt-1"><span className="font-semibold text-charcoal">Cancelled</span> — shows who cancelled (<b>client</b> / <b>therapist</b> / <b>system</b> = auto-cancelled on unpaid timeout or account deletion) and the refund. Policy: ≥48h before = 100% · 24–48h = 50% · &lt;24h = none.</p>
+      </div>
       <div className="mt-6 flex flex-wrap gap-1.5 rounded-2xl bg-white/60 p-1.5 backdrop-blur-sm border border-berry/5 shadow-sm w-fit">
         {statuses.map((s) => (
           <a key={s} href={s === "all" ? "/dashboard/bookings" : `/dashboard/bookings?status=${s}`}
@@ -54,15 +74,15 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-light">{(b.therapist as any)?.display_name || "\u2014"}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm font-semibold text-charcoal">{"\u20AC"}{(b.price || 0).toFixed(2)}</td>
-                <td className="whitespace-nowrap px-5 py-4"><PaymentCell b={b} /></td>
+                <td className="whitespace-nowrap px-5 py-4"><PaymentCell b={b} refund={refundByBooking[b.id]} /></td>
                 <td className="whitespace-nowrap px-5 py-4">
                   <StatusBadge status={b.status} />
-                  {b.status === "cancelled" && (b.cancelled_by || b.cancellation_notice_hrs != null) && (
-                    <p className="mt-1 text-[11px] text-charcoal-muted" title={b.cancellation_reason || ""}>
-                      {b.cancelled_by ? `by ${b.cancelled_by}` : ""}
-                      {b.cancellation_notice_hrs != null ? `${b.cancelled_by ? " \u00B7 " : ""}${b.cancellation_notice_hrs}h notice` : ""}
-                    </p>
-                  )}
+                  {b.status === "cancelled" && (() => {
+                    const who = cancelledByLabel(b);
+                    const notice = b.cancellation_notice_hrs != null ? `${b.cancellation_notice_hrs}h notice` : "";
+                    const text = [who, notice].filter(Boolean).join(" \u00B7 ");
+                    return text ? <p className="mt-1 text-[11px] text-charcoal-muted" title={b.cancellation_reason || ""}>{text}</p> : null;
+                  })()}
                 </td>
                 <td className="whitespace-nowrap px-5 py-4 text-center"><CancelBookingButton bookingId={b.id} status={b.status} /></td>
               </tr>
@@ -87,31 +107,48 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
   );
 }
 
-// Shows the money story of a booking at a glance — did the client actually
-// pay (Stripe), and if cancelled, what refund applied. Answers "paid then
-// cancelled? refunded?". Refund is derived from the recorded
-// `cancellation_notice_hrs` per the policy (>=48h=100%, 24-48h=50%, <24h=0%),
-// which is exactly what the cancel route applies for a paid+confirmed booking.
-// The exact Stripe refund row lives in `transactions` (cross-ref there or in
-// Stripe for edge cases).
-function PaymentCell({ b }: { b: any }) {
+// Plain-language cancellation attribution: client / therapist / system.
+// The client cancel route records `cancelled_by`; auto-cleanups (unpaid
+// timeout, deleted account) leave it null but tag the reason, so we infer
+// "system" from there.
+function cancelledByLabel(b: any): string {
+  if (b.cancelled_by === "client") return "by client";
+  if (b.cancelled_by === "therapist") return "by therapist";
+  const r = (b.cancellation_reason || "").toLowerCase();
+  if (r.startsWith("auto_cleanup") || r.includes("user_deleted")) return "by system";
+  return b.cancelled_by ? `by ${b.cancelled_by}` : "";
+}
+
+// The money story of a booking: did the client actually pay (Stripe), and if
+// cancelled, what was refunded. `refund` is the REAL amount from the
+// transactions row; if we don't have it we fall back to the policy-tier
+// estimate (>=48h=100%, 24-48h=50%, <24h=0%), marked with "~".
+function PaymentCell({ b, refund }: { b: any; refund: number | undefined }) {
   const paid = !!b.stripe_payment_intent_id;
   if (!paid) {
     return <span className="text-xs text-charcoal-muted">{(b.price || 0) > 0 ? "Unpaid" : "Free"}</span>;
   }
+  const cancelled = b.status === "cancelled";
+  const hasReal = refund !== undefined;
+  const real = refund ?? 0;
   const h = b.cancellation_notice_hrs;
-  // null = not cancelled; -1 = cancelled but no notice recorded; else the tier.
-  const ratio = b.status !== "cancelled" ? null : h == null ? -1 : h >= 48 ? 1 : h >= 24 ? 0.5 : 0;
+  const tier = h == null ? null : h >= 48 ? 1 : h >= 24 ? 0.5 : 0;
   return (
     <div className="text-xs leading-tight">
       <span className="font-semibold text-success">Paid €{(b.price || 0).toFixed(2)}</span>
-      {ratio === 1 || ratio === 0.5 ? (
-        <span className="mt-0.5 block font-medium text-error">↩ Refund {ratio === 1 ? "100%" : "50%"} (€{((b.price || 0) * ratio).toFixed(2)})</span>
-      ) : ratio === 0 ? (
-        <span className="mt-0.5 block text-charcoal-muted">No refund (&lt;24h)</span>
-      ) : ratio === -1 ? (
-        <span className="mt-0.5 block text-charcoal-muted">Refund: n/a</span>
-      ) : null}
+      {cancelled && (
+        hasReal && real > 0 ? (
+          <span className="mt-0.5 block font-medium text-error">↩ Refunded €{real.toFixed(2)}</span>
+        ) : hasReal && real === 0 ? (
+          <span className="mt-0.5 block text-charcoal-muted">No refund</span>
+        ) : tier === 1 || tier === 0.5 ? (
+          <span className="mt-0.5 block font-medium text-error" title="Estimated from cancellation policy (no transaction row found)">↩ ~{tier === 1 ? "100%" : "50%"} (€{((b.price || 0) * tier).toFixed(2)})</span>
+        ) : tier === 0 ? (
+          <span className="mt-0.5 block text-charcoal-muted">No refund (&lt;24h)</span>
+        ) : (
+          <span className="mt-0.5 block text-charcoal-muted">Refund: unknown</span>
+        )
+      )}
     </div>
   );
 }
