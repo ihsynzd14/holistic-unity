@@ -14,7 +14,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
   // `format` column was dropped on 2026-04-16 (all sessions are virtual
   // now). Selecting it caused PostgREST to 400 the entire query, which
   // made the table render empty for the admin.
-  let query = supabase.from("bookings").select("id, service_name, duration, price, platform_fee, therapist_payout, status, scheduled_at, created_at, client:client_id(display_name, email), therapist:therapist_id(display_name)", { count: "exact" }).order("scheduled_at", { ascending: false }).range(from, to);
+  let query = supabase.from("bookings").select("id, service_name, duration, price, platform_fee, therapist_payout, status, scheduled_at, created_at, stripe_payment_intent_id, cancelled_by, cancelled_at, cancellation_notice_hrs, cancellation_reason, client:client_id(display_name, email), therapist:therapist_id(display_name)", { count: "exact" }).order("scheduled_at", { ascending: false }).range(from, to);
   if (sf !== "all") query = query.eq("status", sf);
   const { data: bookings, count } = await query;
   const totalPages = Math.ceil((count || 0) / PAGE_SIZE);
@@ -41,6 +41,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
               <th className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Therapist</th>
               <th className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Date</th>
               <th className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Price</th>
+              <th className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Payment</th>
               <th className="px-5 py-3.5 text-left text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Status</th>
               <th className="px-5 py-3.5 text-center text-[11px] font-semibold uppercase tracking-widest text-charcoal-muted">Actions</th>
             </tr>
@@ -53,11 +54,20 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-light">{(b.therapist as any)?.display_name || "\u2014"}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm font-semibold text-charcoal">{"\u20AC"}{(b.price || 0).toFixed(2)}</td>
-                <td className="whitespace-nowrap px-5 py-4"><StatusBadge status={b.status} /></td>
+                <td className="whitespace-nowrap px-5 py-4"><PaymentCell b={b} /></td>
+                <td className="whitespace-nowrap px-5 py-4">
+                  <StatusBadge status={b.status} />
+                  {b.status === "cancelled" && (b.cancelled_by || b.cancellation_notice_hrs != null) && (
+                    <p className="mt-1 text-[11px] text-charcoal-muted" title={b.cancellation_reason || ""}>
+                      {b.cancelled_by ? `by ${b.cancelled_by}` : ""}
+                      {b.cancellation_notice_hrs != null ? `${b.cancelled_by ? " \u00B7 " : ""}${b.cancellation_notice_hrs}h notice` : ""}
+                    </p>
+                  )}
+                </td>
                 <td className="whitespace-nowrap px-5 py-4 text-center"><CancelBookingButton bookingId={b.id} status={b.status} /></td>
               </tr>
             ))}
-            {(!bookings || bookings.length === 0) && <tr><td colSpan={7} className="px-5 py-12 text-center text-sm text-charcoal-muted">No bookings found</td></tr>}
+            {(!bookings || bookings.length === 0) && <tr><td colSpan={8} className="px-5 py-12 text-center text-sm text-charcoal-muted">No bookings found</td></tr>}
           </tbody>
         </table>
       </div>
@@ -73,6 +83,35 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// Shows the money story of a booking at a glance — did the client actually
+// pay (Stripe), and if cancelled, what refund applied. Answers "paid then
+// cancelled? refunded?". Refund is derived from the recorded
+// `cancellation_notice_hrs` per the policy (>=48h=100%, 24-48h=50%, <24h=0%),
+// which is exactly what the cancel route applies for a paid+confirmed booking.
+// The exact Stripe refund row lives in `transactions` (cross-ref there or in
+// Stripe for edge cases).
+function PaymentCell({ b }: { b: any }) {
+  const paid = !!b.stripe_payment_intent_id;
+  if (!paid) {
+    return <span className="text-xs text-charcoal-muted">{(b.price || 0) > 0 ? "Unpaid" : "Free"}</span>;
+  }
+  const h = b.cancellation_notice_hrs;
+  // null = not cancelled; -1 = cancelled but no notice recorded; else the tier.
+  const ratio = b.status !== "cancelled" ? null : h == null ? -1 : h >= 48 ? 1 : h >= 24 ? 0.5 : 0;
+  return (
+    <div className="text-xs leading-tight">
+      <span className="font-semibold text-success">Paid €{(b.price || 0).toFixed(2)}</span>
+      {ratio === 1 || ratio === 0.5 ? (
+        <span className="mt-0.5 block font-medium text-error">↩ Refund {ratio === 1 ? "100%" : "50%"} (€{((b.price || 0) * ratio).toFixed(2)})</span>
+      ) : ratio === 0 ? (
+        <span className="mt-0.5 block text-charcoal-muted">No refund (&lt;24h)</span>
+      ) : ratio === -1 ? (
+        <span className="mt-0.5 block text-charcoal-muted">Refund: n/a</span>
+      ) : null}
     </div>
   );
 }
