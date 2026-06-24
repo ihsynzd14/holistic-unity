@@ -1,0 +1,79 @@
+name: gitleaks
+
+# Runs on every push and pull request, plus weekly on Monday 09:00 UTC so
+# history is rescanned as rules evolve.
+#
+# Why we invoke the OSS binary instead of gitleaks/gitleaks-action@v2:
+# v2 of the action requires a paid license for private organisations.
+# The underlying CLI is MIT-licensed and fully functional on its own.
+# We download a pinned release and run it directly — zero cost, same
+# ruleset, same exit code semantics.
+#
+# Job exits non-zero on any finding — PR merge is blocked until resolved.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Scan for secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          # Required so gitleaks walks the whole history, not just HEAD.
+          # Without this the shallow clone's diff is all that's scanned.
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        # Pin a specific version so rule updates are opt-in, not surprise.
+        env:
+          GITLEAKS_VERSION: "8.18.4"
+        run: |
+          set -euo pipefail
+          curl -sSL -o gitleaks.tar.gz \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          tar -xzf gitleaks.tar.gz gitleaks
+          chmod +x gitleaks
+          sudo mv gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+
+      - name: Run gitleaks (git history + working tree)
+        run: |
+          set -euo pipefail
+          gitleaks detect \
+            --source . \
+            --config .gitleaks.toml \
+            --report-format sarif \
+            --report-path gitleaks.sarif \
+            --redact \
+            --verbose \
+            --exit-code 1 \
+            --no-banner
+
+      - name: Upload SARIF report
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: gitleaks.sarif
+          # Tag so findings show up under the gitleaks tool name in the
+          # repo's Security tab, separate from Dependabot / CodeQL.
+          category: gitleaks
+
+      - name: Upload raw report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gitleaks-report
+          path: gitleaks.sarif
+          retention-days: 30

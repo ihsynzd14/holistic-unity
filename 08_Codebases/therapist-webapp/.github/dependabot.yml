@@ -1,0 +1,95 @@
+# Dependabot configuration — therapist-webapp
+#
+# Strategy: keep security updates aggressive, feature updates weekly-batched.
+# GitHub cost is free on public repos and included on Pro plans for private.
+#
+# `groups` batch non-security updates so we don't get 20 separate PRs a week.
+# Security updates still come through individually + immediately so we can
+# triage urgency.
+
+version: 2
+updates:
+  # --- npm (app dependencies) ---
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Rome"
+    open-pull-requests-limit: 10
+    assignees:
+      - "marcellofroscia"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    # Batch minor + patch updates for non-security changes — reduces PR churn.
+    # Major updates still open as individual PRs (so we can review breaking
+    # changes one at a time).
+    groups:
+      # Runtime framework — Next.js / React / Supabase are high-blast-radius.
+      # Grouping them lets Renovate/Dependabot bundle their peer-compatible
+      # bumps together.
+      next-stack:
+        patterns:
+          - "next"
+          - "next-*"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - "minor"
+          - "patch"
+      supabase:
+        patterns:
+          - "@supabase/*"
+        update-types:
+          - "minor"
+          - "patch"
+      stream-chat:
+        patterns:
+          - "stream-chat"
+          - "stream-chat-react"
+        update-types:
+          - "patch"
+      livekit:
+        patterns:
+          - "livekit-*"
+          - "@livekit/*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Dev + tooling — lint, types, test. Safe to bundle more aggressively.
+      dev-tooling:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+    # Don't touch these — pinned intentionally or upstream-fragile.
+    ignore:
+      # Keep stream-chat on v13 until the major 14 upgrade lands via a
+      # dedicated tracked PR (breaking changes to ChatClient.connectUser).
+      - dependency-name: "stream-chat-react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "stream-chat"
+        update-types: ["version-update:semver-major"]
+
+  # --- GitHub Actions (workflow file action versions) ---
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:30"
+      timezone: "Europe/Rome"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "ci"
+      - "dependencies"

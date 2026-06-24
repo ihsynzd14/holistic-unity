@@ -1,0 +1,106 @@
+# Holistic Unity — custom gitleaks rules.
+# Extends the default ruleset with project-specific patterns.
+#
+# Run locally:
+#   brew install gitleaks
+#   gitleaks detect --source . --config .gitleaks.toml
+#
+# CI runs the same ruleset via .github/workflows/gitleaks.yml on every push
+# and pull request, blocking merge on any finding.
+
+# Pull in all upstream rules (AWS keys, Stripe live keys, generic private
+# keys, etc.) and layer our custom rules on top.
+[extend]
+useDefault = true
+
+# --- Custom rules tuned to our secret inventory ---
+
+[[rules]]
+id = "holisticunity-supabase-service-role"
+description = "Supabase service_role JWT (starts with 'eyJ', contains 'service_role' claim)"
+# The service role key is a JWT — the base64-encoded header decodes to
+# `{"alg":"HS256","typ":"JWT"}` and the payload contains
+# `"role":"service_role"`. Base64-encoded JWTs are long and begin with `eyJ`;
+# we scope the regex tightly to minimise false positives on random JWTs.
+regex = '''eyJ[A-Za-z0-9_-]{15,}\.eyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{20,}'''
+keywords = ["service_role", "SUPABASE_SERVICE_ROLE"]
+
+[[rules]]
+id = "holisticunity-stripe-restricted"
+description = "Stripe restricted API key"
+regex = '''rk_(live|test)_[A-Za-z0-9]{24,}'''
+keywords = ["rk_live_", "rk_test_"]
+
+[[rules]]
+id = "holisticunity-stripe-secret"
+description = "Stripe secret API key"
+regex = '''sk_(live|test)_[A-Za-z0-9]{24,}'''
+keywords = ["sk_live_", "sk_test_"]
+
+[[rules]]
+id = "holisticunity-stripe-webhook"
+description = "Stripe webhook signing secret"
+regex = '''whsec_[A-Za-z0-9]{32,}'''
+keywords = ["whsec_"]
+
+[[rules]]
+id = "holisticunity-livekit-api-secret"
+description = "LiveKit API secret"
+regex = '''(?i)LIVEKIT_API_SECRET\s*[:=]\s*['"]?[A-Za-z0-9+/=_-]{32,}['"]?'''
+keywords = ["LIVEKIT_API_SECRET"]
+
+[[rules]]
+id = "holisticunity-stream-api-secret"
+description = "Stream Chat API secret"
+regex = '''(?i)STREAM_(CHAT_)?API_SECRET\s*[:=]\s*['"]?[A-Za-z0-9]{40,}['"]?'''
+keywords = ["STREAM_API_SECRET", "STREAM_CHAT_API_SECRET"]
+
+[[rules]]
+id = "holisticunity-ical-secret"
+description = "iCal HMAC signing secret"
+regex = '''(?i)ICAL_SECRET\s*[:=]\s*['"]?[A-Za-z0-9+/=_-]{32,}['"]?'''
+keywords = ["ICAL_SECRET"]
+
+[[rules]]
+id = "holisticunity-oauth-state-secret"
+description = "OAuth state HMAC secret"
+regex = '''(?i)OAUTH_STATE_SECRET\s*[:=]\s*['"]?[A-Za-z0-9+/=_-]{32,}['"]?'''
+keywords = ["OAUTH_STATE_SECRET"]
+
+[[rules]]
+id = "holisticunity-google-oauth-client-secret"
+description = "Google OAuth client secret"
+regex = '''GOCSPX-[A-Za-z0-9_-]{28,}'''
+keywords = ["GOCSPX-"]
+
+[[rules]]
+id = "holisticunity-microsoft-oauth-client-secret"
+description = "Microsoft Entra / Azure AD client secret (value, not ID)"
+# Azure client secret values are 40 chars, starting with one or two letters,
+# containing tildes — fingerprint first 4 chars to reduce false positives.
+regex = '''(?i)(AZURE|MICROSOFT|MS)_CLIENT_SECRET\s*[:=]\s*['"]?[A-Za-z0-9~._-]{34,44}['"]?'''
+keywords = ["AZURE_CLIENT_SECRET", "MICROSOFT_CLIENT_SECRET", "MS_CLIENT_SECRET"]
+
+# --- Allowlist — suppress known-safe matches ---
+
+[allowlist]
+description = "Project allowlist"
+paths = [
+    # Test fixtures using mock keys
+    '''.*/__tests__/.*''',
+    '''.*\.test\.(ts|tsx|js|jsx)$''',
+    # node_modules drift (shouldn't be committed, but defence in depth)
+    '''^node_modules/''',
+    # Supabase CLI migrations docs reference service_role concept, not a key
+    '''^supabase/migrations/.*''',
+    # Compiled output
+    '''^\.next/''',
+    '''^dist/''',
+    '''^build/''',
+]
+regexes = [
+    # Stripe test mode placeholder sk_test_xxx used in docs
+    '''sk_test_51[A-Za-z0-9]{24}''',
+    # Well-known Stripe publishable test keys in Stripe's own docs examples
+    '''pk_test_TYooMQauvdEDq54NiTphI7jx''',
+]

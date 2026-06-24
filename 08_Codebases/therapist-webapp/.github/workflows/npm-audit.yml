@@ -1,0 +1,56 @@
+name: npm audit
+
+# Runs on every push + pull request, plus daily at 05:00 UTC so newly
+# disclosed advisories don't sit for a week before we see them.
+#
+# Threshold: HIGH or CRITICAL breaks the build. MODERATE is reported in the
+# job summary but does not fail — otherwise transitive-dep noise would
+# constantly block merges (and most moderates are low impact in practice).
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit npm dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Pin to match the production runtime (Vercel uses whatever the
+          # project requests; our next.config.ts is happy on Node 20+).
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies (no scripts, no audit chatter)
+        # Using `ci` instead of `install` to enforce lockfile integrity.
+        # `--ignore-scripts` blocks malicious post-install hooks from running
+        # during dep installation — a supply-chain attacker could otherwise
+        # execute arbitrary code here.
+        run: npm ci --ignore-scripts
+
+      - name: Audit (production only, fail on high+)
+        # We scope to --omit=dev because dev-only vulnerabilities don't ship
+        # to users. They'll still show up in scheduled cron runs as a
+        # separate job summary (below) so we know to fix them eventually.
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Audit (all, informational)
+        # Separate step so its exit is ignored; we capture full report as
+        # job summary for visibility.
+        if: always()
+        run: |
+          set +e
+          npm audit --json > full-audit.json
+          jq -r '.metadata.vulnerabilities | to_entries | map("\(.key): \(.value)") | .[]' full-audit.json >> "$GITHUB_STEP_SUMMARY" || true

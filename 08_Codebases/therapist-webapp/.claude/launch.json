@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "client-prod",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/Users/marcello/Desktop/Holistic Unity/client-webapp' && npx next start --port 3001"],
+      "port": 3001
+    },
+    {
+      "name": "client-dev",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/Users/marcello/Desktop/Holistic Unity/client-webapp' && npx next dev --port 3001"],
+      "port": 3001
+    },
+    {
+      "name": "static-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path'),u=require('url');const R='/Users/marcello/Desktop/Holistic Unity/holistic-unity-website';const M={'.html':'text/html','.js':'application/javascript','.css':'text/css','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.svg':'image/svg+xml','.ico':'image/x-icon','.json':'application/json','.xml':'application/xml','.txt':'text/plain'};h.createServer((req,res)=>{let q=u.parse(req.url).pathname;if(q==='/')q='/index.html';if(q.endsWith('/'))q+='index.html';const fp=p.join(R,q);f.readFile(fp,(e,d)=>{if(e){res.writeHead(404);res.end('404 '+q);return;}res.writeHead(200,{'Content-Type':M[p.extname(fp).toLowerCase()]||'application/octet-stream'});res.end(d);});}).listen(3002,'127.0.0.1',()=>console.log('static-site on http://127.0.0.1:3002'));"],
+      "port": 3002
+    },
+    {
+      "name": "chemicoils",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path'),u=require('url');const R='/Users/marcello/Desktop/chemicoils-redesign';const M={'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.svg':'image/svg+xml','.ico':'image/x-icon','.json':'application/json','.xml':'application/xml','.txt':'text/plain','.woff':'font/woff','.woff2':'font/woff2'};h.createServer((req,res)=>{let q=u.parse(req.url).pathname;if(q==='/')q='/index.html';if(q.endsWith('/'))q+='index.html';const fp=p.join(R,q);f.readFile(fp,(e,d)=>{if(e){res.writeHead(404);res.end('404 '+q);return;}res.writeHead(200,{'Content-Type':M[p.extname(fp).toLowerCase()]||'application/octet-stream'});res.end(d);});}).listen(3003,'127.0.0.1',()=>console.log('chemicoils on http://127.0.0.1:3003'));"],
+      "port": 3003
+    }
+  ]
+}
