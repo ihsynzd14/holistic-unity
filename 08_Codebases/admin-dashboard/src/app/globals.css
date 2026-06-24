@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/* Fonts are loaded via `next/font/google` in src/app/layout.tsx — that
+ * exposes `--font-inter` and `--font-cormorant` on <html>. We chain those
+ * here so the existing `var(--font-display)` / `var(--font-body)` call sites
+ * keep working unchanged. The trailing fallbacks (Georgia / -apple-system)
+ * cover the pre-hydration paint window. */
+
+:root {
+  /* Brand – Berry */
+  --berry: #7B2252;
+  --berry-dark: #5C1A3E;
+  --berry-light: #9A3A65;
+  --berry-muted: #B06A8E;
+  --berry-subtle: #F5E0EB;
+
+  /* Brand – Gold */
+  --gold: #C9A96E;
+  --gold-light: #D4BC8E;
+  --gold-dark: #B8944F;
+
+  /* Neutrals */
+  --cream: #FDF6F0;
+  --cream-dark: #F5EDE4;
+  --charcoal: #2D2D2D;
+  --charcoal-light: #4A4A4A;
+  --charcoal-muted: #6B6B6B;
+
+  /* Semantic */
+  --success: #33B85C;
+  --success-light: #E8F8ED;
+  --warning: #F5B80F;
+  --warning-light: #FFF8E1;
+  --error: #E04438;
+  --error-light: #FDECEB;
+  --info: #3887D6;
+  --info-light: #E8F0FB;
+
+  /* Misc */
+  --star: #FFCA00;
+  --online: #33C750;
+  --white: #FFFFFF;
+  --divider: rgba(139, 34, 82, 0.08);
+  --shadow: rgba(139, 34, 82, 0.06);
+  --overlay: rgba(45, 45, 45, 0.4);
+}
+
+@theme inline {
+  --color-berry: var(--berry);
+  --color-berry-dark: var(--berry-dark);
+  --color-berry-light: var(--berry-light);
+  --color-berry-muted: var(--berry-muted);
+  --color-berry-subtle: var(--berry-subtle);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-charcoal-muted: var(--charcoal-muted);
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-error: var(--error);
+  --color-error-light: var(--error-light);
+  --color-info: var(--info);
+  --color-info-light: var(--info-light);
+  --color-star: var(--star);
+  --color-online: var(--online);
+  --color-divider: var(--divider);
+  --color-shadow: var(--shadow);
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--berry-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--berry); }
+
+/* Staggered fade-in animation */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-reveal {
+  animation: fadeSlideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* ─── Stream Chat theme overrides ─── */
+.hu-stream-chat .str-chat {
+  --str-chat__primary-color: var(--berry);
+  --str-chat__active-primary-color: var(--berry-dark);
+  --str-chat__surface-color: var(--white);
+  --str-chat__secondary-surface-color: var(--cream);
+  --str-chat__primary-surface-color: var(--berry);
+  --str-chat__primary-surface-color-low-emphasis: var(--berry-subtle);
+  --str-chat__border-radius-circle: 16px;
+  font-family: var(--font-body);
+}
+
+.hu-stream-chat .str-chat__channel-header {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(139, 34, 82, 0.06);
+  padding: 12px 20px;
+}
+
+.hu-stream-chat .str-chat__channel-header .str-chat__header-livestream-left--title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.hu-stream-chat .str-chat__channel-list-messenger {
+  background: transparent;
+}
+
+.hu-stream-chat .str-chat__channel-preview-messenger--active {
+  background: var(--berry-subtle) !important;
+  border-radius: 12px;
+}
+
+.hu-stream-chat .str-chat__channel-preview-messenger:hover {
+  background: rgba(139, 34, 82, 0.04);
+  border-radius: 12px;
+}
+
+.hu-stream-chat .str-chat__message-simple-text-inner {
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.hu-stream-chat .str-chat__message-bubble {
+  border-radius: 16px;
+}
+
+.hu-stream-chat .str-chat__li--mine .str-chat__message-bubble {
+  background: var(--berry) !important;
+  color: white;
+}
+
+.hu-stream-chat .str-chat__li--mine .str-chat__message-text-inner {
+  color: white;
+}
+
+.hu-stream-chat .str-chat__li--other .str-chat__message-bubble {
+  background: var(--cream-dark);
+}
+
+.hu-stream-chat .str-chat__input-flat {
+  background: rgba(255,255,255,0.9);
+  border-top: 1px solid rgba(139, 34, 82, 0.06);
+  padding: 12px 16px;
+}
+
+.hu-stream-chat .str-chat__textarea textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--cream) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(139, 34, 82, 0.08) !important;
+}
+
+.hu-stream-chat .str-chat__textarea textarea:focus {
+  border-color: var(--berry-muted) !important;
+  box-shadow: 0 0 0 2px rgba(139, 34, 82, 0.08) !important;
+}
+
+.hu-stream-chat .str-chat__send-button {
+  color: var(--berry);
+}
+
+.hu-stream-chat .str-chat__send-button:hover {
+  color: var(--berry-dark);
+}
+
+.hu-stream-chat .str-chat__date-separator-line {
+  background: rgba(139, 34, 82, 0.08);
+}
+
+.hu-stream-chat .str-chat__date-separator-date {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--charcoal-muted);
+}
+
+.hu-stream-chat .str-chat__channel-search {
+  padding: 12px;
+}
+
+.hu-stream-chat .str-chat__channel-search input {
+  background: var(--cream);
+  border: 1px solid rgba(139, 34, 82, 0.08);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.hu-stream-chat .str-chat__unread-count {
+  background: var(--berry) !important;
+}
+
+/* Subtle grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}

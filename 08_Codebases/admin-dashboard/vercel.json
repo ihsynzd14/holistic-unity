@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/monthly-invoices",
+      "schedule": "0 3 1 * *"
+    },
+    {
+      "path": "/api/cron/daily-credit-notes",
+      "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/billing-reminders",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/admin-alerts",
+      "schedule": "0 * * * *"
+    }
+  ]
+}
