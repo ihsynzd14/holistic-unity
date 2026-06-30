@@ -107,7 +107,12 @@ export function getGoogleAuthUrl(state: string): string {
     client_id: GOOGLE_CLIENT_ID,
     redirect_uri: GOOGLE_REDIRECT_URI,
     response_type: "code",
-    scope: "https://www.googleapis.com/auth/calendar.freebusy https://www.googleapis.com/auth/calendar.events",
+    // Only calendar.freebusy — we read free/busy to block already-busy slots
+    // and NEVER write events (bookings reach the user's calendar via the .ics /
+    // Google links in the confirmation emails). calendar.freebusy is a
+    // non-sensitive scope, so this drops the sensitive calendar.events scope
+    // that was triggering Google's "unverified app" warning + scope verification.
+    scope: "https://www.googleapis.com/auth/calendar.freebusy",
     access_type: "offline",
     prompt: "consent",
     state,
