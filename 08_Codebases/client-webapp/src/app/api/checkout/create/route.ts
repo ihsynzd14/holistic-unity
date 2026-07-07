@@ -612,16 +612,24 @@ async function notifyFreeBookingConfirmed(args: {
 
   // Pre-formatted Italian date/time for the existing Brevo template
   // (which expects `session_date`, `session_time`, `amount` params).
+  // scheduled_at is stored UTC; render in Europe/Rome so the email shows the
+  // wall-clock the client actually booked. WITHOUT an explicit timeZone this
+  // renders in the server's TZ (UTC on Vercel) → 2h early during CEST — which
+  // is exactly what made a free intro call booked for 18:30 show as 16:30.
+  // (The paid-booking email in webhooks/stripe already does this correctly.)
+  const TZ_ROME = "Europe/Rome";
   const sessionDate = new Date(args.scheduledAt);
   const sessionDateStr = sessionDate.toLocaleDateString("it-IT", {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: TZ_ROME,
   });
   const sessionTimeStr = sessionDate.toLocaleTimeString("it-IT", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: TZ_ROME,
   });
 
   const TPL_CLIENT = 3;
