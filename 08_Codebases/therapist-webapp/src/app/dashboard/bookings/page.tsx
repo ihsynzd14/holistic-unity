@@ -501,8 +501,8 @@ export default function BookingsPage() {
     const cur = d.booking.currency.toUpperCase();
     const sym = d.booking.currency === "eur" ? "€" : d.booking.currency === "usd" ? "$" : d.booking.currency === "gbp" ? "£" : cur + " ";
     const date = new Date(d.booking.scheduled_at);
-    const dateStr = date.toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric" });
-    const timeStr = date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+    const dateStr = date.toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Europe/Rome" });
+    const timeStr = date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" });
     // Prefer the legal name the client entered at Stripe Checkout —
     // that's what should appear on the invoice. Display name is a
     // fallback for legacy bookings (pre-V1.1) or guests who never
@@ -631,7 +631,7 @@ export default function BookingsPage() {
                     isPending || isReschedule ? "bg-warning/10 text-warning" : "bg-berry-subtle text-berry"
                   }`}>
                     <span className="text-[10px] font-semibold uppercase">
-                      {date.toLocaleDateString("it-IT", { month: "short" })}
+                      {date.toLocaleDateString("it-IT", { month: "short", timeZone: "Europe/Rome" })}
                     </span>
                     <span className="text-lg font-bold leading-none">{date.getDate()}</span>
                   </div>
@@ -654,9 +654,9 @@ export default function BookingsPage() {
                     </div>
                     <p className="text-xs text-charcoal-muted mt-0.5">
                       {booking.service_name || t.bookings.session} &middot;{" "}
-                      {date.toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long" })}
+                      {date.toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Rome" })}
                       {" " + t.bookings.at + " "}
-                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                       {" · "}{booking.duration} min
                     </p>
                   </div>
@@ -805,11 +805,11 @@ export default function BookingsPage() {
                           <p className="font-semibold text-warning">{t.bookings.newDate}</p>
                           <p className="text-charcoal">
                             {new Date(booking.proposed_scheduled_at).toLocaleDateString("it-IT", {
-                              weekday: "long", day: "numeric", month: "long", year: "numeric"
+                              weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Rome"
                             })}
                             {" " + t.bookings.at + " "}
                             {new Date(booking.proposed_scheduled_at).toLocaleTimeString("it-IT", {
-                              hour: "2-digit", minute: "2-digit"
+                              hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome"
                             })}
                           </p>
                         </div>
@@ -904,7 +904,7 @@ export default function BookingsPage() {
                       <Row label="Servizio" value={d.booking.service_name} />
                       <Row
                         label="Data e ora"
-                        value={`${date.toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" })} alle ${date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}`}
+                        value={`${date.toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric", timeZone: "Europe/Rome" })} alle ${date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}`}
                       />
                       <Row label="Durata" value={`${d.booking.duration_min} min`} />
                       <Row label="ID Booking" value={d.booking.id} mono />

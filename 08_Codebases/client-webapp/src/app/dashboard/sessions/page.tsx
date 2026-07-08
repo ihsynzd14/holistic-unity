@@ -104,12 +104,12 @@ export default function ClientSessionsPage() {
                   <span className="text-[10px] font-semibold uppercase">
                     {isToday
                       ? t.clientSessions.today
-                      : date.toLocaleDateString("it-IT", { month: "short" })}
+                      : date.toLocaleDateString("it-IT", { month: "short", timeZone: "Europe/Rome" })}
                   </span>
                   <span className="text-lg font-bold leading-none">
                     {isToday
-                      ? date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
-                      : date.getDate()}
+                      ? date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })
+                      : date.toLocaleDateString("it-IT", { day: "numeric", timeZone: "Europe/Rome" })}
                   </span>
                 </div>
 
@@ -124,11 +124,13 @@ export default function ClientSessionsPage() {
                           weekday: "long",
                           day: "numeric",
                           month: "long",
+                          timeZone: "Europe/Rome",
                         })}
                         {` ${t.clientSessions.at} `}
                         {date.toLocaleTimeString("it-IT", {
                           hour: "2-digit",
                           minute: "2-digit",
+                          timeZone: "Europe/Rome",
                         })}
                       </>
                     )}

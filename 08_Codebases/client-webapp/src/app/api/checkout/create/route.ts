@@ -506,7 +506,7 @@ export async function POST(request: NextRequest) {
                 name: `${service.name} \u2014 ${profile.display_name ?? ""}`.trim(),
                 description: `${service.duration} min \u00b7 ${slotDate.toLocaleString(
                   "it-IT",
-                  { dateStyle: "full", timeStyle: "short" },
+                  { dateStyle: "full", timeStyle: "short", timeZone: "Europe/Rome" },
                 )}`,
               },
               unit_amount: calc.totalChargedCents,

@@ -1356,11 +1356,13 @@ export default function TherapistDetailPage() {
                           weekday: "long",
                           day: "numeric",
                           month: "long",
+                          timeZone: "Europe/Rome",
                         })}{" "}
                         {t.detail.at}{" "}
                         {selectedSlot.toLocaleTimeString("it-IT", {
                           hour: "2-digit",
                           minute: "2-digit",
+                          timeZone: "Europe/Rome",
                         })}
                       </p>
                     </div>

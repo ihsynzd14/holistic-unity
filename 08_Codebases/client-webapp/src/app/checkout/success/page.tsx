@@ -175,11 +175,13 @@ function SuccessInner() {
               day: "numeric",
               month: "long",
               year: "numeric",
+              timeZone: "Europe/Rome",
             })}{" "}
             {t.checkoutSuccess.at}{" "}
             {new Date(booking.scheduled_at).toLocaleTimeString("it-IT", {
               hour: "2-digit",
               minute: "2-digit",
+              timeZone: "Europe/Rome",
             })}
           </p>
 

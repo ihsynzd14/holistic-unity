@@ -59,7 +59,9 @@ export type Slot = {
 };
 
 export type DaySlots = {
-  date: Date; // local midnight of the day
+  date: Date; // UTC instant of midnight-of-the-day in the therapist's tz
+  dayNum: number; // day-of-month in the therapist's tz (1–31)
+  weekday: number; // 0=Sun … 6=Sat in the therapist's tz (matches Date#getDay)
   slots: Slot[];
 };
 
@@ -389,7 +391,10 @@ export function computeSlots(args: {
     if (slots.length > 0 || i < 7) {
       // Always show the first 7 days even when empty so the user sees a
       // calendar grid; days 8–14 only appear if they have slots.
-      result.push({ date: dayUtc, slots });
+      // dayNum/weekday come from `dayParts` (already resolved in the
+      // therapist's tz) so the UI never re-derives the day in the
+      // viewer's browser zone — which would drift by one near midnight.
+      result.push({ date: dayUtc, dayNum: dayParts.day, weekday: dayParts.weekday, slots });
     }
   }
 

@@ -443,7 +443,7 @@ export default function ClientDashboardPage() {
                   when: nextSessionWhenLabel(nextBooking.scheduled_at, now, t),
                   time: new Date(nextBooking.scheduled_at).toLocaleTimeString(
                     dateFmtLocale,
-                    { hour: "2-digit", minute: "2-digit" },
+                    { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" },
                   ),
                 },
               )
@@ -685,12 +685,12 @@ export default function ClientDashboardPage() {
                         ? t.clientHome.today
                         : isTomorrow
                           ? t.clientHome.tomorrow
-                          : date.toLocaleDateString(dateFmtLocale, { month: "short" })}
+                          : date.toLocaleDateString(dateFmtLocale, { month: "short", timeZone: "Europe/Rome" })}
                     </span>
                     <span className="text-lg font-bold leading-none">
                       {isToday || isTomorrow
-                        ? date.toLocaleTimeString(dateFmtLocale, { hour: "2-digit", minute: "2-digit" })
-                        : date.getDate()}
+                        ? date.toLocaleTimeString(dateFmtLocale, { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })
+                        : date.toLocaleDateString(dateFmtLocale, { day: "numeric", timeZone: "Europe/Rome" })}
                     </span>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -701,9 +701,10 @@ export default function ClientDashboardPage() {
                         weekday: "long",
                         day: "numeric",
                         month: "long",
+                        timeZone: "Europe/Rome",
                       })}{" "}
                       {t.clientHome.at}{" "}
-                      {date.toLocaleTimeString(dateFmtLocale, { hour: "2-digit", minute: "2-digit" })}
+                      {date.toLocaleTimeString(dateFmtLocale, { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                     </p>
                   </div>
                   {b.video_room_id && isJoinWindowOpen(b.scheduled_at) && (
@@ -807,6 +808,7 @@ function NextSessionHero({
               {date.toLocaleTimeString(dateFmtLocale, {
                 hour: "2-digit",
                 minute: "2-digit",
+                timeZone: "Europe/Rome",
               })}
             </div>
             <div className="text-xs font-semibold uppercase tracking-[0.1em] text-gold-light">
@@ -819,6 +821,7 @@ function NextSessionHero({
                       weekday: "short",
                       day: "numeric",
                       month: "short",
+                      timeZone: "Europe/Rome",
                     })}
             </div>
           </div>
@@ -1018,6 +1021,7 @@ function PendingReviewCard({
             {date.toLocaleDateString(dateFmtLocale, {
               day: "numeric",
               month: "long",
+              timeZone: "Europe/Rome",
             })}
           </p>
         </div>
@@ -1115,5 +1119,5 @@ function nextSessionWhenLabel(
   // name in lowercase (matches the rest of the sentence) rather than a
   // raw date — "la prossima lunedì alle 15:30" feels more natural than
   // "la prossima 18 maggio alle 15:30".
-  return target.toLocaleDateString("it-IT", { weekday: "long" });
+  return target.toLocaleDateString("it-IT", { weekday: "long", timeZone: "Europe/Rome" });
 }

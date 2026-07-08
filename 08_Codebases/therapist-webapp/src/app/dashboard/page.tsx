@@ -310,10 +310,10 @@ export default function DashboardPage() {
                     isToday ? "bg-berry text-white" : "bg-berry-subtle text-berry"
                   }`}>
                     <span className="text-[10px] font-semibold uppercase">
-                      {isToday ? t.dashboard.today : isTomorrow ? t.dashboard.tomorrow : date.toLocaleDateString("it-IT", { month: "short" })}
+                      {isToday ? t.dashboard.today : isTomorrow ? t.dashboard.tomorrow : date.toLocaleDateString("it-IT", { month: "short", timeZone: "Europe/Rome" })}
                     </span>
                     <span className="text-lg font-bold leading-none">
-                      {isToday || isTomorrow ? date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" }) : date.getDate()}
+                      {isToday || isTomorrow ? date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" }) : date.getDate()}
                     </span>
                   </div>
 
@@ -326,9 +326,9 @@ export default function DashboardPage() {
                     </p>
                     <p className="text-xs text-charcoal-muted truncate">
                       {booking.service_name || t.dashboard.session} &middot;{" "}
-                      {date.toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long" })}
+                      {date.toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Rome" })}
                       {` ${t.dashboard.at} `}
-                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                     </p>
                   </div>
 

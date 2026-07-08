@@ -453,7 +453,7 @@ function TimelineItem({
       <div className="flex-1 rounded-2xl border border-berry/5 bg-white p-5 shadow-sm">
         <p className="flex flex-wrap items-center gap-2 text-[11px] font-medium text-charcoal-muted">
           <span className="font-semibold uppercase tracking-[0.04em] text-berry">
-            {date.toLocaleDateString(dateFmtLocale, { day: "numeric", month: "short" })}
+            {date.toLocaleDateString(dateFmtLocale, { day: "numeric", month: "short", timeZone: "Europe/Rome" })}
           </span>
           <span>·</span>
           <span className="text-charcoal">{practice.label}</span>

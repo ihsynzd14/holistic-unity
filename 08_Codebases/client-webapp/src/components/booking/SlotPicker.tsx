@@ -5,6 +5,13 @@ import type { Availability, Booking, DaySlots } from "@/lib/booking/slots";
 import { computeSlots, BOOKING_WINDOW_DAYS } from "@/lib/booking/slots";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 
+// Slot times/days are always shown in Europe/Rome — the platform's canonical
+// zone — regardless of the viewer's device. This keeps the picker consistent
+// with the confirmation email, the success page and the admin, which all
+// render bookings in Rome. (Slots are already computed in the therapist's
+// zone, which defaults to Europe/Rome.)
+const BOOKING_TZ = "Europe/Rome";
+
 interface SlotPickerProps {
   availability: Availability | null | undefined;
   bookings: Booking[];
@@ -102,8 +109,8 @@ export default function SlotPicker({
                   aria-pressed={isActive}
                   aria-label={
                     hasSlots
-                      ? `${d.date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" })} \u2014 ${d.slots.length} slot disponibili`
-                      : `${d.date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" })} \u2014 nessuno slot disponibile`
+                      ? `${d.date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long", timeZone: BOOKING_TZ })} \u2014 ${d.slots.length} slot disponibili`
+                      : `${d.date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long", timeZone: BOOKING_TZ })} \u2014 nessuno slot disponibile`
                   }
                   className={`flex h-16 flex-1 flex-col items-center justify-center rounded-xl border transition-all ${
                     isActive
@@ -114,10 +121,10 @@ export default function SlotPicker({
                   }`}
                 >
                   <span aria-hidden="true" className="text-[10px] font-semibold uppercase tracking-wide">
-                    {labels.weekdayShort[d.date.getDay()]}
+                    {labels.weekdayShort[d.weekday]}
                   </span>
                   <span aria-hidden="true" className="font-[family-name:var(--font-display)] text-lg font-bold leading-none">
-                    {d.date.getDate()}
+                    {d.dayNum}
                   </span>
                 </button>
               );
@@ -149,7 +156,7 @@ export default function SlotPicker({
               {noSlotsAtAll
                 ? "Nessuna disponibilità nel prossimo mese. Scrivi al terapista per concordare un orario."
                 : firstAvailableIdx > activeDayIdx
-                ? `Prossimo slot disponibile: ${days[firstAvailableIdx].date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long" })}.`
+                ? `Prossimo slot disponibile: ${days[firstAvailableIdx].date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long", timeZone: BOOKING_TZ })}.`
                 : labels.noSlotsHelp}
             </p>
             {!noSlotsAtAll && firstAvailableIdx !== -1 && firstAvailableIdx !== activeDayIdx && (
@@ -185,6 +192,7 @@ export default function SlotPicker({
                   {s.start.toLocaleTimeString(locale, {
                     hour: "2-digit",
                     minute: "2-digit",
+                    timeZone: BOOKING_TZ,
                   })}
                 </button>
               );

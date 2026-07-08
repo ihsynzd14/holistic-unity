@@ -365,23 +365,23 @@ export default function ClientBookingsPage() {
                         </p>
                         <p className="mt-1 text-sm text-charcoal">
                           <span className="line-through text-charcoal-muted/70">
-                            {date.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short" })}
+                            {date.toLocaleDateString("it-IT", { weekday: "short", day: "numeric", month: "short", timeZone: "Europe/Rome" })}
                             {" "}
-                            {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                            {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                           </span>
                           {" → "}
                           <strong className="text-charcoal">
                             {new Date(b.proposed_scheduled_at).toLocaleDateString("it-IT", {
-                              weekday: "short", day: "numeric", month: "short",
+                              weekday: "short", day: "numeric", month: "short", timeZone: "Europe/Rome",
                             })}
                             {" "}
-                            {new Date(b.proposed_scheduled_at).toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                            {new Date(b.proposed_scheduled_at).toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                           </strong>
                         </p>
                         {b.reschedule_proposed_at && (
                           <p className="mt-0.5 text-[11px] text-charcoal-muted">
                             Proposta entro 24h dal: {new Date(b.reschedule_proposed_at).toLocaleString("it-IT", {
-                              day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
+                              day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome"
                             })}. Senza risposta, viene cancellata con rimborso 100%.
                           </p>
                         )}
@@ -414,9 +414,9 @@ export default function ClientBookingsPage() {
                 >
                   <div className="flex h-14 w-14 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-berry-subtle text-berry">
                     <span className="text-[10px] font-semibold uppercase">
-                      {date.toLocaleDateString("it-IT", { month: "short" })}
+                      {date.toLocaleDateString("it-IT", { month: "short", timeZone: "Europe/Rome" })}
                     </span>
-                    <span className="text-lg font-bold leading-none">{date.getDate()}</span>
+                    <span className="text-lg font-bold leading-none">{date.toLocaleDateString("it-IT", { day: "numeric", timeZone: "Europe/Rome" })}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -437,9 +437,10 @@ export default function ClientBookingsPage() {
                         weekday: "long",
                         day: "numeric",
                         month: "long",
+                        timeZone: "Europe/Rome",
                       })}
                       {` ${t.clientBookings.at} `}
-                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}
+                      {date.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                       {` · ${b.duration ?? 60} min`}
                     </p>
                   </div>

@@ -303,7 +303,7 @@ export default function SessionsPage() {
                 }`}>
                   {isLive && <span className="h-2 w-2 rounded-full bg-white animate-pulse mb-1" />}
                   <span className="text-lg font-bold leading-none">
-                    {date.toLocaleTimeString(locale === "it" ? "it-IT" : "en-US", { hour: "2-digit", minute: "2-digit" })}
+                    {date.toLocaleTimeString(locale === "it" ? "it-IT" : "en-US", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}
                   </span>
                   <span className="text-[10px] mt-0.5 opacity-80">{session.duration} {t.sessions.minutes}</span>
                 </div>
@@ -313,7 +313,7 @@ export default function SessionsPage() {
                   <p className="text-sm font-semibold text-charcoal">{session.client_name}</p>
                   <p className="text-xs text-charcoal-muted mt-0.5">
                     {session.service_name} &middot;{" "}
-                    {date.toLocaleDateString(locale === "it" ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long" })}
+                    {date.toLocaleDateString(locale === "it" ? "it-IT" : "en-US", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Rome" })}
                   </p>
                 </div>
 
