@@ -496,7 +496,7 @@ export default async function DashboardPage() {
                   <div key={b.id} className="flex items-center gap-3 rounded-xl p-2.5">
                     <div className="flex-1 min-w-0">
                       <p className="truncate text-sm font-semibold text-charcoal">{b.service_name || "Session"}</p>
-                      <p className="text-xs text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</p>
+                      <p className="text-xs text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}</p>
                     </div>
                     <span className="text-sm font-semibold text-charcoal">€{(b.price || 0).toFixed(2)}</span>
                     <StatusBadge status={b.status} />

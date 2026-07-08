@@ -72,7 +72,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                 <td className="whitespace-nowrap px-5 py-4"><p className="text-sm font-semibold text-charcoal">{b.service_name || "Session"}</p><p className="text-xs text-charcoal-muted">{b.duration} min</p></td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-light">{(b.client as any)?.display_name || "\u2014"}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-light">{(b.therapist as any)?.display_name || "\u2014"}</td>
-                <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-charcoal-muted">{new Date(b.scheduled_at).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Rome" })}</td>
                 <td className="whitespace-nowrap px-5 py-4 text-sm font-semibold text-charcoal">{"\u20AC"}{(b.price || 0).toFixed(2)}</td>
                 <td className="whitespace-nowrap px-5 py-4"><PaymentCell b={b} refund={refundByBooking[b.id]} /></td>
                 <td className="whitespace-nowrap px-5 py-4">
