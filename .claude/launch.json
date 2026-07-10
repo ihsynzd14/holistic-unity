@@ -6,6 +6,13 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "08_Codebases/holistic-unity-website", "-l", "8091", "-n"],
       "port": 8091
+    },
+    {
+      "name": "therapist-webapp",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "-p", "3011"],
+      "cwd": "08_Codebases/therapist-webapp",
+      "port": 3011
     }
   ]
 }

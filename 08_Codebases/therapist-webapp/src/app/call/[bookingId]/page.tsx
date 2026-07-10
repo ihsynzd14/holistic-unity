@@ -29,6 +29,10 @@ export default function CallPage() {
   const [error, setError] = useState("");
   const [callEnded, setCallEnded] = useState(false);
   const [disconnected, setDisconnected] = useState(false);
+  // Deliberate "Leave" (distinct from callEnded/disconnected): the
+  // booking stays in_progress, only the local video connection drops.
+  const [left, setLeft] = useState(false);
+  const [confirmingEnd, setConfirmingEnd] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   // Pre-flight permission probe state. Mirrors the client-webapp call
   // page — keep both in sync if the policy changes.
@@ -178,12 +182,44 @@ export default function CallPage() {
     initialize();
   }, [initialize]);
 
-  // Explicit end: therapist clicks "End Session". The status flip is
-  // done server-side via /api/bookings/[id]/complete which validates
-  // ownership + state machine. A direct supabase.update from the client
-  // would let any authenticated user mark any booking as completed if
-  // they knew its UUID — short-circuiting the payout escrow window.
-  async function handleEndSession() {
+  // Leave: just disconnect. The booking is already `in_progress` (set
+  // server-side by /api/bookings/[id]/start before this tab opened) and
+  // we don't touch it here — it stays open for either side to rejoin.
+  // This is the button for "stepping out because no one's here yet",
+  // which used to only be reachable via End Session and silently
+  // completed the booking for good.
+  function handleLeave() {
+    setLeft(true);
+    setToken("");
+    if (timerRef.current) clearInterval(timerRef.current);
+  }
+
+  // Rejoin after a deliberate Leave — same tab, re-run the same
+  // init flow used on first load (fetch a fresh token, reconnect).
+  async function handleRejoinAfterLeave() {
+    setLeft(false);
+    setElapsedSeconds(0);
+    await initialize();
+  }
+
+  // "End Session" always asks for confirmation first — see
+  // handleConfirmEndSession for the action that actually fires.
+  function handleRequestEndSession() {
+    setConfirmingEnd(true);
+  }
+
+  function handleCancelEndSession() {
+    setConfirmingEnd(false);
+  }
+
+  // Confirmed end: the status flip is done server-side via
+  // /api/bookings/[id]/complete which validates ownership + state
+  // machine. A direct supabase.update from the client would let any
+  // authenticated user mark any booking as completed if they knew its
+  // UUID — short-circuiting the payout escrow window. Terminal: once
+  // this succeeds there's no way back in from this tab.
+  async function handleConfirmEndSession() {
+    setConfirmingEnd(false);
     try {
       await fetch(`/api/bookings/${bookingId}/complete`, { method: "POST" });
     } catch {
@@ -198,7 +234,7 @@ export default function CallPage() {
   // Automatic disconnect: network issue, NOT explicit end.
   // Does NOT mark booking as completed — shows reconnect prompt.
   function handleDisconnected() {
-    if (!callEnded) {
+    if (!callEnded && !left) {
       setDisconnected(true);
       setToken("");
     }
@@ -394,6 +430,70 @@ export default function CallPage() {
     );
   }
 
+  // ─── Confirm "End Session" — takes priority over left/disconnected
+  // so it overlays correctly no matter which screen requested it, and
+  // cancelling falls back to that same screen. ────────────────────
+  if (confirmingEnd) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <div className="max-w-sm rounded-2xl bg-white/10 p-8 text-center backdrop-blur-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-error/20">
+            <span className="text-2xl">!</span>
+          </div>
+          <h2 className="text-lg font-semibold">End this session?</h2>
+          <p className="mt-2 text-sm text-white/60">
+            This marks the booking as completed and can&apos;t be undone from here. Only do this once the session has actually finished.
+          </p>
+          <div className="mt-6 flex gap-3 justify-center">
+            <button
+              onClick={handleCancelEndSession}
+              className="rounded-full border border-white/20 px-6 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmEndSession}
+              className="rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-red-700"
+            >
+              End Session
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ─── Left deliberately — session stays open, rejoin anytime ────
+  if (left) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <div className="max-w-sm rounded-2xl bg-white/10 p-8 text-center backdrop-blur-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+            <span className="text-2xl">⏸</span>
+          </div>
+          <h2 className="text-lg font-semibold">You left the session</h2>
+          <p className="mt-2 text-sm text-white/60">
+            The session is still active — rejoin anytime until you end it.
+          </p>
+          <div className="mt-6 flex gap-3 justify-center">
+            <button
+              onClick={handleRejoinAfterLeave}
+              className="rounded-full bg-berry px-6 py-2.5 text-sm font-medium transition-all hover:bg-berry-dark"
+            >
+              Rejoin
+            </button>
+            <button
+              onClick={handleRequestEndSession}
+              className="rounded-full border border-white/20 px-6 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10"
+            >
+              End Session
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // ─── Disconnected unexpectedly — reconnect prompt ──────────────
   if (disconnected) {
     return (
@@ -414,7 +514,7 @@ export default function CallPage() {
               Reconnect
             </button>
             <button
-              onClick={handleEndSession}
+              onClick={handleRequestEndSession}
               className="rounded-full border border-white/20 px-6 py-2.5 text-sm font-medium text-white/70 transition-all hover:bg-white/10"
             >
               End Session
@@ -454,7 +554,7 @@ export default function CallPage() {
           onDisconnected={handleDisconnected}
           style={{ height: "100%" }}
         >
-          <CustomVideoLayout onEndSession={handleEndSession} />
+          <CustomVideoLayout onLeave={handleLeave} onEndSession={handleRequestEndSession} />
         </LiveKitRoom>
       </div>
     </div>

@@ -14,10 +14,14 @@ import { Track } from "livekit-client";
 import { useState, useCallback } from "react";
 
 interface CustomVideoLayoutProps {
+  /** Just disconnect — the booking stays open, anyone can rejoin. */
+  onLeave: () => void;
+  /** Request the terminal action. The caller is expected to confirm
+   *  before actually marking the booking completed. */
   onEndSession: () => void;
 }
 
-export default function CustomVideoLayout({ onEndSession }: CustomVideoLayoutProps) {
+export default function CustomVideoLayout({ onLeave, onEndSession }: CustomVideoLayoutProps) {
   const tracks = useTracks(
     [
       { source: Track.Source.Camera, withPlaceholder: true },
@@ -141,7 +145,20 @@ export default function CustomVideoLayout({ onEndSession }: CustomVideoLayoutPro
         {/* Separator */}
         <div className="mx-1 h-8 w-px bg-white/20" />
 
-        {/* End Session */}
+        {/* Leave — disconnects only; the booking stays open so either
+            side can rejoin. Distinct from End Session so stepping out
+            because no one's arrived yet doesn't close out the booking. */}
+        <button
+          onClick={onLeave}
+          className="flex h-12 items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 text-sm font-semibold text-white transition-all hover:bg-white/20 active:scale-95"
+          title="Leave — you can rejoin anytime, the session stays open"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Leave
+        </button>
+
+        {/* End Session — terminal. The caller shows a confirm step
+            before this actually fires. */}
         <button
           onClick={onEndSession}
           className="flex h-12 items-center gap-2 rounded-full bg-red-600 px-6 text-sm font-semibold text-white transition-all hover:bg-red-700 active:scale-95"
